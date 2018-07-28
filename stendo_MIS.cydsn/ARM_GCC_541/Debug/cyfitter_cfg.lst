@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
   29:Generated_Source\PSoC5/cyfitter_cfg.c **** #if defined(__GNUC__) || defined(__ARMCC_VERSION)
   30:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED 
   31:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED_ATTR __attribute__ ((packed))
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 2
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 2
 
 
   32:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYALIGNED __attribute__ ((aligned))
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
   35 0002 82B0     		sub	sp, sp, #8
   36              		.cfi_def_cfa_offset 16
   37 0004 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 3
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 3
 
 
   38              		.cfi_def_cfa_register 7
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
   86:Generated_Source\PSoC5/cyfitter_cfg.c **** }
   84              		.loc 1 86 0
   85 0016 00BF     		nop
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 4
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 4
 
 
   86 0018 1037     		adds	r7, r7, #16
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  133 001e 00BF     		.section	.text.CyClockStartupError,"ax",%progbits
  134              		.align	2
  135              		.thumb
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 5
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 5
 
 
  136              		.thumb_func
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  129:Generated_Source\PSoC5/cyfitter_cfg.c ****     errorCode = errorCode;
  130:Generated_Source\PSoC5/cyfitter_cfg.c **** #else
  131:Generated_Source\PSoC5/cyfitter_cfg.c ****     (void)errorCode;
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 6
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 6
 
 
  132:Generated_Source\PSoC5/cyfitter_cfg.c **** #endif /* CY_PSOC3 */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  174:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  175:Generated_Source\PSoC5/cyfitter_cfg.c **** /* UDB_1_1_0_CONFIG Address: CYDEV_UCFG_B1_P3_U1_BASE Size (bytes): 128 */
  176:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_UDB_1_1_0_CONFIG_VAL ((const uint8 CYFAR *)0x480014E0u)
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 7
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 7
 
 
  177:Generated_Source\PSoC5/cyfitter_cfg.c **** 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  175 0002 87B0     		sub	sp, sp, #28
  176              		.cfi_def_cfa_offset 32
  177 0004 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 8
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 8
 
 
  178              		.cfi_def_cfa_register 7
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  222 004a 0B70     		strb	r3, [r1]
  233:Generated_Source\PSoC5/cyfitter_cfg.c **** 			j++;
  223              		.loc 1 233 0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 9
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 9
 
 
  224 004c 3B69     		ldr	r3, [r7, #16]
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  242:Generated_Source\PSoC5/cyfitter_cfg.c **** *
  243:Generated_Source\PSoC5/cyfitter_cfg.c **** * Summary:
  244:Generated_Source\PSoC5/cyfitter_cfg.c **** *  Performs the initialization of all of the clocks in the device based on the
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 10
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 10
 
 
  245:Generated_Source\PSoC5/cyfitter_cfg.c **** *  settings in the Clock tab of the DWR.  This includes enabling the requested
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  297 0020 1A22     		movs	r2, #26
  298 0022 1A70     		strb	r2, [r3]
  269:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG2_CFG0), 0x030Cu);
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 11
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 11
 
 
  299              		.loc 1 269 0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  337 005e 4FF4F070 		mov	r0, #480
  338 0062 FFF7FEFF 		bl	CyDelayCycles
  282:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{ 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 12
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 12
 
 
  339              		.loc 1 282 0 discriminator 4
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  294:Generated_Source\PSoC5/cyfitter_cfg.c **** 	for (timeout = 130000u / 10u; (timeout > 0u) && ((CY_GET_XTND_REG8((void CYFAR *)CYREG_FASTCLK_XMH
  379              		.loc 1 294 0 discriminator 4
  380 00a8 7B68     		ldr	r3, [r7, #4]
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 13
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 13
 
 
  381 00aa 013B     		subs	r3, r3, #1
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  421              	.L20:
  310:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{ 
  311:Generated_Source\PSoC5/cyfitter_cfg.c **** 		pllLock = 0x03u & ((uint8)((uint8)pllLock << 1) | ((CY_GET_XTND_REG8((void CYFAR *)CYREG_FASTCLK_
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 14
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 14
 
 
  422              		.loc 1 311 0 discriminator 4
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  463 0130 1A80     		strh	r2, [r3]	@ movhi
  322:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_MSTR0), 0x07u);
  464              		.loc 1 322 0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 15
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 15
 
 
  465 0132 214B     		ldr	r3, .L22+80
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  512 018c 09430040 		.word	1073758985
  513 0190 08430040 		.word	1073758984
  514 0194 A0860100 		.word	100000
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 16
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 16
 
 
  515 0198 12420040 		.word	1073758738
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  546 0002 83B0     		sub	sp, sp, #12
  547              		.cfi_def_cfa_offset 16
  548 0004 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 17
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 17
 
 
  549              		.cfi_def_cfa_register 7
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  598              	.LFB7:
  358:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  359:Generated_Source\PSoC5/cyfitter_cfg.c **** 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 18
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 18
 
 
  360:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  389:Generated_Source\PSoC5/cyfitter_cfg.c **** }
  624              		.loc 1 389 0
  625 001a 00BF     		nop
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 19
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 19
 
 
  626 001c 1437     		adds	r7, r7, #20
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  657              		.cfi_offset 14, -4
  658 0002 86B0     		sub	sp, sp, #24
  659              		.cfi_def_cfa_offset 32
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 20
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 20
 
 
  660 0004 00AF     		add	r7, sp, #0
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  449:Generated_Source\PSoC5/cyfitter_cfg.c **** 		static const cfg_memcpy_t CYCODE cfg_memcpy_list [] = {
  450:Generated_Source\PSoC5/cyfitter_cfg.c **** 			/* dest, src, size */
  451:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_PRTDSI_PRT12_BASE), BS_IOPORT_7_VAL, 6u},
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 21
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 21
 
 
  452:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_IDMUX_IRQ_CTL0), BS_IDMUX_IRQ_VAL, 8u},
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  712              		.loc 1 469 0 is_stmt 1
  713 004c 0023     		movs	r3, #0
  714 004e FB75     		strb	r3, [r7, #23]
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 22
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 22
 
 
  715 0050 1CE0     		b	.L35
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  758              		.loc 1 478 0 is_stmt 1
  759 0092 3B49     		ldr	r1, .L37+12
  760 0094 4FF09040 		mov	r0, #1207959552
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 23
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 23
 
 
  761 0098 FFF7FEFF 		bl	cfg_write_bytes32
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  796 00d6 344B     		ldr	r3, .L37+52
  797 00d8 1B78     		ldrb	r3, [r3]
  798 00da DBB2     		uxtb	r3, r3
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 24
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 24
 
 
  799 00dc 43F04003 		orr	r3, r3, #64
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  841              		.loc 1 509 0
  842 0130 0822     		movs	r2, #8
  843 0132 2B49     		ldr	r1, .L37+108
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 25
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 25
 
 
  844 0134 2B48     		ldr	r0, .L37+112
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  883 0174 E8460040 		.word	1073759976
  884 0178 00000000 		.word	cfg_memset_list.5014
  885 017c 3C000000 		.word	cfg_memcpy_list.5015
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 26
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 26
 
 
  886 0180 A0000048 		.word	1207959712
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  940 002e 000A     		.short	2560
  941 0030 004C0140 		.word	1073826816
  942 0034 0002     		.short	512
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 27
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 27
 
 
  943 0036 10500140 		.4byte	1073827856
@@ -1598,8 +1598,8 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  977 000b 01       		.uleb128 0x1
  978 000c 2B000000 		.4byte	.LASF52
  979 0010 0C       		.byte	0xc
- 980 0011 2C030000 		.4byte	.LASF53
- 981 0015 45010000 		.4byte	.LASF54
+ 980 0011 EE020000 		.4byte	.LASF53
+ 981 0015 4C010000 		.4byte	.LASF54
  982 0019 00000000 		.4byte	.Ldebug_ranges0+0
  983 001d 00000000 		.4byte	0
  984 0021 00000000 		.4byte	.Ldebug_line0
@@ -1615,10 +1615,10 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  994 0037 04       		.uleb128 0x4
  995 0038 04       		.byte	0x4
  996 0039 07       		.byte	0x7
- 997 003a E3010000 		.4byte	.LASF0
+ 997 003a A5010000 		.4byte	.LASF0
  998 003e 04       		.uleb128 0x4
  999 003f 08       		.byte	0x8
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 28
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 28
 
 
  1000 0040 05       		.byte	0x5
@@ -1626,7 +1626,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1002 0045 04       		.uleb128 0x4
  1003 0046 08       		.byte	0x8
  1004 0047 04       		.byte	0x4
- 1005 0048 69020000 		.4byte	.LASF2
+ 1005 0048 2B020000 		.4byte	.LASF2
  1006 004c 04       		.uleb128 0x4
  1007 004d 01       		.byte	0x1
  1008 004e 06       		.byte	0x6
@@ -1634,15 +1634,15 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1010 0053 04       		.uleb128 0x4
  1011 0054 01       		.byte	0x1
  1012 0055 08       		.byte	0x8
- 1013 0056 BC020000 		.4byte	.LASF4
+ 1013 0056 7E020000 		.4byte	.LASF4
  1014 005a 04       		.uleb128 0x4
  1015 005b 02       		.byte	0x2
  1016 005c 05       		.byte	0x5
- 1017 005d CA020000 		.4byte	.LASF5
+ 1017 005d 8C020000 		.4byte	.LASF5
  1018 0061 04       		.uleb128 0x4
  1019 0062 02       		.byte	0x2
  1020 0063 07       		.byte	0x7
- 1021 0064 37020000 		.4byte	.LASF6
+ 1021 0064 F9010000 		.4byte	.LASF6
  1022 0068 04       		.uleb128 0x4
  1023 0069 04       		.byte	0x4
  1024 006a 05       		.byte	0x5
@@ -1650,7 +1650,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1026 006f 04       		.uleb128 0x4
  1027 0070 04       		.byte	0x4
  1028 0071 07       		.byte	0x7
- 1029 0072 F9010000 		.4byte	.LASF8
+ 1029 0072 BB010000 		.4byte	.LASF8
  1030 0076 04       		.uleb128 0x4
  1031 0077 08       		.byte	0x8
  1032 0078 07       		.byte	0x7
@@ -1658,13 +1658,13 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1034 007d 04       		.uleb128 0x4
  1035 007e 04       		.byte	0x4
  1036 007f 07       		.byte	0x7
- 1037 0080 60020000 		.4byte	.LASF10
+ 1037 0080 22020000 		.4byte	.LASF10
  1038 0084 05       		.uleb128 0x5
  1039 0085 04       		.byte	0x4
  1040 0086 04       		.uleb128 0x4
  1041 0087 01       		.byte	0x1
  1042 0088 08       		.byte	0x8
- 1043 0089 EF020000 		.4byte	.LASF11
+ 1043 0089 B1020000 		.4byte	.LASF11
  1044 008d 06       		.uleb128 0x6
  1045 008e 3F010000 		.4byte	.LASF13
  1046 0092 03       		.byte	0x3
@@ -1676,9 +1676,9 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1052 009f 9301     		.2byte	0x193
  1053 00a1 61000000 		.4byte	0x61
  1054 00a5 06       		.uleb128 0x6
- 1055 00a6 BD010000 		.4byte	.LASF15
+ 1055 00a6 7F010000 		.4byte	.LASF15
  1056 00aa 03       		.byte	0x3
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 29
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 29
 
 
  1057 00ab 9401     		.2byte	0x194
@@ -1686,13 +1686,13 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1059 00b1 04       		.uleb128 0x4
  1060 00b2 04       		.byte	0x4
  1061 00b3 04       		.byte	0x4
- 1062 00b4 A9020000 		.4byte	.LASF16
+ 1062 00b4 6B020000 		.4byte	.LASF16
  1063 00b8 04       		.uleb128 0x4
  1064 00b9 08       		.byte	0x8
  1065 00ba 04       		.byte	0x4
- 1066 00bb B6010000 		.4byte	.LASF17
+ 1066 00bb 45010000 		.4byte	.LASF17
  1067 00bf 06       		.uleb128 0x6
- 1068 00c0 B7020000 		.4byte	.LASF18
+ 1068 00c0 79020000 		.4byte	.LASF18
  1069 00c4 03       		.byte	0x3
  1070 00c5 3C02     		.2byte	0x23c
  1071 00c7 CB000000 		.4byte	0xcb
@@ -1706,7 +1706,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1079 00dc 07       		.uleb128 0x7
  1080 00dd 99000000 		.4byte	0x99
  1081 00e1 06       		.uleb128 0x6
- 1082 00e2 4A020000 		.4byte	.LASF20
+ 1082 00e2 0C020000 		.4byte	.LASF20
  1083 00e6 03       		.byte	0x3
  1084 00e7 3E02     		.2byte	0x23e
  1085 00e9 ED000000 		.4byte	0xed
@@ -1718,27 +1718,27 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1091 00f5 9A       		.byte	0x9a
  1092 00f6 13010000 		.4byte	0x113
  1093 00fa 09       		.uleb128 0x9
- 1094 00fb 11030000 		.4byte	.LASF21
+ 1094 00fb D3020000 		.4byte	.LASF21
  1095 00ff 01       		.byte	0x1
  1096 0100 9C       		.byte	0x9c
  1097 0101 8D000000 		.4byte	0x8d
  1098 0105 00       		.byte	0
  1099 0106 09       		.uleb128 0x9
- 1100 0107 DD010000 		.4byte	.LASF22
+ 1100 0107 9F010000 		.4byte	.LASF22
  1101 010b 01       		.byte	0x1
  1102 010c 9D       		.byte	0x9d
  1103 010d 8D000000 		.4byte	0x8d
  1104 0111 01       		.byte	0x1
  1105 0112 00       		.byte	0
  1106 0113 03       		.uleb128 0x3
- 1107 0114 DC020000 		.4byte	.LASF23
+ 1107 0114 9E020000 		.4byte	.LASF23
  1108 0118 01       		.byte	0x1
  1109 0119 9E       		.byte	0x9e
  1110 011a F2000000 		.4byte	0xf2
  1111 011e 0A       		.uleb128 0xa
  1112 011f 11010000 		.4byte	.LASF24
  1113 0123 01       		.byte	0x1
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 30
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 30
 
 
  1114 0124 4C       		.byte	0x4c
@@ -1765,7 +1765,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1135 014a 70       		.sleb128 -16
  1136 014b 00       		.byte	0
  1137 014c 0A       		.uleb128 0xa
- 1138 014d 20030000 		.4byte	.LASF25
+ 1138 014d E2020000 		.4byte	.LASF25
  1139 0151 01       		.byte	0x1
  1140 0152 53       		.byte	0x53
  1141 0153 00000000 		.4byte	.LFB1
@@ -1774,7 +1774,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1144 015c 9C       		.byte	0x9c
  1145 015d 8A010000 		.4byte	0x18a
  1146 0161 0C       		.uleb128 0xc
- 1147 0162 A4020000 		.4byte	.LASF26
+ 1147 0162 66020000 		.4byte	.LASF26
  1148 0166 01       		.byte	0x1
  1149 0167 53       		.byte	0x53
  1150 0168 84000000 		.4byte	0x84
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1168 0187 91       		.byte	0x91
  1169 0188 6C       		.sleb128 -20
  1170 0189 00       		.byte	0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 31
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 31
 
 
  1171 018a 0D       		.uleb128 0xd
@@ -1806,7 +1806,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1173 018c 90010000 		.4byte	0x190
  1174 0190 0E       		.uleb128 0xe
  1175 0191 0A       		.uleb128 0xa
- 1176 0192 50020000 		.4byte	.LASF27
+ 1176 0192 12020000 		.4byte	.LASF27
  1177 0196 01       		.byte	0x1
  1178 0197 5A       		.byte	0x5a
  1179 0198 00000000 		.4byte	.LFB2
@@ -1815,7 +1815,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1182 01a1 9C       		.byte	0x9c
  1183 01a2 CF010000 		.4byte	0x1cf
  1184 01a6 0C       		.uleb128 0xc
- 1185 01a7 A4020000 		.4byte	.LASF26
+ 1185 01a7 66020000 		.4byte	.LASF26
  1186 01ab 01       		.byte	0x1
  1187 01ac 5A       		.byte	0x5a
  1188 01ad 84000000 		.4byte	0x84
@@ -1858,10 +1858,10 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1225 01f1 77       		.sleb128 -9
  1226 01f2 00       		.byte	0
  1227 01f3 0F       		.uleb128 0xf
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 32
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 32
 
 
- 1228 01f4 20020000 		.4byte	.LASF30
+ 1228 01f4 E2010000 		.4byte	.LASF30
  1229 01f8 01       		.byte	0x1
  1230 01f9 DD       		.byte	0xdd
  1231 01fa 00000000 		.4byte	.LFB4
@@ -1913,12 +1913,12 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1277 0251 91       		.byte	0x91
  1278 0252 68       		.sleb128 -24
  1279 0253 12       		.uleb128 0x12
- 1280 0254 C4010000 		.4byte	.LASF34
+ 1280 0254 86010000 		.4byte	.LASF34
  1281 0258 01       		.byte	0x1
  1282 0259 E4       		.byte	0xe4
  1283 025a 8D000000 		.4byte	0x8d
  1284 025e 02       		.uleb128 0x2
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 33
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 33
 
 
  1285 025f 91       		.byte	0x91
@@ -1945,7 +1945,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1306 028a 9C       		.byte	0x9c
  1307 028b BD020000 		.4byte	0x2bd
  1308 028f 15       		.uleb128 0x15
- 1309 0290 D3010000 		.4byte	.LASF36
+ 1309 0290 95010000 		.4byte	.LASF36
  1310 0294 01       		.byte	0x1
  1311 0295 0201     		.2byte	0x102
  1312 0297 8D000000 		.4byte	0x8d
@@ -1953,7 +1953,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1314 029c 91       		.byte	0x91
  1315 029d 72       		.sleb128 -14
  1316 029e 15       		.uleb128 0x15
- 1317 029f 0B020000 		.4byte	.LASF37
+ 1317 029f CD010000 		.4byte	.LASF37
  1318 02a3 01       		.byte	0x1
  1319 02a4 0301     		.2byte	0x103
  1320 02a6 A5000000 		.4byte	0xa5
@@ -1961,7 +1961,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1322 02ab 91       		.byte	0x91
  1323 02ac 74       		.sleb128 -12
  1324 02ad 15       		.uleb128 0x15
- 1325 02ae D4020000 		.4byte	.LASF38
+ 1325 02ae 96020000 		.4byte	.LASF38
  1326 02b2 01       		.byte	0x1
  1327 02b3 0401     		.2byte	0x104
  1328 02b5 8D000000 		.4byte	0x8d
@@ -1978,11 +1978,11 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1339 02cd 01       		.uleb128 0x1
  1340 02ce 9C       		.byte	0x9c
  1341 02cf E3020000 		.4byte	0x2e3
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 34
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 34
 
 
  1342 02d3 15       		.uleb128 0x15
- 1343 02d4 75020000 		.4byte	.LASF40
+ 1343 02d4 37020000 		.4byte	.LASF40
  1344 02d8 01       		.byte	0x1
  1345 02d9 6101     		.2byte	0x161
  1346 02db 8D000000 		.4byte	0x8d
@@ -1991,7 +1991,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1349 02e1 77       		.sleb128 -9
  1350 02e2 00       		.byte	0
  1351 02e3 17       		.uleb128 0x17
- 1352 02e4 FB020000 		.4byte	.LASF55
+ 1352 02e4 BD020000 		.4byte	.LASF55
  1353 02e8 01       		.byte	0x1
  1354 02e9 7901     		.2byte	0x179
  1355 02eb 00000000 		.4byte	.LFB7
@@ -2000,7 +2000,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1358 02f4 9C       		.byte	0x9c
  1359 02f5 18030000 		.4byte	0x318
  1360 02f9 18       		.uleb128 0x18
- 1361 02fa 18030000 		.4byte	.LASF41
+ 1361 02fa DA020000 		.4byte	.LASF41
  1362 02fe 01       		.byte	0x1
  1363 02ff 7901     		.2byte	0x179
  1364 0301 8D000000 		.4byte	0x8d
@@ -2008,7 +2008,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1366 0306 91       		.byte	0x91
  1367 0307 6F       		.sleb128 -17
  1368 0308 15       		.uleb128 0x15
- 1369 0309 CA010000 		.4byte	.LASF42
+ 1369 0309 8C010000 		.4byte	.LASF42
  1370 030d 01       		.byte	0x1
  1371 030e 7B01     		.2byte	0x17b
  1372 0310 8D000000 		.4byte	0x8d
@@ -2017,7 +2017,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1375 0316 77       		.sleb128 -9
  1376 0317 00       		.byte	0
  1377 0318 19       		.uleb128 0x19
- 1378 0319 6A030000 		.4byte	.LASF56
+ 1378 0319 2C030000 		.4byte	.LASF56
  1379 031d 01       		.byte	0x1
  1380 031e 9B01     		.2byte	0x19b
  1381 0320 00000000 		.4byte	.LFB8
@@ -2033,23 +2033,23 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1391 0336 A701     		.2byte	0x1a7
  1392 0338 57030000 		.4byte	0x357
  1393 033c 1B       		.uleb128 0x1b
- 1394 033d 52030000 		.4byte	.LASF43
+ 1394 033d 14030000 		.4byte	.LASF43
  1395 0341 01       		.byte	0x1
  1396 0342 A801     		.2byte	0x1a8
  1397 0344 84000000 		.4byte	0x84
  1398 0348 00       		.byte	0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 35
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 35
 
 
  1399 0349 1B       		.uleb128 0x1b
- 1400 034a 32020000 		.4byte	.LASF44
+ 1400 034a F4010000 		.4byte	.LASF44
  1401 034e 01       		.byte	0x1
  1402 034f A901     		.2byte	0x1a9
  1403 0351 99000000 		.4byte	0x99
  1404 0355 04       		.byte	0x4
  1405 0356 00       		.byte	0
  1406 0357 06       		.uleb128 0x6
- 1407 0358 87020000 		.4byte	.LASF45
+ 1407 0358 49020000 		.4byte	.LASF45
  1408 035c 01       		.byte	0x1
  1409 035d AA01     		.2byte	0x1aa
  1410 035f 33030000 		.4byte	0x333
@@ -2059,7 +2059,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1414 0366 AD01     		.2byte	0x1ad
  1415 0368 94030000 		.4byte	0x394
  1416 036c 1B       		.uleb128 0x1b
- 1417 036d A4020000 		.4byte	.LASF26
+ 1417 036d 66020000 		.4byte	.LASF26
  1418 0371 01       		.byte	0x1
  1419 0372 AE01     		.2byte	0x1ae
  1420 0374 84000000 		.4byte	0x84
@@ -2071,14 +2071,14 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1426 0381 8A010000 		.4byte	0x18a
  1427 0385 04       		.byte	0x4
  1428 0386 1B       		.uleb128 0x1b
- 1429 0387 32020000 		.4byte	.LASF44
+ 1429 0387 F4010000 		.4byte	.LASF44
  1430 038b 01       		.byte	0x1
  1431 038c B001     		.2byte	0x1b0
  1432 038e 99000000 		.4byte	0x99
  1433 0392 08       		.byte	0x8
  1434 0393 00       		.byte	0
  1435 0394 06       		.uleb128 0x6
- 1436 0395 13020000 		.4byte	.LASF46
+ 1436 0395 D5010000 		.4byte	.LASF46
  1437 0399 01       		.byte	0x1
  1438 039a B101     		.2byte	0x1b1
  1439 039c 63030000 		.4byte	0x363
@@ -2092,13 +2092,13 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1447 03b0 13       		.uleb128 0x13
  1448 03b1 57030000 		.4byte	0x357
  1449 03b5 15       		.uleb128 0x15
- 1450 03b6 94020000 		.4byte	.LASF47
+ 1450 03b6 56020000 		.4byte	.LASF47
  1451 03ba 01       		.byte	0x1
  1452 03bb B301     		.2byte	0x1b3
  1453 03bd C7030000 		.4byte	0x3c7
  1454 03c1 05       		.uleb128 0x5
  1455 03c2 03       		.byte	0x3
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 36
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 36
 
 
  1456 03c3 00000000 		.4byte	cfg_memset_list.5014
@@ -2114,7 +2114,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1466 03dc 13       		.uleb128 0x13
  1467 03dd 94030000 		.4byte	0x394
  1468 03e1 15       		.uleb128 0x15
- 1469 03e2 5A030000 		.4byte	.LASF48
+ 1469 03e2 1C030000 		.4byte	.LASF48
  1470 03e6 01       		.byte	0x1
  1471 03e7 C101     		.2byte	0x1c1
  1472 03e9 F3030000 		.4byte	0x3f3
@@ -2158,14 +2158,14 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1510 043b 02       		.uleb128 0x2
  1511 043c 91       		.byte	0x91
  1512 043d 6C       		.sleb128 -20
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 37
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 37
 
 
  1513 043e 0D       		.uleb128 0xd
  1514 043f 04       		.byte	0x4
  1515 0440 DC030000 		.4byte	0x3dc
  1516 0444 15       		.uleb128 0x15
- 1517 0445 AF020000 		.4byte	.LASF49
+ 1517 0445 71020000 		.4byte	.LASF49
  1518 0449 01       		.byte	0x1
  1519 044a D801     		.2byte	0x1d8
  1520 044c 84000000 		.4byte	0x84
@@ -2173,7 +2173,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1522 0451 91       		.byte	0x91
  1523 0452 68       		.sleb128 -24
  1524 0453 15       		.uleb128 0x15
- 1525 0454 F4020000 		.4byte	.LASF50
+ 1525 0454 B6020000 		.4byte	.LASF50
  1526 0458 01       		.byte	0x1
  1527 0459 D901     		.2byte	0x1d9
  1528 045b 8A010000 		.4byte	0x18a
@@ -2181,7 +2181,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1530 0460 91       		.byte	0x91
  1531 0461 64       		.sleb128 -28
  1532 0462 15       		.uleb128 0x15
- 1533 0463 F0010000 		.4byte	.LASF51
+ 1533 0463 B2010000 		.4byte	.LASF51
  1534 0467 01       		.byte	0x1
  1535 0468 DA01     		.2byte	0x1da
  1536 046a 99000000 		.4byte	0x99
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1567 0015 00       		.byte	0
  1568 0016 0B       		.uleb128 0xb
  1569 0017 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 38
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 38
 
 
  1570 0018 3E       		.uleb128 0x3e
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1624 004e 13       		.uleb128 0x13
  1625 004f 00       		.byte	0
  1626 0050 00       		.byte	0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 39
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 39
 
 
  1627 0051 08       		.uleb128 0x8
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1681 0088 03       		.uleb128 0x3
  1682 0089 08       		.uleb128 0x8
  1683 008a 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 40
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 40
 
 
  1684 008b 0B       		.uleb128 0xb
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1738 00c1 18       		.uleb128 0x18
  1739 00c2 9742     		.uleb128 0x2117
  1740 00c4 19       		.uleb128 0x19
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 41
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 41
 
 
  1741 00c5 01       		.uleb128 0x1
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1795 00fb 0E       		.uleb128 0xe
  1796 00fc 3A       		.uleb128 0x3a
  1797 00fd 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 42
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 42
 
 
  1798 00fe 3B       		.uleb128 0x3b
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1852 0136 17       		.uleb128 0x17
  1853 0137 2E       		.uleb128 0x2e
  1854 0138 01       		.byte	0x1
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 43
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 43
 
 
  1855 0139 3F       		.uleb128 0x3f
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1909 0170 40       		.uleb128 0x40
  1910 0171 18       		.uleb128 0x18
  1911 0172 9642     		.uleb128 0x2116
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 44
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 44
 
 
  1912 0174 19       		.uleb128 0x19
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  1966 01aa 00       		.byte	0
  1967 01ab 1E       		.uleb128 0x1e
  1968 01ac 21       		.uleb128 0x21
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 45
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 45
 
 
  1969 01ad 00       		.byte	0
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  2023 0040 00000000 		.4byte	.LFB6
  2024 0044 44000000 		.4byte	.LFE6-.LFB6
  2025 0048 00000000 		.4byte	.LFB7
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 46
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 46
 
 
  2026 004c 28000000 		.4byte	.LFE7-.LFB7
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  2065      31203230 
  2065      31363036 
  2066 005e 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 47
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 47
 
 
  2066      20726576 
@@ -2818,196 +2818,187 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 1
  2088              	.LASF19:
  2089 0139 72656731 		.ascii	"reg16\000"
  2089      3600
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 48
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 48
 
 
  2090              	.LASF13:
  2091 013f 75696E74 		.ascii	"uint8\000"
  2091      3800
- 2092              	.LASF54:
- 2093 0145 453A5C5F 		.ascii	"E:\\_Axis projektai\\workspace180601\\workspace\\mi"
- 2093      41786973 
- 2093      2070726F 
- 2093      6A656B74 
- 2093      61695C77 
- 2094 0174 6E756E69 		.ascii	"nunit_arch stendo 0927\\minunit_arch\\minunit_arch\\"
- 2094      745F6172 
- 2094      63682073 
- 2094      74656E64 
- 2094      6F203039 
- 2095 01a5 7374656E 		.ascii	"stendo_MIS.cydsn\000"
- 2095      646F5F4D 
- 2095      49532E63 
- 2095      7964736E 
- 2095      00
- 2096              	.LASF17:
- 2097 01b6 646F7562 		.ascii	"double\000"
- 2097      6C6500
- 2098              	.LASF15:
- 2099 01bd 75696E74 		.ascii	"uint32\000"
- 2099      333200
- 2100              	.LASF34:
- 2101 01c4 636F756E 		.ascii	"count\000"
- 2101      7400
- 2102              	.LASF42:
- 2103 01ca 72656756 		.ascii	"regValue\000"
- 2103      616C7565 
- 2103      00
- 2104              	.LASF36:
- 2105 01d3 78333254 		.ascii	"x32TrHold\000"
- 2105      72486F6C 
- 2105      6400
- 2106              	.LASF22:
- 2107 01dd 76616C75 		.ascii	"value\000"
- 2107      6500
- 2108              	.LASF0:
- 2109 01e3 756E7369 		.ascii	"unsigned int\000"
- 2109      676E6564 
- 2109      20696E74 
- 2109      00
- 2110              	.LASF51:
- 2111 01f0 6E756D42 		.ascii	"numBytes\000"
- 2111      79746573 
- 2111      00
- 2112              	.LASF8:
- 2113 01f9 6C6F6E67 		.ascii	"long unsigned int\000"
- 2113      20756E73 
- 2113      69676E65 
- 2113      6420696E 
- 2113      7400
- 2114              	.LASF37:
- 2115 020b 74696D65 		.ascii	"timeout\000"
- 2115      6F757400 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 49
+ 2092              	.LASF17:
+ 2093 0145 646F7562 		.ascii	"double\000"
+ 2093      6C6500
+ 2094              	.LASF54:
+ 2095 014c 453A5C5F 		.ascii	"E:\\_CODE\\PSoC Projektai\\PSoC_MIS2\\stendo_MIS.cy"
+ 2095      434F4445 
+ 2095      5C50536F 
+ 2095      43205072 
+ 2095      6F6A656B 
+ 2096 017b 64736E00 		.ascii	"dsn\000"
+ 2097              	.LASF15:
+ 2098 017f 75696E74 		.ascii	"uint32\000"
+ 2098      333200
+ 2099              	.LASF34:
+ 2100 0186 636F756E 		.ascii	"count\000"
+ 2100      7400
+ 2101              	.LASF42:
+ 2102 018c 72656756 		.ascii	"regValue\000"
+ 2102      616C7565 
+ 2102      00
+ 2103              	.LASF36:
+ 2104 0195 78333254 		.ascii	"x32TrHold\000"
+ 2104      72486F6C 
+ 2104      6400
+ 2105              	.LASF22:
+ 2106 019f 76616C75 		.ascii	"value\000"
+ 2106      6500
+ 2107              	.LASF0:
+ 2108 01a5 756E7369 		.ascii	"unsigned int\000"
+ 2108      676E6564 
+ 2108      20696E74 
+ 2108      00
+ 2109              	.LASF51:
+ 2110 01b2 6E756D42 		.ascii	"numBytes\000"
+ 2110      79746573 
+ 2110      00
+ 2111              	.LASF8:
+ 2112 01bb 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2112      20756E73 
+ 2112      69676E65 
+ 2112      6420696E 
+ 2112      7400
+ 2113              	.LASF37:
+ 2114 01cd 74696D65 		.ascii	"timeout\000"
+ 2114      6F757400 
+ 2115              	.LASF46:
+ 2116 01d5 6366675F 		.ascii	"cfg_memcpy_t\000"
+ 2116      6D656D63 
+ 2116      70795F74 
+ 2116      00
+ 2117              	.LASF30:
+ 2118 01e2 6366675F 		.ascii	"cfg_write_bytes32\000"
+ 2118      77726974 
+ 2118      655F6279 
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 49
 
 
- 2116              	.LASF46:
- 2117 0213 6366675F 		.ascii	"cfg_memcpy_t\000"
- 2117      6D656D63 
- 2117      70795F74 
- 2117      00
- 2118              	.LASF30:
- 2119 0220 6366675F 		.ascii	"cfg_write_bytes32\000"
- 2119      77726974 
- 2119      655F6279 
- 2119      74657333 
- 2119      3200
- 2120              	.LASF44:
- 2121 0232 73697A65 		.ascii	"size\000"
- 2121      00
- 2122              	.LASF6:
- 2123 0237 73686F72 		.ascii	"short unsigned int\000"
- 2123      7420756E 
- 2123      7369676E 
- 2123      65642069 
- 2123      6E7400
- 2124              	.LASF20:
- 2125 024a 72656733 		.ascii	"reg32\000"
- 2125      3200
- 2126              	.LASF27:
- 2127 0250 4359434F 		.ascii	"CYCONFIGCPYCODE\000"
- 2127      4E464947 
- 2127      43505943 
- 2127      4F444500 
- 2128              	.LASF10:
- 2129 0260 73697A65 		.ascii	"sizetype\000"
- 2129      74797065 
- 2129      00
- 2130              	.LASF2:
- 2131 0269 6C6F6E67 		.ascii	"long double\000"
- 2131      20646F75 
- 2131      626C6500 
- 2132              	.LASF40:
- 2133 0275 62675F78 		.ascii	"bg_xover_inl_trim\000"
- 2133      6F766572 
- 2133      5F696E6C 
- 2133      5F747269 
- 2133      6D00
- 2134              	.LASF45:
- 2135 0287 6366675F 		.ascii	"cfg_memset_t\000"
- 2135      6D656D73 
- 2135      65745F74 
- 2135      00
- 2136              	.LASF47:
- 2137 0294 6366675F 		.ascii	"cfg_memset_list\000"
- 2137      6D656D73 
- 2137      65745F6C 
- 2137      69737400 
- 2138              	.LASF26:
- 2139 02a4 64657374 		.ascii	"dest\000"
- 2139      00
- 2140              	.LASF16:
- 2141 02a9 666C6F61 		.ascii	"float\000"
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 50
+ 2118      74657333 
+ 2118      3200
+ 2119              	.LASF44:
+ 2120 01f4 73697A65 		.ascii	"size\000"
+ 2120      00
+ 2121              	.LASF6:
+ 2122 01f9 73686F72 		.ascii	"short unsigned int\000"
+ 2122      7420756E 
+ 2122      7369676E 
+ 2122      65642069 
+ 2122      6E7400
+ 2123              	.LASF20:
+ 2124 020c 72656733 		.ascii	"reg32\000"
+ 2124      3200
+ 2125              	.LASF27:
+ 2126 0212 4359434F 		.ascii	"CYCONFIGCPYCODE\000"
+ 2126      4E464947 
+ 2126      43505943 
+ 2126      4F444500 
+ 2127              	.LASF10:
+ 2128 0222 73697A65 		.ascii	"sizetype\000"
+ 2128      74797065 
+ 2128      00
+ 2129              	.LASF2:
+ 2130 022b 6C6F6E67 		.ascii	"long double\000"
+ 2130      20646F75 
+ 2130      626C6500 
+ 2131              	.LASF40:
+ 2132 0237 62675F78 		.ascii	"bg_xover_inl_trim\000"
+ 2132      6F766572 
+ 2132      5F696E6C 
+ 2132      5F747269 
+ 2132      6D00
+ 2133              	.LASF45:
+ 2134 0249 6366675F 		.ascii	"cfg_memset_t\000"
+ 2134      6D656D73 
+ 2134      65745F74 
+ 2134      00
+ 2135              	.LASF47:
+ 2136 0256 6366675F 		.ascii	"cfg_memset_list\000"
+ 2136      6D656D73 
+ 2136      65745F6C 
+ 2136      69737400 
+ 2137              	.LASF26:
+ 2138 0266 64657374 		.ascii	"dest\000"
+ 2138      00
+ 2139              	.LASF16:
+ 2140 026b 666C6F61 		.ascii	"float\000"
+ 2140      7400
+ 2141              	.LASF49:
+ 2142 0271 64657374 		.ascii	"destPtr\000"
+ 2142      50747200 
+ 2143              	.LASF18:
+ 2144 0279 72656738 		.ascii	"reg8\000"
+ 2144      00
+ 2145              	.LASF4:
+ 2146 027e 756E7369 		.ascii	"unsigned char\000"
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 50
 
 
- 2141      7400
- 2142              	.LASF49:
- 2143 02af 64657374 		.ascii	"destPtr\000"
- 2143      50747200 
- 2144              	.LASF18:
- 2145 02b7 72656738 		.ascii	"reg8\000"
- 2145      00
- 2146              	.LASF4:
- 2147 02bc 756E7369 		.ascii	"unsigned char\000"
- 2147      676E6564 
- 2147      20636861 
- 2147      7200
- 2148              	.LASF5:
- 2149 02ca 73686F72 		.ascii	"short int\000"
- 2149      7420696E 
- 2149      7400
- 2150              	.LASF38:
- 2151 02d4 706C6C4C 		.ascii	"pllLock\000"
- 2151      6F636B00 
- 2152              	.LASF23:
- 2153 02dc 63795F63 		.ascii	"cy_cfg_addrvalue_t\000"
- 2153      66675F61 
- 2153      64647276 
- 2153      616C7565 
- 2153      5F7400
- 2154              	.LASF11:
- 2155 02ef 63686172 		.ascii	"char\000"
- 2155      00
- 2156              	.LASF50:
- 2157 02f4 73726350 		.ascii	"srcPtr\000"
- 2157      747200
- 2158              	.LASF55:
- 2159 02fb 53657441 		.ascii	"SetAnalogRoutingPumps\000"
- 2159      6E616C6F 
- 2159      67526F75 
- 2159      74696E67 
- 2159      50756D70 
- 2160              	.LASF21:
- 2161 0311 6F666673 		.ascii	"offset\000"
- 2161      657400
- 2162              	.LASF41:
- 2163 0318 656E6162 		.ascii	"enabled\000"
- 2163      6C656400 
- 2164              	.LASF25:
- 2165 0320 4359434F 		.ascii	"CYCONFIGCPY\000"
- 2165      4E464947 
- 2165      43505900 
- 2166              	.LASF53:
- 2167 032c 47656E65 		.ascii	"Generated_Source\\PSoC5\\cyfitter_cfg.c\000"
- 2167      72617465 
- 2167      645F536F 
- 2167      75726365 
- 2167      5C50536F 
- 2168              	.LASF43:
- 2169 0352 61646472 		.ascii	"address\000"
- 2169      65737300 
- 2170              	.LASF48:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccLVToR8.s 			page 51
+ 2146      676E6564 
+ 2146      20636861 
+ 2146      7200
+ 2147              	.LASF5:
+ 2148 028c 73686F72 		.ascii	"short int\000"
+ 2148      7420696E 
+ 2148      7400
+ 2149              	.LASF38:
+ 2150 0296 706C6C4C 		.ascii	"pllLock\000"
+ 2150      6F636B00 
+ 2151              	.LASF23:
+ 2152 029e 63795F63 		.ascii	"cy_cfg_addrvalue_t\000"
+ 2152      66675F61 
+ 2152      64647276 
+ 2152      616C7565 
+ 2152      5F7400
+ 2153              	.LASF11:
+ 2154 02b1 63686172 		.ascii	"char\000"
+ 2154      00
+ 2155              	.LASF50:
+ 2156 02b6 73726350 		.ascii	"srcPtr\000"
+ 2156      747200
+ 2157              	.LASF55:
+ 2158 02bd 53657441 		.ascii	"SetAnalogRoutingPumps\000"
+ 2158      6E616C6F 
+ 2158      67526F75 
+ 2158      74696E67 
+ 2158      50756D70 
+ 2159              	.LASF21:
+ 2160 02d3 6F666673 		.ascii	"offset\000"
+ 2160      657400
+ 2161              	.LASF41:
+ 2162 02da 656E6162 		.ascii	"enabled\000"
+ 2162      6C656400 
+ 2163              	.LASF25:
+ 2164 02e2 4359434F 		.ascii	"CYCONFIGCPY\000"
+ 2164      4E464947 
+ 2164      43505900 
+ 2165              	.LASF53:
+ 2166 02ee 47656E65 		.ascii	"Generated_Source\\PSoC5\\cyfitter_cfg.c\000"
+ 2166      72617465 
+ 2166      645F536F 
+ 2166      75726365 
+ 2166      5C50536F 
+ 2167              	.LASF43:
+ 2168 0314 61646472 		.ascii	"address\000"
+ 2168      65737300 
+ 2169              	.LASF48:
+ 2170 031c 6366675F 		.ascii	"cfg_memcpy_list\000"
+ 2170      6D656D63 
+ 2170      70795F6C 
+ 2170      69737400 
+ 2171              	.LASF56:
+ 2172 032c 63796669 		.ascii	"cyfitter_cfg\000"
+ 2172      74746572 
+ 2172      5F636667 
+ 2172      00
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc0XWMNP.s 			page 51
 
 
- 2171 035a 6366675F 		.ascii	"cfg_memcpy_list\000"
- 2171      6D656D63 
- 2171      70795F6C 
- 2171      69737400 
- 2172              	.LASF56:
- 2173 036a 63796669 		.ascii	"cyfitter_cfg\000"
- 2173      74746572 
- 2173      5F636667 
- 2173      00
- 2174              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 2173              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,10 +1,7 @@
-E:\_Axis projektai\workspace180601\workspace\minunit_arch stendo 0927\minunit_arch\minunit_arch\stendo_MIS.cydsn\stendo_MIS.cyprj|8c6319c4-09cb-465d-a512-7bcbcf4c1428
-C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|5773094c-7e48-4ea8-87f1-e5b18247cec5
-C:\Users\Tomas\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|5c792bf3-8b5a-4cc4-8dcc-7a87ed0010d6
-C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|63174cfa-b89e-4c90-b2ac-ceb2116ea794
-C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|5e9d0990-2cfb-46b7-bdc1-c2bbe7191624
-C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|3ad0354b-4560-4381-a858-79509e8a63c3
-C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|d1acda36-3595-4df7-858c-7a3c19c2f520
-E:\_Axis projektai\workspace180601\workspace\minunit_arch2 2 mis\minunit_arch2 0924\minunit_arch\test_sku03.cydsn\test_sku03.cyprj|222776f0-2c26-4a8d-9c0b-418a62977523
-E:\_Axis projektai\workspace180601\workspace\minunit_arch stendo 0927\minunit_arch\minunit_arch\stendo_MIS_WIRE.cydsn\stendo_MIS_WIRE.cyprj|ba7f629d-84de-4869-92cd-c22416ddbf30
-E:\_Axis projektai\workspace180601\workspace\test_sku_stend_mis\MULTI_MIS.cydsn\MULTI_MIS.cyprj|6b1946d2-bd89-4fdf-a4c8-dfc30d0d968f
+E:\_CODE\PSoC Projektai\PSoC_MIS2\stendo_MIS.cydsn\stendo_MIS.cyprj|d48fc757-d1d6-4f88-a405-159bec9e75d5
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|0e42aed1-f99e-4d4b-9b1e-e9e8ce72c9d7
+C:\Users\Tomas\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|eca08ac4-24ee-46d9-a8f5-a8b1599daf90
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|03bf2996-038f-4317-9e13-b275aa53b5d3
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|4c550329-ed26-4a9a-9782-20056c8e8ae6
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|8f4f931f-2207-4ea8-889b-85c884508da0
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|4a506b96-f69f-4850-b056-aa6672805e03

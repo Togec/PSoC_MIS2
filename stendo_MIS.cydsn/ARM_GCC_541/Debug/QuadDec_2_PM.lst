@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
   24:Generated_Source\PSoC5/QuadDec_2_PM.c **** /*******************************************************************************
   25:Generated_Source\PSoC5/QuadDec_2_PM.c **** * Function Name: QuadDec_2_SaveConfig
   26:Generated_Source\PSoC5/QuadDec_2_PM.c **** ********************************************************************************
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 2
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 2
 
 
   27:Generated_Source\PSoC5/QuadDec_2_PM.c **** * Summary:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
   55:Generated_Source\PSoC5/QuadDec_2_PM.c **** *
   56:Generated_Source\PSoC5/QuadDec_2_PM.c **** * Parameters:
   57:Generated_Source\PSoC5/QuadDec_2_PM.c **** *  None.
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 3
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 3
 
 
   58:Generated_Source\PSoC5/QuadDec_2_PM.c **** *
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
   86:Generated_Source\PSoC5/QuadDec_2_PM.c **** * Return:
   87:Generated_Source\PSoC5/QuadDec_2_PM.c **** *  None.
   88:Generated_Source\PSoC5/QuadDec_2_PM.c **** *
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 4
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 4
 
 
   89:Generated_Source\PSoC5/QuadDec_2_PM.c **** * Global Variables:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
  117 0028 00BF     		nop
  118 002a 80BD     		pop	{r7, pc}
  119              	.L7:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 5
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 5
 
 
  120              		.align	2
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
  150 000c 002B     		cmp	r3, #0
  151 000e 03D0     		beq	.L10
  134:Generated_Source\PSoC5/QuadDec_2_PM.c ****     {
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 6
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 6
 
 
  135:Generated_Source\PSoC5/QuadDec_2_PM.c ****         #if (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_8_BIT)
@@ -340,10 +340,10 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
  175 0006 00000000 		.4byte	.Ldebug_abbrev0
  176 000a 04       		.byte	0x4
  177 000b 01       		.uleb128 0x1
- 178 000c D3000000 		.4byte	.LASF21
+ 178 000c 06010000 		.4byte	.LASF21
  179 0010 0C       		.byte	0xc
- 180 0011 A7000000 		.4byte	.LASF22
- 181 0015 C9010000 		.4byte	.LASF23
+ 180 0011 DA000000 		.4byte	.LASF22
+ 181 0015 27000000 		.4byte	.LASF23
  182 0019 00000000 		.4byte	.Ldebug_ranges0+0
  183 001d 00000000 		.4byte	0
  184 0021 00000000 		.4byte	.Ldebug_line0
@@ -358,67 +358,67 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
  193 0033 03       		.uleb128 0x3
  194 0034 08       		.byte	0x8
  195 0035 05       		.byte	0x5
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 7
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 7
 
 
  196 0036 00000000 		.4byte	.LASF1
  197 003a 03       		.uleb128 0x3
  198 003b 08       		.byte	0x8
  199 003c 04       		.byte	0x4
- 200 003d 3A020000 		.4byte	.LASF2
+ 200 003d FC010000 		.4byte	.LASF2
  201 0041 03       		.uleb128 0x3
  202 0042 01       		.byte	0x1
  203 0043 06       		.byte	0x6
- 204 0044 BD010000 		.4byte	.LASF3
+ 204 0044 F0010000 		.4byte	.LASF3
  205 0048 03       		.uleb128 0x3
  206 0049 01       		.byte	0x1
  207 004a 08       		.byte	0x8
- 208 004b 61010000 		.4byte	.LASF4
+ 208 004b 94010000 		.4byte	.LASF4
  209 004f 03       		.uleb128 0x3
  210 0050 02       		.byte	0x2
  211 0051 05       		.byte	0x5
- 212 0052 46020000 		.4byte	.LASF5
+ 212 0052 08020000 		.4byte	.LASF5
  213 0056 03       		.uleb128 0x3
  214 0057 02       		.byte	0x2
  215 0058 07       		.byte	0x7
- 216 0059 AA010000 		.4byte	.LASF6
+ 216 0059 DD010000 		.4byte	.LASF6
  217 005d 03       		.uleb128 0x3
  218 005e 04       		.byte	0x4
  219 005f 05       		.byte	0x5
- 220 0060 9A010000 		.4byte	.LASF7
+ 220 0060 CD010000 		.4byte	.LASF7
  221 0064 03       		.uleb128 0x3
  222 0065 04       		.byte	0x4
  223 0066 07       		.byte	0x7
- 224 0067 7E000000 		.4byte	.LASF8
+ 224 0067 B1000000 		.4byte	.LASF8
  225 006b 03       		.uleb128 0x3
  226 006c 08       		.byte	0x8
  227 006d 07       		.byte	0x7
- 228 006e 90000000 		.4byte	.LASF9
+ 228 006e C3000000 		.4byte	.LASF9
  229 0072 03       		.uleb128 0x3
  230 0073 04       		.byte	0x4
  231 0074 07       		.byte	0x7
- 232 0075 55020000 		.4byte	.LASF10
+ 232 0075 17020000 		.4byte	.LASF10
  233 0079 03       		.uleb128 0x3
  234 007a 01       		.byte	0x1
  235 007b 08       		.byte	0x8
- 236 007c 84010000 		.4byte	.LASF11
+ 236 007c B7010000 		.4byte	.LASF11
  237 0080 04       		.uleb128 0x4
- 238 0081 78000000 		.4byte	.LASF14
+ 238 0081 AB000000 		.4byte	.LASF14
  239 0085 02       		.byte	0x2
  240 0086 9201     		.2byte	0x192
  241 0088 48000000 		.4byte	0x48
  242 008c 03       		.uleb128 0x3
  243 008d 04       		.byte	0x4
  244 008e 04       		.byte	0x4
- 245 008f CD000000 		.4byte	.LASF12
+ 245 008f 00010000 		.4byte	.LASF12
  246 0093 03       		.uleb128 0x3
  247 0094 08       		.byte	0x8
  248 0095 04       		.byte	0x4
- 249 0096 A3010000 		.4byte	.LASF13
+ 249 0096 D6010000 		.4byte	.LASF13
  250 009a 04       		.uleb128 0x4
- 251 009b 50020000 		.4byte	.LASF15
+ 251 009b 12020000 		.4byte	.LASF15
  252 009f 02       		.byte	0x2
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 8
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 8
 
 
  253 00a0 3C02     		.2byte	0x23c
@@ -438,12 +438,12 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
  267 00be 00       		.byte	0
  268 00bf 00       		.byte	0
  269 00c0 08       		.uleb128 0x8
- 270 00c1 60000000 		.4byte	.LASF16
+ 270 00c1 93000000 		.4byte	.LASF16
  271 00c5 03       		.byte	0x3
  272 00c6 40       		.byte	0x40
  273 00c7 AB000000 		.4byte	0xab
  274 00cb 09       		.uleb128 0x9
- 275 00cc 6F010000 		.4byte	.LASF17
+ 275 00cc A2010000 		.4byte	.LASF17
  276 00d0 01       		.byte	0x1
  277 00d1 25       		.byte	0x25
  278 00d2 00000000 		.4byte	.LFB0
@@ -451,7 +451,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
  280 00da 01       		.uleb128 0x1
  281 00db 9C       		.byte	0x9c
  282 00dc 09       		.uleb128 0x9
- 283 00dd 37000000 		.4byte	.LASF18
+ 283 00dd 6A000000 		.4byte	.LASF18
  284 00e1 01       		.byte	0x1
  285 00e2 3F       		.byte	0x3f
  286 00e3 00000000 		.4byte	.LFB1
@@ -459,7 +459,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
  288 00eb 01       		.uleb128 0x1
  289 00ec 9C       		.byte	0x9c
  290 00ed 09       		.uleb128 0x9
- 291 00ee 27000000 		.4byte	.LASF19
+ 291 00ee 5A000000 		.4byte	.LASF19
  292 00f2 01       		.byte	0x1
  293 00f3 60       		.byte	0x60
  294 00f4 00000000 		.4byte	.LFB2
@@ -467,7 +467,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
  296 00fc 01       		.uleb128 0x1
  297 00fd 9C       		.byte	0x9c
  298 00fe 09       		.uleb128 0x9
- 299 00ff 89010000 		.4byte	.LASF20
+ 299 00ff BC010000 		.4byte	.LASF20
  300 0103 01       		.byte	0x1
  301 0104 81       		.byte	0x81
  302 0105 00000000 		.4byte	.LFB3
@@ -475,10 +475,10 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
  304 010d 01       		.uleb128 0x1
  305 010e 9C       		.byte	0x9c
  306 010f 0A       		.uleb128 0xa
- 307 0110 4F000000 		.4byte	.LASF25
+ 307 0110 82000000 		.4byte	.LASF25
  308 0114 01       		.byte	0x1
  309 0115 15       		.byte	0x15
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 9
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 9
 
 
  310 0116 C0000000 		.4byte	0xc0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
  364 002f 0B       		.uleb128 0xb
  365 0030 3B       		.uleb128 0x3b
  366 0031 05       		.uleb128 0x5
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 10
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 10
 
 
  367 0032 49       		.uleb128 0x49
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
  421 0068 00       		.byte	0
  422 0069 3F       		.uleb128 0x3f
  423 006a 19       		.uleb128 0x19
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 11
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 11
 
 
  424 006b 03       		.uleb128 0x3
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
  478 0000 00000000 		.4byte	.LFB0
  479 0004 0C000000 		.4byte	.LFE0
  480 0008 00000000 		.4byte	.LFB1
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 12
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 12
 
 
  481 000c 0C000000 		.4byte	.LFE1
@@ -689,141 +689,132 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 1
  496      676E6564 
  496      20696E74 
  496      00
- 497              	.LASF19:
- 498 0027 51756164 		.ascii	"QuadDec_2_Sleep\000"
- 498      4465635F 
- 498      325F536C 
- 498      65657000 
- 499              	.LASF18:
- 500 0037 51756164 		.ascii	"QuadDec_2_RestoreConfig\000"
- 500      4465635F 
- 500      325F5265 
- 500      73746F72 
- 500      65436F6E 
- 501              	.LASF25:
- 502 004f 51756164 		.ascii	"QuadDec_2_backup\000"
- 502      4465635F 
- 502      325F6261 
- 502      636B7570 
- 502      00
- 503              	.LASF16:
- 504 0060 51756164 		.ascii	"QuadDec_2_BACKUP_STRUCT\000"
- 504      4465635F 
- 504      325F4241 
- 504      434B5550 
- 504      5F535452 
- 505              	.LASF14:
- 506 0078 75696E74 		.ascii	"uint8\000"
- 506      3800
- 507              	.LASF8:
- 508 007e 6C6F6E67 		.ascii	"long unsigned int\000"
- 508      20756E73 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 13
+ 497              	.LASF23:
+ 498 0027 453A5C5F 		.ascii	"E:\\_CODE\\PSoC Projektai\\PSoC_MIS2\\stendo_MIS.cy"
+ 498      434F4445 
+ 498      5C50536F 
+ 498      43205072 
+ 498      6F6A656B 
+ 499 0056 64736E00 		.ascii	"dsn\000"
+ 500              	.LASF19:
+ 501 005a 51756164 		.ascii	"QuadDec_2_Sleep\000"
+ 501      4465635F 
+ 501      325F536C 
+ 501      65657000 
+ 502              	.LASF18:
+ 503 006a 51756164 		.ascii	"QuadDec_2_RestoreConfig\000"
+ 503      4465635F 
+ 503      325F5265 
+ 503      73746F72 
+ 503      65436F6E 
+ 504              	.LASF25:
+ 505 0082 51756164 		.ascii	"QuadDec_2_backup\000"
+ 505      4465635F 
+ 505      325F6261 
+ 505      636B7570 
+ 505      00
+ 506              	.LASF16:
+ 507 0093 51756164 		.ascii	"QuadDec_2_BACKUP_STRUCT\000"
+ 507      4465635F 
+ 507      325F4241 
+ 507      434B5550 
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 13
 
 
- 508      69676E65 
- 508      6420696E 
- 508      7400
- 509              	.LASF9:
- 510 0090 6C6F6E67 		.ascii	"long long unsigned int\000"
- 510      206C6F6E 
- 510      6720756E 
- 510      7369676E 
- 510      65642069 
- 511              	.LASF22:
- 512 00a7 47656E65 		.ascii	"Generated_Source\\PSoC5\\QuadDec_2_PM.c\000"
- 512      72617465 
- 512      645F536F 
- 512      75726365 
- 512      5C50536F 
- 513              	.LASF12:
- 514 00cd 666C6F61 		.ascii	"float\000"
- 514      7400
- 515              	.LASF21:
- 516 00d3 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 516      43313120 
- 516      352E342E 
- 516      31203230 
- 516      31363036 
- 517 0106 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 517      20726576 
- 517      6973696F 
- 517      6E203233 
- 517      37373135 
- 518 0139 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
- 518      66756E63 
- 518      74696F6E 
- 518      2D736563 
- 518      74696F6E 
- 519              	.LASF4:
- 520 0161 756E7369 		.ascii	"unsigned char\000"
- 520      676E6564 
- 520      20636861 
- 520      7200
- 521              	.LASF17:
- 522 016f 51756164 		.ascii	"QuadDec_2_SaveConfig\000"
- 522      4465635F 
- 522      325F5361 
- 522      7665436F 
- 522      6E666967 
- 523              	.LASF11:
- 524 0184 63686172 		.ascii	"char\000"
- 524      00
- 525              	.LASF20:
- 526 0189 51756164 		.ascii	"QuadDec_2_Wakeup\000"
- 526      4465635F 
- 526      325F5761 
- 526      6B657570 
- 526      00
- 527              	.LASF7:
- 528 019a 6C6F6E67 		.ascii	"long int\000"
- 528      20696E74 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccK7sEHU.s 			page 14
+ 507      5F535452 
+ 508              	.LASF14:
+ 509 00ab 75696E74 		.ascii	"uint8\000"
+ 509      3800
+ 510              	.LASF8:
+ 511 00b1 6C6F6E67 		.ascii	"long unsigned int\000"
+ 511      20756E73 
+ 511      69676E65 
+ 511      6420696E 
+ 511      7400
+ 512              	.LASF9:
+ 513 00c3 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 513      206C6F6E 
+ 513      6720756E 
+ 513      7369676E 
+ 513      65642069 
+ 514              	.LASF22:
+ 515 00da 47656E65 		.ascii	"Generated_Source\\PSoC5\\QuadDec_2_PM.c\000"
+ 515      72617465 
+ 515      645F536F 
+ 515      75726365 
+ 515      5C50536F 
+ 516              	.LASF12:
+ 517 0100 666C6F61 		.ascii	"float\000"
+ 517      7400
+ 518              	.LASF21:
+ 519 0106 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 519      43313120 
+ 519      352E342E 
+ 519      31203230 
+ 519      31363036 
+ 520 0139 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 520      20726576 
+ 520      6973696F 
+ 520      6E203233 
+ 520      37373135 
+ 521 016c 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 521      66756E63 
+ 521      74696F6E 
+ 521      2D736563 
+ 521      74696F6E 
+ 522              	.LASF4:
+ 523 0194 756E7369 		.ascii	"unsigned char\000"
+ 523      676E6564 
+ 523      20636861 
+ 523      7200
+ 524              	.LASF17:
+ 525 01a2 51756164 		.ascii	"QuadDec_2_SaveConfig\000"
+ 525      4465635F 
+ 525      325F5361 
+ 525      7665436F 
+ 525      6E666967 
+ 526              	.LASF11:
+ 527 01b7 63686172 		.ascii	"char\000"
+ 527      00
+ 528              	.LASF20:
+ 529 01bc 51756164 		.ascii	"QuadDec_2_Wakeup\000"
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc21wAEk.s 			page 14
 
 
- 528      00
- 529              	.LASF13:
- 530 01a3 646F7562 		.ascii	"double\000"
- 530      6C6500
- 531              	.LASF6:
- 532 01aa 73686F72 		.ascii	"short unsigned int\000"
- 532      7420756E 
- 532      7369676E 
- 532      65642069 
- 532      6E7400
- 533              	.LASF3:
- 534 01bd 7369676E 		.ascii	"signed char\000"
- 534      65642063 
- 534      68617200 
- 535              	.LASF23:
- 536 01c9 453A5C5F 		.ascii	"E:\\_Axis projektai\\workspace180601\\workspace\\mi"
- 536      41786973 
- 536      2070726F 
- 536      6A656B74 
- 536      61695C77 
- 537 01f8 6E756E69 		.ascii	"nunit_arch stendo 0927\\minunit_arch\\minunit_arch\\"
- 537      745F6172 
- 537      63682073 
- 537      74656E64 
- 537      6F203039 
- 538 0229 7374656E 		.ascii	"stendo_MIS.cydsn\000"
- 538      646F5F4D 
- 538      49532E63 
- 538      7964736E 
- 538      00
- 539              	.LASF2:
- 540 023a 6C6F6E67 		.ascii	"long double\000"
- 540      20646F75 
- 540      626C6500 
- 541              	.LASF5:
- 542 0246 73686F72 		.ascii	"short int\000"
- 542      7420696E 
- 542      7400
- 543              	.LASF15:
- 544 0250 72656738 		.ascii	"reg8\000"
- 544      00
- 545              	.LASF10:
- 546 0255 73697A65 		.ascii	"sizetype\000"
- 546      74797065 
- 546      00
- 547              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 529      4465635F 
+ 529      325F5761 
+ 529      6B657570 
+ 529      00
+ 530              	.LASF7:
+ 531 01cd 6C6F6E67 		.ascii	"long int\000"
+ 531      20696E74 
+ 531      00
+ 532              	.LASF13:
+ 533 01d6 646F7562 		.ascii	"double\000"
+ 533      6C6500
+ 534              	.LASF6:
+ 535 01dd 73686F72 		.ascii	"short unsigned int\000"
+ 535      7420756E 
+ 535      7369676E 
+ 535      65642069 
+ 535      6E7400
+ 536              	.LASF3:
+ 537 01f0 7369676E 		.ascii	"signed char\000"
+ 537      65642063 
+ 537      68617200 
+ 538              	.LASF2:
+ 539 01fc 6C6F6E67 		.ascii	"long double\000"
+ 539      20646F75 
+ 539      626C6500 
+ 540              	.LASF5:
+ 541 0208 73686F72 		.ascii	"short int\000"
+ 541      7420696E 
+ 541      7400
+ 542              	.LASF15:
+ 543 0212 72656738 		.ascii	"reg8\000"
+ 543      00
+ 544              	.LASF10:
+ 545 0217 73697A65 		.ascii	"sizetype\000"
+ 545      74797065 
+ 545      00
+ 546              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

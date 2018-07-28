@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
   55              		.type	MIS3_lastpulse_time, %object
   56              		.size	MIS3_lastpulse_time, 4
   57              	MIS3_lastpulse_time:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 2
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 2
 
 
   58 0014 00000000 		.space	4
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
   33:main.c        **** 
   34:main.c        **** CY_ISR(isr_START_handler)
   35:main.c        **** {
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 3
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 3
 
 
   80              		.loc 1 35 0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  123              		.size	isr_STOP_handler, .-isr_STOP_handler
  124              		.section	.text.isr_TURN_CONT_MODE_handler,"ax",%progbits
  125              		.align	2
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 4
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 4
 
 
  126              		.global	isr_TURN_CONT_MODE_handler
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  168              		.loc 1 58 0
  169              		.cfi_startproc
  170              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 5
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 5
 
 
  171              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  214 0004 00AF     		add	r7, sp, #0
  215              		.cfi_def_cfa_register 7
   70:main.c        ****     uint8 b = SPIS_ReadRxData();
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 6
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 6
 
 
  216              		.loc 1 70 0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  264 005c 1A2B     		cmp	r3, #26
  265 005e 02DC     		bgt	.L23
  266 0060 142B     		cmp	r3, #20
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 7
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 7
 
 
  267 0062 27D0     		beq	.L24
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  307 00a0 3A4B     		ldr	r3, .L27
  308 00a2 1A60     		str	r2, [r3]
   91:main.c        ****             break;
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 8
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 8
 
 
  309              		.loc 1 91 0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  349 00dc 2E4B     		ldr	r3, .L27+12
  350 00de 1B68     		ldr	r3, [r3]
  351 00e0 1A46     		mov	r2, r3
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 9
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 9
 
 
  352 00e2 2A4B     		ldr	r3, .L27
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  392              	.L19:
  120:main.c        ****             
  121:main.c        ****             case 0x0E:   //  3 - 4 QuadDecoder
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 10
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 10
 
 
  122:main.c        ****                buffer = QuadDec_2_GetCounter();
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  427 0150 5A20     		movs	r0, #90
  428 0152 FFF7FEFF 		bl	SPIS_WriteTxDataZero
  142:main.c        ****     /* Other 7 bytes are written to the SPIS Tx software buffer */
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 11
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 11
 
 
  143:main.c        ****     SPIS_WriteTxData(p[0]);
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  474              		.thumb
  475              		.thumb_func
  476              		.type	isr_QuadDec_1_handler, %function
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 12
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 12
 
 
  477              	isr_QuadDec_1_handler:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  520              		.cfi_endproc
  521              	.LFE70:
  522              		.size	isr_QuadDec_2_handler, .-isr_QuadDec_2_handler
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 13
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 13
 
 
  523              		.section	.text.debug_master_cmd,"ax",%progbits
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  565 0030 FFF7FEFF 		bl	CyDelay
  175:main.c        ****    // SPIM_CS_Write(1);
  176:main.c        **** }
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 14
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 14
 
 
  566              		.loc 1 176 0
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  610              		.loc 1 186 0
  611 001e 0023     		movs	r3, #0
  612 0020 07F11004 		add	r4, r7, #16
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 15
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 15
 
 
  613 0024 0FCB     		ldmia	r3, {r0, r1, r2, r3}
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  652 006c FFF7FEFF 		bl	SPIM_ReadRxData
  653 0070 0346     		mov	r3, r0
  654 0072 2370     		strb	r3, [r4]
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 16
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 16
 
 
  199:main.c        ****             {
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  209:main.c        **** {    
  695              		.loc 1 209 0
  696              		.cfi_startproc
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 17
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 17
 
 
  697              		@ args = 0, pretend = 0, frame = 32
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  733              		.loc 1 227 0
  734 002e 4D48     		ldr	r0, .L43+12
  735 0030 FFF7FEFF 		bl	isr_TURN_CONT_MODE_StartEx
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 18
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 18
 
 
  228:main.c        ****     isr_TURN_OFF_CONT_MODE_StartEx(isr_TURN_OFF_CONT_MODE_handler);
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  767 0070 FFF7FEFF 		bl	isr_PulseCounter_3_StartEx
  251:main.c        ****     isr_Capture_3_StartEx(isr_Capture_3);
  768              		.loc 1 251 0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 19
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 19
 
 
  769 0074 4448     		ldr	r0, .L43+48
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  273:main.c        ****     MIS3_SetBurstTimeout(5000);
  802              		.loc 1 273 0
  803 00bc 41F28830 		movw	r0, #5000
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 20
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 20
 
 
  804 00c0 FFF7FEFF 		bl	MIS3_SetBurstTimeout
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  322:main.c        ****             debug_master_cmd(9);
  323:main.c        ****             MIS3_pulse_count = debug_master_read(9);
  324:main.c        ****             
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 21
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 21
 
 
  325:main.c        ****             debug_master_cmd(0x0A);
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  379:main.c        ****         /*
  380:main.c        ****         sprintf(txt, " startMIS1 PulseCounter = %ld  curTime = %ld", MIS1_ReadCount(), MIS1_ReadCur
  381:main.c        ****         assert(0 == 0, txt); 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 22
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 22
 
 
  382:main.c        ****         
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  836 00f8 3861     		str	r0, [r7, #16]
  410:main.c        ****         if(new_MIS2_pulse > old_MIS2_pulse)
  837              		.loc 1 410 0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 23
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 23
 
 
  838 00fa 2B4B     		ldr	r3, .L43+80
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  876              		.loc 1 426 0
  877 0138 FFF7FEFF 		bl	MIS4_ReadCurTime
  878 013c 3860     		str	r0, [r7]
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 24
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 24
 
 
  427:main.c        ****         if(new_MIS4_pulse > old_MIS4_pulse)
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  466:main.c        ****        // CyDelay(1000);
  467:main.c        ****         
  468:main.c        ****       //  MIS_Debug_Write(0);
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 25
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 25
 
 
  469:main.c        ****       // UART_1_PutString("DEBUG 0 \r\n\r\n");
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  925              		.cfi_endproc
  926              	.LFE73:
  927              		.size	main, .-main
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 26
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 26
 
 
  928              		.text
@@ -1516,15 +1516,15 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  940 000b 01       		.uleb128 0x1
  941 000c 14000000 		.4byte	.LASF51
  942 0010 0C       		.byte	0xc
- 943 0011 00030000 		.4byte	.LASF52
- 944 0015 D3010000 		.4byte	.LASF53
+ 943 0011 C2020000 		.4byte	.LASF52
+ 944 0015 81020000 		.4byte	.LASF53
  945 0019 00000000 		.4byte	.Ldebug_ranges0+0
  946 001d 00000000 		.4byte	0
  947 0021 00000000 		.4byte	.Ldebug_line0
  948 0025 02       		.uleb128 0x2
  949 0026 01       		.byte	0x1
  950 0027 06       		.byte	0x6
- 951 0028 A4030000 		.4byte	.LASF0
+ 951 0028 66030000 		.4byte	.LASF0
  952 002c 02       		.uleb128 0x2
  953 002d 01       		.byte	0x1
  954 002e 08       		.byte	0x8
@@ -1532,7 +1532,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  956 0033 02       		.uleb128 0x2
  957 0034 02       		.byte	0x2
  958 0035 05       		.byte	0x5
- 959 0036 20030000 		.4byte	.LASF2
+ 959 0036 E2020000 		.4byte	.LASF2
  960 003a 02       		.uleb128 0x2
  961 003b 02       		.byte	0x2
  962 003c 07       		.byte	0x7
@@ -1545,7 +1545,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  969 004c 02       		.uleb128 0x2
  970 004d 04       		.byte	0x4
  971 004e 05       		.byte	0x5
- 972 004f 7B030000 		.4byte	.LASF4
+ 972 004f 3D030000 		.4byte	.LASF4
  973 0053 02       		.uleb128 0x2
  974 0054 04       		.byte	0x4
  975 0055 07       		.byte	0x7
@@ -1553,12 +1553,12 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  977 005a 02       		.uleb128 0x2
  978 005b 08       		.byte	0x8
  979 005c 05       		.byte	0x5
- 980 005d F2020000 		.4byte	.LASF6
+ 980 005d B4020000 		.4byte	.LASF6
  981 0061 02       		.uleb128 0x2
  982 0062 08       		.byte	0x8
  983 0063 07       		.byte	0x7
- 984 0064 9A020000 		.4byte	.LASF7
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 27
+ 984 0064 29020000 		.4byte	.LASF7
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 27
 
 
  985 0068 04       		.uleb128 0x4
@@ -1568,19 +1568,19 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  989 006f 02       		.uleb128 0x2
  990 0070 04       		.byte	0x4
  991 0071 07       		.byte	0x7
- 992 0072 79020000 		.4byte	.LASF8
+ 992 0072 08020000 		.4byte	.LASF8
  993 0076 03       		.uleb128 0x3
- 994 0077 E1020000 		.4byte	.LASF10
+ 994 0077 70020000 		.4byte	.LASF10
  995 007b 03       		.byte	0x3
  996 007c 2C       		.byte	0x2c
  997 007d 41000000 		.4byte	0x41
  998 0081 05       		.uleb128 0x5
- 999 0082 49030000 		.4byte	.LASF11
+ 999 0082 0B030000 		.4byte	.LASF11
  1000 0086 04       		.byte	0x4
  1001 0087 9201     		.2byte	0x192
  1002 0089 2C000000 		.4byte	0x2c
  1003 008d 05       		.uleb128 0x5
- 1004 008e 6D020000 		.4byte	.LASF12
+ 1004 008e FC010000 		.4byte	.LASF12
  1005 0092 04       		.byte	0x4
  1006 0093 9401     		.2byte	0x194
  1007 0095 53000000 		.4byte	0x53
@@ -1600,15 +1600,15 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1021 00b3 02       		.uleb128 0x2
  1022 00b4 01       		.byte	0x1
  1023 00b5 08       		.byte	0x8
- 1024 00b6 07030000 		.4byte	.LASF16
+ 1024 00b6 C9020000 		.4byte	.LASF16
  1025 00ba 02       		.uleb128 0x2
  1026 00bb 08       		.byte	0x8
  1027 00bc 04       		.byte	0x4
- 1028 00bd 98030000 		.4byte	.LASF17
+ 1028 00bd 5A030000 		.4byte	.LASF17
  1029 00c1 02       		.uleb128 0x2
  1030 00c2 04       		.byte	0x4
  1031 00c3 07       		.byte	0x7
- 1032 00c4 E9020000 		.4byte	.LASF18
+ 1032 00c4 78020000 		.4byte	.LASF18
  1033 00c8 06       		.uleb128 0x6
  1034 00c9 DB000000 		.4byte	.LASF19
  1035 00cd 01       		.byte	0x1
@@ -1618,10 +1618,10 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1039 00d7 01       		.uleb128 0x1
  1040 00d8 9C       		.byte	0x9c
  1041 00d9 06       		.uleb128 0x6
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 28
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 28
 
 
- 1042 00da B1020000 		.4byte	.LASF20
+ 1042 00da 40020000 		.4byte	.LASF20
  1043 00de 01       		.byte	0x1
  1044 00df 29       		.byte	0x29
  1045 00e0 00000000 		.4byte	.LFB65
@@ -1629,7 +1629,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1047 00e8 01       		.uleb128 0x1
  1048 00e9 9C       		.byte	0x9c
  1049 00ea 06       		.uleb128 0x6
- 1050 00eb B0030000 		.4byte	.LASF21
+ 1050 00eb 72030000 		.4byte	.LASF21
  1051 00ef 01       		.byte	0x1
  1052 00f0 30       		.byte	0x30
  1053 00f1 00000000 		.4byte	.LFB66
@@ -1637,7 +1637,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1055 00f9 01       		.uleb128 0x1
  1056 00fa 9C       		.byte	0x9c
  1057 00fb 06       		.uleb128 0x6
- 1058 00fc E1030000 		.4byte	.LASF22
+ 1058 00fc A3030000 		.4byte	.LASF22
  1059 0100 01       		.byte	0x1
  1060 0101 39       		.byte	0x39
  1061 0102 00000000 		.4byte	.LFB67
@@ -1645,7 +1645,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1063 010a 01       		.uleb128 0x1
  1064 010b 9C       		.byte	0x9c
  1065 010c 07       		.uleb128 0x7
- 1066 010d 84030000 		.4byte	.LASF25
+ 1066 010d 46030000 		.4byte	.LASF25
  1067 0111 01       		.byte	0x1
  1068 0112 44       		.byte	0x44
  1069 0113 00000000 		.4byte	.LFB68
@@ -1674,11 +1674,11 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1092 013b 04       		.byte	0x4
  1093 013c 81000000 		.4byte	0x81
  1094 0140 06       		.uleb128 0x6
- 1095 0141 CB030000 		.4byte	.LASF23
+ 1095 0141 8D030000 		.4byte	.LASF23
  1096 0145 01       		.byte	0x1
  1097 0146 99       		.byte	0x99
  1098 0147 00000000 		.4byte	.LFB69
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 29
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 29
 
 
  1099 014b 0C000000 		.4byte	.LFE69-.LFB69
@@ -1693,7 +1693,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1108 0160 01       		.uleb128 0x1
  1109 0161 9C       		.byte	0x9c
  1110 0162 07       		.uleb128 0x7
- 1111 0163 5C020000 		.4byte	.LASF26
+ 1111 0163 EB010000 		.4byte	.LASF26
  1112 0167 01       		.byte	0x1
  1113 0168 A5       		.byte	0xa5
  1114 0169 00000000 		.4byte	.LFB71
@@ -1710,7 +1710,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1125 0183 91       		.byte	0x91
  1126 0184 5F       		.sleb128 -33
  1127 0185 0B       		.uleb128 0xb
- 1128 0186 72030000 		.4byte	.LASF27
+ 1128 0186 34030000 		.4byte	.LASF27
  1129 018a 01       		.byte	0x1
  1130 018b A7       		.byte	0xa7
  1131 018c 94010000 		.4byte	0x194
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1153 01bd 0A       		.uleb128 0xa
  1154 01be 636D6400 		.ascii	"cmd\000"
  1155 01c2 01       		.byte	0x1
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 30
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 30
 
 
  1156 01c3 B2       		.byte	0xb2
@@ -1747,7 +1747,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1159 01c9 91       		.byte	0x91
  1160 01ca 47       		.sleb128 -57
  1161 01cb 0B       		.uleb128 0xb
- 1162 01cc 72030000 		.4byte	.LASF27
+ 1162 01cc 34030000 		.4byte	.LASF27
  1163 01d0 01       		.byte	0x1
  1164 01d1 B4       		.byte	0xb4
  1165 01d2 94010000 		.4byte	0x194
@@ -1755,7 +1755,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1167 01d7 91       		.byte	0x91
  1168 01d8 50       		.sleb128 -48
  1169 01d9 0B       		.uleb128 0xb
- 1170 01da C2020000 		.4byte	.LASF28
+ 1170 01da 51020000 		.4byte	.LASF28
  1171 01de 01       		.byte	0x1
  1172 01df B5       		.byte	0xb5
  1173 01e0 8D000000 		.4byte	0x8d
@@ -1798,12 +1798,12 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1210 0222 91       		.byte	0x91
  1211 0223 63       		.sleb128 -29
  1212 0224 00       		.byte	0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 31
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 31
 
 
  1213 0225 00       		.byte	0
  1214 0226 10       		.uleb128 0x10
- 1215 0227 74020000 		.4byte	.LASF31
+ 1215 0227 03020000 		.4byte	.LASF31
  1216 022b 01       		.byte	0x1
  1217 022c D0       		.byte	0xd0
  1218 022d 68000000 		.4byte	0x68
@@ -1824,7 +1824,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1233 0255 91       		.byte	0x91
  1234 0256 74       		.sleb128 -12
  1235 0257 11       		.uleb128 0x11
- 1236 0258 2A030000 		.4byte	.LASF33
+ 1236 0258 EC020000 		.4byte	.LASF33
  1237 025c 01       		.byte	0x1
  1238 025d 9001     		.2byte	0x190
  1239 025f 8D000000 		.4byte	0x8d
@@ -1840,7 +1840,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1249 0273 91       		.byte	0x91
  1250 0274 6C       		.sleb128 -20
  1251 0275 11       		.uleb128 0x11
- 1252 0276 C9020000 		.4byte	.LASF35
+ 1252 0276 58020000 		.4byte	.LASF35
  1253 027a 01       		.byte	0x1
  1254 027b 9901     		.2byte	0x199
  1255 027d 8D000000 		.4byte	0x8d
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1267 0293 11       		.uleb128 0x11
  1268 0294 03010000 		.4byte	.LASF37
  1269 0298 01       		.byte	0x1
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 32
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 32
 
 
  1270 0299 A201     		.2byte	0x1a2
@@ -1867,7 +1867,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1273 02a0 91       		.byte	0x91
  1274 02a1 60       		.sleb128 -32
  1275 02a2 11       		.uleb128 0x11
- 1276 02a3 63030000 		.4byte	.LASF38
+ 1276 02a3 25030000 		.4byte	.LASF38
  1277 02a7 01       		.byte	0x1
  1278 02a8 A901     		.2byte	0x1a9
  1279 02aa 8D000000 		.4byte	0x8d
@@ -1875,7 +1875,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1281 02af 91       		.byte	0x91
  1282 02b0 5C       		.sleb128 -36
  1283 02b1 11       		.uleb128 0x11
- 1284 02b2 44020000 		.4byte	.LASF39
+ 1284 02b2 D3010000 		.4byte	.LASF39
  1285 02b6 01       		.byte	0x1
  1286 02b7 AA01     		.2byte	0x1aa
  1287 02b9 8D000000 		.4byte	0x8d
@@ -1907,7 +1907,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1313 02f0 03       		.byte	0x3
  1314 02f1 00000000 		.4byte	txt
  1315 02f5 16       		.uleb128 0x16
- 1316 02f6 42030000 		.4byte	.LASF41
+ 1316 02f6 04030000 		.4byte	.LASF41
  1317 02fa 01       		.byte	0x1
  1318 02fb 13       		.byte	0x13
  1319 02fc 99000000 		.4byte	0x99
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1324 0307 27010000 		.4byte	.LASF42
  1325 030b 01       		.byte	0x1
  1326 030c 14       		.byte	0x14
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 33
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 33
 
 
  1327 030d 81000000 		.4byte	0x81
@@ -1934,7 +1934,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1337 0323 03       		.byte	0x3
  1338 0324 00000000 		.4byte	old_MIS1_pulse
  1339 0328 16       		.uleb128 0x16
- 1340 0329 4F030000 		.4byte	.LASF44
+ 1340 0329 11030000 		.4byte	.LASF44
  1341 032d 01       		.byte	0x1
  1342 032e 17       		.byte	0x17
  1343 032f 8D000000 		.4byte	0x8d
@@ -1950,7 +1950,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1353 0345 03       		.byte	0x3
  1354 0346 00000000 		.4byte	old_MIS2_pulse
  1355 034a 16       		.uleb128 0x16
- 1356 034b 86020000 		.4byte	.LASF46
+ 1356 034b 15020000 		.4byte	.LASF46
  1357 034f 01       		.byte	0x1
  1358 0350 1A       		.byte	0x1a
  1359 0351 8D000000 		.4byte	0x8d
@@ -1966,7 +1966,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1369 0367 03       		.byte	0x3
  1370 0368 00000000 		.4byte	old_MIS3_pulse
  1371 036c 16       		.uleb128 0x16
- 1372 036d 0C030000 		.4byte	.LASF48
+ 1372 036d CE020000 		.4byte	.LASF48
  1373 0371 01       		.byte	0x1
  1374 0372 1D       		.byte	0x1d
  1375 0373 8D000000 		.4byte	0x8d
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1381 0382 01       		.byte	0x1
  1382 0383 1F       		.byte	0x1f
  1383 0384 8D000000 		.4byte	0x8d
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 34
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 34
 
 
  1384 0388 05       		.uleb128 0x5
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1438 0028 13       		.uleb128 0x13
  1439 0029 00       		.byte	0
  1440 002a 00       		.byte	0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 35
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 35
 
 
  1441 002b 04       		.uleb128 0x4
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1495 0062 3A       		.uleb128 0x3a
  1496 0063 0B       		.uleb128 0xb
  1497 0064 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 36
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 36
 
 
  1498 0065 0B       		.uleb128 0xb
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1552 009c 0B       		.uleb128 0xb
  1553 009d 34       		.uleb128 0x34
  1554 009e 00       		.byte	0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 37
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 37
 
 
  1555 009f 03       		.uleb128 0x3
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1609 00d6 13       		.uleb128 0x13
  1610 00d7 00       		.byte	0
  1611 00d8 00       		.byte	0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 38
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 38
 
 
  1612 00d9 0F       		.uleb128 0xf
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1666 0110 3A       		.uleb128 0x3a
  1667 0111 0B       		.uleb128 0xb
  1668 0112 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 39
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 39
 
 
  1669 0113 05       		.uleb128 0x5
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1723 0149 19       		.uleb128 0x19
  1724 014a 02       		.uleb128 0x2
  1725 014b 18       		.uleb128 0x18
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 40
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 40
 
 
  1726 014c 00       		.byte	0
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1780 004c C0010000 		.4byte	.LFE73
  1781 0050 00000000 		.4byte	0
  1782 0054 00000000 		.4byte	0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 41
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 41
 
 
  1783              		.section	.debug_line,"",%progbits
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1801      7200
  1802              	.LASF15:
  1803 00ed 646F7562 		.ascii	"double\000"
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 42
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 42
 
 
  1803      6C6500
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1827      5F70756C 
  1827      736500
  1828              	.LASF40:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 43
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 43
 
 
  1829 0196 49544D5F 		.ascii	"ITM_RxBuffer\000"
@@ -2541,170 +2541,158 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
  1835      4D495333 
  1835      5F70756C 
  1835      736500
- 1836              	.LASF53:
- 1837 01d3 453A5C5F 		.ascii	"E:\\_Axis projektai\\workspace180601\\workspace\\mi"
- 1837      41786973 
- 1837      2070726F 
- 1837      6A656B74 
- 1837      61695C77 
- 1838 0202 6E756E69 		.ascii	"nunit_arch stendo 0927\\minunit_arch\\minunit_arch\\"
- 1838      745F6172 
- 1838      63682073 
- 1838      74656E64 
- 1838      6F203039 
- 1839 0233 7374656E 		.ascii	"stendo_MIS.cydsn\000"
- 1839      646F5F4D 
- 1839      49532E63 
- 1839      7964736E 
+ 1836              	.LASF39:
+ 1837 01d3 6E65775F 		.ascii	"new_MIS4_lastpulse_time\000"
+ 1837      4D495334 
+ 1837      5F6C6173 
+ 1837      7470756C 
+ 1837      73655F74 
+ 1838              	.LASF26:
+ 1839 01eb 64656275 		.ascii	"debug_master_cmd\000"
+ 1839      675F6D61 
+ 1839      73746572 
+ 1839      5F636D64 
  1839      00
- 1840              	.LASF39:
- 1841 0244 6E65775F 		.ascii	"new_MIS4_lastpulse_time\000"
- 1841      4D495334 
- 1841      5F6C6173 
- 1841      7470756C 
- 1841      73655F74 
- 1842              	.LASF26:
- 1843 025c 64656275 		.ascii	"debug_master_cmd\000"
- 1843      675F6D61 
- 1843      73746572 
- 1843      5F636D64 
+ 1840              	.LASF12:
+ 1841 01fc 75696E74 		.ascii	"uint32\000"
+ 1841      333200
+ 1842              	.LASF31:
+ 1843 0203 6D61696E 		.ascii	"main\000"
  1843      00
- 1844              	.LASF12:
- 1845 026d 75696E74 		.ascii	"uint32\000"
- 1845      333200
- 1846              	.LASF31:
- 1847 0274 6D61696E 		.ascii	"main\000"
- 1847      00
- 1848              	.LASF8:
- 1849 0279 756E7369 		.ascii	"unsigned int\000"
- 1849      676E6564 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 44
+ 1844              	.LASF8:
+ 1845 0208 756E7369 		.ascii	"unsigned int\000"
+ 1845      676E6564 
+ 1845      20696E74 
+ 1845      00
+ 1846              	.LASF46:
+ 1847 0215 4D495332 		.ascii	"MIS2_lastpulse_time\000"
+ 1847      5F6C6173 
+ 1847      7470756C 
+ 1847      73655F74 
+ 1847      696D6500 
+ 1848              	.LASF7:
+ 1849 0229 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1849      206C6F6E 
+ 1849      6720756E 
+ 1849      7369676E 
+ 1849      65642069 
+ 1850              	.LASF20:
+ 1851 0240 6973725F 		.ascii	"isr_STOP_handler\000"
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 44
 
 
- 1849      20696E74 
- 1849      00
- 1850              	.LASF46:
- 1851 0286 4D495332 		.ascii	"MIS2_lastpulse_time\000"
- 1851      5F6C6173 
- 1851      7470756C 
- 1851      73655F74 
- 1851      696D6500 
- 1852              	.LASF7:
- 1853 029a 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1853      206C6F6E 
- 1853      6720756E 
- 1853      7369676E 
- 1853      65642069 
- 1854              	.LASF20:
- 1855 02b1 6973725F 		.ascii	"isr_STOP_handler\000"
- 1855      53544F50 
- 1855      5F68616E 
- 1855      646C6572 
- 1855      00
- 1856              	.LASF28:
- 1857 02c2 72657375 		.ascii	"result\000"
- 1857      6C7400
- 1858              	.LASF35:
- 1859 02c9 6E65775F 		.ascii	"new_MIS2_lastpulse_time\000"
- 1859      4D495332 
- 1859      5F6C6173 
- 1859      7470756C 
- 1859      73655F74 
- 1860              	.LASF10:
- 1861 02e1 696E7433 		.ascii	"int32_t\000"
- 1861      325F7400 
- 1862              	.LASF18:
- 1863 02e9 73697A65 		.ascii	"sizetype\000"
- 1863      74797065 
- 1863      00
- 1864              	.LASF6:
- 1865 02f2 6C6F6E67 		.ascii	"long long int\000"
- 1865      206C6F6E 
- 1865      6720696E 
- 1865      7400
- 1866              	.LASF52:
- 1867 0300 6D61696E 		.ascii	"main.c\000"
- 1867      2E6300
- 1868              	.LASF16:
- 1869 0307 63686172 		.ascii	"char\000"
- 1869      00
- 1870              	.LASF48:
- 1871 030c 4D495333 		.ascii	"MIS3_lastpulse_time\000"
- 1871      5F6C6173 
- 1871      7470756C 
- 1871      73655F74 
- 1871      696D6500 
- 1872              	.LASF2:
- 1873 0320 73686F72 		.ascii	"short int\000"
- 1873      7420696E 
- 1873      7400
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 45
+ 1851      53544F50 
+ 1851      5F68616E 
+ 1851      646C6572 
+ 1851      00
+ 1852              	.LASF28:
+ 1853 0251 72657375 		.ascii	"result\000"
+ 1853      6C7400
+ 1854              	.LASF35:
+ 1855 0258 6E65775F 		.ascii	"new_MIS2_lastpulse_time\000"
+ 1855      4D495332 
+ 1855      5F6C6173 
+ 1855      7470756C 
+ 1855      73655F74 
+ 1856              	.LASF10:
+ 1857 0270 696E7433 		.ascii	"int32_t\000"
+ 1857      325F7400 
+ 1858              	.LASF18:
+ 1859 0278 73697A65 		.ascii	"sizetype\000"
+ 1859      74797065 
+ 1859      00
+ 1860              	.LASF53:
+ 1861 0281 453A5C5F 		.ascii	"E:\\_CODE\\PSoC Projektai\\PSoC_MIS2\\stendo_MIS.cy"
+ 1861      434F4445 
+ 1861      5C50536F 
+ 1861      43205072 
+ 1861      6F6A656B 
+ 1862 02b0 64736E00 		.ascii	"dsn\000"
+ 1863              	.LASF6:
+ 1864 02b4 6C6F6E67 		.ascii	"long long int\000"
+ 1864      206C6F6E 
+ 1864      6720696E 
+ 1864      7400
+ 1865              	.LASF52:
+ 1866 02c2 6D61696E 		.ascii	"main.c\000"
+ 1866      2E6300
+ 1867              	.LASF16:
+ 1868 02c9 63686172 		.ascii	"char\000"
+ 1868      00
+ 1869              	.LASF48:
+ 1870 02ce 4D495333 		.ascii	"MIS3_lastpulse_time\000"
+ 1870      5F6C6173 
+ 1870      7470756C 
+ 1870      73655F74 
+ 1870      696D6500 
+ 1871              	.LASF2:
+ 1872 02e2 73686F72 		.ascii	"short int\000"
+ 1872      7420696E 
+ 1872      7400
+ 1873              	.LASF33:
+ 1874 02ec 6E65775F 		.ascii	"new_MIS1_lastpulse_time\000"
+ 1874      4D495331 
+ 1874      5F6C6173 
+ 1874      7470756C 
+ 1874      73655F74 
+ 1875              	.LASF41:
+ 1876 0304 62756666 		.ascii	"buffer\000"
+ 1876      657200
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccxp4BwK.s 			page 45
 
 
- 1874              	.LASF33:
- 1875 032a 6E65775F 		.ascii	"new_MIS1_lastpulse_time\000"
- 1875      4D495331 
- 1875      5F6C6173 
- 1875      7470756C 
- 1875      73655F74 
- 1876              	.LASF41:
- 1877 0342 62756666 		.ascii	"buffer\000"
- 1877      657200
- 1878              	.LASF11:
- 1879 0349 75696E74 		.ascii	"uint8\000"
- 1879      3800
- 1880              	.LASF44:
- 1881 034f 4D495331 		.ascii	"MIS1_lastpulse_time\000"
- 1881      5F6C6173 
- 1881      7470756C 
- 1881      73655F74 
- 1881      696D6500 
- 1882              	.LASF38:
- 1883 0363 6E65775F 		.ascii	"new_MIS4_pulse\000"
- 1883      4D495334 
- 1883      5F70756C 
- 1883      736500
- 1884              	.LASF27:
- 1885 0372 7370695F 		.ascii	"spi_data\000"
- 1885      64617461 
- 1885      00
- 1886              	.LASF4:
- 1887 037b 6C6F6E67 		.ascii	"long int\000"
- 1887      20696E74 
- 1887      00
- 1888              	.LASF25:
- 1889 0384 6973725F 		.ascii	"isr_CS_Rise_handler\000"
- 1889      43535F52 
- 1889      6973655F 
- 1889      68616E64 
- 1889      6C657200 
- 1890              	.LASF17:
- 1891 0398 6C6F6E67 		.ascii	"long double\000"
- 1891      20646F75 
- 1891      626C6500 
- 1892              	.LASF0:
- 1893 03a4 7369676E 		.ascii	"signed char\000"
- 1893      65642063 
- 1893      68617200 
- 1894              	.LASF21:
- 1895 03b0 6973725F 		.ascii	"isr_TURN_CONT_MODE_handler\000"
- 1895      5455524E 
- 1895      5F434F4E 
- 1895      545F4D4F 
- 1895      44455F68 
- 1896              	.LASF23:
- 1897 03cb 6973725F 		.ascii	"isr_QuadDec_1_handler\000"
- 1897      51756164 
- 1897      4465635F 
- 1897      315F6861 
- 1897      6E646C65 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 46
-
-
- 1898              	.LASF22:
- 1899 03e1 6973725F 		.ascii	"isr_TURN_OFF_CONT_MODE_handler\000"
- 1899      5455524E 
- 1899      5F4F4646 
- 1899      5F434F4E 
- 1899      545F4D4F 
- 1900              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1877              	.LASF11:
+ 1878 030b 75696E74 		.ascii	"uint8\000"
+ 1878      3800
+ 1879              	.LASF44:
+ 1880 0311 4D495331 		.ascii	"MIS1_lastpulse_time\000"
+ 1880      5F6C6173 
+ 1880      7470756C 
+ 1880      73655F74 
+ 1880      696D6500 
+ 1881              	.LASF38:
+ 1882 0325 6E65775F 		.ascii	"new_MIS4_pulse\000"
+ 1882      4D495334 
+ 1882      5F70756C 
+ 1882      736500
+ 1883              	.LASF27:
+ 1884 0334 7370695F 		.ascii	"spi_data\000"
+ 1884      64617461 
+ 1884      00
+ 1885              	.LASF4:
+ 1886 033d 6C6F6E67 		.ascii	"long int\000"
+ 1886      20696E74 
+ 1886      00
+ 1887              	.LASF25:
+ 1888 0346 6973725F 		.ascii	"isr_CS_Rise_handler\000"
+ 1888      43535F52 
+ 1888      6973655F 
+ 1888      68616E64 
+ 1888      6C657200 
+ 1889              	.LASF17:
+ 1890 035a 6C6F6E67 		.ascii	"long double\000"
+ 1890      20646F75 
+ 1890      626C6500 
+ 1891              	.LASF0:
+ 1892 0366 7369676E 		.ascii	"signed char\000"
+ 1892      65642063 
+ 1892      68617200 
+ 1893              	.LASF21:
+ 1894 0372 6973725F 		.ascii	"isr_TURN_CONT_MODE_handler\000"
+ 1894      5455524E 
+ 1894      5F434F4E 
+ 1894      545F4D4F 
+ 1894      44455F68 
+ 1895              	.LASF23:
+ 1896 038d 6973725F 		.ascii	"isr_QuadDec_1_handler\000"
+ 1896      51756164 
+ 1896      4465635F 
+ 1896      315F6861 
+ 1896      6E646C65 
+ 1897              	.LASF22:
+ 1898 03a3 6973725F 		.ascii	"isr_TURN_OFF_CONT_MODE_handler\000"
+ 1898      5455524E 
+ 1898      5F4F4646 
+ 1898      5F434F4E 
+ 1898      545F4D4F 
+ 1899              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
