@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
   20:mis.c         **** uint32 PulseCounter_1_Timestamp_hw;
   21:mis.c         **** uint32 pulseCounter1 = 0;
   22:mis.c         **** CY_ISR(isr_PulseCounter_1_handler)
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 2
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 2
 
 
   23:mis.c         **** {
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
   30:mis.c         **** 
   31:mis.c         **** CY_ISR(isr_Timestamp_handler)
   32:mis.c         **** {
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 3
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 3
 
 
   83              		.loc 1 32 0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  128              		@ args = 0, pretend = 0, frame = 8
  129              		@ frame_needed = 1, uses_anonymous_args = 0
  130 0000 80B5     		push	{r7, lr}
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 4
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 4
 
 
  131              		.cfi_def_cfa_offset 8
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  172              		.loc 1 54 0
  173 0046 074B     		ldr	r3, .L11
  174 0048 1B68     		ldr	r3, [r3]
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 5
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 5
 
 
  175 004a 3A68     		ldr	r2, [r7]
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  222 0004 00AF     		add	r7, sp, #0
  223              		.cfi_def_cfa_register 7
   62:mis.c         ****     uint32 result = 0;
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 6
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 6
 
 
  224              		.loc 1 62 0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  272              		.thumb_func
  273              		.type	MIS1_ReadCount, %function
  274              	MIS1_ReadCount:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 7
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 7
 
 
  275              	.LFB67:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  319 0000 80B4     		push	{r7}
  320              		.cfi_def_cfa_offset 4
  321              		.cfi_offset 7, -4
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 8
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 8
 
 
  322 0002 83B0     		sub	sp, sp, #12
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  368              	.L24:
  369 0040 00000000 		.word	capture_1_count
  370 0044 00000000 		.word	capture_1_timestampTimer
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 9
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 9
 
 
  371 0048 00000000 		.word	capture_1_Timestamp_hw
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  416 0026 5B68     		ldr	r3, [r3, #4]
  417 0028 1B02     		lsls	r3, r3, #8
  418 002a 1A4A     		ldr	r2, .L31+8
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 10
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 10
 
 
  419 002c 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  460 0070 BB60     		str	r3, [r7, #8]
  461              	.L29:
  109:mis.c         ****         }
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 11
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 11
 
 
  110:mis.c         ****         result -= (cur_timestampTimer<<8) | (0xFF & hw_new); /* timestampTimerStop  */
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  509              		.cfi_def_cfa_offset 16
  510 0004 00AF     		add	r7, sp, #0
  511              		.cfi_def_cfa_register 7
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 12
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 12
 
 
  512 0006 7860     		str	r0, [r7, #4]
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  124:mis.c         **** }
  559              		.loc 1 124 0
  560 0018 1846     		mov	r0, r3
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 13
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 13
 
 
  561 001a 80BD     		pop	{r7, pc}
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  602              		.loc 1 137 0
  603 0022 FFF7FEFF 		bl	MIS_Stop
  138:mis.c         ****     result = MIS1_WaitPacket();
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 14
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 14
 
 
  604              		.loc 1 138 0
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  644              		.loc 1 152 0
  645              		.cfi_startproc
  646              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 15
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 15
 
 
  647              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  691 0000 80B5     		push	{r7, lr}
  692              		.cfi_def_cfa_offset 8
  693              		.cfi_offset 7, -8
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 16
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 16
 
 
  694              		.cfi_offset 14, -4
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  735 0048 1B68     		ldr	r3, [r3]
  736 004a 0949     		ldr	r1, .L48+12
  737 004c BA79     		ldrb	r2, [r7, #6]
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 17
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 17
 
 
  738 004e CA54     		strb	r2, [r1, r3]
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  785 0004 054B     		ldr	r3, .L52
  786 0006 1B68     		ldr	r3, [r3]
  787 0008 DC01     		lsls	r4, r3, #7
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 18
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 18
 
 
  788 000a FFF7FEFF 		bl	PulseCounter_2_ReadCounter
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  834 0018 0B4A     		ldr	r2, .L57+8
  835 001a 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
  836 001c 1343     		orrs	r3, r3, r2
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 19
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 19
 
 
  837 001e 7B60     		str	r3, [r7, #4]
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  884              		.cfi_def_cfa_offset 8
  885              		.cfi_offset 7, -8
  886              		.cfi_offset 14, -4
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 20
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 20
 
 
  887 0002 84B0     		sub	sp, sp, #16
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  931 0044 1B02     		lsls	r3, r3, #8
  932 0046 134A     		ldr	r2, .L64+8
  933 0048 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 21
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 21
 
 
  934 004a 1343     		orrs	r3, r3, r2
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  974 0086 BD46     		mov	sp, r7
  975              		.cfi_def_cfa_register 13
  976              		@ sp needed
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 22
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 22
 
 
  977 0088 80BD     		pop	{r7, pc}
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1026              		.align	2
  1027              		.global	MIS2_WaitPacket
  1028              		.thumb
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 23
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 23
 
 
  1029              		.thumb_func
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1074              		.cfi_def_cfa_offset 8
  1075              		.cfi_offset 7, -8
  1076              		.cfi_offset 14, -4
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 24
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 24
 
 
  1077 0002 84B0     		sub	sp, sp, #16
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1116 003a 1037     		adds	r7, r7, #16
  1117              		.cfi_def_cfa_offset 8
  1118 003c BD46     		mov	sp, r7
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 25
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 25
 
 
  1119              		.cfi_def_cfa_register 13
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1160              		@ sp needed
  1161 0012 80BC     		pop	{r7}
  1162              		.cfi_restore 7
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 26
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 26
 
 
  1163              		.cfi_def_cfa_offset 0
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  277:mis.c         ****         capture_3_timestampTimer[capture_3_count] = timestampTimer;
  1204              		.loc 1 277 0
  1205 0016 134B     		ldr	r3, .L81
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 27
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 27
 
 
  1206 0018 1B68     		ldr	r3, [r3]
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1250              	.L82:
  1251 0062 00BF     		.align	2
  1252              	.L81:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 28
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 28
 
 
  1253 0064 00000000 		.word	capture_3_count
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1302              		.thumb_func
  1303              		.type	MIS3_ReadTotTime, %function
  1304              	MIS3_ReadTotTime:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 29
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 29
 
 
  1305              	.LFB84:
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1348 0034 1846     		mov	r0, r3
  1349 0036 0C37     		adds	r7, r7, #12
  1350              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 30
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 30
 
 
  1351 0038 BD46     		mov	sp, r7
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  310:mis.c         ****         result  = (capture_3_timestampTimer[0]<<8) | (0xFF & capture_3_Timestamp_hw[0]); /* timesta
  1399              		.loc 1 310 0
  1400 0016 1E4B     		ldr	r3, .L97+4
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 31
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 31
 
 
  1401 0018 1B68     		ldr	r3, [r3]
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  321:mis.c         ****         if (hw_new > hw_old)
  1445              		.loc 1 321 0
  1446 0064 BA79     		ldrb	r2, [r7, #6]	@ zero_extendqisi2
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 32
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 32
 
 
  1447 0066 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  330:mis.c         **** void MIS3_SetBurstTimeout(uint32 t)
  331:mis.c         **** {
  1493              		.loc 1 331 0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 33
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 33
 
 
  1494              		.cfi_startproc
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1542              	.L101:
  1543              		.loc 1 337 0 is_stmt 0 discriminator 1
  1544 0006 FFF7FEFF 		bl	MIS_Stat_Read
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 34
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 34
 
 
  1545 000a 0346     		mov	r3, r0
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1588              		.loc 1 348 0 is_stmt 0 discriminator 1
  1589 0018 FB68     		ldr	r3, [r7, #12]
  1590 001a 0DE0     		b	.L105
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 35
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 35
 
 
  1591              	.L104:
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1636              	.LFB89:
  358:mis.c         **** 
  359:mis.c         **** /******************************************************************************
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 36
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 36
 
 
  360:mis.c         **** *******************************************************************************/
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  371:mis.c         **** 
  372:mis.c         **** 
  373:mis.c         **** uint32 capture_4_count;
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 37
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 37
 
 
  374:mis.c         **** uint32 capture_4_timestampTimer[2];
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1718 0034 0B4B     		ldr	r3, .L114
  1719 0036 1B68     		ldr	r3, [r3]
  1720 0038 0C4A     		ldr	r2, .L114+8
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 38
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 38
 
 
  1721 003a 52F82320 		ldr	r2, [r2, r3, lsl #2]
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1767              		@ args = 0, pretend = 0, frame = 0
  1768              		@ frame_needed = 1, uses_anonymous_args = 0
  1769 0000 98B5     		push	{r3, r4, r7, lr}
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 39
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 39
 
 
  1770              		.cfi_def_cfa_offset 16
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  404:mis.c         ****     if (capture_4_count == 2)
  1818              		.loc 1 404 0
  1819 000a 0D4B     		ldr	r3, .L123
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 40
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 40
 
 
  1820 000c 1B68     		ldr	r3, [r3]
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1868              		.thumb_func
  1869              		.type	MIS4_ReadCurTime, %function
  1870              	MIS4_ReadCurTime:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 41
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 41
 
 
  1871              	.LFB93:
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  421:mis.c         ****     else if (capture_4_count == 1)
  1915              		.loc 1 421 0
  1916 0038 144B     		ldr	r3, .L130
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 42
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 42
 
 
  1917 003a 1B68     		ldr	r3, [r3]
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  1958 007e FB60     		str	r3, [r7, #12]
  1959              	.L127:
  1960              	.LBE5:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 43
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 43
 
 
  435:mis.c         ****     }
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2007              		.loc 1 442 0
  2008 0012 00BF     		nop
  2009 0014 0837     		adds	r7, r7, #8
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 44
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 44
 
 
  2010              		.cfi_def_cfa_offset 8
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2058              		.thumb_func
  2059              		.type	MIS4_Measure, %function
  2060              	MIS4_Measure:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 45
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 45
 
 
  2061              	.LFB96:
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2100              		.loc 1 463 0 is_stmt 0 discriminator 1
  2101 0032 FB68     		ldr	r3, [r7, #12]
  2102 0034 00E0     		b	.L138
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 46
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 46
 
 
  2103              	.L139:
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  483:mis.c         ****     MIS_Reg_Write(MIS_RST0 + MIS_RST);
  2138              		.loc 1 483 0
  2139 0006 0320     		movs	r0, #3
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 47
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 47
 
 
  2140 0008 FFF7FEFF 		bl	MIS_Reg_Write
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2187 0064 1360     		str	r3, [r2]
  491:mis.c         ****     uint32 old_MIS1_pulse = 0;
  2188              		.loc 1 491 0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 48
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 48
 
 
  2189 0066 0023     		movs	r3, #0
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2236              		.type	MIS_Stop, %function
  2237              	MIS_Stop:
  2238              	.LFB98:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 49
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 49
 
 
  499:mis.c         **** 
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2281              		@ frame_needed = 1, uses_anonymous_args = 0
  2282 0000 80B5     		push	{r7, lr}
  2283              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 50
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 50
 
 
  2284              		.cfi_offset 7, -8
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2330              		.loc 1 518 0
  2331              		.cfi_startproc
  2332              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 51
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 51
 
 
  2333              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2378 0008 FFF7FEFF 		bl	MIS_Start
  528:mis.c         ****     
  529:mis.c         ****     result = MIS_WaitPacket();
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 52
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 52
 
 
  2379              		.loc 1 529 0
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2423              		.thumb
  2424              		.thumb_func
  2425              		.type	MIS_PulseCounterStatus, %function
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 53
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 53
 
 
  2426              	MIS_PulseCounterStatus:
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2472 0006 00000000 		.4byte	.Ldebug_abbrev0
  2473 000a 04       		.byte	0x4
  2474 000b 01       		.uleb128 0x1
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 54
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 54
 
 
  2475 000c D8000000 		.4byte	.LASF86
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2529 007b 03       		.byte	0x3
  2530 007c 2C       		.byte	0x2c
  2531 007d 41000000 		.4byte	0x41
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 55
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 55
 
 
  2532 0081 05       		.uleb128 0x5
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2586 00ef 10010000 		.4byte	0x110
  2587 00f3 08       		.uleb128 0x8
  2588 00f4 3F040000 		.4byte	.LASF20
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 56
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 56
 
 
  2589 00f8 01       		.byte	0x1
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2643 0167 00000000 		.4byte	.LASF22
  2644 016b 01       		.byte	0x1
  2645 016c 4F       		.byte	0x4f
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 57
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 57
 
 
  2646 016d 8D000000 		.4byte	0x8d
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2700 01d6 01       		.byte	0x1
  2701 01d7 73       		.byte	0x73
  2702 01d8 00000000 		.4byte	.LFB70
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 58
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 58
 
 
  2703 01dc 1A000000 		.4byte	.LFE70-.LFB70
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2757 0249 1C000000 		.4byte	.LFE73-.LFB73
  2758 024d 01       		.uleb128 0x1
  2759 024e 9C       		.byte	0x9c
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 59
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 59
 
 
  2760 024f 07       		.uleb128 0x7
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2814 02be 0B       		.uleb128 0xb
  2815 02bf 47020000 		.4byte	.LASF37
  2816 02c3 01       		.byte	0x1
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 60
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 60
 
 
  2817 02c4 C4       		.byte	0xc4
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2871 0330 7400     		.ascii	"t\000"
  2872 0332 01       		.byte	0x1
  2873 0333 DF       		.byte	0xdf
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 61
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 61
 
 
  2874 0334 8D000000 		.4byte	0x8d
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2928 03a5 74000000 		.4byte	.LFE82-.LFB82
  2929 03a9 01       		.uleb128 0x1
  2930 03aa 9C       		.byte	0x9c
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 62
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 62
 
 
  2931 03ab CE030000 		.4byte	0x3ce
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  2985 0423 9C       		.byte	0x9c
  2986 0424 6F040000 		.4byte	0x46f
  2987 0428 11       		.uleb128 0x11
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 63
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 63
 
 
  2988 0429 00000000 		.4byte	.LASF22
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3042 0493 12       		.uleb128 0x12
  3043 0494 C8000000 		.4byte	.LASF47
  3044 0498 01       		.byte	0x1
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 64
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 64
 
 
  3045 0499 4F01     		.2byte	0x14f
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3099 0512 81000000 		.4byte	0x81
  3100 0516 02       		.uleb128 0x2
  3101 0517 91       		.byte	0x91
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 65
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 65
 
 
  3102 0518 77       		.sleb128 -9
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3156 0590 91       		.byte	0x91
  3157 0591 74       		.sleb128 -12
  3158 0592 11       		.uleb128 0x11
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 66
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 66
 
 
  3159 0593 09040000 		.4byte	.LASF26
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3213 0603 9C       		.byte	0x9c
  3214 0604 14       		.uleb128 0x14
  3215 0605 E4050000 		.4byte	.LASF56
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 67
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 67
 
 
  3216 0609 01       		.byte	0x1
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3270 0679 8D000000 		.4byte	0x8d
  3271 067d 02       		.uleb128 0x2
  3272 067e 91       		.byte	0x91
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 68
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 68
 
 
  3273 067f 6C       		.sleb128 -20
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3327 06f2 15070000 		.4byte	0x715
  3328 06f6 16       		.uleb128 0x16
  3329 06f7 01060000 		.4byte	.LASF32
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 69
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 69
 
 
  3330 06fb 01       		.byte	0x1
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3384 076c 05       		.uleb128 0x5
  3385 076d 03       		.byte	0x3
  3386 076e 00000000 		.4byte	pulseCounter1
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 70
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 70
 
 
  3387 0772 1A       		.uleb128 0x1a
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3441 07e7 1A       		.uleb128 0x1a
  3442 07e8 A8040000 		.4byte	.LASF75
  3443 07ec 01       		.byte	0x1
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 71
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 71
 
 
  3444 07ed 9D       		.byte	0x9d
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3498 0863 C9050000 		.4byte	.LASF82
  3499 0867 01       		.byte	0x1
  3500 0868 6E01     		.2byte	0x16e
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 72
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 72
 
 
  3501 086a 8D000000 		.4byte	0x8d
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3555 0017 0B       		.uleb128 0xb
  3556 0018 3E       		.uleb128 0x3e
  3557 0019 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 73
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 73
 
 
  3558 001a 03       		.uleb128 0x3
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3612 0050 11       		.uleb128 0x11
  3613 0051 01       		.uleb128 0x1
  3614 0052 12       		.uleb128 0x12
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 74
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 74
 
 
  3615 0053 06       		.uleb128 0x6
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3669 008b 3A       		.uleb128 0x3a
  3670 008c 0B       		.uleb128 0xb
  3671 008d 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 75
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 75
 
 
  3672 008e 0B       		.uleb128 0xb
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3726 00c6 19       		.uleb128 0x19
  3727 00c7 49       		.uleb128 0x49
  3728 00c8 13       		.uleb128 0x13
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 76
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 76
 
 
  3729 00c9 11       		.uleb128 0x11
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3783 0100 3F       		.uleb128 0x3f
  3784 0101 19       		.uleb128 0x19
  3785 0102 03       		.uleb128 0x3
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 77
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 77
 
 
  3786 0103 0E       		.uleb128 0xe
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3840 013b 18       		.uleb128 0x18
  3841 013c 00       		.byte	0
  3842 013d 00       		.byte	0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 78
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 78
 
 
  3843 013e 12       		.uleb128 0x12
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3897 0176 01       		.byte	0x1
  3898 0177 3F       		.uleb128 0x3f
  3899 0178 19       		.uleb128 0x19
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 79
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 79
 
 
  3900 0179 03       		.uleb128 0x3
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  3954 01b0 00       		.byte	0
  3955 01b1 3F       		.uleb128 0x3f
  3956 01b2 19       		.uleb128 0x19
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 80
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 80
 
 
  3957 01b3 03       		.uleb128 0x3
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  4011 01ea 19       		.uleb128 0x19
  4012 01eb 02       		.uleb128 0x2
  4013 01ec 18       		.uleb128 0x18
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 81
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 81
 
 
  4014 01ed 00       		.byte	0
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  4068 0030 00000000 		.4byte	.LFB67
  4069 0034 20000000 		.4byte	.LFE67-.LFB67
  4070 0038 00000000 		.4byte	.LFB68
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 82
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 82
 
 
  4071 003c 4C000000 		.4byte	.LFE68-.LFB68
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  4125 0114 1C000000 		.4byte	.LFE95-.LFB95
  4126 0118 00000000 		.4byte	.LFB96
  4127 011c 40000000 		.4byte	.LFE96-.LFB96
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 83
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 83
 
 
  4128 0120 00000000 		.4byte	.LFB97
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  4182 0098 00000000 		.4byte	.LFB82
  4183 009c 74000000 		.4byte	.LFE82
  4184 00a0 00000000 		.4byte	.LFB83
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 84
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 84
 
 
  4185 00a4 20000000 		.4byte	.LFE83
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  4232      42757273 
  4232      7454696D 
  4232      656F7574 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 85
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 85
 
 
  4233              	.LASF25:
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  4255      43313120 
  4255      352E342E 
  4255      31203230 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 86
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 86
 
 
  4255      31363036 
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  4275 01f1 6F6C645F 		.ascii	"old_MIS2_pulse\000"
  4275      4D495332 
  4275      5F70756C 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 87
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 87
 
 
  4275      736500
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  4297      7572655F 
  4297      325F5469 
  4297      6D657374 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 88
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 88
 
 
  4297      616D705F 
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  4317      6E7400
  4318              	.LASF73:
  4319 037e 63617074 		.ascii	"capture_1_Timestamp_hw\000"
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 89
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 89
 
 
  4319      7572655F 
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  4339      5F576169 
  4339      74506163 
  4339      6B657400 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 90
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 90
 
 
  4340              	.LASF20:
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  4365      64546F74 
  4365      54696D65 
  4365      00
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 91
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 91
 
 
  4366              	.LASF60:
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 1
  4387      616D7054 
  4388              	.LASF50:
  4389 0584 6973725F 		.ascii	"isr_Capture_4\000"
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1QFzoE.s 			page 92
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc4lSBIn.s 			page 92
 
 
  4389      43617074 

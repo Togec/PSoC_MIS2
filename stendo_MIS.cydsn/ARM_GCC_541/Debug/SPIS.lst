@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
   12:Generated_Source\PSoC5/SPIS.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
   13:Generated_Source\PSoC5/SPIS.c **** * You may use this file only in accordance with the license, terms, conditions,
   14:Generated_Source\PSoC5/SPIS.c **** * disclaimers, and limitations in the end user license agreement accompanying
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 2
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 2
 
 
   15:Generated_Source\PSoC5/SPIS.c **** * the software package with which this file was provided.
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
   44              		.loc 1 68 0
   45              		.cfi_startproc
   46              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 3
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 3
 
 
   47              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
   92:Generated_Source\PSoC5/SPIS.c ****         /* Set the priority. */
   93:Generated_Source\PSoC5/SPIS.c ****         CyIntSetPriority(SPIS_RX_ISR_NUMBER, SPIS_RX_ISR_PRIORITY);
   78              		.loc 1 93 0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 4
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 4
 
 
   79 002e 0721     		movs	r1, #7
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  115:Generated_Source\PSoC5/SPIS.c **** 
  116:Generated_Source\PSoC5/SPIS.c ****     /* Configure the Initial interrupt mask */
  117:Generated_Source\PSoC5/SPIS.c ****     #if (SPIS_TX_SOFTWARE_BUF_ENABLED)
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 5
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 5
 
 
  118:Generated_Source\PSoC5/SPIS.c ****         SPIS_TX_STATUS_MASK_REG  = (SPIS_TX_INIT_INTERRUPTS_MASK &
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  135:Generated_Source\PSoC5/SPIS.c **** * Parameters:
  136:Generated_Source\PSoC5/SPIS.c **** *  None.
  137:Generated_Source\PSoC5/SPIS.c **** *
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 6
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 6
 
 
  138:Generated_Source\PSoC5/SPIS.c **** * Return:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  189              		.loc 1 151 0
  190 003e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
  191 0040 1846     		mov	r0, r3
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 7
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 7
 
 
  192 0042 FFF7FEFF 		bl	CyExitCriticalSection
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  171:Generated_Source\PSoC5/SPIS.c **** *  None.
  172:Generated_Source\PSoC5/SPIS.c **** *
  173:Generated_Source\PSoC5/SPIS.c **** * Return:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 8
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 8
 
 
  174:Generated_Source\PSoC5/SPIS.c **** *  None.
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  258              		.cfi_endproc
  259              	.LFE2:
  260              		.size	SPIS_Start, .-SPIS_Start
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 9
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 9
 
 
  261              		.section	.text.SPIS_Stop,"ax",%progbits
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  290 0016 23F01003 		bic	r3, r3, #16
  291 001a DBB2     		uxtb	r3, r3
  292 001c 1370     		strb	r3, [r2]
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 10
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 10
 
 
  222:Generated_Source\PSoC5/SPIS.c ****     SPIS_RX_STATUS_ACTL_REG &= (uint8)~SPIS_INT_ENABLE;
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  335              		.type	SPIS_EnableTxInt, %function
  336              	SPIS_EnableTxInt:
  337              	.LFB4:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 11
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 11
 
 
  234:Generated_Source\PSoC5/SPIS.c **** 
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  367              		.size	SPIS_EnableTxInt, .-SPIS_EnableTxInt
  368              		.section	.text.SPIS_EnableRxInt,"ax",%progbits
  369              		.align	2
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 12
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 12
 
 
  370              		.global	SPIS_EnableRxInt
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  399              	.L19:
  400 0012 00BF     		.align	2
  401              	.L18:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 13
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 13
 
 
  402 0014 00E100E0 		.word	-536813312
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  431              		.cfi_def_cfa_register 13
  432              		@ sp needed
  433 000e 80BC     		pop	{r7}
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 14
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 14
 
 
  434              		.cfi_restore 7
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  465 0008 1A60     		str	r2, [r3]
  332:Generated_Source\PSoC5/SPIS.c ****     #endif /* SPIS_INTERNAL_RX_INT_ENABLED */
  333:Generated_Source\PSoC5/SPIS.c **** }
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 15
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 15
 
 
  466              		.loc 1 333 0
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  498 0002 83B0     		sub	sp, sp, #12
  499              		.cfi_def_cfa_offset 16
  500 0004 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 16
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 16
 
 
  501              		.cfi_def_cfa_register 7
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  377:Generated_Source\PSoC5/SPIS.c **** *******************************************************************************/
  378:Generated_Source\PSoC5/SPIS.c **** void SPIS_SetRxInterruptMode(uint8 intSrc) 
  379:Generated_Source\PSoC5/SPIS.c **** {
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 17
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 17
 
 
  534              		.loc 1 379 0
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  390:Generated_Source\PSoC5/SPIS.c **** *
  391:Generated_Source\PSoC5/SPIS.c **** * Parameters:
  392:Generated_Source\PSoC5/SPIS.c **** *  None.
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 18
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 18
 
 
  393:Generated_Source\PSoC5/SPIS.c **** *
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  422:Generated_Source\PSoC5/SPIS.c ****         SPIS_swStatusTx = 0u;
  603              		.loc 1 422 0
  604 0020 054B     		ldr	r3, .L34+4
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 19
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 19
 
 
  605 0022 0022     		movs	r2, #0
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  447:Generated_Source\PSoC5/SPIS.c **** * Return:
  448:Generated_Source\PSoC5/SPIS.c **** *  Contents of the Rx status register.
  449:Generated_Source\PSoC5/SPIS.c **** *
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 20
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 20
 
 
  450:Generated_Source\PSoC5/SPIS.c **** * Global variables:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  663 0024 1A70     		strb	r2, [r3]
  476:Generated_Source\PSoC5/SPIS.c **** 
  477:Generated_Source\PSoC5/SPIS.c ****         /* Enable Interrupts */
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 21
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 21
 
 
  478:Generated_Source\PSoC5/SPIS.c ****         SPIS_EnableRxInt();
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  504:Generated_Source\PSoC5/SPIS.c **** *  SPIS_txBufferWrite - used for the account of the bytes which
  505:Generated_Source\PSoC5/SPIS.c **** *  have been written down in the TX software buffer, modified every function
  506:Generated_Source\PSoC5/SPIS.c **** *  call if TX Software Buffer is used.
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 22
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 22
 
 
  507:Generated_Source\PSoC5/SPIS.c **** *  SPIS_txBufferRead - used for the account of the bytes which
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  715              		.loc 1 537 0
  716 0016 1F23     		movs	r3, #31
  717 0018 FB73     		strb	r3, [r7, #15]
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 23
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 23
 
 
  718 001a 02E0     		b	.L42
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  756 005a 9A42     		cmp	r2, r3
  757 005c 0AD1     		bne	.L44
  554:Generated_Source\PSoC5/SPIS.c ****             (0u != (SPIS_swStatusTx & SPIS_STS_TX_FIFO_NOT_FULL)))
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 24
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 24
 
 
  758              		.loc 1 554 0 discriminator 1
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  797 009c DBB2     		uxtb	r3, r3
  798 009e 9A42     		cmp	r2, r3
  799 00a0 11D1     		bne	.L47
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 25
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 25
 
 
  569:Generated_Source\PSoC5/SPIS.c ****             {
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  582:Generated_Source\PSoC5/SPIS.c **** 
  583:Generated_Source\PSoC5/SPIS.c ****         /* Enable Interrupt. */
  584:Generated_Source\PSoC5/SPIS.c ****         SPIS_EnableTxInt();
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 26
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 26
 
 
  841              		.loc 1 584 0
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  607:Generated_Source\PSoC5/SPIS.c ****     *
  608:Generated_Source\PSoC5/SPIS.c ****     * Parameters:
  609:Generated_Source\PSoC5/SPIS.c ****     *  txDataByte: The data value to send across the SPI.
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 27
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 27
 
 
  610:Generated_Source\PSoC5/SPIS.c ****     *
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  913              		.thumb_func
  914              		.type	SPIS_ReadRxData, %function
  915              	SPIS_ReadRxData:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 28
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 28
 
 
  916              	.LFB14:
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  665:Generated_Source\PSoC5/SPIS.c ****     #if(SPIS_RX_SOFTWARE_BUF_ENABLED)
  666:Generated_Source\PSoC5/SPIS.c **** 
  667:Generated_Source\PSoC5/SPIS.c ****         /* Disable Interrupt to protect variables that could change on interrupt. */
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 29
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 29
 
 
  668:Generated_Source\PSoC5/SPIS.c ****         SPIS_DisableRxInt();
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  968 0046 0022     		movs	r2, #0
  969 0048 1A70     		strb	r2, [r3]
  970              	.L55:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 30
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 30
 
 
  683:Generated_Source\PSoC5/SPIS.c ****             }
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1008              	.LFB15:
  700:Generated_Source\PSoC5/SPIS.c **** 
  701:Generated_Source\PSoC5/SPIS.c **** 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 31
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 31
 
 
  702:Generated_Source\PSoC5/SPIS.c **** /*******************************************************************************
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1028 0012 1B78     		ldrb	r3, [r3]
  1029 0014 DBB2     		uxtb	r3, r3
  1030 0016 9A42     		cmp	r2, r3
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 32
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 32
 
 
  1031 0018 02D1     		bne	.L62
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  751:Generated_Source\PSoC5/SPIS.c **** 
  752:Generated_Source\PSoC5/SPIS.c ****     #else /* !SPIS_RX_SOFTWARE_BUF_ENABLED*/
  753:Generated_Source\PSoC5/SPIS.c **** 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 33
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 33
 
 
  754:Generated_Source\PSoC5/SPIS.c ****         /* We can only know if there is data in the fifo. */
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  782:Generated_Source\PSoC5/SPIS.c **** *  SPIS_txBufferRead - used for the account of the bytes which
  783:Generated_Source\PSoC5/SPIS.c **** *  have been read from the TX software buffer.
  784:Generated_Source\PSoC5/SPIS.c **** *
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 34
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 34
 
 
  785:Generated_Source\PSoC5/SPIS.c **** * Theory:
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1130 0028 1B78     		ldrb	r3, [r3]
  1131 002a DBB2     		uxtb	r3, r3
  1132 002c 9A42     		cmp	r2, r3
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 35
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 35
 
 
  1133 002e 08D2     		bcs	.L71
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  834:Generated_Source\PSoC5/SPIS.c **** 
  835:Generated_Source\PSoC5/SPIS.c ****     #endif /* SPIS_TX_SOFTWARE_BUF_ENABLED */
  836:Generated_Source\PSoC5/SPIS.c **** 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 36
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 36
 
 
  837:Generated_Source\PSoC5/SPIS.c ****     return (size);
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  865:Generated_Source\PSoC5/SPIS.c **** *  remained in the RAM.
  866:Generated_Source\PSoC5/SPIS.c **** *
  867:Generated_Source\PSoC5/SPIS.c **** * Side Effects:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 37
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 37
 
 
  868:Generated_Source\PSoC5/SPIS.c **** *  Any received data not read from the RAM buffer will be lost when overwritten.
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1217 0024 0022     		movs	r2, #0
  1218 0026 1A70     		strb	r2, [r3]
  889:Generated_Source\PSoC5/SPIS.c **** 		SPIS_rxBufferFull  = 0u;
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 38
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 38
 
 
  1219              		.loc 1 889 0
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  916:Generated_Source\PSoC5/SPIS.c **** *  resets to zero.
  917:Generated_Source\PSoC5/SPIS.c **** *
  918:Generated_Source\PSoC5/SPIS.c **** * Theory:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 39
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 39
 
 
  919:Generated_Source\PSoC5/SPIS.c **** *  Setting the pointers to zero makes the system believe there is no data to
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1277 002a DBB2     		uxtb	r3, r3
  1278 002c 1370     		strb	r3, [r2]
  943:Generated_Source\PSoC5/SPIS.c **** 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 40
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 40
 
 
  944:Generated_Source\PSoC5/SPIS.c ****     #else
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  970:Generated_Source\PSoC5/SPIS.c **** 
  971:Generated_Source\PSoC5/SPIS.c ****     #endif /* SPIS_TX_SOFTWARE_BUF_ENABLED */
  972:Generated_Source\PSoC5/SPIS.c **** }
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 41
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 41
 
 
  1307              		.loc 1 972 0
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
 1000:Generated_Source\PSoC5/SPIS.c ****     ********************************************************************************
 1001:Generated_Source\PSoC5/SPIS.c ****     *
 1002:Generated_Source\PSoC5/SPIS.c ****     * Summary:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 42
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 42
 
 
 1003:Generated_Source\PSoC5/SPIS.c ****     *  If the SPI Slave is configured to use a single bi-directional pin then this
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1341              		.cfi_offset 14, -4
  1342 0002 84B0     		sub	sp, sp, #16
  1343              		.cfi_def_cfa_offset 24
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 43
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 43
 
 
  1344 0004 00AF     		add	r7, sp, #0
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1387              		.align	2
  1388              		.global	SPIS_ClearFIFO
  1389              		.thumb
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 44
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 44
 
 
  1390              		.thumb_func
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1417 0012 03F00803 		and	r3, r3, #8
  1418 0016 002B     		cmp	r3, #0
  1419 0018 F6D1     		bne	.L88
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 45
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 45
 
 
 1086:Generated_Source\PSoC5/SPIS.c ****     }
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1452              	.L90:
  1453 0052 00BF     		.align	2
  1454              	.L89:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 46
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 46
 
 
  1455 0054 54640040 		.word	1073767508
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1481 0006 0822     		movs	r2, #8
  1482 0008 1A60     		str	r2, [r3]
 1136:Generated_Source\PSoC5/SPIS.c ****     #endif /* SPIS_INTERNAL_TX_INT_ENABLED */
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 47
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 47
 
 
 1137:Generated_Source\PSoC5/SPIS.c **** 
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1511              		.loc 1 1162 0
  1512              		.cfi_startproc
  1513              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 48
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 48
 
 
  1514              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
 1178:Generated_Source\PSoC5/SPIS.c **** *  Configure which status bits trigger an interrupt event.
 1179:Generated_Source\PSoC5/SPIS.c **** *
 1180:Generated_Source\PSoC5/SPIS.c **** * Parameters:
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 49
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 49
 
 
 1181:Generated_Source\PSoC5/SPIS.c **** *  intSrc: An or'd combination of the desired status bit masks (defined in the
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1592              	.LFE23:
  1593              		.size	SPIS_SetInterruptMode, .-SPIS_SetInterruptMode
  1594              		.section	.text.SPIS_ReadStatus,"ax",%progbits
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 50
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 50
 
 
  1595              		.align	2
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
 1231:Generated_Source\PSoC5/SPIS.c **** 
 1232:Generated_Source\PSoC5/SPIS.c ****         SPIS_DisableInt();
  1614              		.loc 1 1232 0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 51
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 51
 
 
  1615 0006 FFF7FEFF 		bl	SPIS_DisableInt
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
 1245:Generated_Source\PSoC5/SPIS.c ****         tmpStatus = SPIS_TX_STATUS_REG | (SPIS_RX_STATUS_REG &
 1246:Generated_Source\PSoC5/SPIS.c ****                                                       (uint8)~SPIS_STS_RX_FIFO_FULL);
 1247:Generated_Source\PSoC5/SPIS.c **** 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 52
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 52
 
 
 1248:Generated_Source\PSoC5/SPIS.c ****     #endif /* (SPIS_TX_SOFTWARE_BUF_ENABLED) || (SPIS_RX_SOFTWARE_BUF_ENABLED) */
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1706 003b 02       		.byte	0x2
  1707 003c 07       		.byte	0x7
  1708 003d 2D020000 		.4byte	.LASF3
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 53
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 53
 
 
  1709 0041 02       		.uleb128 0x2
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1763 00aa B8020000 		.4byte	.LASF15
  1764 00ae 02       		.byte	0x2
  1765 00af 3E02     		.2byte	0x23e
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 54
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 54
 
 
  1766 00b1 B5000000 		.4byte	0xb5
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1820 0123 08       		.uleb128 0x8
  1821 0124 25040000 		.4byte	.LASF22
  1822 0128 01       		.byte	0x1
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 55
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 55
 
 
  1823 0129 DA       		.byte	0xda
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1877 019d 77       		.sleb128 -9
  1878 019e 00       		.byte	0
  1879 019f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 56
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 56
 
 
  1880 01a0 AD030000 		.4byte	.LASF28
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1934 0218 00       		.byte	0
  1935 0219 0F       		.uleb128 0xf
  1936 021a 49020000 		.4byte	.LASF33
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 57
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 57
 
 
  1937 021e 01       		.byte	0x1
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  1991 028b 6B000000 		.4byte	0x6b
  1992 028f 00000000 		.4byte	.LFB14
  1993 0293 78000000 		.4byte	.LFE14-.LFB14
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 58
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 58
 
 
  1994 0297 01       		.uleb128 0x1
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2048 0309 00000000 		.4byte	.LFB17
  2049 030d 4C000000 		.4byte	.LFE17-.LFB17
  2050 0311 01       		.uleb128 0x1
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 59
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 59
 
 
  2051 0312 9C       		.byte	0x9c
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2105 037e 04       		.byte	0x4
  2106 037f 83030000 		.4byte	0x383
  2107 0383 12       		.uleb128 0x12
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 60
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 60
 
 
  2108 0384 6B000000 		.4byte	0x6b
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2162 03f9 7E030000 		.4byte	.LASF54
  2163 03fd 01       		.byte	0x1
  2164 03fe CA04     		.2byte	0x4ca
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 61
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 61
 
 
  2165 0400 6B000000 		.4byte	0x6b
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2219 0476 05       		.uleb128 0x5
  2220 0477 55040000 		.4byte	0x455
  2221 047b 13       		.uleb128 0x13
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 62
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 62
 
 
  2222 047c 6D020000 		.4byte	.LASF59
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2276 04f1 05       		.uleb128 0x5
  2277 04f2 03       		.byte	0x3
  2278 04f3 00000000 		.4byte	SPIS_txBufferFull
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 63
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 63
 
 
  2279 04f7 00       		.byte	0
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2333 0033 13       		.uleb128 0x13
  2334 0034 00       		.byte	0
  2335 0035 00       		.byte	0
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 64
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 64
 
 
  2336 0036 05       		.uleb128 0x5
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2390 006e 00       		.byte	0
  2391 006f 08       		.uleb128 0x8
  2392 0070 34       		.uleb128 0x34
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 65
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 65
 
 
  2393 0071 00       		.byte	0
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2447 00a8 18       		.uleb128 0x18
  2448 00a9 9742     		.uleb128 0x2117
  2449 00ab 19       		.uleb128 0x19
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 66
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 66
 
 
  2450 00ac 00       		.byte	0
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2504 00e3 19       		.uleb128 0x19
  2505 00e4 49       		.uleb128 0x49
  2506 00e5 13       		.uleb128 0x13
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 67
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 67
 
 
  2507 00e6 11       		.uleb128 0x11
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2561 011e 00       		.byte	0
  2562 011f 3F       		.uleb128 0x3f
  2563 0120 19       		.uleb128 0x19
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 68
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 68
 
 
  2564 0121 03       		.uleb128 0x3
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2618 0158 49       		.uleb128 0x49
  2619 0159 13       		.uleb128 0x13
  2620 015a 01       		.uleb128 0x1
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 69
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 69
 
 
  2621 015b 13       		.uleb128 0x13
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2675 0094 6C000000 		.4byte	.LFE16-.LFB16
  2676 0098 00000000 		.4byte	.LFB17
  2677 009c 4C000000 		.4byte	.LFE17-.LFB17
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 70
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 70
 
 
  2678 00a0 00000000 		.4byte	.LFB18
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2732 0090 00000000 		.4byte	.LFB18
  2733 0094 7C000000 		.4byte	.LFE18
  2734 0098 00000000 		.4byte	.LFB19
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 71
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 71
 
 
  2735 009c 3A000000 		.4byte	.LFE19
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2764      43313120 
  2764      352E342E 
  2764      31203230 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 72
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 72
 
 
  2764      31363036 
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2784      61626C65 
  2784      5278496E 
  2784      7400
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 73
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 73
 
 
  2785              	.LASF9:
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2809      7369676E 
  2809      65642069 
  2809      6E7400
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 74
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 74
 
 
  2810              	.LASF49:
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2831      7900
  2832              	.LASF45:
  2833 02d9 53504953 		.ascii	"SPIS_ClearTxBuffer\000"
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 75
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 75
 
 
  2833      5F436C65 
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2857 037e 53504953 		.ascii	"SPIS_ReadStatus\000"
  2857      5F526561 
  2857      64537461 
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 76
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 76
 
 
  2857      74757300 
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 1
  2881      74657272 
  2881      75707473 
  2881      00
-ARM GAS  C:\Users\Tomas\AppData\Local\Temp\ccDV9RTI.s 			page 77
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc23H9GX.s 			page 77
 
 
  2882              	.LASF23:

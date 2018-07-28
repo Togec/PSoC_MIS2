@@ -1,4 +1,4 @@
---------------- Rebuild Started: 07/28/2018 18:11:05 Project: stendo_MIS, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Rebuild Started: 07/28/2018 18:21:19 Project: stendo_MIS, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 Deleting file ".\ARM_GCC_541\Debug\main.o"
 Deleting file ".\ARM_GCC_541\Debug\assert.o"
 Deleting file ".\ARM_GCC_541\Debug\SPI.o"
@@ -288,4 +288,4 @@ cyelftool.exe -C "E:\_CODE\PSoC Projektai\PSoC_MIS2\stendo_MIS.cydsn\ARM_GCC_541
 cyelftool.exe -S "E:\_CODE\PSoC Projektai\PSoC_MIS2\stendo_MIS.cydsn\ARM_GCC_541\Debug\stendo_MIS.elf"
 Flash used: 25076 of 262144 bytes (9,6 %).
 SRAM used: 3405 of 65536 bytes (5,2 %). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Rebuild Succeeded: 07/28/2018 18:15:32 ---------------
+--------------- Rebuild Succeeded: 07/28/2018 18:25:18 ---------------
