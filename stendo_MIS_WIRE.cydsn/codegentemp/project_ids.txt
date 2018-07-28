@@ -1,9 +1,0 @@
-C:\Users\tomas.gecas\Documents\Dropbox\Shared\PSOC\workspace 20171130\workspace 20171113\workspace 20171004\workspace\minunit_arch stendo 0927\minunit_arch\minunit_arch\stendo_MIS.cydsn\stendo_MIS.cyprj|490f2a1e-320f-4d72-882e-390d8ab89c14
-C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|b3b8e1f6-b140-4505-86ff-0353b6c3b5a3
-C:\Users\tomas.gecas\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|db9fe983-72a2-4223-9232-f1d60d7c5338
-C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|8a59a393-0746-4218-b376-a998150ebecc
-C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|4534ff5f-721e-447f-a7e7-ff3a8c2ced45
-C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|c64c5ca7-1603-4454-9acd-9c1382843c80
-C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|849da48e-4d75-441d-b012-34b8587cfe45
-C:\Users\tomas.gecas\Documents\Dropbox\Shared\PSOC\workspace 20171130\workspace 20171113\workspace 20171004\workspace\minunit_arch2 2 mis\minunit_arch2 0924\minunit_arch\test_sku03.cydsn\test_sku03.cyprj|2e948abf-467a-4084-8e22-7e97ee823bf5
-C:\Users\tomas.gecas\Documents\Dropbox\Shared\PSOC\workspace 20171130\workspace 20171113\workspace 20171004\workspace\minunit_arch stendo 0927\minunit_arch\minunit_arch\stendo_MIS_WIRE.cydsn\stendo_MIS_WIRE.cyprj|f1064ba5-a6ca-4d7a-af8f-027321f02be3
