@@ -1,0 +1,2709 @@
+
+======================================================
+UDB 0
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			Net_1414
+			Net_2616
+			BurstDetector_1
+			Net_2619
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			BurstDetector_1
+			Net_1414
+			Net_2619
+			Net_3138
+			\BurstTimeout_1:TimerUDB:control_7\
+			\BurstTimeout_1:TimerUDB:per_zero\
+			\EdgeDetect_1:last\
+			rst
+
+		 Output nets:
+			BurstDetector_1
+			Net_1414
+			Net_2616
+			Net_2619
+
+		 Product terms:
+			!Net_2619 * !Net_3138 * \EdgeDetect_1:last\
+			!Net_3138 * !rst * Net_2619 * \EdgeDetect_1:last\
+			!rst * BurstDetector_1
+			!rst * Net_1414
+			!rst * Net_2619
+			\BurstTimeout_1:TimerUDB:control_7\ * \BurstTimeout_1:TimerUDB:per_zero\
+			rst
+
+	PLD 1:
+		 Instances:
+			\PulseCounter_1:CounterUDB:count_stored_i\
+			\EdgeDetect_1:last\
+			\PulseCounter_1:CounterUDB:count_enable\
+			PulseCounterEN_1
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_2619
+			Net_3138
+			PulseCounterEN_1
+			\EdgeDetect_1:last\
+			\PulseCounter_1:CounterUDB:control_7\
+			\PulseCounter_1:CounterUDB:count_stored_i\
+			ctr_0
+			rst0
+
+		 Output nets:
+			PulseCounterEN_1
+			\EdgeDetect_1:last\
+			\PulseCounter_1:CounterUDB:count_enable\
+			\PulseCounter_1:CounterUDB:count_stored_i\
+
+		 Product terms:
+			!Net_2619 * !rst0 * PulseCounterEN_1
+			!Net_3138 * !\PulseCounter_1:CounterUDB:count_stored_i\ * PulseCounterEN_1 * \EdgeDetect_1:last\ * \PulseCounter_1:CounterUDB:control_7\
+			!Net_3138 * \EdgeDetect_1:last\
+			!ctr_0 * !rst0 * Net_2619
+			Net_3138
+
+	Datapath:
+		 Instances:
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			Net_2616
+			\BurstTimeout_1:TimerUDB:control_7\
+			\BurstTimeout_1:TimerUDB:per_zero\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u1.cmsbo__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u1.sor__sig\
+
+		 Output nets:
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.ce0__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.ce1__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.cfbo__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.cl0__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.cl1__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.co_msb__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.ff0__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.ff1__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.sol_msb__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.z0__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.z1__sig\
+
+	Control, status and sync:
+		 Instances:
+			\MIS_Reg:Sync:ctrl_reg\ : controlcell
+			\MIS_Stat:sts:sts_reg\ : statuscell
+
+		 Clock net: 
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			BurstDetector_1
+			BurstDetector_2
+			BurstDetector_3
+			BurstDetector_4
+			ClockBlock_BUS_CLK
+			PulseCounterEN_1
+			PulseCounterEN_2
+			PulseCounterEN_3
+			PulseCounterEN_4
+
+		 Output nets:
+			Net_2265
+			Net_2266
+			Net_2267
+			ctr_0
+			rst
+			rst0
+
+	Local clock and reset nets:
+
+======================================================
+UDB 1
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\PulseCounter_1:CounterUDB:overflow_reg_i\
+			\BurstTimeout_1:TimerUDB:status_tc\
+			\UART_1:BUART:rx_status_5\
+			\PulseCounter_1:CounterUDB:status_2\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\BurstTimeout_1:TimerUDB:control_7\
+			\BurstTimeout_1:TimerUDB:per_zero\
+			\PulseCounter_1:CounterUDB:overflow_reg_i\
+			\PulseCounter_1:CounterUDB:reload\
+			\UART_1:BUART:rx_fifonotempty\
+			\UART_1:BUART:rx_state_stop1_reg\
+
+		 Output nets:
+			\BurstTimeout_1:TimerUDB:status_tc\
+			\PulseCounter_1:CounterUDB:overflow_reg_i\
+			\PulseCounter_1:CounterUDB:status_2\
+			\UART_1:BUART:rx_status_5\
+
+		 Product terms:
+			!\PulseCounter_1:CounterUDB:overflow_reg_i\ * \PulseCounter_1:CounterUDB:reload\
+			\BurstTimeout_1:TimerUDB:control_7\ * \BurstTimeout_1:TimerUDB:per_zero\
+			\PulseCounter_1:CounterUDB:reload\
+			\UART_1:BUART:rx_fifonotempty\ * \UART_1:BUART:rx_state_stop1_reg\
+
+	PLD 1:
+		 Instances:
+			\PulseCounter_2:CounterUDB:overflow_reg_i\
+			\PulseCounter_3:CounterUDB:overflow_reg_i\
+			\PulseCounter_2:CounterUDB:status_2\
+			\PulseCounter_3:CounterUDB:status_2\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\PulseCounter_2:CounterUDB:overflow_reg_i\
+			\PulseCounter_2:CounterUDB:reload\
+			\PulseCounter_3:CounterUDB:overflow_reg_i\
+			\PulseCounter_3:CounterUDB:reload\
+
+		 Output nets:
+			\PulseCounter_2:CounterUDB:overflow_reg_i\
+			\PulseCounter_2:CounterUDB:status_2\
+			\PulseCounter_3:CounterUDB:overflow_reg_i\
+			\PulseCounter_3:CounterUDB:status_2\
+
+		 Product terms:
+			!\PulseCounter_2:CounterUDB:overflow_reg_i\ * \PulseCounter_2:CounterUDB:reload\
+			!\PulseCounter_3:CounterUDB:overflow_reg_i\ * \PulseCounter_3:CounterUDB:reload\
+			\PulseCounter_2:CounterUDB:reload\
+			\PulseCounter_3:CounterUDB:reload\
+
+	Datapath:
+		 Instances:
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u1\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			Net_2616
+			\BurstTimeout_1:TimerUDB:control_7\
+			\BurstTimeout_1:TimerUDB:per_zero\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.ce0__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.ce1__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.cfbo__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.cl0__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.cl1__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.co_msb__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.ff0__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.ff1__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.sol_msb__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.z0__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u0.z1__sig\
+
+		 Output nets:
+			\BurstTimeout_1:TimerUDB:per_zero\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u1.cmsbo__sig\
+			\BurstTimeout_1:TimerUDB:sT16:timerdp:u1.sor__sig\
+			\BurstTimeout_1:TimerUDB:status_2\
+			\BurstTimeout_1:TimerUDB:status_3\
+
+	Control, status and sync:
+		 Instances:
+			\BurstTimeout_1:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\ : controlcell
+			\BurstTimeout_1:TimerUDB:rstSts:stsreg\ : statusicell
+
+		 Clock net: clk
+		 Set/Reset net: Net_2616
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\BurstTimeout_1:TimerUDB:status_2\
+			\BurstTimeout_1:TimerUDB:status_3\
+			\BurstTimeout_1:TimerUDB:status_tc\
+
+		 Output nets:
+			\BurstTimeout_1:TimerUDB:control_7\
+
+	Local clock and reset nets:
+			Net_2616
+
+======================================================
+UDB 10
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			Net_3137
+			\GlitchFilter_4:genblk1[0]:samples_4\
+			\QuadDec_2:bQuadDec:quad_B_filt\
+			\GlitchFilter_4:genblk1[0]:samples_3\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MIS_IN4_SYNCOUT
+			Net_3137
+			\GlitchFilter_4:genblk1[0]:samples_3\
+			\GlitchFilter_4:genblk1[0]:samples_4\
+			\QuadDec_2:bQuadDec:quad_B_delayed_0\
+			\QuadDec_2:bQuadDec:quad_B_delayed_1\
+			\QuadDec_2:bQuadDec:quad_B_delayed_2\
+			\QuadDec_2:bQuadDec:quad_B_filt\
+
+		 Output nets:
+			Net_3137
+			\GlitchFilter_4:genblk1[0]:samples_3\
+			\GlitchFilter_4:genblk1[0]:samples_4\
+			\QuadDec_2:bQuadDec:quad_B_filt\
+
+		 Product terms:
+			!MIS_IN4_SYNCOUT * !\GlitchFilter_4:genblk1[0]:samples_3\ * !\GlitchFilter_4:genblk1[0]:samples_4\ * !\QuadDec_2:bQuadDec:quad_B_delayed_0\ * !\QuadDec_2:bQuadDec:quad_B_delayed_1\ * !\QuadDec_2:bQuadDec:quad_B_delayed_2\ * Net_3137
+			!Net_3137 * MIS_IN4_SYNCOUT * \GlitchFilter_4:genblk1[0]:samples_3\ * \GlitchFilter_4:genblk1[0]:samples_4\ * \QuadDec_2:bQuadDec:quad_B_delayed_0\ * \QuadDec_2:bQuadDec:quad_B_delayed_1\ * \QuadDec_2:bQuadDec:quad_B_delayed_2\
+			!\QuadDec_2:bQuadDec:quad_B_delayed_0\ * !\QuadDec_2:bQuadDec:quad_B_delayed_1\ * !\QuadDec_2:bQuadDec:quad_B_delayed_2\ * \QuadDec_2:bQuadDec:quad_B_filt\
+			!\QuadDec_2:bQuadDec:quad_B_filt\ * \QuadDec_2:bQuadDec:quad_B_delayed_0\ * \QuadDec_2:bQuadDec:quad_B_delayed_1\ * \QuadDec_2:bQuadDec:quad_B_delayed_2\
+			\GlitchFilter_4:genblk1[0]:samples_3\
+			\QuadDec_2:bQuadDec:quad_B_delayed_2\
+
+	PLD 1:
+		 Instances:
+			\QuadDec_2:bQuadDec:quad_B_delayed_1\
+			\EdgeDetect_7:last\
+			\QuadDec_2:bQuadDec:quad_B_delayed_2\
+			\QuadDec_2:bQuadDec:quad_B_delayed_0\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MIS_IN4_SYNCOUT
+			Net_3137
+			\QuadDec_2:bQuadDec:quad_B_delayed_0\
+			\QuadDec_2:bQuadDec:quad_B_delayed_1\
+
+		 Output nets:
+			\EdgeDetect_7:last\
+			\QuadDec_2:bQuadDec:quad_B_delayed_0\
+			\QuadDec_2:bQuadDec:quad_B_delayed_1\
+			\QuadDec_2:bQuadDec:quad_B_delayed_2\
+
+		 Product terms:
+			MIS_IN4_SYNCOUT
+			Net_3137
+			\QuadDec_2:bQuadDec:quad_B_delayed_0\
+			\QuadDec_2:bQuadDec:quad_B_delayed_1\
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			DIO4(0)_SYNC : synccell
+
+		 Clock net: ClockBlock_BUS_CLK
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MIS_IN4
+
+		 Output nets:
+			MIS_IN4_SYNCOUT
+
+	Local clock and reset nets:
+
+======================================================
+UDB 11
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			Net_3134
+			\GlitchFilter_3:genblk1[0]:samples_4\
+			\QuadDec_2:bQuadDec:quad_A_delayed_0\
+			\GlitchFilter_3:genblk1[0]:samples_3\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MIS_IN3_SYNCOUT
+			Net_3134
+			\GlitchFilter_3:genblk1[0]:samples_3\
+			\GlitchFilter_3:genblk1[0]:samples_4\
+			\QuadDec_2:bQuadDec:quad_A_delayed_0\
+			\QuadDec_2:bQuadDec:quad_A_delayed_1\
+			\QuadDec_2:bQuadDec:quad_A_delayed_2\
+
+		 Output nets:
+			Net_3134
+			\GlitchFilter_3:genblk1[0]:samples_3\
+			\GlitchFilter_3:genblk1[0]:samples_4\
+			\QuadDec_2:bQuadDec:quad_A_delayed_0\
+
+		 Product terms:
+			!MIS_IN3_SYNCOUT * !\GlitchFilter_3:genblk1[0]:samples_3\ * !\GlitchFilter_3:genblk1[0]:samples_4\ * !\QuadDec_2:bQuadDec:quad_A_delayed_0\ * !\QuadDec_2:bQuadDec:quad_A_delayed_1\ * !\QuadDec_2:bQuadDec:quad_A_delayed_2\ * Net_3134
+			!Net_3134 * MIS_IN3_SYNCOUT * \GlitchFilter_3:genblk1[0]:samples_3\ * \GlitchFilter_3:genblk1[0]:samples_4\ * \QuadDec_2:bQuadDec:quad_A_delayed_0\ * \QuadDec_2:bQuadDec:quad_A_delayed_1\ * \QuadDec_2:bQuadDec:quad_A_delayed_2\
+			MIS_IN3_SYNCOUT
+			\GlitchFilter_3:genblk1[0]:samples_3\
+			\QuadDec_2:bQuadDec:quad_A_delayed_2\
+
+	PLD 1:
+		 Instances:
+			\PulseCounter_3:CounterUDB:count_stored_i\
+			\QuadDec_2:bQuadDec:quad_A_delayed_1\
+			\EdgeDetect_6:last\
+			\QuadDec_2:bQuadDec:quad_A_delayed_2\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_3134
+			\EdgeDetect_6:last\
+			\QuadDec_2:bQuadDec:quad_A_delayed_0\
+			\QuadDec_2:bQuadDec:quad_A_delayed_1\
+
+		 Output nets:
+			\EdgeDetect_6:last\
+			\PulseCounter_3:CounterUDB:count_stored_i\
+			\QuadDec_2:bQuadDec:quad_A_delayed_1\
+			\QuadDec_2:bQuadDec:quad_A_delayed_2\
+
+		 Product terms:
+			!Net_3134 * \EdgeDetect_6:last\
+			Net_3134
+			\QuadDec_2:bQuadDec:quad_A_delayed_0\
+			\QuadDec_2:bQuadDec:quad_A_delayed_1\
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			DIO3(0)_SYNC : synccell
+
+		 Clock net: ClockBlock_BUS_CLK
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MIS_IN3
+
+		 Output nets:
+			MIS_IN3_SYNCOUT
+
+	Local clock and reset nets:
+
+======================================================
+UDB 12
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\QuadDec_1:bQuadDec:quad_B_filt\
+			Net_3131
+			\GlitchFilter_2:genblk1[0]:samples_4\
+			\GlitchFilter_2:genblk1[0]:samples_3\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MIS_IN2_SYNCOUT
+			Net_3131
+			\GlitchFilter_2:genblk1[0]:samples_3\
+			\GlitchFilter_2:genblk1[0]:samples_4\
+			\QuadDec_1:bQuadDec:quad_B_delayed_0\
+			\QuadDec_1:bQuadDec:quad_B_delayed_1\
+			\QuadDec_1:bQuadDec:quad_B_delayed_2\
+			\QuadDec_1:bQuadDec:quad_B_filt\
+
+		 Output nets:
+			Net_3131
+			\GlitchFilter_2:genblk1[0]:samples_3\
+			\GlitchFilter_2:genblk1[0]:samples_4\
+			\QuadDec_1:bQuadDec:quad_B_filt\
+
+		 Product terms:
+			!MIS_IN2_SYNCOUT * !\GlitchFilter_2:genblk1[0]:samples_3\ * !\GlitchFilter_2:genblk1[0]:samples_4\ * !\QuadDec_1:bQuadDec:quad_B_delayed_0\ * !\QuadDec_1:bQuadDec:quad_B_delayed_1\ * !\QuadDec_1:bQuadDec:quad_B_delayed_2\ * Net_3131
+			!Net_3131 * MIS_IN2_SYNCOUT * \GlitchFilter_2:genblk1[0]:samples_3\ * \GlitchFilter_2:genblk1[0]:samples_4\ * \QuadDec_1:bQuadDec:quad_B_delayed_0\ * \QuadDec_1:bQuadDec:quad_B_delayed_1\ * \QuadDec_1:bQuadDec:quad_B_delayed_2\
+			!\QuadDec_1:bQuadDec:quad_B_delayed_0\ * !\QuadDec_1:bQuadDec:quad_B_delayed_1\ * !\QuadDec_1:bQuadDec:quad_B_delayed_2\ * \QuadDec_1:bQuadDec:quad_B_filt\
+			!\QuadDec_1:bQuadDec:quad_B_filt\ * \QuadDec_1:bQuadDec:quad_B_delayed_0\ * \QuadDec_1:bQuadDec:quad_B_delayed_1\ * \QuadDec_1:bQuadDec:quad_B_delayed_2\
+			\GlitchFilter_2:genblk1[0]:samples_3\
+			\QuadDec_1:bQuadDec:quad_B_delayed_2\
+
+	PLD 1:
+		 Instances:
+			\QuadDec_1:bQuadDec:quad_B_delayed_2\
+			\EdgeDetect_2:last\
+			\QuadDec_1:bQuadDec:quad_B_delayed_1\
+			\QuadDec_1:bQuadDec:quad_B_delayed_0\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MIS_IN2_SYNCOUT
+			Net_3131
+			\QuadDec_1:bQuadDec:quad_B_delayed_0\
+			\QuadDec_1:bQuadDec:quad_B_delayed_1\
+
+		 Output nets:
+			\EdgeDetect_2:last\
+			\QuadDec_1:bQuadDec:quad_B_delayed_0\
+			\QuadDec_1:bQuadDec:quad_B_delayed_1\
+			\QuadDec_1:bQuadDec:quad_B_delayed_2\
+
+		 Product terms:
+			MIS_IN2_SYNCOUT
+			Net_3131
+			\QuadDec_1:bQuadDec:quad_B_delayed_0\
+			\QuadDec_1:bQuadDec:quad_B_delayed_1\
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			DIO2(0)_SYNC : synccell
+
+		 Clock net: ClockBlock_BUS_CLK
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MIS_IN2
+
+		 Output nets:
+			MIS_IN2_SYNCOUT
+
+	Local clock and reset nets:
+
+======================================================
+UDB 13
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			Net_3138
+			\GlitchFilter_1:genblk1[0]:samples_4\
+			\GlitchFilter_1:genblk1[0]:samples_3\
+			\QuadDec_1:bQuadDec:quad_A_delayed_0\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MIS_IN1_SYNCOUT
+			Net_3138
+			\GlitchFilter_1:genblk1[0]:samples_3\
+			\GlitchFilter_1:genblk1[0]:samples_4\
+			\QuadDec_1:bQuadDec:quad_A_delayed_0\
+			\QuadDec_1:bQuadDec:quad_A_delayed_1\
+			\QuadDec_1:bQuadDec:quad_A_delayed_2\
+
+		 Output nets:
+			Net_3138
+			\GlitchFilter_1:genblk1[0]:samples_3\
+			\GlitchFilter_1:genblk1[0]:samples_4\
+			\QuadDec_1:bQuadDec:quad_A_delayed_0\
+
+		 Product terms:
+			!MIS_IN1_SYNCOUT * !\GlitchFilter_1:genblk1[0]:samples_3\ * !\GlitchFilter_1:genblk1[0]:samples_4\ * !\QuadDec_1:bQuadDec:quad_A_delayed_0\ * !\QuadDec_1:bQuadDec:quad_A_delayed_1\ * !\QuadDec_1:bQuadDec:quad_A_delayed_2\ * Net_3138
+			!Net_3138 * MIS_IN1_SYNCOUT * \GlitchFilter_1:genblk1[0]:samples_3\ * \GlitchFilter_1:genblk1[0]:samples_4\ * \QuadDec_1:bQuadDec:quad_A_delayed_0\ * \QuadDec_1:bQuadDec:quad_A_delayed_1\ * \QuadDec_1:bQuadDec:quad_A_delayed_2\
+			MIS_IN1_SYNCOUT
+			\GlitchFilter_1:genblk1[0]:samples_3\
+			\QuadDec_1:bQuadDec:quad_A_delayed_2\
+
+	PLD 1:
+		 Instances:
+			\QuadDec_1:bQuadDec:quad_A_delayed_2\
+			\PulseCounter_4:CounterUDB:overflow_reg_i\
+			\QuadDec_1:bQuadDec:quad_A_delayed_1\
+			\PulseCounter_4:CounterUDB:status_2\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\PulseCounter_4:CounterUDB:overflow_reg_i\
+			\PulseCounter_4:CounterUDB:reload\
+			\QuadDec_1:bQuadDec:quad_A_delayed_0\
+			\QuadDec_1:bQuadDec:quad_A_delayed_1\
+
+		 Output nets:
+			\PulseCounter_4:CounterUDB:overflow_reg_i\
+			\PulseCounter_4:CounterUDB:status_2\
+			\QuadDec_1:bQuadDec:quad_A_delayed_1\
+			\QuadDec_1:bQuadDec:quad_A_delayed_2\
+
+		 Product terms:
+			!\PulseCounter_4:CounterUDB:overflow_reg_i\ * \PulseCounter_4:CounterUDB:reload\
+			\PulseCounter_4:CounterUDB:reload\
+			\QuadDec_1:bQuadDec:quad_A_delayed_0\
+			\QuadDec_1:bQuadDec:quad_A_delayed_1\
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			DIO1(0)_SYNC : synccell
+
+		 Clock net: ClockBlock_BUS_CLK
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MIS_IN1
+
+		 Output nets:
+			MIS_IN1_SYNCOUT
+
+	Local clock and reset nets:
+
+======================================================
+UDB 14
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\UART_1:BUART:tx_state_2\
+			\UART_1:BUART:counter_load_not\
+			\UART_1:BUART:tx_bitclk\
+
+		 Clock net: \UART_1:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_1:BUART:tx_bitclk\
+			\UART_1:BUART:tx_bitclk_enable_pre\
+			\UART_1:BUART:tx_counter_dp\
+			\UART_1:BUART:tx_state_0\
+			\UART_1:BUART:tx_state_1\
+			\UART_1:BUART:tx_state_2\
+
+		 Output nets:
+			\UART_1:BUART:counter_load_not\
+			\UART_1:BUART:tx_bitclk\
+			\UART_1:BUART:tx_state_2\
+
+		 Product terms:
+			!\UART_1:BUART:tx_bitclk_enable_pre\
+			!\UART_1:BUART:tx_state_0\ * !\UART_1:BUART:tx_state_1\ * !\UART_1:BUART:tx_state_2\
+			!\UART_1:BUART:tx_state_0\ * !\UART_1:BUART:tx_state_1\ * \UART_1:BUART:tx_bitclk_enable_pre\
+			!\UART_1:BUART:tx_state_0\ * !\UART_1:BUART:tx_state_1\ * \UART_1:BUART:tx_bitclk_enable_pre\ * \UART_1:BUART:tx_state_2\
+			!\UART_1:BUART:tx_state_0\ * !\UART_1:BUART:tx_state_1\ * \UART_1:BUART:tx_state_2\
+			!\UART_1:BUART:tx_state_2\ * \UART_1:BUART:tx_bitclk\ * \UART_1:BUART:tx_counter_dp\ * \UART_1:BUART:tx_state_1\
+			!\UART_1:BUART:tx_state_2\ * \UART_1:BUART:tx_bitclk\ * \UART_1:BUART:tx_state_0\ * \UART_1:BUART:tx_state_1\
+			\UART_1:BUART:tx_bitclk_enable_pre\ * \UART_1:BUART:tx_state_0\ * \UART_1:BUART:tx_state_1\ * \UART_1:BUART:tx_state_2\
+
+	PLD 1:
+		 Instances:
+			\QuadDec_1:Net_1251_split\
+
+		 Clock net: 
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\QuadDec_1:Net_1251\
+			\QuadDec_1:Net_1260\
+			\QuadDec_1:bQuadDec:error\
+			\QuadDec_1:bQuadDec:quad_A_filt\
+			\QuadDec_1:bQuadDec:quad_B_filt\
+			\QuadDec_1:bQuadDec:state_0\
+			\QuadDec_1:bQuadDec:state_1\
+
+		 Output nets:
+			\QuadDec_1:Net_1251_split\
+
+		 Product terms:
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:quad_A_filt\ * !\QuadDec_1:bQuadDec:quad_B_filt\ * !\QuadDec_1:bQuadDec:state_0\ * \QuadDec_1:bQuadDec:state_1\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:quad_B_filt\ * \QuadDec_1:bQuadDec:quad_A_filt\ * \QuadDec_1:bQuadDec:state_0\ * \QuadDec_1:bQuadDec:state_1\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:Net_1251\ * \QuadDec_1:bQuadDec:quad_B_filt\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:bQuadDec:quad_A_filt\ * \QuadDec_1:bQuadDec:quad_B_filt\ * \QuadDec_1:bQuadDec:state_0\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:state_0\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:Net_1251\ * \QuadDec_1:bQuadDec:error\
+			!\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:quad_A_filt\ * !\QuadDec_1:bQuadDec:state_0\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:Net_1251\
+			!\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:quad_A_filt\ * !\QuadDec_1:bQuadDec:state_0\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:bQuadDec:quad_B_filt\
+			!\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:state_0\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:Net_1251\ * \QuadDec_1:bQuadDec:quad_B_filt\
+
+	Datapath:
+		 Instances:
+			\UART_1:BUART:sTX:sCLOCK:TxBitClkGen\
+
+		 Clock net: \UART_1:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\UART_1:BUART:counter_load_not\
+
+		 Output nets:
+			\UART_1:BUART:tx_bitclk_enable_pre\
+			\UART_1:BUART:tx_counter_dp\
+
+	Control, status and sync:
+		 Instances:
+			\SPIM:BSPIM:TxStsReg\ : statusicell
+
+		 Clock net: ccc
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\SPIM:BSPIM:load_rx_data\
+			\SPIM:BSPIM:tx_status_0\
+			\SPIM:BSPIM:tx_status_1\
+			\SPIM:BSPIM:tx_status_2\
+			\SPIM:BSPIM:tx_status_4\
+
+		 Output nets:
+			Net_2906
+
+	Local clock and reset nets:
+
+======================================================
+UDB 15
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\UART_1:BUART:tx_status_0\
+			\UART_1:BUART:tx_state_0\
+			\SPIM:BSPIM:rx_status_6\
+
+		 Clock net: \UART_1:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\SPIM:BSPIM:count_0\
+			\SPIM:BSPIM:count_1\
+			\SPIM:BSPIM:count_2\
+			\SPIM:BSPIM:count_3\
+			\SPIM:BSPIM:count_4\
+			\SPIM:BSPIM:rx_status_4\
+			\UART_1:BUART:tx_bitclk\
+			\UART_1:BUART:tx_bitclk_enable_pre\
+			\UART_1:BUART:tx_fifo_empty\
+			\UART_1:BUART:tx_state_0\
+			\UART_1:BUART:tx_state_1\
+			\UART_1:BUART:tx_state_2\
+
+		 Output nets:
+			\SPIM:BSPIM:rx_status_6\
+			\UART_1:BUART:tx_state_0\
+			\UART_1:BUART:tx_status_0\
+
+		 Product terms:
+			!\SPIM:BSPIM:count_1\ * !\SPIM:BSPIM:count_2\ * !\SPIM:BSPIM:count_3\ * !\SPIM:BSPIM:count_4\ * \SPIM:BSPIM:count_0\ * \SPIM:BSPIM:rx_status_4\
+			!\UART_1:BUART:tx_fifo_empty\ * !\UART_1:BUART:tx_state_0\ * !\UART_1:BUART:tx_state_1\ * !\UART_1:BUART:tx_state_2\
+			!\UART_1:BUART:tx_fifo_empty\ * !\UART_1:BUART:tx_state_0\ * !\UART_1:BUART:tx_state_1\ * \UART_1:BUART:tx_bitclk_enable_pre\
+			!\UART_1:BUART:tx_state_0\ * !\UART_1:BUART:tx_state_1\ * \UART_1:BUART:tx_bitclk_enable_pre\ * \UART_1:BUART:tx_fifo_empty\ * \UART_1:BUART:tx_state_2\
+			!\UART_1:BUART:tx_state_2\ * \UART_1:BUART:tx_bitclk\ * \UART_1:BUART:tx_state_0\
+			\UART_1:BUART:tx_bitclk_enable_pre\ * \UART_1:BUART:tx_fifo_empty\ * \UART_1:BUART:tx_state_0\ * \UART_1:BUART:tx_state_1\ * \UART_1:BUART:tx_state_2\
+
+	PLD 1:
+		 Instances:
+			\QuadDec_2:Net_1251_split\
+
+		 Clock net: 
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\QuadDec_2:Net_1251\
+			\QuadDec_2:Net_1260\
+			\QuadDec_2:bQuadDec:error\
+			\QuadDec_2:bQuadDec:quad_A_filt\
+			\QuadDec_2:bQuadDec:quad_B_filt\
+			\QuadDec_2:bQuadDec:state_0\
+			\QuadDec_2:bQuadDec:state_1\
+
+		 Output nets:
+			\QuadDec_2:Net_1251_split\
+
+		 Product terms:
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:quad_A_filt\ * !\QuadDec_2:bQuadDec:quad_B_filt\ * !\QuadDec_2:bQuadDec:state_0\ * \QuadDec_2:bQuadDec:state_1\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:quad_B_filt\ * \QuadDec_2:bQuadDec:quad_A_filt\ * \QuadDec_2:bQuadDec:state_0\ * \QuadDec_2:bQuadDec:state_1\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:Net_1251\ * \QuadDec_2:bQuadDec:quad_B_filt\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:bQuadDec:quad_A_filt\ * \QuadDec_2:bQuadDec:quad_B_filt\ * \QuadDec_2:bQuadDec:state_0\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:state_0\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:Net_1251\ * \QuadDec_2:bQuadDec:error\
+			!\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:quad_A_filt\ * !\QuadDec_2:bQuadDec:state_0\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:Net_1251\
+			!\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:quad_A_filt\ * !\QuadDec_2:bQuadDec:state_0\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:bQuadDec:quad_B_filt\
+			!\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:state_0\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:Net_1251\ * \QuadDec_2:bQuadDec:quad_B_filt\
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			\SPIM:BSPIM:RxStsReg\ : statusicell
+
+		 Clock net: ccc
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\SPIM:BSPIM:rx_status_4\
+			\SPIM:BSPIM:rx_status_5\
+			\SPIM:BSPIM:rx_status_6\
+
+		 Output nets:
+			Net_2904
+
+	Local clock and reset nets:
+
+======================================================
+UDB 16
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\PulseCounter_3:CounterUDB:count_enable\
+			\QuadDec_1:bQuadDec:error\
+			\QuadDec_1:Net_1260\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_3134
+			PulseCounterEN_3
+			\EdgeDetect_6:last\
+			\PulseCounter_3:CounterUDB:control_7\
+			\PulseCounter_3:CounterUDB:count_stored_i\
+			\QuadDec_1:Net_1260\
+			\QuadDec_1:bQuadDec:error\
+			\QuadDec_1:bQuadDec:quad_A_filt\
+			\QuadDec_1:bQuadDec:quad_B_filt\
+			\QuadDec_1:bQuadDec:state_0\
+			\QuadDec_1:bQuadDec:state_1\
+
+		 Output nets:
+			\PulseCounter_3:CounterUDB:count_enable\
+			\QuadDec_1:Net_1260\
+			\QuadDec_1:bQuadDec:error\
+
+		 Product terms:
+			!Net_3134 * !\PulseCounter_3:CounterUDB:count_stored_i\ * PulseCounterEN_3 * \EdgeDetect_6:last\ * \PulseCounter_3:CounterUDB:control_7\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:quad_A_filt\ * !\QuadDec_1:bQuadDec:quad_B_filt\ * \QuadDec_1:bQuadDec:state_0\ * \QuadDec_1:bQuadDec:state_1\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:quad_A_filt\ * !\QuadDec_1:bQuadDec:state_0\ * \QuadDec_1:bQuadDec:quad_B_filt\ * \QuadDec_1:bQuadDec:state_1\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:quad_B_filt\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:bQuadDec:quad_A_filt\ * \QuadDec_1:bQuadDec:state_0\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:state_0\ * !\QuadDec_1:bQuadDec:state_1\
+			!\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:state_0\ * !\QuadDec_1:bQuadDec:state_1\
+			!\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:state_0\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:bQuadDec:quad_A_filt\ * \QuadDec_1:bQuadDec:quad_B_filt\
+
+	PLD 1:
+		 Instances:
+			\QuadDec_2:Net_1260\
+			\QuadDec_2:bQuadDec:error\
+			Net_3026
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_3172_SYNCOUT
+			\EdgeDetect_4:last\
+			\QuadDec_2:Net_1260\
+			\QuadDec_2:bQuadDec:error\
+			\QuadDec_2:bQuadDec:quad_A_filt\
+			\QuadDec_2:bQuadDec:quad_B_filt\
+			\QuadDec_2:bQuadDec:state_0\
+			\QuadDec_2:bQuadDec:state_1\
+
+		 Output nets:
+			Net_3026
+			\QuadDec_2:Net_1260\
+			\QuadDec_2:bQuadDec:error\
+
+		 Product terms:
+			!Net_3172_SYNCOUT * \EdgeDetect_4:last\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:quad_A_filt\ * !\QuadDec_2:bQuadDec:quad_B_filt\ * \QuadDec_2:bQuadDec:state_0\ * \QuadDec_2:bQuadDec:state_1\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:quad_A_filt\ * !\QuadDec_2:bQuadDec:state_0\ * \QuadDec_2:bQuadDec:quad_B_filt\ * \QuadDec_2:bQuadDec:state_1\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:quad_B_filt\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:bQuadDec:quad_A_filt\ * \QuadDec_2:bQuadDec:state_0\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:state_0\ * !\QuadDec_2:bQuadDec:state_1\
+			!\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:state_0\ * !\QuadDec_2:bQuadDec:state_1\
+			!\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:state_0\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:bQuadDec:quad_A_filt\ * \QuadDec_2:bQuadDec:quad_B_filt\
+
+	Datapath:
+		 Instances:
+			\PulseCounter_3:CounterUDB:sC8:counterdp:u0\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\PulseCounter_3:CounterUDB:count_enable\
+			\PulseCounter_3:CounterUDB:reload\
+			__ONE__
+
+		 Output nets:
+			\PulseCounter_3:CounterUDB:cmp_equal\
+			\PulseCounter_3:CounterUDB:cmp_less\
+			\PulseCounter_3:CounterUDB:reload\
+			\PulseCounter_3:CounterUDB:status_1\
+			\PulseCounter_3:CounterUDB:status_5\
+			\PulseCounter_3:CounterUDB:status_6\
+
+	Control, status and sync:
+		 Instances:
+			\PulseCounter_3:CounterUDB:sCTRLReg:ctrlreg\ : controlcell
+			\PulseCounter_3:CounterUDB:sSTSReg:stsreg\ : statusicell
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\PulseCounter_3:CounterUDB:status_0\
+			\PulseCounter_3:CounterUDB:status_1\
+			\PulseCounter_3:CounterUDB:status_2\
+			\PulseCounter_3:CounterUDB:status_5\
+			\PulseCounter_3:CounterUDB:status_6\
+
+		 Output nets:
+			\PulseCounter_3:CounterUDB:control_7\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 17
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\UART_1:BUART:pollcount_1\
+			\UART_1:BUART:rx_bitclk_enable\
+			\UART_1:BUART:rx_postpoll\
+			\UART_1:BUART:pollcount_0\
+
+		 Clock net: \UART_1:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_25_SYNCOUT
+			\UART_1:BUART:pollcount_0\
+			\UART_1:BUART:pollcount_1\
+			\UART_1:BUART:rx_count_0\
+			\UART_1:BUART:rx_count_1\
+			\UART_1:BUART:rx_count_2\
+
+		 Output nets:
+			\UART_1:BUART:pollcount_0\
+			\UART_1:BUART:pollcount_1\
+			\UART_1:BUART:rx_bitclk_enable\
+			\UART_1:BUART:rx_postpoll\
+
+		 Product terms:
+			!Net_25_SYNCOUT * !\UART_1:BUART:rx_count_1\ * !\UART_1:BUART:rx_count_2\ * \UART_1:BUART:pollcount_0\
+			!Net_25_SYNCOUT * !\UART_1:BUART:rx_count_1\ * !\UART_1:BUART:rx_count_2\ * \UART_1:BUART:pollcount_1\
+			!\UART_1:BUART:pollcount_0\ * !\UART_1:BUART:rx_count_1\ * !\UART_1:BUART:rx_count_2\ * Net_25_SYNCOUT
+			!\UART_1:BUART:pollcount_0\ * !\UART_1:BUART:rx_count_1\ * !\UART_1:BUART:rx_count_2\ * \UART_1:BUART:pollcount_1\
+			!\UART_1:BUART:pollcount_1\ * !\UART_1:BUART:rx_count_1\ * !\UART_1:BUART:rx_count_2\ * Net_25_SYNCOUT * \UART_1:BUART:pollcount_0\
+			!\UART_1:BUART:rx_count_0\ * !\UART_1:BUART:rx_count_1\ * !\UART_1:BUART:rx_count_2\
+			Net_25_SYNCOUT * \UART_1:BUART:pollcount_0\
+			\UART_1:BUART:pollcount_1\
+
+	PLD 1:
+		 Instances:
+			Net_3087
+			\UART_1:BUART:rx_last\
+			Net_3120
+			Net_3086
+
+		 Clock net: \UART_1:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_2213_SYNCOUT
+			Net_25_SYNCOUT
+			Net_3085_SYNCOUT
+			\EdgeDetect_5:last\
+			\EdgeDetect_8:last\
+
+		 Output nets:
+			Net_3086
+			Net_3087
+			Net_3120
+			\UART_1:BUART:rx_last\
+
+		 Product terms:
+			!Net_3085_SYNCOUT * \EdgeDetect_8:last\
+			!\EdgeDetect_5:last\ * Net_2213_SYNCOUT
+			!\EdgeDetect_8:last\ * Net_3085_SYNCOUT
+			Net_25_SYNCOUT
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			Rx_1(0)_SYNC : synccell
+
+		 Clock net: ClockBlock_BUS_CLK
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_25
+
+		 Output nets:
+			Net_25_SYNCOUT
+
+	Local clock and reset nets:
+
+======================================================
+UDB 18
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			BurstDetector_4
+			cy_srff_10
+			Net_2883
+			PulseCounterEN_4
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			BurstDetector_4
+			Net_2889
+			Net_3137
+			PulseCounterEN_4
+			\EdgeDetect_7:last\
+			ctr_0
+			cy_srff_10
+			rst
+			rst0
+
+		 Output nets:
+			BurstDetector_4
+			Net_2883
+			PulseCounterEN_4
+			cy_srff_10
+
+		 Product terms:
+			!Net_3137 * !cy_srff_10 * \EdgeDetect_7:last\
+			!Net_3137 * !rst * \EdgeDetect_7:last\ * cy_srff_10
+			!ctr_0 * !rst0 * cy_srff_10
+			!cy_srff_10 * !rst0 * PulseCounterEN_4
+			!rst * BurstDetector_4
+			!rst * Net_2889
+			!rst * cy_srff_10
+			rst
+
+	PLD 1:
+		 Instances:
+			\PulseCounter_4:CounterUDB:count_enable\
+			\PulseCounter_4:CounterUDB:count_stored_i\
+			cy_srff_7
+			PulseCounterEN_2
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_2721
+			Net_2865
+			Net_3137
+			PulseCounterEN_2
+			PulseCounterEN_4
+			\EdgeDetect_7:last\
+			\PulseCounter_4:CounterUDB:control_7\
+			\PulseCounter_4:CounterUDB:count_stored_i\
+			ctr_0
+			cy_srff_7
+			rst
+			rst0
+
+		 Output nets:
+			PulseCounterEN_2
+			\PulseCounter_4:CounterUDB:count_enable\
+			\PulseCounter_4:CounterUDB:count_stored_i\
+			cy_srff_7
+
+		 Product terms:
+			!Net_2721 * !rst0 * PulseCounterEN_2
+			!Net_3137 * !\PulseCounter_4:CounterUDB:count_stored_i\ * PulseCounterEN_4 * \EdgeDetect_7:last\ * \PulseCounter_4:CounterUDB:control_7\
+			!Net_3137 * \EdgeDetect_7:last\
+			!ctr_0 * !rst0 * Net_2721
+			!rst * Net_2865
+			!rst * cy_srff_7
+
+	Datapath:
+		 Instances:
+			\PulseCounter_4:CounterUDB:sC8:counterdp:u0\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\PulseCounter_4:CounterUDB:count_enable\
+			\PulseCounter_4:CounterUDB:reload\
+			__ONE__
+
+		 Output nets:
+			\PulseCounter_4:CounterUDB:cmp_equal\
+			\PulseCounter_4:CounterUDB:cmp_less\
+			\PulseCounter_4:CounterUDB:reload\
+			\PulseCounter_4:CounterUDB:status_1\
+			\PulseCounter_4:CounterUDB:status_5\
+			\PulseCounter_4:CounterUDB:status_6\
+
+	Control, status and sync:
+		 Instances:
+			\PulseCounter_4:CounterUDB:sCTRLReg:ctrlreg\ : controlcell
+			\PulseCounter_4:CounterUDB:sSTSReg:stsreg\ : statusicell
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\PulseCounter_4:CounterUDB:status_0\
+			\PulseCounter_4:CounterUDB:status_1\
+			\PulseCounter_4:CounterUDB:status_2\
+			\PulseCounter_4:CounterUDB:status_5\
+			\PulseCounter_4:CounterUDB:status_6\
+
+		 Output nets:
+			\PulseCounter_4:CounterUDB:control_7\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 19
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			BurstDetector_3
+			Net_2721
+			BurstDetector_2
+			Net_2859
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			BurstDetector_2
+			BurstDetector_3
+			Net_2720
+			Net_2721
+			Net_3131
+			Net_3134
+			\EdgeDetect_2:last\
+			\EdgeDetect_6:last\
+			cy_srff_7
+			rst
+
+		 Output nets:
+			BurstDetector_2
+			BurstDetector_3
+			Net_2721
+			Net_2859
+
+		 Product terms:
+			!Net_3131 * !rst * Net_2721 * \EdgeDetect_2:last\
+			!Net_3134 * !cy_srff_7 * \EdgeDetect_6:last\
+			!Net_3134 * !rst * \EdgeDetect_6:last\ * cy_srff_7
+			!rst * BurstDetector_2
+			!rst * BurstDetector_3
+			!rst * Net_2720
+			!rst * Net_2721
+			rst
+
+	PLD 1:
+		 Instances:
+			Net_2714
+			\PulseCounter_2:CounterUDB:count_stored_i\
+			\PulseCounter_2:CounterUDB:count_enable\
+			PulseCounterEN_3
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_2721
+			Net_3131
+			PulseCounterEN_2
+			PulseCounterEN_3
+			\EdgeDetect_2:last\
+			\PulseCounter_2:CounterUDB:control_7\
+			\PulseCounter_2:CounterUDB:count_stored_i\
+			ctr_0
+			cy_srff_7
+			rst
+			rst0
+
+		 Output nets:
+			Net_2714
+			PulseCounterEN_3
+			\PulseCounter_2:CounterUDB:count_enable\
+			\PulseCounter_2:CounterUDB:count_stored_i\
+
+		 Product terms:
+			!Net_2721 * !Net_3131 * \EdgeDetect_2:last\
+			!Net_3131 * !\PulseCounter_2:CounterUDB:count_stored_i\ * PulseCounterEN_2 * \EdgeDetect_2:last\ * \PulseCounter_2:CounterUDB:control_7\
+			!Net_3131 * \EdgeDetect_2:last\
+			!ctr_0 * !rst0 * cy_srff_7
+			!cy_srff_7 * !rst0 * PulseCounterEN_3
+			rst
+
+	Datapath:
+		 Instances:
+			\PulseCounter_2:CounterUDB:sC8:counterdp:u0\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\PulseCounter_2:CounterUDB:count_enable\
+			\PulseCounter_2:CounterUDB:reload\
+			__ONE__
+
+		 Output nets:
+			\PulseCounter_2:CounterUDB:cmp_equal\
+			\PulseCounter_2:CounterUDB:cmp_less\
+			\PulseCounter_2:CounterUDB:reload\
+			\PulseCounter_2:CounterUDB:status_1\
+			\PulseCounter_2:CounterUDB:status_5\
+			\PulseCounter_2:CounterUDB:status_6\
+
+	Control, status and sync:
+		 Instances:
+			\PulseCounter_2:CounterUDB:sCTRLReg:ctrlreg\ : controlcell
+			\PulseCounter_2:CounterUDB:sSTSReg:stsreg\ : statusicell
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\PulseCounter_2:CounterUDB:status_0\
+			\PulseCounter_2:CounterUDB:status_1\
+			\PulseCounter_2:CounterUDB:status_2\
+			\PulseCounter_2:CounterUDB:status_5\
+			\PulseCounter_2:CounterUDB:status_6\
+
+		 Output nets:
+			\PulseCounter_2:CounterUDB:control_7\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 2
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\QuadDec_1:Cnt16:CounterUDB:status_2\
+			\QuadDec_1:Net_1275\
+			\QuadDec_1:Cnt16:CounterUDB:overflow_reg_i\
+			\QuadDec_1:Cnt16:CounterUDB:reload\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\QuadDec_1:Cnt16:CounterUDB:overflow\
+			\QuadDec_1:Cnt16:CounterUDB:overflow_reg_i\
+			\QuadDec_1:Cnt16:CounterUDB:status_1\
+			\QuadDec_1:Net_1260\
+
+		 Output nets:
+			\QuadDec_1:Cnt16:CounterUDB:overflow_reg_i\
+			\QuadDec_1:Cnt16:CounterUDB:reload\
+			\QuadDec_1:Cnt16:CounterUDB:status_2\
+			\QuadDec_1:Net_1275\
+
+		 Product terms:
+			!\QuadDec_1:Cnt16:CounterUDB:overflow\ * !\QuadDec_1:Cnt16:CounterUDB:status_1\
+			!\QuadDec_1:Cnt16:CounterUDB:overflow\ * !\QuadDec_1:Cnt16:CounterUDB:status_1\ * !\QuadDec_1:Net_1260\
+			!\QuadDec_1:Cnt16:CounterUDB:overflow_reg_i\ * \QuadDec_1:Cnt16:CounterUDB:overflow\
+			\QuadDec_1:Cnt16:CounterUDB:overflow\
+
+	PLD 1:
+		 Instances:
+			\QuadDec_1:Cnt16:CounterUDB:status_3\
+			\QuadDec_1:Cnt16:CounterUDB:underflow_reg_i\
+			\QuadDec_1:Net_611\
+			\QuadDec_1:Net_530\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\QuadDec_1:Cnt16:CounterUDB:prevCompare\
+			\QuadDec_1:Cnt16:CounterUDB:status_1\
+			\QuadDec_1:Cnt16:CounterUDB:underflow_reg_i\
+			\QuadDec_1:Net_1251\
+			\QuadDec_1:Net_1275\
+
+		 Output nets:
+			\QuadDec_1:Cnt16:CounterUDB:status_3\
+			\QuadDec_1:Cnt16:CounterUDB:underflow_reg_i\
+			\QuadDec_1:Net_530\
+			\QuadDec_1:Net_611\
+
+		 Product terms:
+			!\QuadDec_1:Cnt16:CounterUDB:prevCompare\ * !\QuadDec_1:Net_1251\ * \QuadDec_1:Net_1275\
+			!\QuadDec_1:Cnt16:CounterUDB:prevCompare\ * \QuadDec_1:Net_1251\ * \QuadDec_1:Net_1275\
+			!\QuadDec_1:Cnt16:CounterUDB:underflow_reg_i\ * \QuadDec_1:Cnt16:CounterUDB:status_1\
+			\QuadDec_1:Cnt16:CounterUDB:status_1\
+
+	Datapath:
+		 Instances:
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\QuadDec_1:Cnt16:CounterUDB:count_enable\
+			\QuadDec_1:Cnt16:CounterUDB:reload\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u1.cmsbo__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u1.sor__sig\
+			\QuadDec_1:Net_1251\
+
+		 Output nets:
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.ce0__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.ce1__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.cfbo__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.cl0__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.cl1__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.co_msb__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.ff0__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.ff1__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.sol_msb__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.z0__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.z1__sig\
+
+	Control, status and sync:
+		 Instances:
+			\PulseCounter_1:CounterUDB:sCTRLReg:ctrlreg\ : controlcell
+			\QuadDec_1:bQuadDec:Stsreg\ : statusicell
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\QuadDec_1:Net_1260\
+			\QuadDec_1:Net_530\
+			\QuadDec_1:Net_611\
+			\QuadDec_1:bQuadDec:error\
+
+		 Output nets:
+			Net_2929
+			\PulseCounter_1:CounterUDB:control_7\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 20
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\SPIS:BSPIS:tx_load\
+			\SPIM:BSPIM:state_0\
+			Net_3057
+			\SPIS:BSPIS:mosi_buf_overrun\
+
+		 Clock net: ccc
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_3057
+			\SPIM:BSPIM:state_0\
+			\SPIM:BSPIM:state_1\
+			\SPIM:BSPIM:state_2\
+			\SPIM:BSPIM:tx_status_1\
+			\SPIS:BSPIS:count_0\
+			\SPIS:BSPIS:count_1\
+			\SPIS:BSPIS:count_2\
+			\SPIS:BSPIS:count_3\
+			\SPIS:BSPIS:dpMOSI_fifo_full\
+
+		 Output nets:
+			Net_3057
+			\SPIM:BSPIM:state_0\
+			\SPIS:BSPIS:mosi_buf_overrun\
+			\SPIS:BSPIS:tx_load\
+
+		 Product terms:
+			!\SPIM:BSPIM:state_0\ * !\SPIM:BSPIM:state_1\ * !\SPIM:BSPIM:tx_status_1\
+			!\SPIM:BSPIM:state_1\ * \SPIM:BSPIM:state_2\
+			!\SPIM:BSPIM:state_2\ * \SPIM:BSPIM:state_0\ * \SPIM:BSPIM:state_1\
+			!\SPIM:BSPIM:state_2\ * \SPIM:BSPIM:state_1\
+			!\SPIS:BSPIS:count_1\ * !\SPIS:BSPIS:count_2\ * !\SPIS:BSPIS:count_3\ * \SPIS:BSPIS:count_0\
+			!\SPIS:BSPIS:count_1\ * !\SPIS:BSPIS:count_2\ * !\SPIS:BSPIS:count_3\ * \SPIS:BSPIS:count_0\ * \SPIS:BSPIS:dpMOSI_fifo_full\
+			Net_3057 * \SPIM:BSPIM:state_0\ * \SPIM:BSPIM:state_1\
+
+	PLD 1:
+		 Instances:
+			\SPIS:BSPIS:inv_ss\
+			\SPIS:BSPIS:rx_status_4\
+			\SPIM:BSPIM:cnt_enable\
+			Net_3047
+
+		 Clock net: ccc
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_2213_SYNCOUT
+			\SPIM:BSPIM:cnt_enable\
+			\SPIM:BSPIM:state_0\
+			\SPIM:BSPIM:state_1\
+			\SPIM:BSPIM:state_2\
+			\SPIS:BSPIS:dpMOSI_fifo_not_empty\
+			\SPIS:BSPIS:miso_from_dp\
+
+		 Output nets:
+			Net_3047
+			\SPIM:BSPIM:cnt_enable\
+			\SPIS:BSPIS:inv_ss\
+			\SPIS:BSPIS:rx_status_4\
+
+		 Product terms:
+			!Net_2213_SYNCOUT
+			!Net_2213_SYNCOUT * \SPIS:BSPIS:miso_from_dp\
+			!\SPIM:BSPIM:cnt_enable\ * !\SPIM:BSPIM:state_2\ * \SPIM:BSPIM:state_0\ * \SPIM:BSPIM:state_1\
+			!\SPIM:BSPIM:state_0\ * !\SPIM:BSPIM:state_1\ * !\SPIM:BSPIM:state_2\ * \SPIM:BSPIM:cnt_enable\
+			!\SPIM:BSPIM:state_0\ * \SPIM:BSPIM:cnt_enable\ * \SPIM:BSPIM:state_1\ * \SPIM:BSPIM:state_2\
+			!\SPIM:BSPIM:state_1\ * \SPIM:BSPIM:cnt_enable\ * \SPIM:BSPIM:state_0\ * \SPIM:BSPIM:state_2\
+			!\SPIS:BSPIS:dpMOSI_fifo_not_empty\
+
+	Datapath:
+		 Instances:
+			\SPIS:BSPIS:sR8:Dp:u0\
+
+		 Clock net: Net_3049_SYNCOUT
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\SPIS:BSPIS:inv_ss\
+			\SPIS:BSPIS:mosi_to_dp\
+			\SPIS:BSPIS:tx_load\
+
+		 Output nets:
+			\SPIS:BSPIS:dpMISO_fifo_empty\
+			\SPIS:BSPIS:dpMOSI_fifo_full\
+			\SPIS:BSPIS:dpMOSI_fifo_not_empty\
+			\SPIS:BSPIS:miso_from_dp\
+			\SPIS:BSPIS:tx_status_1\
+
+	Control, status and sync:
+		 Instances:
+			\SPIS:BSPIS:BitCounter\ : count7cell
+
+		 Clock net: Net_3049_SYNCOUT
+		 Set/Reset net: Net_2213_SYNCOUT
+		 Enable net: 
+
+		 Input nets:
+			\SPIS:BSPIS:inv_ss\
+
+		 Output nets:
+			\SPIS:BSPIS:count_0\
+			\SPIS:BSPIS:count_1\
+			\SPIS:BSPIS:count_2\
+			\SPIS:BSPIS:count_3\
+
+	Local clock and reset nets:
+			Net_2213_SYNCOUT
+			Net_3049_SYNCOUT
+
+======================================================
+UDB 21
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\PulseCounter_1:CounterUDB:prevCompare\
+			\SPIS:BSPIS:mosi_to_dp\
+			\SPIS:BSPIS:tx_status_0\
+			\PulseCounter_1:CounterUDB:status_0\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_3048_SYNCOUT
+			\PulseCounter_1:CounterUDB:cmp_equal\
+			\PulseCounter_1:CounterUDB:cmp_less\
+			\PulseCounter_1:CounterUDB:prevCompare\
+			\SPIS:BSPIS:count_0\
+			\SPIS:BSPIS:count_1\
+			\SPIS:BSPIS:count_2\
+			\SPIS:BSPIS:count_3\
+			\SPIS:BSPIS:dpcounter_one_fin\
+			\SPIS:BSPIS:dpcounter_one_reg\
+			\SPIS:BSPIS:miso_tx_empty_reg_fin\
+			\SPIS:BSPIS:mosi_tmp\
+
+		 Output nets:
+			\PulseCounter_1:CounterUDB:prevCompare\
+			\PulseCounter_1:CounterUDB:status_0\
+			\SPIS:BSPIS:mosi_to_dp\
+			\SPIS:BSPIS:tx_status_0\
+
+		 Product terms:
+			!\PulseCounter_1:CounterUDB:cmp_equal\ * !\PulseCounter_1:CounterUDB:cmp_less\
+			!\PulseCounter_1:CounterUDB:cmp_equal\ * !\PulseCounter_1:CounterUDB:cmp_less\ * !\PulseCounter_1:CounterUDB:prevCompare\
+			!\SPIS:BSPIS:count_0\ * \SPIS:BSPIS:mosi_tmp\
+			!\SPIS:BSPIS:count_1\ * !\SPIS:BSPIS:count_2\ * !\SPIS:BSPIS:count_3\ * Net_3048_SYNCOUT * \SPIS:BSPIS:count_0\
+			!\SPIS:BSPIS:dpcounter_one_reg\ * \SPIS:BSPIS:dpcounter_one_fin\ * \SPIS:BSPIS:miso_tx_empty_reg_fin\
+			\SPIS:BSPIS:count_1\ * \SPIS:BSPIS:mosi_tmp\
+			\SPIS:BSPIS:count_2\ * \SPIS:BSPIS:mosi_tmp\
+			\SPIS:BSPIS:count_3\ * \SPIS:BSPIS:mosi_tmp\
+
+	PLD 1:
+		 Instances:
+			\UART_1:BUART:tx_status_2\
+			\SPIS:BSPIS:byte_complete\
+			Net_3025
+			\SPIS:BSPIS:mosi_tmp\
+
+		 Clock net: Net_3049_SYNCOUT
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_3048_SYNCOUT
+			Net_3172_SYNCOUT
+			\EdgeDetect_4:last\
+			\SPIS:BSPIS:dpcounter_one_fin\
+			\SPIS:BSPIS:dpcounter_one_reg\
+			\UART_1:BUART:tx_fifo_notfull\
+
+		 Output nets:
+			Net_3025
+			\SPIS:BSPIS:byte_complete\
+			\SPIS:BSPIS:mosi_tmp\
+			\UART_1:BUART:tx_status_2\
+
+		 Product terms:
+			!\EdgeDetect_4:last\ * Net_3172_SYNCOUT
+			!\SPIS:BSPIS:dpcounter_one_reg\ * \SPIS:BSPIS:dpcounter_one_fin\
+			!\UART_1:BUART:tx_fifo_notfull\
+			Net_3048_SYNCOUT
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			\SPIS:BSPIS:TxStsReg\ : statusicell
+
+		 Clock net: ccc
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\SPIS:BSPIS:byte_complete\
+			\SPIS:BSPIS:miso_tx_empty_reg_fin\
+			\SPIS:BSPIS:tx_status_0\
+			\SPIS:BSPIS:tx_status_1\
+
+		 Output nets:
+			Net_2897
+
+	Local clock and reset nets:
+			Net_3049_SYNCOUT
+
+======================================================
+UDB 22
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\PulseCounter_2:CounterUDB:prevCompare\
+			\PulseCounter_3:CounterUDB:prevCompare\
+			\PulseCounter_2:CounterUDB:status_0\
+			\PulseCounter_3:CounterUDB:status_0\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\PulseCounter_2:CounterUDB:cmp_equal\
+			\PulseCounter_2:CounterUDB:cmp_less\
+			\PulseCounter_2:CounterUDB:prevCompare\
+			\PulseCounter_3:CounterUDB:cmp_equal\
+			\PulseCounter_3:CounterUDB:cmp_less\
+			\PulseCounter_3:CounterUDB:prevCompare\
+
+		 Output nets:
+			\PulseCounter_2:CounterUDB:prevCompare\
+			\PulseCounter_2:CounterUDB:status_0\
+			\PulseCounter_3:CounterUDB:prevCompare\
+			\PulseCounter_3:CounterUDB:status_0\
+
+		 Product terms:
+			!\PulseCounter_2:CounterUDB:cmp_equal\ * !\PulseCounter_2:CounterUDB:cmp_less\
+			!\PulseCounter_2:CounterUDB:cmp_equal\ * !\PulseCounter_2:CounterUDB:cmp_less\ * !\PulseCounter_2:CounterUDB:prevCompare\
+			!\PulseCounter_3:CounterUDB:cmp_equal\ * !\PulseCounter_3:CounterUDB:cmp_less\
+			!\PulseCounter_3:CounterUDB:cmp_equal\ * !\PulseCounter_3:CounterUDB:cmp_less\ * !\PulseCounter_3:CounterUDB:prevCompare\
+
+	PLD 1:
+		 Instances:
+			\EdgeDetect_5:last\
+			\PulseCounter_4:CounterUDB:prevCompare\
+			\PulseCounter_4:CounterUDB:status_0\
+			\EdgeDetect_4:last\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_2213_SYNCOUT
+			Net_3172_SYNCOUT
+			\PulseCounter_4:CounterUDB:cmp_equal\
+			\PulseCounter_4:CounterUDB:cmp_less\
+			\PulseCounter_4:CounterUDB:prevCompare\
+
+		 Output nets:
+			\EdgeDetect_4:last\
+			\EdgeDetect_5:last\
+			\PulseCounter_4:CounterUDB:prevCompare\
+			\PulseCounter_4:CounterUDB:status_0\
+
+		 Product terms:
+			!\PulseCounter_4:CounterUDB:cmp_equal\ * !\PulseCounter_4:CounterUDB:cmp_less\
+			!\PulseCounter_4:CounterUDB:cmp_equal\ * !\PulseCounter_4:CounterUDB:cmp_less\ * !\PulseCounter_4:CounterUDB:prevCompare\
+			Net_2213_SYNCOUT
+			Net_3172_SYNCOUT
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			\SPIS:BSPIS:RxStsReg\ : statusicell
+
+		 Clock net: ccc
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\SPIS:BSPIS:dpMOSI_fifo_full_reg\
+			\SPIS:BSPIS:dpMOSI_fifo_not_empty\
+			\SPIS:BSPIS:rx_buf_overrun\
+			\SPIS:BSPIS:rx_status_4\
+
+		 Output nets:
+			Net_2899
+
+	Local clock and reset nets:
+
+======================================================
+UDB 23
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\UART_1:BUART:rx_status_4\
+			\SPIS:BSPIS:rx_buf_overrun\
+			\Timestamp:TimerUDB:status_tc\
+			Net_2692
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\SPIS:BSPIS:mosi_buf_overrun_fin\
+			\SPIS:BSPIS:mosi_buf_overrun_reg\
+			\Timestamp:TimerUDB:control_7\
+			\Timestamp:TimerUDB:per_zero\
+			\UART_1:BUART:rx_fifofull\
+			\UART_1:BUART:rx_load_fifo\
+
+		 Output nets:
+			Net_2692
+			\SPIS:BSPIS:rx_buf_overrun\
+			\Timestamp:TimerUDB:status_tc\
+			\UART_1:BUART:rx_status_4\
+
+		 Product terms:
+			!\SPIS:BSPIS:mosi_buf_overrun_fin\ * \SPIS:BSPIS:mosi_buf_overrun_reg\
+			\Timestamp:TimerUDB:control_7\ * \Timestamp:TimerUDB:per_zero\
+			\UART_1:BUART:rx_fifofull\ * \UART_1:BUART:rx_load_fifo\
+
+	PLD 1:
+		 Instances:
+			\SPIS:BSPIS:mosi_buf_overrun_fin\
+			\SPIS:BSPIS:dpcounter_one_reg\
+			Net_20
+
+		 Clock net: ccc
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\SPIS:BSPIS:dpcounter_one_fin\
+			\SPIS:BSPIS:mosi_buf_overrun_reg\
+			\UART_1:BUART:txn\
+
+		 Output nets:
+			Net_20
+			\SPIS:BSPIS:dpcounter_one_reg\
+			\SPIS:BSPIS:mosi_buf_overrun_fin\
+
+		 Product terms:
+			!\UART_1:BUART:txn\
+			\SPIS:BSPIS:dpcounter_one_fin\
+			\SPIS:BSPIS:mosi_buf_overrun_reg\
+
+	Datapath:
+		 Instances:
+			\Timestamp:TimerUDB:sT8:timerdp:u0\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\Timestamp:TimerUDB:control_7\
+			\Timestamp:TimerUDB:per_zero\
+
+		 Output nets:
+			\Timestamp:TimerUDB:per_zero\
+			\Timestamp:TimerUDB:status_2\
+			\Timestamp:TimerUDB:status_3\
+
+	Control, status and sync:
+		 Instances:
+			\Timestamp:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\ : controlcell
+			\Timestamp:TimerUDB:rstSts:stsreg\ : statusicell
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\Timestamp:TimerUDB:status_2\
+			\Timestamp:TimerUDB:status_3\
+			\Timestamp:TimerUDB:status_tc\
+
+		 Output nets:
+			\Timestamp:TimerUDB:control_7\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 24
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\EdgeDetect_8:last\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_3085_SYNCOUT
+
+		 Output nets:
+			\EdgeDetect_8:last\
+
+		 Product terms:
+			Net_3085_SYNCOUT
+
+	PLD 1:
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			\UART_1:BUART:sRX:RxSts\ : statusicell
+
+		 Clock net: \UART_1:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_1:BUART:rx_status_3\
+			\UART_1:BUART:rx_status_4\
+			\UART_1:BUART:rx_status_5\
+
+		 Output nets:
+
+	Local clock and reset nets:
+
+======================================================
+UDB 25
+------------------------------------------------------
+	PLD 0:
+
+	PLD 1:
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			\SPIS:BSPIS:sync_4\ : synccell
+			\SPIS:BSPIS:sync_3\ : synccell
+			\SPIS:BSPIS:sync_1\ : synccell
+			\SPIS:BSPIS:sync_2\ : synccell
+
+		 Clock net: ccc
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\SPIS:BSPIS:dpMISO_fifo_empty\
+			\SPIS:BSPIS:dpMOSI_fifo_full\
+			\SPIS:BSPIS:mosi_buf_overrun\
+			\SPIS:BSPIS:tx_load\
+
+		 Output nets:
+			\SPIS:BSPIS:dpMOSI_fifo_full_reg\
+			\SPIS:BSPIS:dpcounter_one_fin\
+			\SPIS:BSPIS:miso_tx_empty_reg_fin\
+			\SPIS:BSPIS:mosi_buf_overrun_reg\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 26
+------------------------------------------------------
+	PLD 0:
+
+	PLD 1:
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			T2(0)_SYNC : synccell
+			SIG1(0)_SYNC : synccell
+			slc_cs(0)_SYNC : synccell
+			slv_clk(0)_SYNC : synccell
+
+		 Clock net: ClockBlock_BUS_CLK
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_2213
+			Net_3049
+			Net_3085
+			Net_3172
+
+		 Output nets:
+			Net_2213_SYNCOUT
+			Net_3049_SYNCOUT
+			Net_3085_SYNCOUT
+			Net_3172_SYNCOUT
+
+	Local clock and reset nets:
+
+======================================================
+UDB 27
+------------------------------------------------------
+	PLD 0:
+
+	PLD 1:
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			mst_miso(0)_SYNC : synccell
+			slv_mosi(0)_SYNC : synccell
+
+		 Clock net: ClockBlock_BUS_CLK
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_3048
+			Net_3055
+
+		 Output nets:
+			Net_3048_SYNCOUT
+			Net_3055_SYNCOUT
+
+	Local clock and reset nets:
+
+======================================================
+UDB 3
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\QuadDec_1:Cnt16:CounterUDB:status_0\
+			\QuadDec_1:Cnt16:CounterUDB:prevCompare\
+			\QuadDec_1:Cnt16:CounterUDB:count_enable\
+			\QuadDec_1:Cnt16:CounterUDB:count_stored_i\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\QuadDec_1:Cnt16:CounterUDB:cmp_out_i\
+			\QuadDec_1:Cnt16:CounterUDB:control_7\
+			\QuadDec_1:Cnt16:CounterUDB:count_stored_i\
+			\QuadDec_1:Cnt16:CounterUDB:prevCompare\
+			\QuadDec_1:Net_1203\
+
+		 Output nets:
+			\QuadDec_1:Cnt16:CounterUDB:count_enable\
+			\QuadDec_1:Cnt16:CounterUDB:count_stored_i\
+			\QuadDec_1:Cnt16:CounterUDB:prevCompare\
+			\QuadDec_1:Cnt16:CounterUDB:status_0\
+
+		 Product terms:
+			!\QuadDec_1:Cnt16:CounterUDB:count_stored_i\ * \QuadDec_1:Cnt16:CounterUDB:control_7\ * \QuadDec_1:Net_1203\
+			!\QuadDec_1:Cnt16:CounterUDB:prevCompare\ * \QuadDec_1:Cnt16:CounterUDB:cmp_out_i\
+			\QuadDec_1:Cnt16:CounterUDB:cmp_out_i\
+			\QuadDec_1:Net_1203\
+
+	PLD 1:
+		 Instances:
+			\QuadDec_1:bQuadDec:quad_A_filt\
+			\QuadDec_1:bQuadDec:state_0\
+			\QuadDec_1:Net_1203\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\QuadDec_1:Net_1203\
+			\QuadDec_1:Net_1260\
+			\QuadDec_1:bQuadDec:error\
+			\QuadDec_1:bQuadDec:quad_A_delayed_0\
+			\QuadDec_1:bQuadDec:quad_A_delayed_1\
+			\QuadDec_1:bQuadDec:quad_A_delayed_2\
+			\QuadDec_1:bQuadDec:quad_A_filt\
+			\QuadDec_1:bQuadDec:quad_B_filt\
+			\QuadDec_1:bQuadDec:state_0\
+			\QuadDec_1:bQuadDec:state_1\
+
+		 Output nets:
+			\QuadDec_1:Net_1203\
+			\QuadDec_1:bQuadDec:quad_A_filt\
+			\QuadDec_1:bQuadDec:state_0\
+
+		 Product terms:
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:quad_A_filt\ * !\QuadDec_1:bQuadDec:quad_B_filt\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:bQuadDec:state_0\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * \QuadDec_1:bQuadDec:quad_A_filt\ * \QuadDec_1:bQuadDec:quad_B_filt\ * \QuadDec_1:bQuadDec:state_1\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * \QuadDec_1:bQuadDec:quad_B_filt\ * \QuadDec_1:bQuadDec:state_0\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:state_0\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:Net_1203\ * \QuadDec_1:bQuadDec:error\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:state_0\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:bQuadDec:error\ * \QuadDec_1:bQuadDec:quad_B_filt\
+			!\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:quad_A_filt\ * !\QuadDec_1:bQuadDec:state_0\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:bQuadDec:quad_B_filt\
+			!\QuadDec_1:bQuadDec:quad_A_delayed_0\ * !\QuadDec_1:bQuadDec:quad_A_delayed_1\ * !\QuadDec_1:bQuadDec:quad_A_delayed_2\ * \QuadDec_1:bQuadDec:quad_A_filt\
+			!\QuadDec_1:bQuadDec:quad_A_filt\ * \QuadDec_1:bQuadDec:quad_A_delayed_0\ * \QuadDec_1:bQuadDec:quad_A_delayed_1\ * \QuadDec_1:bQuadDec:quad_A_delayed_2\
+
+	Datapath:
+		 Instances:
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u1\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\QuadDec_1:Cnt16:CounterUDB:count_enable\
+			\QuadDec_1:Cnt16:CounterUDB:reload\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.ce0__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.ce1__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.cfbo__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.cl0__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.cl1__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.co_msb__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.ff0__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.ff1__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.sol_msb__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.z0__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u0.z1__sig\
+			\QuadDec_1:Net_1251\
+
+		 Output nets:
+			\QuadDec_1:Cnt16:CounterUDB:cmp_out_i\
+			\QuadDec_1:Cnt16:CounterUDB:overflow\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u1.cmsbo__sig\
+			\QuadDec_1:Cnt16:CounterUDB:sC16:counterdp:u1.sor__sig\
+			\QuadDec_1:Cnt16:CounterUDB:status_1\
+			\QuadDec_1:Cnt16:CounterUDB:status_5\
+			\QuadDec_1:Cnt16:CounterUDB:status_6\
+
+	Control, status and sync:
+		 Instances:
+			\QuadDec_1:Cnt16:CounterUDB:sCTRLReg:ctrlreg\ : controlcell
+			\QuadDec_1:Cnt16:CounterUDB:sSTSReg:stsreg\ : statusicell
+
+		 Clock net: clk
+		 Set/Reset net: \QuadDec_1:Net_1260\
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\QuadDec_1:Cnt16:CounterUDB:status_0\
+			\QuadDec_1:Cnt16:CounterUDB:status_1\
+			\QuadDec_1:Cnt16:CounterUDB:status_2\
+			\QuadDec_1:Cnt16:CounterUDB:status_3\
+			\QuadDec_1:Cnt16:CounterUDB:status_5\
+			\QuadDec_1:Cnt16:CounterUDB:status_6\
+
+		 Output nets:
+			\QuadDec_1:Cnt16:CounterUDB:control_7\
+
+	Local clock and reset nets:
+			\QuadDec_1:Net_1260\
+
+======================================================
+UDB 4
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\QuadDec_2:Cnt16:CounterUDB:status_2\
+			\QuadDec_2:Net_1275\
+			\QuadDec_2:Cnt16:CounterUDB:overflow_reg_i\
+			\QuadDec_2:Cnt16:CounterUDB:reload\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\QuadDec_2:Cnt16:CounterUDB:overflow\
+			\QuadDec_2:Cnt16:CounterUDB:overflow_reg_i\
+			\QuadDec_2:Cnt16:CounterUDB:status_1\
+			\QuadDec_2:Net_1260\
+
+		 Output nets:
+			\QuadDec_2:Cnt16:CounterUDB:overflow_reg_i\
+			\QuadDec_2:Cnt16:CounterUDB:reload\
+			\QuadDec_2:Cnt16:CounterUDB:status_2\
+			\QuadDec_2:Net_1275\
+
+		 Product terms:
+			!\QuadDec_2:Cnt16:CounterUDB:overflow\ * !\QuadDec_2:Cnt16:CounterUDB:status_1\
+			!\QuadDec_2:Cnt16:CounterUDB:overflow\ * !\QuadDec_2:Cnt16:CounterUDB:status_1\ * !\QuadDec_2:Net_1260\
+			!\QuadDec_2:Cnt16:CounterUDB:overflow_reg_i\ * \QuadDec_2:Cnt16:CounterUDB:overflow\
+			\QuadDec_2:Cnt16:CounterUDB:overflow\
+
+	PLD 1:
+		 Instances:
+			\QuadDec_2:Cnt16:CounterUDB:status_3\
+			\QuadDec_2:Cnt16:CounterUDB:underflow_reg_i\
+			\QuadDec_2:Net_611\
+			\QuadDec_2:Net_530\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\QuadDec_2:Cnt16:CounterUDB:prevCompare\
+			\QuadDec_2:Cnt16:CounterUDB:status_1\
+			\QuadDec_2:Cnt16:CounterUDB:underflow_reg_i\
+			\QuadDec_2:Net_1251\
+			\QuadDec_2:Net_1275\
+
+		 Output nets:
+			\QuadDec_2:Cnt16:CounterUDB:status_3\
+			\QuadDec_2:Cnt16:CounterUDB:underflow_reg_i\
+			\QuadDec_2:Net_530\
+			\QuadDec_2:Net_611\
+
+		 Product terms:
+			!\QuadDec_2:Cnt16:CounterUDB:prevCompare\ * !\QuadDec_2:Net_1251\ * \QuadDec_2:Net_1275\
+			!\QuadDec_2:Cnt16:CounterUDB:prevCompare\ * \QuadDec_2:Net_1251\ * \QuadDec_2:Net_1275\
+			!\QuadDec_2:Cnt16:CounterUDB:underflow_reg_i\ * \QuadDec_2:Cnt16:CounterUDB:status_1\
+			\QuadDec_2:Cnt16:CounterUDB:status_1\
+
+	Datapath:
+		 Instances:
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\QuadDec_2:Cnt16:CounterUDB:count_enable\
+			\QuadDec_2:Cnt16:CounterUDB:reload\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u1.cmsbo__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u1.sor__sig\
+			\QuadDec_2:Net_1251\
+
+		 Output nets:
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.ce0__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.ce1__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.cfbo__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.cl0__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.cl1__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.co_msb__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.ff0__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.ff1__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.sol_msb__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.z0__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.z1__sig\
+
+	Control, status and sync:
+		 Instances:
+			\QuadDec_2:bQuadDec:Stsreg\ : statusicell
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\QuadDec_2:Net_1260\
+			\QuadDec_2:Net_530\
+			\QuadDec_2:Net_611\
+			\QuadDec_2:bQuadDec:error\
+
+		 Output nets:
+			Net_2934
+
+	Local clock and reset nets:
+
+======================================================
+UDB 5
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\QuadDec_2:Cnt16:CounterUDB:status_0\
+			\QuadDec_2:Cnt16:CounterUDB:prevCompare\
+			\QuadDec_2:Cnt16:CounterUDB:count_enable\
+			\QuadDec_2:Cnt16:CounterUDB:count_stored_i\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\QuadDec_2:Cnt16:CounterUDB:cmp_out_i\
+			\QuadDec_2:Cnt16:CounterUDB:control_7\
+			\QuadDec_2:Cnt16:CounterUDB:count_stored_i\
+			\QuadDec_2:Cnt16:CounterUDB:prevCompare\
+			\QuadDec_2:Net_1203\
+
+		 Output nets:
+			\QuadDec_2:Cnt16:CounterUDB:count_enable\
+			\QuadDec_2:Cnt16:CounterUDB:count_stored_i\
+			\QuadDec_2:Cnt16:CounterUDB:prevCompare\
+			\QuadDec_2:Cnt16:CounterUDB:status_0\
+
+		 Product terms:
+			!\QuadDec_2:Cnt16:CounterUDB:count_stored_i\ * \QuadDec_2:Cnt16:CounterUDB:control_7\ * \QuadDec_2:Net_1203\
+			!\QuadDec_2:Cnt16:CounterUDB:prevCompare\ * \QuadDec_2:Cnt16:CounterUDB:cmp_out_i\
+			\QuadDec_2:Cnt16:CounterUDB:cmp_out_i\
+			\QuadDec_2:Net_1203\
+
+	PLD 1:
+		 Instances:
+			\QuadDec_2:bQuadDec:quad_A_filt\
+			\QuadDec_2:bQuadDec:state_0\
+			\QuadDec_2:Net_1203\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\QuadDec_2:Net_1203\
+			\QuadDec_2:Net_1260\
+			\QuadDec_2:bQuadDec:error\
+			\QuadDec_2:bQuadDec:quad_A_delayed_0\
+			\QuadDec_2:bQuadDec:quad_A_delayed_1\
+			\QuadDec_2:bQuadDec:quad_A_delayed_2\
+			\QuadDec_2:bQuadDec:quad_A_filt\
+			\QuadDec_2:bQuadDec:quad_B_filt\
+			\QuadDec_2:bQuadDec:state_0\
+			\QuadDec_2:bQuadDec:state_1\
+
+		 Output nets:
+			\QuadDec_2:Net_1203\
+			\QuadDec_2:bQuadDec:quad_A_filt\
+			\QuadDec_2:bQuadDec:state_0\
+
+		 Product terms:
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:quad_A_filt\ * !\QuadDec_2:bQuadDec:quad_B_filt\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:bQuadDec:state_0\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * \QuadDec_2:bQuadDec:quad_A_filt\ * \QuadDec_2:bQuadDec:quad_B_filt\ * \QuadDec_2:bQuadDec:state_1\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * \QuadDec_2:bQuadDec:quad_B_filt\ * \QuadDec_2:bQuadDec:state_0\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:state_0\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:Net_1203\ * \QuadDec_2:bQuadDec:error\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:state_0\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:bQuadDec:error\ * \QuadDec_2:bQuadDec:quad_B_filt\
+			!\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:quad_A_filt\ * !\QuadDec_2:bQuadDec:state_0\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:bQuadDec:quad_B_filt\
+			!\QuadDec_2:bQuadDec:quad_A_delayed_0\ * !\QuadDec_2:bQuadDec:quad_A_delayed_1\ * !\QuadDec_2:bQuadDec:quad_A_delayed_2\ * \QuadDec_2:bQuadDec:quad_A_filt\
+			!\QuadDec_2:bQuadDec:quad_A_filt\ * \QuadDec_2:bQuadDec:quad_A_delayed_0\ * \QuadDec_2:bQuadDec:quad_A_delayed_1\ * \QuadDec_2:bQuadDec:quad_A_delayed_2\
+
+	Datapath:
+		 Instances:
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u1\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\QuadDec_2:Cnt16:CounterUDB:count_enable\
+			\QuadDec_2:Cnt16:CounterUDB:reload\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.ce0__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.ce1__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.cfbo__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.cl0__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.cl1__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.co_msb__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.ff0__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.ff1__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.sol_msb__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.z0__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u0.z1__sig\
+			\QuadDec_2:Net_1251\
+
+		 Output nets:
+			\QuadDec_2:Cnt16:CounterUDB:cmp_out_i\
+			\QuadDec_2:Cnt16:CounterUDB:overflow\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u1.cmsbo__sig\
+			\QuadDec_2:Cnt16:CounterUDB:sC16:counterdp:u1.sor__sig\
+			\QuadDec_2:Cnt16:CounterUDB:status_1\
+			\QuadDec_2:Cnt16:CounterUDB:status_5\
+			\QuadDec_2:Cnt16:CounterUDB:status_6\
+
+	Control, status and sync:
+		 Instances:
+			\QuadDec_2:Cnt16:CounterUDB:sCTRLReg:ctrlreg\ : controlcell
+			\QuadDec_2:Cnt16:CounterUDB:sSTSReg:stsreg\ : statusicell
+
+		 Clock net: clk
+		 Set/Reset net: \QuadDec_2:Net_1260\
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\QuadDec_2:Cnt16:CounterUDB:status_0\
+			\QuadDec_2:Cnt16:CounterUDB:status_1\
+			\QuadDec_2:Cnt16:CounterUDB:status_2\
+			\QuadDec_2:Cnt16:CounterUDB:status_3\
+			\QuadDec_2:Cnt16:CounterUDB:status_5\
+			\QuadDec_2:Cnt16:CounterUDB:status_6\
+
+		 Output nets:
+			\QuadDec_2:Cnt16:CounterUDB:control_7\
+
+	Local clock and reset nets:
+			\QuadDec_2:Net_1260\
+
+======================================================
+UDB 6
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			Net_3056
+			\SPIM:BSPIM:tx_status_4\
+			\SPIM:BSPIM:load_rx_data\
+			\SPIM:BSPIM:tx_status_0\
+
+		 Clock net: ccc
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_3056
+			\SPIM:BSPIM:count_0\
+			\SPIM:BSPIM:count_1\
+			\SPIM:BSPIM:count_2\
+			\SPIM:BSPIM:count_3\
+			\SPIM:BSPIM:count_4\
+			\SPIM:BSPIM:ld_ident\
+			\SPIM:BSPIM:mosi_from_dp\
+			\SPIM:BSPIM:state_0\
+			\SPIM:BSPIM:state_1\
+			\SPIM:BSPIM:state_2\
+
+		 Output nets:
+			Net_3056
+			\SPIM:BSPIM:load_rx_data\
+			\SPIM:BSPIM:tx_status_0\
+			\SPIM:BSPIM:tx_status_4\
+
+		 Product terms:
+			!Net_3056 * !\SPIM:BSPIM:state_2\ * \SPIM:BSPIM:state_0\
+			!\SPIM:BSPIM:count_0\ * !\SPIM:BSPIM:count_2\ * !\SPIM:BSPIM:count_3\ * !\SPIM:BSPIM:count_4\ * !\SPIM:BSPIM:ld_ident\ * !\SPIM:BSPIM:state_0\ * !\SPIM:BSPIM:state_2\ * \SPIM:BSPIM:count_1\
+			!\SPIM:BSPIM:count_1\ * !\SPIM:BSPIM:count_2\ * !\SPIM:BSPIM:count_3\ * !\SPIM:BSPIM:count_4\ * \SPIM:BSPIM:count_0\
+			!\SPIM:BSPIM:mosi_from_dp\ * !\SPIM:BSPIM:state_0\
+			!\SPIM:BSPIM:mosi_from_dp\ * \SPIM:BSPIM:state_2\
+			!\SPIM:BSPIM:state_0\ * !\SPIM:BSPIM:state_1\ * !\SPIM:BSPIM:state_2\
+			!\SPIM:BSPIM:state_0\ * \SPIM:BSPIM:state_1\ * \SPIM:BSPIM:state_2\
+			!\SPIM:BSPIM:state_1\ * \SPIM:BSPIM:state_0\ * \SPIM:BSPIM:state_2\
+
+	PLD 1:
+		 Instances:
+			\SPIM:BSPIM:ld_ident\
+			\SPIM:BSPIM:state_1\
+			\SPIM:BSPIM:state_2\
+
+		 Clock net: ccc
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\SPIM:BSPIM:count_0\
+			\SPIM:BSPIM:count_1\
+			\SPIM:BSPIM:count_2\
+			\SPIM:BSPIM:count_3\
+			\SPIM:BSPIM:count_4\
+			\SPIM:BSPIM:ld_ident\
+			\SPIM:BSPIM:state_0\
+			\SPIM:BSPIM:state_1\
+			\SPIM:BSPIM:state_2\
+			\SPIM:BSPIM:tx_status_1\
+
+		 Output nets:
+			\SPIM:BSPIM:ld_ident\
+			\SPIM:BSPIM:state_1\
+			\SPIM:BSPIM:state_2\
+
+		 Product terms:
+			!\SPIM:BSPIM:count_0\ * !\SPIM:BSPIM:count_2\ * !\SPIM:BSPIM:count_3\ * !\SPIM:BSPIM:count_4\ * !\SPIM:BSPIM:ld_ident\ * !\SPIM:BSPIM:state_0\ * !\SPIM:BSPIM:state_2\ * \SPIM:BSPIM:count_1\ * \SPIM:BSPIM:state_1\
+			!\SPIM:BSPIM:count_0\ * !\SPIM:BSPIM:count_2\ * !\SPIM:BSPIM:count_3\ * !\SPIM:BSPIM:count_4\ * !\SPIM:BSPIM:ld_ident\ * !\SPIM:BSPIM:state_0\ * \SPIM:BSPIM:count_1\ * \SPIM:BSPIM:state_1\
+			!\SPIM:BSPIM:count_0\ * !\SPIM:BSPIM:count_2\ * !\SPIM:BSPIM:count_3\ * !\SPIM:BSPIM:count_4\ * !\SPIM:BSPIM:state_0\ * \SPIM:BSPIM:count_1\ * \SPIM:BSPIM:ld_ident\ * \SPIM:BSPIM:state_1\
+			!\SPIM:BSPIM:count_1\ * !\SPIM:BSPIM:count_3\ * !\SPIM:BSPIM:count_4\ * !\SPIM:BSPIM:state_2\ * !\SPIM:BSPIM:tx_status_1\ * \SPIM:BSPIM:count_0\ * \SPIM:BSPIM:count_2\ * \SPIM:BSPIM:state_0\
+			!\SPIM:BSPIM:ld_ident\ * !\SPIM:BSPIM:state_0\ * !\SPIM:BSPIM:state_1\ * \SPIM:BSPIM:state_2\
+			!\SPIM:BSPIM:state_0\ * \SPIM:BSPIM:ld_ident\ * \SPIM:BSPIM:state_1\ * \SPIM:BSPIM:state_2\
+			!\SPIM:BSPIM:state_0\ * \SPIM:BSPIM:state_2\
+			!\SPIM:BSPIM:state_1\ * !\SPIM:BSPIM:state_2\ * \SPIM:BSPIM:state_0\
+
+	Datapath:
+		 Instances:
+			\SPIM:BSPIM:sR8:Dp:u0\
+
+		 Clock net: ccc
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			Net_3055_SYNCOUT
+			\SPIM:BSPIM:load_rx_data\
+			\SPIM:BSPIM:state_0\
+			\SPIM:BSPIM:state_1\
+			\SPIM:BSPIM:state_2\
+
+		 Output nets:
+			\SPIM:BSPIM:mosi_from_dp\
+			\SPIM:BSPIM:rx_status_4\
+			\SPIM:BSPIM:rx_status_5\
+			\SPIM:BSPIM:tx_status_1\
+			\SPIM:BSPIM:tx_status_2\
+
+	Control, status and sync:
+		 Instances:
+			\SPIM:BSPIM:BitCounter\ : count7cell
+
+		 Clock net: ccc
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\SPIM:BSPIM:cnt_enable\
+
+		 Output nets:
+			\SPIM:BSPIM:count_0\
+			\SPIM:BSPIM:count_1\
+			\SPIM:BSPIM:count_2\
+			\SPIM:BSPIM:count_3\
+			\SPIM:BSPIM:count_4\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 7
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\UART_1:BUART:rx_state_3\
+			\UART_1:BUART:tx_ctrl_mark_last\
+			\UART_1:BUART:rx_state_2\
+			\UART_1:BUART:rx_state_0\
+
+		 Clock net: \UART_1:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_25_SYNCOUT
+			\UART_1:BUART:pollcount_0\
+			\UART_1:BUART:pollcount_1\
+			\UART_1:BUART:rx_bitclk_enable\
+			\UART_1:BUART:rx_count_4\
+			\UART_1:BUART:rx_count_5\
+			\UART_1:BUART:rx_count_6\
+			\UART_1:BUART:rx_last\
+			\UART_1:BUART:rx_state_0\
+			\UART_1:BUART:rx_state_2\
+			\UART_1:BUART:rx_state_3\
+			\UART_1:BUART:tx_ctrl_mark_last\
+
+		 Output nets:
+			\UART_1:BUART:rx_state_0\
+			\UART_1:BUART:rx_state_2\
+			\UART_1:BUART:rx_state_3\
+			\UART_1:BUART:tx_ctrl_mark_last\
+
+		 Product terms:
+			!Net_25_SYNCOUT * !\UART_1:BUART:pollcount_1\ * !\UART_1:BUART:rx_state_0\ * !\UART_1:BUART:rx_state_3\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_bitclk_enable\ * \UART_1:BUART:rx_state_2\
+			!Net_25_SYNCOUT * !\UART_1:BUART:rx_state_0\ * !\UART_1:BUART:rx_state_2\ * !\UART_1:BUART:rx_state_3\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_last\
+			!\UART_1:BUART:pollcount_0\ * !\UART_1:BUART:pollcount_1\ * !\UART_1:BUART:rx_state_0\ * !\UART_1:BUART:rx_state_3\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_bitclk_enable\ * \UART_1:BUART:rx_state_2\
+			!\UART_1:BUART:rx_count_4\ * !\UART_1:BUART:rx_count_6\ * !\UART_1:BUART:rx_state_2\ * !\UART_1:BUART:rx_state_3\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_state_0\
+			!\UART_1:BUART:rx_count_5\ * !\UART_1:BUART:rx_count_6\ * !\UART_1:BUART:rx_state_2\ * !\UART_1:BUART:rx_state_3\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_state_0\
+			!\UART_1:BUART:rx_state_0\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_bitclk_enable\ * \UART_1:BUART:rx_state_2\
+			!\UART_1:BUART:rx_state_0\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_bitclk_enable\ * \UART_1:BUART:rx_state_2\ * \UART_1:BUART:rx_state_3\
+			!\UART_1:BUART:rx_state_0\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_bitclk_enable\ * \UART_1:BUART:rx_state_3\
+
+	PLD 1:
+		 Instances:
+			\UART_1:BUART:rx_status_3\
+			\UART_1:BUART:rx_state_stop1_reg\
+			\UART_1:BUART:rx_counter_load\
+			\UART_1:BUART:rx_load_fifo\
+
+		 Clock net: \UART_1:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_25_SYNCOUT
+			\UART_1:BUART:pollcount_0\
+			\UART_1:BUART:pollcount_1\
+			\UART_1:BUART:rx_bitclk_enable\
+			\UART_1:BUART:rx_count_4\
+			\UART_1:BUART:rx_count_5\
+			\UART_1:BUART:rx_count_6\
+			\UART_1:BUART:rx_state_0\
+			\UART_1:BUART:rx_state_2\
+			\UART_1:BUART:rx_state_3\
+			\UART_1:BUART:tx_ctrl_mark_last\
+
+		 Output nets:
+			\UART_1:BUART:rx_counter_load\
+			\UART_1:BUART:rx_load_fifo\
+			\UART_1:BUART:rx_state_stop1_reg\
+			\UART_1:BUART:rx_status_3\
+
+		 Product terms:
+			!Net_25_SYNCOUT * !\UART_1:BUART:pollcount_1\ * !\UART_1:BUART:rx_state_0\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_bitclk_enable\ * \UART_1:BUART:rx_state_2\ * \UART_1:BUART:rx_state_3\
+			!\UART_1:BUART:pollcount_0\ * !\UART_1:BUART:pollcount_1\ * !\UART_1:BUART:rx_state_0\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_bitclk_enable\ * \UART_1:BUART:rx_state_2\ * \UART_1:BUART:rx_state_3\
+			!\UART_1:BUART:rx_count_4\ * !\UART_1:BUART:rx_count_6\ * !\UART_1:BUART:rx_state_2\ * !\UART_1:BUART:rx_state_3\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_state_0\
+			!\UART_1:BUART:rx_count_5\ * !\UART_1:BUART:rx_count_6\ * !\UART_1:BUART:rx_state_2\ * !\UART_1:BUART:rx_state_3\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_state_0\
+			!\UART_1:BUART:rx_state_0\ * !\UART_1:BUART:rx_state_2\ * !\UART_1:BUART:rx_state_3\ * !\UART_1:BUART:tx_ctrl_mark_last\
+			!\UART_1:BUART:rx_state_0\ * !\UART_1:BUART:rx_state_2\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_bitclk_enable\ * \UART_1:BUART:rx_state_3\
+			!\UART_1:BUART:rx_state_0\ * !\UART_1:BUART:tx_ctrl_mark_last\ * \UART_1:BUART:rx_state_2\ * \UART_1:BUART:rx_state_3\
+
+	Datapath:
+		 Instances:
+			\UART_1:BUART:sRX:RxShifter:u0\
+
+		 Clock net: \UART_1:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\UART_1:BUART:rx_bitclk_enable\
+			\UART_1:BUART:rx_load_fifo\
+			\UART_1:BUART:rx_postpoll\
+			\UART_1:BUART:rx_state_0\
+			\UART_1:BUART:tx_ctrl_mark_last\
+
+		 Output nets:
+			\UART_1:BUART:rx_fifofull\
+			\UART_1:BUART:rx_fifonotempty\
+
+	Control, status and sync:
+		 Instances:
+			\UART_1:BUART:sRX:RxBitCounter\ : count7cell
+
+		 Clock net: \UART_1:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_1:BUART:rx_counter_load\
+
+		 Output nets:
+			\UART_1:BUART:rx_count_0\
+			\UART_1:BUART:rx_count_1\
+			\UART_1:BUART:rx_count_2\
+			\UART_1:BUART:rx_count_4\
+			\UART_1:BUART:rx_count_5\
+			\UART_1:BUART:rx_count_6\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 8
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			__ONE__
+			Net_2902
+			\SPIM:BSPIM:load_cond\
+
+		 Clock net: ccc
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_2902
+			\SPIM:BSPIM:count_0\
+			\SPIM:BSPIM:count_1\
+			\SPIM:BSPIM:count_2\
+			\SPIM:BSPIM:count_3\
+			\SPIM:BSPIM:count_4\
+			\SPIM:BSPIM:load_cond\
+			\SPIM:BSPIM:state_0\
+			\SPIM:BSPIM:state_1\
+			\SPIM:BSPIM:state_2\
+
+		 Output nets:
+			Net_2902
+			\SPIM:BSPIM:load_cond\
+			__ONE__
+
+		 Product terms:
+			!Net_2902 * !\SPIM:BSPIM:state_0\ * !\SPIM:BSPIM:state_1\ * \SPIM:BSPIM:state_2\
+			!Net_2902 * !\SPIM:BSPIM:state_2\ * \SPIM:BSPIM:state_1\
+			!Net_2902 * \SPIM:BSPIM:state_0\ * \SPIM:BSPIM:state_1\
+			!\SPIM:BSPIM:count_0\ * !\SPIM:BSPIM:count_1\ * !\SPIM:BSPIM:count_2\ * !\SPIM:BSPIM:count_3\ * !\SPIM:BSPIM:count_4\ * !\SPIM:BSPIM:state_2\ * \SPIM:BSPIM:load_cond\
+			!\SPIM:BSPIM:count_0\ * !\SPIM:BSPIM:count_1\ * !\SPIM:BSPIM:count_2\ * !\SPIM:BSPIM:count_3\ * !\SPIM:BSPIM:count_4\ * \SPIM:BSPIM:load_cond\ * \SPIM:BSPIM:state_0\
+			!\SPIM:BSPIM:count_0\ * !\SPIM:BSPIM:count_1\ * !\SPIM:BSPIM:count_2\ * !\SPIM:BSPIM:count_3\ * !\SPIM:BSPIM:count_4\ * \SPIM:BSPIM:load_cond\ * \SPIM:BSPIM:state_1\
+			!\SPIM:BSPIM:load_cond\ * !\SPIM:BSPIM:state_0\ * !\SPIM:BSPIM:state_1\ * \SPIM:BSPIM:state_2\
+			!\SPIM:BSPIM:state_1\ * !\SPIM:BSPIM:state_2\ * \SPIM:BSPIM:state_0\
+
+	PLD 1:
+		 Instances:
+			\QuadDec_1:Net_1251\
+			\QuadDec_1:bQuadDec:state_1\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\QuadDec_1:Net_1251\
+			\QuadDec_1:Net_1251_split\
+			\QuadDec_1:Net_1260\
+			\QuadDec_1:bQuadDec:error\
+			\QuadDec_1:bQuadDec:quad_A_filt\
+			\QuadDec_1:bQuadDec:quad_B_filt\
+			\QuadDec_1:bQuadDec:state_0\
+			\QuadDec_1:bQuadDec:state_1\
+
+		 Output nets:
+			\QuadDec_1:Net_1251\
+			\QuadDec_1:bQuadDec:state_1\
+
+		 Product terms:
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:quad_A_filt\ * !\QuadDec_1:bQuadDec:state_0\ * \QuadDec_1:Net_1251\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:quad_B_filt\ * \QuadDec_1:Net_1251\ * \QuadDec_1:bQuadDec:state_1\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * \QuadDec_1:Net_1251\ * \QuadDec_1:bQuadDec:quad_A_filt\ * \QuadDec_1:bQuadDec:state_0\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * \QuadDec_1:bQuadDec:quad_A_filt\ * \QuadDec_1:bQuadDec:quad_B_filt\ * \QuadDec_1:bQuadDec:state_0\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:error\ * \QuadDec_1:bQuadDec:quad_A_filt\ * \QuadDec_1:bQuadDec:state_1\
+			!\QuadDec_1:Net_1260\ * !\QuadDec_1:bQuadDec:state_0\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:bQuadDec:error\ * \QuadDec_1:bQuadDec:quad_A_filt\
+			!\QuadDec_1:bQuadDec:error\ * !\QuadDec_1:bQuadDec:quad_B_filt\ * !\QuadDec_1:bQuadDec:state_0\ * !\QuadDec_1:bQuadDec:state_1\ * \QuadDec_1:bQuadDec:quad_A_filt\
+			\QuadDec_1:Net_1251_split\
+
+	Datapath:
+		 Instances:
+			\PulseCounter_1:CounterUDB:sC8:counterdp:u0\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\PulseCounter_1:CounterUDB:count_enable\
+			\PulseCounter_1:CounterUDB:reload\
+			__ONE__
+
+		 Output nets:
+			\PulseCounter_1:CounterUDB:cmp_equal\
+			\PulseCounter_1:CounterUDB:cmp_less\
+			\PulseCounter_1:CounterUDB:reload\
+			\PulseCounter_1:CounterUDB:status_1\
+			\PulseCounter_1:CounterUDB:status_5\
+			\PulseCounter_1:CounterUDB:status_6\
+
+	Control, status and sync:
+		 Instances:
+			\PulseCounter_1:CounterUDB:sSTSReg:stsreg\ : statusicell
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\PulseCounter_1:CounterUDB:status_0\
+			\PulseCounter_1:CounterUDB:status_1\
+			\PulseCounter_1:CounterUDB:status_2\
+			\PulseCounter_1:CounterUDB:status_5\
+			\PulseCounter_1:CounterUDB:status_6\
+
+		 Output nets:
+
+	Local clock and reset nets:
+
+======================================================
+UDB 9
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\QuadDec_2:Net_1251\
+			\QuadDec_2:bQuadDec:state_1\
+
+		 Clock net: clk
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\QuadDec_2:Net_1251\
+			\QuadDec_2:Net_1251_split\
+			\QuadDec_2:Net_1260\
+			\QuadDec_2:bQuadDec:error\
+			\QuadDec_2:bQuadDec:quad_A_filt\
+			\QuadDec_2:bQuadDec:quad_B_filt\
+			\QuadDec_2:bQuadDec:state_0\
+			\QuadDec_2:bQuadDec:state_1\
+
+		 Output nets:
+			\QuadDec_2:Net_1251\
+			\QuadDec_2:bQuadDec:state_1\
+
+		 Product terms:
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:quad_A_filt\ * !\QuadDec_2:bQuadDec:state_0\ * \QuadDec_2:Net_1251\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:quad_B_filt\ * \QuadDec_2:Net_1251\ * \QuadDec_2:bQuadDec:state_1\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * \QuadDec_2:Net_1251\ * \QuadDec_2:bQuadDec:quad_A_filt\ * \QuadDec_2:bQuadDec:state_0\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * \QuadDec_2:bQuadDec:quad_A_filt\ * \QuadDec_2:bQuadDec:quad_B_filt\ * \QuadDec_2:bQuadDec:state_0\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:error\ * \QuadDec_2:bQuadDec:quad_A_filt\ * \QuadDec_2:bQuadDec:state_1\
+			!\QuadDec_2:Net_1260\ * !\QuadDec_2:bQuadDec:state_0\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:bQuadDec:error\ * \QuadDec_2:bQuadDec:quad_A_filt\
+			!\QuadDec_2:bQuadDec:error\ * !\QuadDec_2:bQuadDec:quad_B_filt\ * !\QuadDec_2:bQuadDec:state_0\ * !\QuadDec_2:bQuadDec:state_1\ * \QuadDec_2:bQuadDec:quad_A_filt\
+			\QuadDec_2:Net_1251_split\
+
+	PLD 1:
+		 Instances:
+			\UART_1:BUART:txn\
+			\UART_1:BUART:tx_state_1\
+
+		 Clock net: \UART_1:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_1:BUART:tx_bitclk\
+			\UART_1:BUART:tx_bitclk_enable_pre\
+			\UART_1:BUART:tx_counter_dp\
+			\UART_1:BUART:tx_shift_out\
+			\UART_1:BUART:tx_state_0\
+			\UART_1:BUART:tx_state_1\
+			\UART_1:BUART:tx_state_2\
+			\UART_1:BUART:txn\
+
+		 Output nets:
+			\UART_1:BUART:tx_state_1\
+			\UART_1:BUART:txn\
+
+		 Product terms:
+			!\UART_1:BUART:tx_bitclk\ * !\UART_1:BUART:tx_state_1\ * !\UART_1:BUART:tx_state_2\ * \UART_1:BUART:tx_state_0\
+			!\UART_1:BUART:tx_bitclk\ * \UART_1:BUART:tx_state_1\ * \UART_1:BUART:txn\
+			!\UART_1:BUART:tx_counter_dp\ * !\UART_1:BUART:tx_shift_out\ * !\UART_1:BUART:tx_state_0\ * !\UART_1:BUART:tx_state_2\ * \UART_1:BUART:tx_bitclk\ * \UART_1:BUART:tx_state_1\
+			!\UART_1:BUART:tx_shift_out\ * !\UART_1:BUART:tx_state_1\ * !\UART_1:BUART:tx_state_2\ * \UART_1:BUART:tx_state_0\
+			!\UART_1:BUART:tx_state_2\ * \UART_1:BUART:tx_bitclk\ * \UART_1:BUART:tx_counter_dp\ * \UART_1:BUART:tx_state_1\
+			!\UART_1:BUART:tx_state_2\ * \UART_1:BUART:tx_bitclk\ * \UART_1:BUART:tx_state_0\
+			\UART_1:BUART:tx_bitclk_enable_pre\ * \UART_1:BUART:tx_state_0\ * \UART_1:BUART:tx_state_1\ * \UART_1:BUART:tx_state_2\
+			\UART_1:BUART:tx_state_2\ * \UART_1:BUART:txn\
+
+	Datapath:
+		 Instances:
+			\UART_1:BUART:sTX:TxShifter:u0\
+
+		 Clock net: \UART_1:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\UART_1:BUART:tx_bitclk_enable_pre\
+			\UART_1:BUART:tx_state_0\
+			\UART_1:BUART:tx_state_1\
+
+		 Output nets:
+			\UART_1:BUART:tx_fifo_empty\
+			\UART_1:BUART:tx_fifo_notfull\
+			\UART_1:BUART:tx_shift_out\
+
+	Control, status and sync:
+		 Instances:
+			\UART_1:BUART:sTX:TxSts\ : statusicell
+
+		 Clock net: \UART_1:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_1:BUART:tx_fifo_empty\
+			\UART_1:BUART:tx_fifo_notfull\
+			\UART_1:BUART:tx_status_0\
+			\UART_1:BUART:tx_status_2\
+
+		 Output nets:
+
+	Local clock and reset nets:

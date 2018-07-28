@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="minunit_project\minunit\Source Files\main.c">
+<ExpandedNodeIds>
+<v>minunit_project</v>
+<v>minunit_project\minunit</v>
+<v>minunit_project\minunit\TopDesign</v>
+<v>minunit_project\minunit\minunit.cydwr</v>
+<v>minunit_project\minunit\minunit.cydwr\Pins</v>
+<v>minunit_project\minunit\minunit.cydwr\Analog</v>
+<v>minunit_project\minunit\minunit.cydwr\Clocks</v>
+<v>minunit_project\minunit\minunit.cydwr\Interrupts</v>
+<v>minunit_project\minunit\minunit.cydwr\DMA</v>
+<v>minunit_project\minunit\minunit.cydwr\System</v>
+<v>minunit_project\minunit\minunit.cydwr\Directives</v>
+<v>minunit_project\minunit\minunit.cydwr\Flash Security</v>
+<v>minunit_project\minunit\minunit.cydwr\EEPROM</v>
+<v>minunit_project\minunit\Header Files</v>
+<v>minunit_project\minunit\Header Files\assert.h</v>
+<v>minunit_project\minunit\Header Files\device.h</v>
+<v>minunit_project\minunit\Header Files\mbus.h</v>
+<v>minunit_project\minunit\Source Files</v>
+<v>minunit_project\minunit\Source Files\assert.c</v>
+<v>minunit_project\minunit\Source Files\main.c</v>
+<v>minunit_project\minunit\Source Files\mbus.c</v>
+<v>minunit_project\minunit\CE95277 ADC and UART.pdf</v>
+<v>minunit_project\minunit\Generated_Source</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>minunit_project</v>
+<v>minunit_project\minunit</v>
+<v>minunit_project\minunit\TopDesign</v>
+<v>minunit_project\minunit\minunit.cydwr</v>
+<v>minunit_project\minunit\minunit.cydwr\Pins</v>
+<v>minunit_project\minunit\minunit.cydwr\Analog</v>
+<v>minunit_project\minunit\minunit.cydwr\Clocks</v>
+<v>minunit_project\minunit\minunit.cydwr\Interrupts</v>
+<v>minunit_project\minunit\minunit.cydwr\DMA</v>
+<v>minunit_project\minunit\minunit.cydwr\System</v>
+<v>minunit_project\minunit\minunit.cydwr\Directives</v>
+<v>minunit_project\minunit\minunit.cydwr\Flash Security</v>
+<v>minunit_project\minunit\minunit.cydwr\EEPROM</v>
+<v>minunit_project\minunit\Header Files</v>
+<v>minunit_project\minunit\Header Files\assert.h</v>
+<v>minunit_project\minunit\Header Files\device.h</v>
+<v>minunit_project\minunit\Header Files\mbus.h</v>
+<v>minunit_project\minunit\Source Files</v>
+<v>minunit_project\minunit\Source Files\assert.c</v>
+<v>minunit_project\minunit\Source Files\main.c</v>
+<v>minunit_project\minunit\Source Files\mbus.c</v>
+<v>minunit_project\minunit\CE95277 ADC and UART.pdf</v>
+<v>minunit_project\minunit\Generated_Source</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ADR0</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ADR1</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ADR2</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ctrl_in0</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ctrl_in1</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ctrl_in2</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ctrl_in3</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ctrl_in4</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ctrl_in5</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ctrl_out0</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ctrl_out1</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ctrl_out2</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ctrl_out3</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ctrl_out4</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\ctrl_out5</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\cy_boot</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\DIO1</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\DIO2</v>
+<v>minunit_project\minunit\Generated_Source\PSoC5\isr_PacketTimer</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>minunit_project</v>
+<v>minunit_project\minunit</v>
+<v>minunit_project\minunit\TopDesign</v>
+<v>minunit_project\minunit\TopDesign\TopDesign.cysch</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>minunit_project</v>
+<v>minunit_project\minunit</v>
+<v>minunit_project\minunit\TopDesign</v>
+<v>minunit_project\minunit\TopDesign\TopDesign.cysch</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>minunit_project</v>
+<v>minunit_project\minunit</v>
+<v>minunit_project\minunit\CortexM3</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ADR0.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ADR1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ADR2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\assert.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_in0.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_in1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_in2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_in3.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_in4.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_in5.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_out0.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_out1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_out2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_out3.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_out4.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_out5.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\DIO1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\DIO2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_PacketTimer.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_PacketTimer_1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_PacketTimer_2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_PulseCounter_1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_PulseCounter_2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\LED1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\LED2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\mbus.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\MIS_Reg.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\MIS_Reg_PM.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\MIS_Stat.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\mst_clk.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\mst_cs.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\mst_miso.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\mst_mosi.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\PacketTimer.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\PacketTimer_PM.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_3.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\PulseCounter_1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\PulseCounter_1_PM.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\PulseCounter_2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\PulseCounter_2_PM.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\PulseTimeout_1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\PulseTimeout_1_PM.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\PulseTimeout_2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\PulseTimeout_2_PM.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1_Cnt16.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1_Cnt16_PM.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1_INT.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1_isr.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_1_PM.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\slc_cs.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\slv_clk.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\slv_miso.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\slv_mosi.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\SPIM_1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\SPIM_1_INT.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\SPIM_1_PM.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\SPIS_1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\SPIS_1_BOOT.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\SPIS_1_INT.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\SPIS_1_PM.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\SW1_LED2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\timer_clock_3.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\timer_clock_5.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\timer_clock_6.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\timer_clock_7.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\timer_clock_8.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_BOOT.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_INT.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_IntClock.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_PM.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\minunit.elf</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\minunit.hex</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\minunit.map</v>
+<v>minunit_project\minunit\minunit.gpdsc</v>
+<v>minunit_project\minunit\minunit.rpt</v>
+<v>minunit_project\minunit\minunit_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>minunit_project</v>
+<v>minunit_project\minunit</v>
+<v>minunit_project\minunit\CortexM3</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ADR0.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ADR1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ADR2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\assert.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_in0.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_in1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_in2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_in3.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_in4.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_in5.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_out0.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_out1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_out2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_out3.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_out4.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\ctrl_out5.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\DIO1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\DIO2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_PacketTimer.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_PacketTimer_1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_PacketTimer_2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_PulseCounter_1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_PulseCounter_2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\LED1.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\LED2.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>minunit_project\minunit\CortexM3\ARM_GCC_541\Debug\Listing Files\mbus.lst</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>minunit_project</v>
+<v>minunit_project\minunit</v>
+<v>minunit_project\minunit\PSoC 5LP Architecture TRM</v>
+<v>minunit_project\minunit\CY8C54LP Family Datasheet</v>
+<v>minunit_project\minunit\System Reference Guides</v>
+<v>minunit_project\minunit\System Reference Guides\cy_boot_v5_50</v>
+<v>minunit_project\minunit\and_v1_0</v>
+<v>minunit_project\minunit\and_v1_0\and_v1_0.pdf</v>
+<v>minunit_project\minunit\Counter_v3_0</v>
+<v>minunit_project\minunit\Counter_v3_0\Counter_v3_0.pdf</v>
+<v>minunit_project\minunit\cy_clock_v2_20</v>
+<v>minunit_project\minunit\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>minunit_project\minunit\cy_constant_v1_0</v>
+<v>minunit_project\minunit\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>minunit_project\minunit\cy_isr_v1_70</v>
+<v>minunit_project\minunit\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>minunit_project\minunit\cy_pins_v2_10</v>
+<v>minunit_project\minunit\cy_pins_v2_10\cy_pins_v2_10.pdf</v>
+<v>minunit_project\minunit\cy_pins_v2_20</v>
+<v>minunit_project\minunit\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>minunit_project\minunit\cy_srff_v1_0</v>
+<v>minunit_project\minunit\cy_srff_v1_0\cy_srff_v1_0.pdf</v>
+<v>minunit_project\minunit\CyControlReg_v1_80.pdf</v>
+<v>minunit_project\minunit\CyStatusReg_v1_90.pdf</v>
+<v>minunit_project\minunit\demux_v1_10</v>
+<v>minunit_project\minunit\demux_v1_10\demux_v1_10.pdf</v>
+<v>minunit_project\minunit\Gnd_v1_0</v>
+<v>minunit_project\minunit\Gnd_v1_0\Gnd_v1_0.pdf</v>
+<v>minunit_project\minunit\LED_v1_0</v>
+<v>minunit_project\minunit\LED_v1_0\LED_v1_0.pdf</v>
+<v>minunit_project\minunit\not_v1_0</v>
+<v>minunit_project\minunit\not_v1_0\not_v1_0.pdf</v>
+<v>minunit_project\minunit\or_v1_0</v>
+<v>minunit_project\minunit\or_v1_0\or_v1_0.pdf</v>
+<v>minunit_project\minunit\QuadDec_v3_0.pdf</v>
+<v>minunit_project\minunit\Resistor_v1_0</v>
+<v>minunit_project\minunit\Resistor_v1_0\Resistor_v1_0.pdf</v>
+<v>minunit_project\minunit\SPI_Master_v2_50.pdf</v>
+<v>minunit_project\minunit\SPI_Slave_v2_70.pdf</v>
+<v>minunit_project\minunit\SwitchSPST_v1_0.pdf</v>
+<v>minunit_project\minunit\Timer_v2_70</v>
+<v>minunit_project\minunit\Timer_v2_70\Timer_v2_70.pdf</v>
+<v>minunit_project\minunit\UART_v2_50.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>minunit_project</v>
+<v>minunit_project\minunit</v>
+<v>minunit_project\minunit\PSoC 5LP Architecture TRM</v>
+<v>minunit_project\minunit\CY8C54LP Family Datasheet</v>
+<v>minunit_project\minunit\System Reference Guides</v>
+<v>minunit_project\minunit\System Reference Guides\cy_boot_v5_50</v>
+<v>minunit_project\minunit\and_v1_0</v>
+<v>minunit_project\minunit\and_v1_0\and_v1_0.pdf</v>
+<v>minunit_project\minunit\Counter_v3_0</v>
+<v>minunit_project\minunit\Counter_v3_0\Counter_v3_0.pdf</v>
+<v>minunit_project\minunit\cy_clock_v2_20</v>
+<v>minunit_project\minunit\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>minunit_project\minunit\cy_constant_v1_0</v>
+<v>minunit_project\minunit\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>minunit_project\minunit\cy_isr_v1_70</v>
+<v>minunit_project\minunit\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>minunit_project\minunit\cy_pins_v2_10</v>
+<v>minunit_project\minunit\cy_pins_v2_10\cy_pins_v2_10.pdf</v>
+<v>minunit_project\minunit\cy_pins_v2_20</v>
+<v>minunit_project\minunit\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>minunit_project\minunit\cy_srff_v1_0</v>
+<v>minunit_project\minunit\cy_srff_v1_0\cy_srff_v1_0.pdf</v>
+<v>minunit_project\minunit\CyControlReg_v1_80.pdf</v>
+<v>minunit_project\minunit\CyStatusReg_v1_90.pdf</v>
+<v>minunit_project\minunit\demux_v1_10</v>
+<v>minunit_project\minunit\demux_v1_10\demux_v1_10.pdf</v>
+<v>minunit_project\minunit\Gnd_v1_0</v>
+<v>minunit_project\minunit\Gnd_v1_0\Gnd_v1_0.pdf</v>
+<v>minunit_project\minunit\LED_v1_0</v>
+<v>minunit_project\minunit\LED_v1_0\LED_v1_0.pdf</v>
+<v>minunit_project\minunit\not_v1_0</v>
+<v>minunit_project\minunit\not_v1_0\not_v1_0.pdf</v>
+<v>minunit_project\minunit\or_v1_0</v>
+<v>minunit_project\minunit\or_v1_0\or_v1_0.pdf</v>
+<v>minunit_project\minunit\QuadDec_v3_0.pdf</v>
+<v>minunit_project\minunit\Resistor_v1_0</v>
+<v>minunit_project\minunit\Resistor_v1_0\Resistor_v1_0.pdf</v>
+<v>minunit_project\minunit\SPI_Master_v2_50.pdf</v>
+<v>minunit_project\minunit\SPI_Slave_v2_70.pdf</v>
+<v>minunit_project\minunit\SwitchSPST_v1_0.pdf</v>
+<v>minunit_project\minunit\Timer_v2_70</v>
+<v>minunit_project\minunit\Timer_v2_70\Timer_v2_70.pdf</v>
+<v>minunit_project\minunit\UART_v2_50.pdf</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\minunit.cydsn\minunit.cydwr" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1693, 732" SelectedTabbedMdiWindow="8f65b76d-810c-4e23-b3a3-c84fae62d494"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="a148024b-90b0-4499-9761-d97f02c630e5" /><DocumentWindow Key="C:\Users\tomas.gecas\Documents\Dropbox\Shared\PSOC\stendui\minunit_arch2\minunit_arch\minunit_arch\minunit.cydsn\minunit.cydwr" Guid="8f65b76d-810c-4e23-b3a3-c84fae62d494" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>

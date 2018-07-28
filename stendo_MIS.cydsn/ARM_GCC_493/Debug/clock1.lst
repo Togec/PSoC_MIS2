@@ -1,0 +1,2039 @@
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"clock1.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	rtc_sec
+  19              		.data
+  20              		.align	2
+  21              		.type	rtc_sec, %object
+  22              		.size	rtc_sec, 4
+  23              	rtc_sec:
+  24 0000 07000000 		.word	7
+  25              		.global	rtc_min
+  26              		.align	2
+  27              		.type	rtc_min, %object
+  28              		.size	rtc_min, 4
+  29              	rtc_min:
+  30 0004 3B000000 		.word	59
+  31              		.global	rtc_hrs
+  32              		.align	2
+  33              		.type	rtc_hrs, %object
+  34              		.size	rtc_hrs, 4
+  35              	rtc_hrs:
+  36 0008 07000000 		.word	7
+  37              		.section	.text.rtc_set_seconds,"ax",%progbits
+  38              		.align	2
+  39              		.global	rtc_set_seconds
+  40              		.thumb
+  41              		.thumb_func
+  42              		.type	rtc_set_seconds, %function
+  43              	rtc_set_seconds:
+  44              	.LFB0:
+  45              		.file 1 "clock1.c"
+   1:clock1.c      **** #include "stdio.h"
+   2:clock1.c      **** #include "minunit.h"
+   3:clock1.c      **** 
+   4:clock1.c      **** /*******************************************************************************/
+   5:clock1.c      **** 
+   6:clock1.c      **** int rtc_sec = 7;
+   7:clock1.c      **** int rtc_min = 59;
+   8:clock1.c      **** int rtc_hrs = 7;
+   9:clock1.c      **** 
+  10:clock1.c      **** void rtc_set_seconds(int s)
+  11:clock1.c      **** {
+  46              		.loc 1 11 0
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 2
+
+
+  47              		.cfi_startproc
+  48              		@ args = 0, pretend = 0, frame = 8
+  49              		@ frame_needed = 1, uses_anonymous_args = 0
+  50              		@ link register save eliminated.
+  51 0000 80B4     		push	{r7}
+  52              		.cfi_def_cfa_offset 4
+  53              		.cfi_offset 7, -4
+  54 0002 83B0     		sub	sp, sp, #12
+  55              		.cfi_def_cfa_offset 16
+  56 0004 00AF     		add	r7, sp, #0
+  57              		.cfi_def_cfa_register 7
+  58 0006 7860     		str	r0, [r7, #4]
+  12:clock1.c      ****     rtc_sec = s;
+  59              		.loc 1 12 0
+  60 0008 034A     		ldr	r2, .L2
+  61 000a 7B68     		ldr	r3, [r7, #4]
+  62 000c 1360     		str	r3, [r2]
+  13:clock1.c      **** }
+  63              		.loc 1 13 0
+  64 000e 0C37     		adds	r7, r7, #12
+  65              		.cfi_def_cfa_offset 4
+  66 0010 BD46     		mov	sp, r7
+  67              		.cfi_def_cfa_register 13
+  68              		@ sp needed
+  69 0012 5DF8047B 		ldr	r7, [sp], #4
+  70              		.cfi_restore 7
+  71              		.cfi_def_cfa_offset 0
+  72 0016 7047     		bx	lr
+  73              	.L3:
+  74              		.align	2
+  75              	.L2:
+  76 0018 00000000 		.word	rtc_sec
+  77              		.cfi_endproc
+  78              	.LFE0:
+  79              		.size	rtc_set_seconds, .-rtc_set_seconds
+  80              		.section	.text.rtc_set_minutes,"ax",%progbits
+  81              		.align	2
+  82              		.global	rtc_set_minutes
+  83              		.thumb
+  84              		.thumb_func
+  85              		.type	rtc_set_minutes, %function
+  86              	rtc_set_minutes:
+  87              	.LFB1:
+  14:clock1.c      **** 
+  15:clock1.c      **** void rtc_set_minutes(int m)
+  16:clock1.c      **** {
+  88              		.loc 1 16 0
+  89              		.cfi_startproc
+  90              		@ args = 0, pretend = 0, frame = 8
+  91              		@ frame_needed = 1, uses_anonymous_args = 0
+  92              		@ link register save eliminated.
+  93 0000 80B4     		push	{r7}
+  94              		.cfi_def_cfa_offset 4
+  95              		.cfi_offset 7, -4
+  96 0002 83B0     		sub	sp, sp, #12
+  97              		.cfi_def_cfa_offset 16
+  98 0004 00AF     		add	r7, sp, #0
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 3
+
+
+  99              		.cfi_def_cfa_register 7
+ 100 0006 7860     		str	r0, [r7, #4]
+  17:clock1.c      ****     rtc_min = m;
+ 101              		.loc 1 17 0
+ 102 0008 034A     		ldr	r2, .L5
+ 103 000a 7B68     		ldr	r3, [r7, #4]
+ 104 000c 1360     		str	r3, [r2]
+  18:clock1.c      **** }
+ 105              		.loc 1 18 0
+ 106 000e 0C37     		adds	r7, r7, #12
+ 107              		.cfi_def_cfa_offset 4
+ 108 0010 BD46     		mov	sp, r7
+ 109              		.cfi_def_cfa_register 13
+ 110              		@ sp needed
+ 111 0012 5DF8047B 		ldr	r7, [sp], #4
+ 112              		.cfi_restore 7
+ 113              		.cfi_def_cfa_offset 0
+ 114 0016 7047     		bx	lr
+ 115              	.L6:
+ 116              		.align	2
+ 117              	.L5:
+ 118 0018 00000000 		.word	rtc_min
+ 119              		.cfi_endproc
+ 120              	.LFE1:
+ 121              		.size	rtc_set_minutes, .-rtc_set_minutes
+ 122              		.section	.text.rtc_set_hours,"ax",%progbits
+ 123              		.align	2
+ 124              		.global	rtc_set_hours
+ 125              		.thumb
+ 126              		.thumb_func
+ 127              		.type	rtc_set_hours, %function
+ 128              	rtc_set_hours:
+ 129              	.LFB2:
+  19:clock1.c      **** 
+  20:clock1.c      **** void rtc_set_hours(int h)
+  21:clock1.c      **** {
+ 130              		.loc 1 21 0
+ 131              		.cfi_startproc
+ 132              		@ args = 0, pretend = 0, frame = 8
+ 133              		@ frame_needed = 1, uses_anonymous_args = 0
+ 134              		@ link register save eliminated.
+ 135 0000 80B4     		push	{r7}
+ 136              		.cfi_def_cfa_offset 4
+ 137              		.cfi_offset 7, -4
+ 138 0002 83B0     		sub	sp, sp, #12
+ 139              		.cfi_def_cfa_offset 16
+ 140 0004 00AF     		add	r7, sp, #0
+ 141              		.cfi_def_cfa_register 7
+ 142 0006 7860     		str	r0, [r7, #4]
+  22:clock1.c      ****     rtc_hrs = h;
+ 143              		.loc 1 22 0
+ 144 0008 034A     		ldr	r2, .L8
+ 145 000a 7B68     		ldr	r3, [r7, #4]
+ 146 000c 1360     		str	r3, [r2]
+  23:clock1.c      **** }
+ 147              		.loc 1 23 0
+ 148 000e 0C37     		adds	r7, r7, #12
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 4
+
+
+ 149              		.cfi_def_cfa_offset 4
+ 150 0010 BD46     		mov	sp, r7
+ 151              		.cfi_def_cfa_register 13
+ 152              		@ sp needed
+ 153 0012 5DF8047B 		ldr	r7, [sp], #4
+ 154              		.cfi_restore 7
+ 155              		.cfi_def_cfa_offset 0
+ 156 0016 7047     		bx	lr
+ 157              	.L9:
+ 158              		.align	2
+ 159              	.L8:
+ 160 0018 00000000 		.word	rtc_hrs
+ 161              		.cfi_endproc
+ 162              	.LFE2:
+ 163              		.size	rtc_set_hours, .-rtc_set_hours
+ 164              		.section	.text.rtc_tick,"ax",%progbits
+ 165              		.align	2
+ 166              		.global	rtc_tick
+ 167              		.thumb
+ 168              		.thumb_func
+ 169              		.type	rtc_tick, %function
+ 170              	rtc_tick:
+ 171              	.LFB3:
+  24:clock1.c      **** 
+  25:clock1.c      **** void rtc_tick(void)
+  26:clock1.c      **** {
+ 172              		.loc 1 26 0
+ 173              		.cfi_startproc
+ 174              		@ args = 0, pretend = 0, frame = 0
+ 175              		@ frame_needed = 1, uses_anonymous_args = 0
+ 176              		@ link register save eliminated.
+ 177 0000 80B4     		push	{r7}
+ 178              		.cfi_def_cfa_offset 4
+ 179              		.cfi_offset 7, -4
+ 180 0002 00AF     		add	r7, sp, #0
+ 181              		.cfi_def_cfa_register 7
+  27:clock1.c      ****     rtc_sec++;
+ 182              		.loc 1 27 0
+ 183 0004 134B     		ldr	r3, .L12
+ 184 0006 1B68     		ldr	r3, [r3]
+ 185 0008 0133     		adds	r3, r3, #1
+ 186 000a 124A     		ldr	r2, .L12
+ 187 000c 1360     		str	r3, [r2]
+  28:clock1.c      ****     if (rtc_sec>59)
+ 188              		.loc 1 28 0
+ 189 000e 114B     		ldr	r3, .L12
+ 190 0010 1B68     		ldr	r3, [r3]
+ 191 0012 3B2B     		cmp	r3, #59
+ 192 0014 1ADD     		ble	.L10
+  29:clock1.c      ****     {
+  30:clock1.c      ****         rtc_sec = 0;
+ 193              		.loc 1 30 0
+ 194 0016 0F4B     		ldr	r3, .L12
+ 195 0018 0022     		movs	r2, #0
+ 196 001a 1A60     		str	r2, [r3]
+  31:clock1.c      ****         rtc_min++;
+ 197              		.loc 1 31 0
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 5
+
+
+ 198 001c 0E4B     		ldr	r3, .L12+4
+ 199 001e 1B68     		ldr	r3, [r3]
+ 200 0020 0133     		adds	r3, r3, #1
+ 201 0022 0D4A     		ldr	r2, .L12+4
+ 202 0024 1360     		str	r3, [r2]
+  32:clock1.c      ****         if (rtc_min>59)
+ 203              		.loc 1 32 0
+ 204 0026 0C4B     		ldr	r3, .L12+4
+ 205 0028 1B68     		ldr	r3, [r3]
+ 206 002a 3B2B     		cmp	r3, #59
+ 207 002c 0EDD     		ble	.L10
+  33:clock1.c      ****         {
+  34:clock1.c      ****             rtc_min = 0;
+ 208              		.loc 1 34 0
+ 209 002e 0A4B     		ldr	r3, .L12+4
+ 210 0030 0022     		movs	r2, #0
+ 211 0032 1A60     		str	r2, [r3]
+  35:clock1.c      ****             rtc_hrs++;
+ 212              		.loc 1 35 0
+ 213 0034 094B     		ldr	r3, .L12+8
+ 214 0036 1B68     		ldr	r3, [r3]
+ 215 0038 0133     		adds	r3, r3, #1
+ 216 003a 084A     		ldr	r2, .L12+8
+ 217 003c 1360     		str	r3, [r2]
+  36:clock1.c      ****             if (rtc_hrs>23)
+ 218              		.loc 1 36 0
+ 219 003e 074B     		ldr	r3, .L12+8
+ 220 0040 1B68     		ldr	r3, [r3]
+ 221 0042 172B     		cmp	r3, #23
+ 222 0044 02DD     		ble	.L10
+  37:clock1.c      ****             {
+  38:clock1.c      ****                 rtc_hrs=0;
+ 223              		.loc 1 38 0
+ 224 0046 054B     		ldr	r3, .L12+8
+ 225 0048 0022     		movs	r2, #0
+ 226 004a 1A60     		str	r2, [r3]
+ 227              	.L10:
+  39:clock1.c      ****             }
+  40:clock1.c      ****         }
+  41:clock1.c      ****     }
+  42:clock1.c      **** }
+ 228              		.loc 1 42 0
+ 229 004c BD46     		mov	sp, r7
+ 230              		.cfi_def_cfa_register 13
+ 231              		@ sp needed
+ 232 004e 5DF8047B 		ldr	r7, [sp], #4
+ 233              		.cfi_restore 7
+ 234              		.cfi_def_cfa_offset 0
+ 235 0052 7047     		bx	lr
+ 236              	.L13:
+ 237              		.align	2
+ 238              	.L12:
+ 239 0054 00000000 		.word	rtc_sec
+ 240 0058 00000000 		.word	rtc_min
+ 241 005c 00000000 		.word	rtc_hrs
+ 242              		.cfi_endproc
+ 243              	.LFE3:
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 6
+
+
+ 244              		.size	rtc_tick, .-rtc_tick
+ 245              		.section	.rodata
+ 246              		.align	2
+ 247              	.LC0:
+ 248 0000 25730D0A 		.ascii	"%s\015\012 line %d in %s\000"
+ 248      206C696E 
+ 248      65202564 
+ 248      20696E20 
+ 248      257300
+ 249 0013 00       		.align	2
+ 250              	.LC1:
+ 251 0014 696E6974 		.ascii	"initialize RTC seconds to 0\000"
+ 251      69616C69 
+ 251      7A652052 
+ 251      54432073 
+ 251      65636F6E 
+ 252              		.align	2
+ 253              	.LC2:
+ 254 0030 636C6F63 		.ascii	"clock1.c\000"
+ 254      6B312E63 
+ 254      00
+ 255 0039 000000   		.align	2
+ 256              	.LC3:
+ 257 003c 696E6974 		.ascii	"initialize RTC seconds to 1\000"
+ 257      69616C69 
+ 257      7A652052 
+ 257      54432073 
+ 257      65636F6E 
+ 258              		.align	2
+ 259              	.LC4:
+ 260 0058 696E6372 		.ascii	"increment RTC seconds by 1 (1->2)\000"
+ 260      656D656E 
+ 260      74205254 
+ 260      43207365 
+ 260      636F6E64 
+ 261 007a 0000     		.align	2
+ 262              	.LC5:
+ 263 007c 68616E64 		.ascii	"handle RTC seconds overflow (59->0)\000"
+ 263      6C652052 
+ 263      54432073 
+ 263      65636F6E 
+ 263      6473206F 
+ 264              		.section	.text.test_rtc_sec,"ax",%progbits
+ 265              		.align	2
+ 266              		.global	test_rtc_sec
+ 267              		.thumb
+ 268              		.thumb_func
+ 269              		.type	test_rtc_sec, %function
+ 270              	test_rtc_sec:
+ 271              	.LFB4:
+  43:clock1.c      **** 
+  44:clock1.c      **** /*******************************************************************************/
+  45:clock1.c      ****  
+  46:clock1.c      **** char * test_rtc_sec() {
+ 272              		.loc 1 46 0
+ 273              		.cfi_startproc
+ 274              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 7
+
+
+ 275              		@ frame_needed = 1, uses_anonymous_args = 0
+ 276 0000 80B5     		push	{r7, lr}
+ 277              		.cfi_def_cfa_offset 8
+ 278              		.cfi_offset 7, -8
+ 279              		.cfi_offset 14, -4
+ 280 0002 82B0     		sub	sp, sp, #8
+ 281              		.cfi_def_cfa_offset 16
+ 282 0004 02AF     		add	r7, sp, #8
+ 283              		.cfi_def_cfa 7, 8
+  47:clock1.c      ****     rtc_set_seconds(0);
+ 284              		.loc 1 47 0
+ 285 0006 0020     		movs	r0, #0
+ 286 0008 FFF7FEFF 		bl	rtc_set_seconds
+  48:clock1.c      ****     it("initialize RTC seconds to 0", rtc_sec == 0);
+ 287              		.loc 1 48 0
+ 288 000c 364B     		ldr	r3, .L21
+ 289 000e 1B68     		ldr	r3, [r3]
+ 290 0010 0133     		adds	r3, r3, #1
+ 291 0012 354A     		ldr	r2, .L21
+ 292 0014 1360     		str	r3, [r2]
+ 293 0016 354B     		ldr	r3, .L21+4
+ 294 0018 1B68     		ldr	r3, [r3]
+ 295 001a 002B     		cmp	r3, #0
+ 296 001c 09D0     		beq	.L15
+ 297              		.loc 1 48 0 is_stmt 0 discriminator 1
+ 298 001e 344B     		ldr	r3, .L21+8
+ 299 0020 0093     		str	r3, [sp]
+ 300 0022 3448     		ldr	r0, .L21+12
+ 301 0024 3449     		ldr	r1, .L21+16
+ 302 0026 354A     		ldr	r2, .L21+20
+ 303 0028 3023     		movs	r3, #48
+ 304 002a FFF7FEFF 		bl	sprintf
+ 305 002e 314B     		ldr	r3, .L21+12
+ 306 0030 56E0     		b	.L16
+ 307              	.L15:
+  49:clock1.c      ****     rtc_set_seconds(1);
+ 308              		.loc 1 49 0 is_stmt 1
+ 309 0032 0120     		movs	r0, #1
+ 310 0034 FFF7FEFF 		bl	rtc_set_seconds
+  50:clock1.c      ****     it("initialize RTC seconds to 1", rtc_sec == 1);
+ 311              		.loc 1 50 0
+ 312 0038 2B4B     		ldr	r3, .L21
+ 313 003a 1B68     		ldr	r3, [r3]
+ 314 003c 0133     		adds	r3, r3, #1
+ 315 003e 2A4A     		ldr	r2, .L21
+ 316 0040 1360     		str	r3, [r2]
+ 317 0042 2A4B     		ldr	r3, .L21+4
+ 318 0044 1B68     		ldr	r3, [r3]
+ 319 0046 012B     		cmp	r3, #1
+ 320 0048 09D0     		beq	.L17
+ 321              		.loc 1 50 0 is_stmt 0 discriminator 1
+ 322 004a 294B     		ldr	r3, .L21+8
+ 323 004c 0093     		str	r3, [sp]
+ 324 004e 2948     		ldr	r0, .L21+12
+ 325 0050 2949     		ldr	r1, .L21+16
+ 326 0052 2B4A     		ldr	r2, .L21+24
+ 327 0054 3223     		movs	r3, #50
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 8
+
+
+ 328 0056 FFF7FEFF 		bl	sprintf
+ 329 005a 264B     		ldr	r3, .L21+12
+ 330 005c 40E0     		b	.L16
+ 331              	.L17:
+  51:clock1.c      ****     rtc_tick();
+ 332              		.loc 1 51 0 is_stmt 1
+ 333 005e FFF7FEFF 		bl	rtc_tick
+  52:clock1.c      ****     it("increment RTC seconds by 1 (1->2)", rtc_sec == 2);
+ 334              		.loc 1 52 0
+ 335 0062 214B     		ldr	r3, .L21
+ 336 0064 1B68     		ldr	r3, [r3]
+ 337 0066 0133     		adds	r3, r3, #1
+ 338 0068 1F4A     		ldr	r2, .L21
+ 339 006a 1360     		str	r3, [r2]
+ 340 006c 1F4B     		ldr	r3, .L21+4
+ 341 006e 1B68     		ldr	r3, [r3]
+ 342 0070 022B     		cmp	r3, #2
+ 343 0072 09D0     		beq	.L18
+ 344              		.loc 1 52 0 is_stmt 0 discriminator 1
+ 345 0074 1E4B     		ldr	r3, .L21+8
+ 346 0076 0093     		str	r3, [sp]
+ 347 0078 1E48     		ldr	r0, .L21+12
+ 348 007a 1F49     		ldr	r1, .L21+16
+ 349 007c 214A     		ldr	r2, .L21+28
+ 350 007e 3423     		movs	r3, #52
+ 351 0080 FFF7FEFF 		bl	sprintf
+ 352 0084 1B4B     		ldr	r3, .L21+12
+ 353 0086 2BE0     		b	.L16
+ 354              	.L18:
+  53:clock1.c      ****     rtc_set_seconds(59);
+ 355              		.loc 1 53 0 is_stmt 1
+ 356 0088 3B20     		movs	r0, #59
+ 357 008a FFF7FEFF 		bl	rtc_set_seconds
+  54:clock1.c      ****     it("initialize RTC seconds to 0", rtc_sec == 59);
+ 358              		.loc 1 54 0
+ 359 008e 164B     		ldr	r3, .L21
+ 360 0090 1B68     		ldr	r3, [r3]
+ 361 0092 0133     		adds	r3, r3, #1
+ 362 0094 144A     		ldr	r2, .L21
+ 363 0096 1360     		str	r3, [r2]
+ 364 0098 144B     		ldr	r3, .L21+4
+ 365 009a 1B68     		ldr	r3, [r3]
+ 366 009c 3B2B     		cmp	r3, #59
+ 367 009e 09D0     		beq	.L19
+ 368              		.loc 1 54 0 is_stmt 0 discriminator 1
+ 369 00a0 134B     		ldr	r3, .L21+8
+ 370 00a2 0093     		str	r3, [sp]
+ 371 00a4 1348     		ldr	r0, .L21+12
+ 372 00a6 1449     		ldr	r1, .L21+16
+ 373 00a8 144A     		ldr	r2, .L21+20
+ 374 00aa 3623     		movs	r3, #54
+ 375 00ac FFF7FEFF 		bl	sprintf
+ 376 00b0 104B     		ldr	r3, .L21+12
+ 377 00b2 15E0     		b	.L16
+ 378              	.L19:
+  55:clock1.c      ****     rtc_tick();
+ 379              		.loc 1 55 0 is_stmt 1
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 9
+
+
+ 380 00b4 FFF7FEFF 		bl	rtc_tick
+  56:clock1.c      ****     it("handle RTC seconds overflow (59->0)", rtc_sec == 0);
+ 381              		.loc 1 56 0
+ 382 00b8 0B4B     		ldr	r3, .L21
+ 383 00ba 1B68     		ldr	r3, [r3]
+ 384 00bc 0133     		adds	r3, r3, #1
+ 385 00be 0A4A     		ldr	r2, .L21
+ 386 00c0 1360     		str	r3, [r2]
+ 387 00c2 0A4B     		ldr	r3, .L21+4
+ 388 00c4 1B68     		ldr	r3, [r3]
+ 389 00c6 002B     		cmp	r3, #0
+ 390 00c8 09D0     		beq	.L20
+ 391              		.loc 1 56 0 is_stmt 0 discriminator 1
+ 392 00ca 094B     		ldr	r3, .L21+8
+ 393 00cc 0093     		str	r3, [sp]
+ 394 00ce 0948     		ldr	r0, .L21+12
+ 395 00d0 0949     		ldr	r1, .L21+16
+ 396 00d2 0D4A     		ldr	r2, .L21+32
+ 397 00d4 3823     		movs	r3, #56
+ 398 00d6 FFF7FEFF 		bl	sprintf
+ 399 00da 064B     		ldr	r3, .L21+12
+ 400 00dc 00E0     		b	.L16
+ 401              	.L20:
+  57:clock1.c      ****     return 0;
+ 402              		.loc 1 57 0 is_stmt 1
+ 403 00de 0023     		movs	r3, #0
+ 404              	.L16:
+  58:clock1.c      **** }
+ 405              		.loc 1 58 0
+ 406 00e0 1846     		mov	r0, r3
+ 407 00e2 BD46     		mov	sp, r7
+ 408              		.cfi_def_cfa_register 13
+ 409              		@ sp needed
+ 410 00e4 80BD     		pop	{r7, pc}
+ 411              	.L22:
+ 412 00e6 00BF     		.align	2
+ 413              	.L21:
+ 414 00e8 00000000 		.word	assertion_count
+ 415 00ec 00000000 		.word	rtc_sec
+ 416 00f0 30000000 		.word	.LC2
+ 417 00f4 00000000 		.word	text
+ 418 00f8 00000000 		.word	.LC0
+ 419 00fc 14000000 		.word	.LC1
+ 420 0100 3C000000 		.word	.LC3
+ 421 0104 58000000 		.word	.LC4
+ 422 0108 7C000000 		.word	.LC5
+ 423              		.cfi_endproc
+ 424              	.LFE4:
+ 425              		.size	test_rtc_sec, .-test_rtc_sec
+ 426              		.section	.rodata
+ 427              		.align	2
+ 428              	.LC6:
+ 429 00a0 696E6974 		.ascii	"initialize RTC minutes to 0\000"
+ 429      69616C69 
+ 429      7A652052 
+ 429      5443206D 
+ 429      696E7574 
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 10
+
+
+ 430              		.align	2
+ 431              	.LC7:
+ 432 00bc 696E6974 		.ascii	"initialize RTC minutes to 1\000"
+ 432      69616C69 
+ 432      7A652052 
+ 432      5443206D 
+ 432      696E7574 
+ 433              		.align	2
+ 434              	.LC8:
+ 435 00d8 696E6372 		.ascii	"increment RTC minutes by 1 (1->2)\000"
+ 435      656D656E 
+ 435      74205254 
+ 435      43206D69 
+ 435      6E757465 
+ 436 00fa 0000     		.align	2
+ 437              	.LC9:
+ 438 00fc 68616E64 		.ascii	"handle RTC minutes overflow (59->0)\000"
+ 438      6C652052 
+ 438      5443206D 
+ 438      696E7574 
+ 438      6573206F 
+ 439              		.section	.text.test_rtc_min,"ax",%progbits
+ 440              		.align	2
+ 441              		.global	test_rtc_min
+ 442              		.thumb
+ 443              		.thumb_func
+ 444              		.type	test_rtc_min, %function
+ 445              	test_rtc_min:
+ 446              	.LFB5:
+  59:clock1.c      **** 
+  60:clock1.c      **** char * test_rtc_min() {
+ 447              		.loc 1 60 0
+ 448              		.cfi_startproc
+ 449              		@ args = 0, pretend = 0, frame = 0
+ 450              		@ frame_needed = 1, uses_anonymous_args = 0
+ 451 0000 80B5     		push	{r7, lr}
+ 452              		.cfi_def_cfa_offset 8
+ 453              		.cfi_offset 7, -8
+ 454              		.cfi_offset 14, -4
+ 455 0002 82B0     		sub	sp, sp, #8
+ 456              		.cfi_def_cfa_offset 16
+ 457 0004 02AF     		add	r7, sp, #8
+ 458              		.cfi_def_cfa 7, 8
+  61:clock1.c      ****     rtc_set_minutes(0);
+ 459              		.loc 1 61 0
+ 460 0006 0020     		movs	r0, #0
+ 461 0008 FFF7FEFF 		bl	rtc_set_minutes
+  62:clock1.c      ****     it("initialize RTC minutes to 0", rtc_min == 0);
+ 462              		.loc 1 62 0
+ 463 000c 554B     		ldr	r3, .L33
+ 464 000e 1B68     		ldr	r3, [r3]
+ 465 0010 0133     		adds	r3, r3, #1
+ 466 0012 544A     		ldr	r2, .L33
+ 467 0014 1360     		str	r3, [r2]
+ 468 0016 544B     		ldr	r3, .L33+4
+ 469 0018 1B68     		ldr	r3, [r3]
+ 470 001a 002B     		cmp	r3, #0
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 11
+
+
+ 471 001c 09D0     		beq	.L24
+ 472              		.loc 1 62 0 is_stmt 0 discriminator 1
+ 473 001e 534B     		ldr	r3, .L33+8
+ 474 0020 0093     		str	r3, [sp]
+ 475 0022 5348     		ldr	r0, .L33+12
+ 476 0024 5349     		ldr	r1, .L33+16
+ 477 0026 544A     		ldr	r2, .L33+20
+ 478 0028 3E23     		movs	r3, #62
+ 479 002a FFF7FEFF 		bl	sprintf
+ 480 002e 504B     		ldr	r3, .L33+12
+ 481 0030 95E0     		b	.L25
+ 482              	.L24:
+  63:clock1.c      ****     rtc_set_minutes(1);
+ 483              		.loc 1 63 0 is_stmt 1
+ 484 0032 0120     		movs	r0, #1
+ 485 0034 FFF7FEFF 		bl	rtc_set_minutes
+  64:clock1.c      ****     it("initialize RTC minutes to 1", rtc_min == 1);
+ 486              		.loc 1 64 0
+ 487 0038 4A4B     		ldr	r3, .L33
+ 488 003a 1B68     		ldr	r3, [r3]
+ 489 003c 0133     		adds	r3, r3, #1
+ 490 003e 494A     		ldr	r2, .L33
+ 491 0040 1360     		str	r3, [r2]
+ 492 0042 494B     		ldr	r3, .L33+4
+ 493 0044 1B68     		ldr	r3, [r3]
+ 494 0046 012B     		cmp	r3, #1
+ 495 0048 09D0     		beq	.L26
+ 496              		.loc 1 64 0 is_stmt 0 discriminator 1
+ 497 004a 484B     		ldr	r3, .L33+8
+ 498 004c 0093     		str	r3, [sp]
+ 499 004e 4848     		ldr	r0, .L33+12
+ 500 0050 4849     		ldr	r1, .L33+16
+ 501 0052 4A4A     		ldr	r2, .L33+24
+ 502 0054 4023     		movs	r3, #64
+ 503 0056 FFF7FEFF 		bl	sprintf
+ 504 005a 454B     		ldr	r3, .L33+12
+ 505 005c 7FE0     		b	.L25
+ 506              	.L26:
+  65:clock1.c      ****     rtc_set_seconds(59);
+ 507              		.loc 1 65 0 is_stmt 1
+ 508 005e 3B20     		movs	r0, #59
+ 509 0060 FFF7FEFF 		bl	rtc_set_seconds
+  66:clock1.c      ****     it("initialize RTC seconds to 0", rtc_sec == 59);
+ 510              		.loc 1 66 0
+ 511 0064 3F4B     		ldr	r3, .L33
+ 512 0066 1B68     		ldr	r3, [r3]
+ 513 0068 0133     		adds	r3, r3, #1
+ 514 006a 3E4A     		ldr	r2, .L33
+ 515 006c 1360     		str	r3, [r2]
+ 516 006e 444B     		ldr	r3, .L33+28
+ 517 0070 1B68     		ldr	r3, [r3]
+ 518 0072 3B2B     		cmp	r3, #59
+ 519 0074 09D0     		beq	.L27
+ 520              		.loc 1 66 0 is_stmt 0 discriminator 1
+ 521 0076 3D4B     		ldr	r3, .L33+8
+ 522 0078 0093     		str	r3, [sp]
+ 523 007a 3D48     		ldr	r0, .L33+12
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 12
+
+
+ 524 007c 3D49     		ldr	r1, .L33+16
+ 525 007e 414A     		ldr	r2, .L33+32
+ 526 0080 4223     		movs	r3, #66
+ 527 0082 FFF7FEFF 		bl	sprintf
+ 528 0086 3A4B     		ldr	r3, .L33+12
+ 529 0088 69E0     		b	.L25
+ 530              	.L27:
+  67:clock1.c      ****     rtc_tick();
+ 531              		.loc 1 67 0 is_stmt 1
+ 532 008a FFF7FEFF 		bl	rtc_tick
+  68:clock1.c      ****     it("handle RTC seconds overflow (59->0)", rtc_sec == 0);
+ 533              		.loc 1 68 0
+ 534 008e 354B     		ldr	r3, .L33
+ 535 0090 1B68     		ldr	r3, [r3]
+ 536 0092 0133     		adds	r3, r3, #1
+ 537 0094 334A     		ldr	r2, .L33
+ 538 0096 1360     		str	r3, [r2]
+ 539 0098 394B     		ldr	r3, .L33+28
+ 540 009a 1B68     		ldr	r3, [r3]
+ 541 009c 002B     		cmp	r3, #0
+ 542 009e 09D0     		beq	.L28
+ 543              		.loc 1 68 0 is_stmt 0 discriminator 1
+ 544 00a0 324B     		ldr	r3, .L33+8
+ 545 00a2 0093     		str	r3, [sp]
+ 546 00a4 3248     		ldr	r0, .L33+12
+ 547 00a6 3349     		ldr	r1, .L33+16
+ 548 00a8 374A     		ldr	r2, .L33+36
+ 549 00aa 4423     		movs	r3, #68
+ 550 00ac FFF7FEFF 		bl	sprintf
+ 551 00b0 2F4B     		ldr	r3, .L33+12
+ 552 00b2 54E0     		b	.L25
+ 553              	.L28:
+  69:clock1.c      ****     it("increment RTC minutes by 1 (1->2)", rtc_min == 2);
+ 554              		.loc 1 69 0 is_stmt 1
+ 555 00b4 2B4B     		ldr	r3, .L33
+ 556 00b6 1B68     		ldr	r3, [r3]
+ 557 00b8 0133     		adds	r3, r3, #1
+ 558 00ba 2A4A     		ldr	r2, .L33
+ 559 00bc 1360     		str	r3, [r2]
+ 560 00be 2A4B     		ldr	r3, .L33+4
+ 561 00c0 1B68     		ldr	r3, [r3]
+ 562 00c2 022B     		cmp	r3, #2
+ 563 00c4 09D0     		beq	.L29
+ 564              		.loc 1 69 0 is_stmt 0 discriminator 1
+ 565 00c6 294B     		ldr	r3, .L33+8
+ 566 00c8 0093     		str	r3, [sp]
+ 567 00ca 2948     		ldr	r0, .L33+12
+ 568 00cc 2949     		ldr	r1, .L33+16
+ 569 00ce 2F4A     		ldr	r2, .L33+40
+ 570 00d0 4523     		movs	r3, #69
+ 571 00d2 FFF7FEFF 		bl	sprintf
+ 572 00d6 264B     		ldr	r3, .L33+12
+ 573 00d8 41E0     		b	.L25
+ 574              	.L29:
+  70:clock1.c      ****     
+  71:clock1.c      ****     rtc_set_minutes(59);
+ 575              		.loc 1 71 0 is_stmt 1
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 13
+
+
+ 576 00da 3B20     		movs	r0, #59
+ 577 00dc FFF7FEFF 		bl	rtc_set_minutes
+  72:clock1.c      ****     it("initialize RTC minutes to 0", rtc_min == 59);
+ 578              		.loc 1 72 0
+ 579 00e0 204B     		ldr	r3, .L33
+ 580 00e2 1B68     		ldr	r3, [r3]
+ 581 00e4 0133     		adds	r3, r3, #1
+ 582 00e6 1F4A     		ldr	r2, .L33
+ 583 00e8 1360     		str	r3, [r2]
+ 584 00ea 1F4B     		ldr	r3, .L33+4
+ 585 00ec 1B68     		ldr	r3, [r3]
+ 586 00ee 3B2B     		cmp	r3, #59
+ 587 00f0 09D0     		beq	.L30
+ 588              		.loc 1 72 0 is_stmt 0 discriminator 1
+ 589 00f2 1E4B     		ldr	r3, .L33+8
+ 590 00f4 0093     		str	r3, [sp]
+ 591 00f6 1E48     		ldr	r0, .L33+12
+ 592 00f8 1E49     		ldr	r1, .L33+16
+ 593 00fa 1F4A     		ldr	r2, .L33+20
+ 594 00fc 4823     		movs	r3, #72
+ 595 00fe FFF7FEFF 		bl	sprintf
+ 596 0102 1B4B     		ldr	r3, .L33+12
+ 597 0104 2BE0     		b	.L25
+ 598              	.L30:
+  73:clock1.c      ****     
+  74:clock1.c      ****     rtc_set_seconds(59);
+ 599              		.loc 1 74 0 is_stmt 1
+ 600 0106 3B20     		movs	r0, #59
+ 601 0108 FFF7FEFF 		bl	rtc_set_seconds
+  75:clock1.c      ****     it("initialize RTC seconds to 0", rtc_sec == 59);
+ 602              		.loc 1 75 0
+ 603 010c 154B     		ldr	r3, .L33
+ 604 010e 1B68     		ldr	r3, [r3]
+ 605 0110 0133     		adds	r3, r3, #1
+ 606 0112 144A     		ldr	r2, .L33
+ 607 0114 1360     		str	r3, [r2]
+ 608 0116 1A4B     		ldr	r3, .L33+28
+ 609 0118 1B68     		ldr	r3, [r3]
+ 610 011a 3B2B     		cmp	r3, #59
+ 611 011c 09D0     		beq	.L31
+ 612              		.loc 1 75 0 is_stmt 0 discriminator 1
+ 613 011e 134B     		ldr	r3, .L33+8
+ 614 0120 0093     		str	r3, [sp]
+ 615 0122 1348     		ldr	r0, .L33+12
+ 616 0124 1349     		ldr	r1, .L33+16
+ 617 0126 174A     		ldr	r2, .L33+32
+ 618 0128 4B23     		movs	r3, #75
+ 619 012a FFF7FEFF 		bl	sprintf
+ 620 012e 104B     		ldr	r3, .L33+12
+ 621 0130 15E0     		b	.L25
+ 622              	.L31:
+  76:clock1.c      ****     
+  77:clock1.c      ****     rtc_tick();
+ 623              		.loc 1 77 0 is_stmt 1
+ 624 0132 FFF7FEFF 		bl	rtc_tick
+  78:clock1.c      ****     it("handle RTC minutes overflow (59->0)", rtc_min == 0);
+ 625              		.loc 1 78 0
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 14
+
+
+ 626 0136 0B4B     		ldr	r3, .L33
+ 627 0138 1B68     		ldr	r3, [r3]
+ 628 013a 0133     		adds	r3, r3, #1
+ 629 013c 094A     		ldr	r2, .L33
+ 630 013e 1360     		str	r3, [r2]
+ 631 0140 094B     		ldr	r3, .L33+4
+ 632 0142 1B68     		ldr	r3, [r3]
+ 633 0144 002B     		cmp	r3, #0
+ 634 0146 09D0     		beq	.L32
+ 635              		.loc 1 78 0 is_stmt 0 discriminator 1
+ 636 0148 084B     		ldr	r3, .L33+8
+ 637 014a 0093     		str	r3, [sp]
+ 638 014c 0848     		ldr	r0, .L33+12
+ 639 014e 0949     		ldr	r1, .L33+16
+ 640 0150 0F4A     		ldr	r2, .L33+44
+ 641 0152 4E23     		movs	r3, #78
+ 642 0154 FFF7FEFF 		bl	sprintf
+ 643 0158 054B     		ldr	r3, .L33+12
+ 644 015a 00E0     		b	.L25
+ 645              	.L32:
+  79:clock1.c      ****     return 0;
+ 646              		.loc 1 79 0 is_stmt 1
+ 647 015c 0023     		movs	r3, #0
+ 648              	.L25:
+  80:clock1.c      **** }
+ 649              		.loc 1 80 0
+ 650 015e 1846     		mov	r0, r3
+ 651 0160 BD46     		mov	sp, r7
+ 652              		.cfi_def_cfa_register 13
+ 653              		@ sp needed
+ 654 0162 80BD     		pop	{r7, pc}
+ 655              	.L34:
+ 656              		.align	2
+ 657              	.L33:
+ 658 0164 00000000 		.word	assertion_count
+ 659 0168 00000000 		.word	rtc_min
+ 660 016c 30000000 		.word	.LC2
+ 661 0170 00000000 		.word	text
+ 662 0174 00000000 		.word	.LC0
+ 663 0178 A0000000 		.word	.LC6
+ 664 017c BC000000 		.word	.LC7
+ 665 0180 00000000 		.word	rtc_sec
+ 666 0184 14000000 		.word	.LC1
+ 667 0188 7C000000 		.word	.LC5
+ 668 018c D8000000 		.word	.LC8
+ 669 0190 FC000000 		.word	.LC9
+ 670              		.cfi_endproc
+ 671              	.LFE5:
+ 672              		.size	test_rtc_min, .-test_rtc_min
+ 673              		.section	.rodata
+ 674              		.align	2
+ 675              	.LC10:
+ 676 0120 696E6372 		.ascii	"increment RTC hours by 1 (1->2)\000"
+ 676      656D656E 
+ 676      74205254 
+ 676      4320686F 
+ 676      75727320 
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 15
+
+
+ 677              		.align	2
+ 678              	.LC11:
+ 679 0140 696E6974 		.ascii	"initialize RTC hours to 23\000"
+ 679      69616C69 
+ 679      7A652052 
+ 679      54432068 
+ 679      6F757273 
+ 680 015b 00       		.align	2
+ 681              	.LC12:
+ 682 015c 68616E64 		.ascii	"handle RTC hours overflow (23->0)\000"
+ 682      6C652052 
+ 682      54432068 
+ 682      6F757273 
+ 682      206F7665 
+ 683              		.section	.text.test_rtc_hrs,"ax",%progbits
+ 684              		.align	2
+ 685              		.global	test_rtc_hrs
+ 686              		.thumb
+ 687              		.thumb_func
+ 688              		.type	test_rtc_hrs, %function
+ 689              	test_rtc_hrs:
+ 690              	.LFB6:
+  81:clock1.c      **** 
+  82:clock1.c      **** char * test_rtc_hrs() {
+ 691              		.loc 1 82 0
+ 692              		.cfi_startproc
+ 693              		@ args = 0, pretend = 0, frame = 0
+ 694              		@ frame_needed = 1, uses_anonymous_args = 0
+ 695 0000 80B5     		push	{r7, lr}
+ 696              		.cfi_def_cfa_offset 8
+ 697              		.cfi_offset 7, -8
+ 698              		.cfi_offset 14, -4
+ 699 0002 82B0     		sub	sp, sp, #8
+ 700              		.cfi_def_cfa_offset 16
+ 701 0004 02AF     		add	r7, sp, #8
+ 702              		.cfi_def_cfa 7, 8
+  83:clock1.c      ****     rtc_set_hours(0);
+ 703              		.loc 1 83 0
+ 704 0006 0020     		movs	r0, #0
+ 705 0008 FFF7FEFF 		bl	rtc_set_hours
+  84:clock1.c      ****     it("initialize RTC minutes to 0", rtc_hrs == 0);
+ 706              		.loc 1 84 0
+ 707 000c 884B     		ldr	r3, .L50
+ 708 000e 1B68     		ldr	r3, [r3]
+ 709 0010 0133     		adds	r3, r3, #1
+ 710 0012 874A     		ldr	r2, .L50
+ 711 0014 1360     		str	r3, [r2]
+ 712 0016 874B     		ldr	r3, .L50+4
+ 713 0018 1B68     		ldr	r3, [r3]
+ 714 001a 002B     		cmp	r3, #0
+ 715 001c 09D0     		beq	.L36
+ 716              		.loc 1 84 0 is_stmt 0 discriminator 1
+ 717 001e 864B     		ldr	r3, .L50+8
+ 718 0020 0093     		str	r3, [sp]
+ 719 0022 8648     		ldr	r0, .L50+12
+ 720 0024 8649     		ldr	r1, .L50+16
+ 721 0026 874A     		ldr	r2, .L50+20
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 16
+
+
+ 722 0028 5423     		movs	r3, #84
+ 723 002a FFF7FEFF 		bl	sprintf
+ 724 002e 834B     		ldr	r3, .L50+12
+ 725 0030 FAE0     		b	.L37
+ 726              	.L36:
+  85:clock1.c      ****     rtc_set_hours(1);
+ 727              		.loc 1 85 0 is_stmt 1
+ 728 0032 0120     		movs	r0, #1
+ 729 0034 FFF7FEFF 		bl	rtc_set_hours
+  86:clock1.c      ****     it("initialize RTC minutes to 1", rtc_hrs == 1);
+ 730              		.loc 1 86 0
+ 731 0038 7D4B     		ldr	r3, .L50
+ 732 003a 1B68     		ldr	r3, [r3]
+ 733 003c 0133     		adds	r3, r3, #1
+ 734 003e 7C4A     		ldr	r2, .L50
+ 735 0040 1360     		str	r3, [r2]
+ 736 0042 7C4B     		ldr	r3, .L50+4
+ 737 0044 1B68     		ldr	r3, [r3]
+ 738 0046 012B     		cmp	r3, #1
+ 739 0048 09D0     		beq	.L38
+ 740              		.loc 1 86 0 is_stmt 0 discriminator 1
+ 741 004a 7B4B     		ldr	r3, .L50+8
+ 742 004c 0093     		str	r3, [sp]
+ 743 004e 7B48     		ldr	r0, .L50+12
+ 744 0050 7B49     		ldr	r1, .L50+16
+ 745 0052 7D4A     		ldr	r2, .L50+24
+ 746 0054 5623     		movs	r3, #86
+ 747 0056 FFF7FEFF 		bl	sprintf
+ 748 005a 784B     		ldr	r3, .L50+12
+ 749 005c E4E0     		b	.L37
+ 750              	.L38:
+  87:clock1.c      ****     
+  88:clock1.c      ****     rtc_set_minutes(59);
+ 751              		.loc 1 88 0 is_stmt 1
+ 752 005e 3B20     		movs	r0, #59
+ 753 0060 FFF7FEFF 		bl	rtc_set_minutes
+  89:clock1.c      ****     it("initialize RTC minutes to 0", rtc_min == 59);
+ 754              		.loc 1 89 0
+ 755 0064 724B     		ldr	r3, .L50
+ 756 0066 1B68     		ldr	r3, [r3]
+ 757 0068 0133     		adds	r3, r3, #1
+ 758 006a 714A     		ldr	r2, .L50
+ 759 006c 1360     		str	r3, [r2]
+ 760 006e 774B     		ldr	r3, .L50+28
+ 761 0070 1B68     		ldr	r3, [r3]
+ 762 0072 3B2B     		cmp	r3, #59
+ 763 0074 09D0     		beq	.L39
+ 764              		.loc 1 89 0 is_stmt 0 discriminator 1
+ 765 0076 704B     		ldr	r3, .L50+8
+ 766 0078 0093     		str	r3, [sp]
+ 767 007a 7048     		ldr	r0, .L50+12
+ 768 007c 7049     		ldr	r1, .L50+16
+ 769 007e 714A     		ldr	r2, .L50+20
+ 770 0080 5923     		movs	r3, #89
+ 771 0082 FFF7FEFF 		bl	sprintf
+ 772 0086 6D4B     		ldr	r3, .L50+12
+ 773 0088 CEE0     		b	.L37
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 17
+
+
+ 774              	.L39:
+  90:clock1.c      ****     
+  91:clock1.c      ****     rtc_set_seconds(59);
+ 775              		.loc 1 91 0 is_stmt 1
+ 776 008a 3B20     		movs	r0, #59
+ 777 008c FFF7FEFF 		bl	rtc_set_seconds
+  92:clock1.c      ****     it("initialize RTC seconds to 0", rtc_sec == 59);
+ 778              		.loc 1 92 0
+ 779 0090 674B     		ldr	r3, .L50
+ 780 0092 1B68     		ldr	r3, [r3]
+ 781 0094 0133     		adds	r3, r3, #1
+ 782 0096 664A     		ldr	r2, .L50
+ 783 0098 1360     		str	r3, [r2]
+ 784 009a 6D4B     		ldr	r3, .L50+32
+ 785 009c 1B68     		ldr	r3, [r3]
+ 786 009e 3B2B     		cmp	r3, #59
+ 787 00a0 09D0     		beq	.L40
+ 788              		.loc 1 92 0 is_stmt 0 discriminator 1
+ 789 00a2 654B     		ldr	r3, .L50+8
+ 790 00a4 0093     		str	r3, [sp]
+ 791 00a6 6548     		ldr	r0, .L50+12
+ 792 00a8 6549     		ldr	r1, .L50+16
+ 793 00aa 6A4A     		ldr	r2, .L50+36
+ 794 00ac 5C23     		movs	r3, #92
+ 795 00ae FFF7FEFF 		bl	sprintf
+ 796 00b2 624B     		ldr	r3, .L50+12
+ 797 00b4 B8E0     		b	.L37
+ 798              	.L40:
+  93:clock1.c      ****     
+  94:clock1.c      ****     rtc_tick();
+ 799              		.loc 1 94 0 is_stmt 1
+ 800 00b6 FFF7FEFF 		bl	rtc_tick
+  95:clock1.c      ****     it("handle RTC seconds overflow (59->0)", rtc_sec == 0);
+ 801              		.loc 1 95 0
+ 802 00ba 5D4B     		ldr	r3, .L50
+ 803 00bc 1B68     		ldr	r3, [r3]
+ 804 00be 0133     		adds	r3, r3, #1
+ 805 00c0 5B4A     		ldr	r2, .L50
+ 806 00c2 1360     		str	r3, [r2]
+ 807 00c4 624B     		ldr	r3, .L50+32
+ 808 00c6 1B68     		ldr	r3, [r3]
+ 809 00c8 002B     		cmp	r3, #0
+ 810 00ca 09D0     		beq	.L41
+ 811              		.loc 1 95 0 is_stmt 0 discriminator 1
+ 812 00cc 5A4B     		ldr	r3, .L50+8
+ 813 00ce 0093     		str	r3, [sp]
+ 814 00d0 5A48     		ldr	r0, .L50+12
+ 815 00d2 5B49     		ldr	r1, .L50+16
+ 816 00d4 604A     		ldr	r2, .L50+40
+ 817 00d6 5F23     		movs	r3, #95
+ 818 00d8 FFF7FEFF 		bl	sprintf
+ 819 00dc 574B     		ldr	r3, .L50+12
+ 820 00de A3E0     		b	.L37
+ 821              	.L41:
+  96:clock1.c      ****     it("handle RTC minutes overflow (59->0)", rtc_min == 0);
+ 822              		.loc 1 96 0 is_stmt 1
+ 823 00e0 534B     		ldr	r3, .L50
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 18
+
+
+ 824 00e2 1B68     		ldr	r3, [r3]
+ 825 00e4 0133     		adds	r3, r3, #1
+ 826 00e6 524A     		ldr	r2, .L50
+ 827 00e8 1360     		str	r3, [r2]
+ 828 00ea 584B     		ldr	r3, .L50+28
+ 829 00ec 1B68     		ldr	r3, [r3]
+ 830 00ee 002B     		cmp	r3, #0
+ 831 00f0 09D0     		beq	.L42
+ 832              		.loc 1 96 0 is_stmt 0 discriminator 1
+ 833 00f2 514B     		ldr	r3, .L50+8
+ 834 00f4 0093     		str	r3, [sp]
+ 835 00f6 5148     		ldr	r0, .L50+12
+ 836 00f8 5149     		ldr	r1, .L50+16
+ 837 00fa 584A     		ldr	r2, .L50+44
+ 838 00fc 6023     		movs	r3, #96
+ 839 00fe FFF7FEFF 		bl	sprintf
+ 840 0102 4E4B     		ldr	r3, .L50+12
+ 841 0104 90E0     		b	.L37
+ 842              	.L42:
+  97:clock1.c      ****     it("increment RTC hours by 1 (1->2)", rtc_hrs == 2);
+ 843              		.loc 1 97 0 is_stmt 1
+ 844 0106 4A4B     		ldr	r3, .L50
+ 845 0108 1B68     		ldr	r3, [r3]
+ 846 010a 0133     		adds	r3, r3, #1
+ 847 010c 484A     		ldr	r2, .L50
+ 848 010e 1360     		str	r3, [r2]
+ 849 0110 484B     		ldr	r3, .L50+4
+ 850 0112 1B68     		ldr	r3, [r3]
+ 851 0114 022B     		cmp	r3, #2
+ 852 0116 09D0     		beq	.L43
+ 853              		.loc 1 97 0 is_stmt 0 discriminator 1
+ 854 0118 474B     		ldr	r3, .L50+8
+ 855 011a 0093     		str	r3, [sp]
+ 856 011c 4748     		ldr	r0, .L50+12
+ 857 011e 4849     		ldr	r1, .L50+16
+ 858 0120 4F4A     		ldr	r2, .L50+48
+ 859 0122 6123     		movs	r3, #97
+ 860 0124 FFF7FEFF 		bl	sprintf
+ 861 0128 444B     		ldr	r3, .L50+12
+ 862 012a 7DE0     		b	.L37
+ 863              	.L43:
+  98:clock1.c      ****     
+  99:clock1.c      ****     rtc_set_minutes(59);
+ 864              		.loc 1 99 0 is_stmt 1
+ 865 012c 3B20     		movs	r0, #59
+ 866 012e FFF7FEFF 		bl	rtc_set_minutes
+ 100:clock1.c      ****     it("initialize RTC minutes to 0", rtc_min == 59);
+ 867              		.loc 1 100 0
+ 868 0132 3F4B     		ldr	r3, .L50
+ 869 0134 1B68     		ldr	r3, [r3]
+ 870 0136 0133     		adds	r3, r3, #1
+ 871 0138 3D4A     		ldr	r2, .L50
+ 872 013a 1360     		str	r3, [r2]
+ 873 013c 434B     		ldr	r3, .L50+28
+ 874 013e 1B68     		ldr	r3, [r3]
+ 875 0140 3B2B     		cmp	r3, #59
+ 876 0142 09D0     		beq	.L44
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 19
+
+
+ 877              		.loc 1 100 0 is_stmt 0 discriminator 1
+ 878 0144 3C4B     		ldr	r3, .L50+8
+ 879 0146 0093     		str	r3, [sp]
+ 880 0148 3C48     		ldr	r0, .L50+12
+ 881 014a 3D49     		ldr	r1, .L50+16
+ 882 014c 3D4A     		ldr	r2, .L50+20
+ 883 014e 6423     		movs	r3, #100
+ 884 0150 FFF7FEFF 		bl	sprintf
+ 885 0154 394B     		ldr	r3, .L50+12
+ 886 0156 67E0     		b	.L37
+ 887              	.L44:
+ 101:clock1.c      ****     
+ 102:clock1.c      ****     rtc_set_seconds(59);
+ 888              		.loc 1 102 0 is_stmt 1
+ 889 0158 3B20     		movs	r0, #59
+ 890 015a FFF7FEFF 		bl	rtc_set_seconds
+ 103:clock1.c      ****     it("initialize RTC seconds to 0", rtc_sec == 59);
+ 891              		.loc 1 103 0
+ 892 015e 344B     		ldr	r3, .L50
+ 893 0160 1B68     		ldr	r3, [r3]
+ 894 0162 0133     		adds	r3, r3, #1
+ 895 0164 324A     		ldr	r2, .L50
+ 896 0166 1360     		str	r3, [r2]
+ 897 0168 394B     		ldr	r3, .L50+32
+ 898 016a 1B68     		ldr	r3, [r3]
+ 899 016c 3B2B     		cmp	r3, #59
+ 900 016e 09D0     		beq	.L45
+ 901              		.loc 1 103 0 is_stmt 0 discriminator 1
+ 902 0170 314B     		ldr	r3, .L50+8
+ 903 0172 0093     		str	r3, [sp]
+ 904 0174 3148     		ldr	r0, .L50+12
+ 905 0176 3249     		ldr	r1, .L50+16
+ 906 0178 364A     		ldr	r2, .L50+36
+ 907 017a 6723     		movs	r3, #103
+ 908 017c FFF7FEFF 		bl	sprintf
+ 909 0180 2E4B     		ldr	r3, .L50+12
+ 910 0182 51E0     		b	.L37
+ 911              	.L45:
+ 104:clock1.c      ****     
+ 105:clock1.c      ****     rtc_set_hours(23);
+ 912              		.loc 1 105 0 is_stmt 1
+ 913 0184 1720     		movs	r0, #23
+ 914 0186 FFF7FEFF 		bl	rtc_set_hours
+ 106:clock1.c      ****     it("initialize RTC hours to 23", rtc_hrs == 23);
+ 915              		.loc 1 106 0
+ 916 018a 294B     		ldr	r3, .L50
+ 917 018c 1B68     		ldr	r3, [r3]
+ 918 018e 0133     		adds	r3, r3, #1
+ 919 0190 274A     		ldr	r2, .L50
+ 920 0192 1360     		str	r3, [r2]
+ 921 0194 274B     		ldr	r3, .L50+4
+ 922 0196 1B68     		ldr	r3, [r3]
+ 923 0198 172B     		cmp	r3, #23
+ 924 019a 09D0     		beq	.L46
+ 925              		.loc 1 106 0 is_stmt 0 discriminator 1
+ 926 019c 264B     		ldr	r3, .L50+8
+ 927 019e 0093     		str	r3, [sp]
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 20
+
+
+ 928 01a0 2648     		ldr	r0, .L50+12
+ 929 01a2 2749     		ldr	r1, .L50+16
+ 930 01a4 2F4A     		ldr	r2, .L50+52
+ 931 01a6 6A23     		movs	r3, #106
+ 932 01a8 FFF7FEFF 		bl	sprintf
+ 933 01ac 234B     		ldr	r3, .L50+12
+ 934 01ae 3BE0     		b	.L37
+ 935              	.L46:
+ 107:clock1.c      ****     
+ 108:clock1.c      ****     rtc_tick();
+ 936              		.loc 1 108 0 is_stmt 1
+ 937 01b0 FFF7FEFF 		bl	rtc_tick
+ 109:clock1.c      ****     it("handle RTC seconds overflow (59->0)", rtc_sec == 0);
+ 938              		.loc 1 109 0
+ 939 01b4 1E4B     		ldr	r3, .L50
+ 940 01b6 1B68     		ldr	r3, [r3]
+ 941 01b8 0133     		adds	r3, r3, #1
+ 942 01ba 1D4A     		ldr	r2, .L50
+ 943 01bc 1360     		str	r3, [r2]
+ 944 01be 244B     		ldr	r3, .L50+32
+ 945 01c0 1B68     		ldr	r3, [r3]
+ 946 01c2 002B     		cmp	r3, #0
+ 947 01c4 09D0     		beq	.L47
+ 948              		.loc 1 109 0 is_stmt 0 discriminator 1
+ 949 01c6 1C4B     		ldr	r3, .L50+8
+ 950 01c8 0093     		str	r3, [sp]
+ 951 01ca 1C48     		ldr	r0, .L50+12
+ 952 01cc 1C49     		ldr	r1, .L50+16
+ 953 01ce 224A     		ldr	r2, .L50+40
+ 954 01d0 6D23     		movs	r3, #109
+ 955 01d2 FFF7FEFF 		bl	sprintf
+ 956 01d6 194B     		ldr	r3, .L50+12
+ 957 01d8 26E0     		b	.L37
+ 958              	.L47:
+ 110:clock1.c      ****     it("handle RTC minutes overflow (59->0)", rtc_min == 0);
+ 959              		.loc 1 110 0 is_stmt 1
+ 960 01da 154B     		ldr	r3, .L50
+ 961 01dc 1B68     		ldr	r3, [r3]
+ 962 01de 0133     		adds	r3, r3, #1
+ 963 01e0 134A     		ldr	r2, .L50
+ 964 01e2 1360     		str	r3, [r2]
+ 965 01e4 194B     		ldr	r3, .L50+28
+ 966 01e6 1B68     		ldr	r3, [r3]
+ 967 01e8 002B     		cmp	r3, #0
+ 968 01ea 09D0     		beq	.L48
+ 969              		.loc 1 110 0 is_stmt 0 discriminator 1
+ 970 01ec 124B     		ldr	r3, .L50+8
+ 971 01ee 0093     		str	r3, [sp]
+ 972 01f0 1248     		ldr	r0, .L50+12
+ 973 01f2 1349     		ldr	r1, .L50+16
+ 974 01f4 194A     		ldr	r2, .L50+44
+ 975 01f6 6E23     		movs	r3, #110
+ 976 01f8 FFF7FEFF 		bl	sprintf
+ 977 01fc 0F4B     		ldr	r3, .L50+12
+ 978 01fe 13E0     		b	.L37
+ 979              	.L48:
+ 111:clock1.c      ****     it("handle RTC hours overflow (23->0)", rtc_hrs == 0);
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 21
+
+
+ 980              		.loc 1 111 0 is_stmt 1
+ 981 0200 0B4B     		ldr	r3, .L50
+ 982 0202 1B68     		ldr	r3, [r3]
+ 983 0204 0133     		adds	r3, r3, #1
+ 984 0206 0A4A     		ldr	r2, .L50
+ 985 0208 1360     		str	r3, [r2]
+ 986 020a 0A4B     		ldr	r3, .L50+4
+ 987 020c 1B68     		ldr	r3, [r3]
+ 988 020e 002B     		cmp	r3, #0
+ 989 0210 09D0     		beq	.L49
+ 990              		.loc 1 111 0 is_stmt 0 discriminator 1
+ 991 0212 094B     		ldr	r3, .L50+8
+ 992 0214 0093     		str	r3, [sp]
+ 993 0216 0948     		ldr	r0, .L50+12
+ 994 0218 0949     		ldr	r1, .L50+16
+ 995 021a 134A     		ldr	r2, .L50+56
+ 996 021c 6F23     		movs	r3, #111
+ 997 021e FFF7FEFF 		bl	sprintf
+ 998 0222 064B     		ldr	r3, .L50+12
+ 999 0224 00E0     		b	.L37
+ 1000              	.L49:
+ 112:clock1.c      ****     return 0;
+ 1001              		.loc 1 112 0 is_stmt 1
+ 1002 0226 0023     		movs	r3, #0
+ 1003              	.L37:
+ 113:clock1.c      **** }
+ 1004              		.loc 1 113 0
+ 1005 0228 1846     		mov	r0, r3
+ 1006 022a BD46     		mov	sp, r7
+ 1007              		.cfi_def_cfa_register 13
+ 1008              		@ sp needed
+ 1009 022c 80BD     		pop	{r7, pc}
+ 1010              	.L51:
+ 1011 022e 00BF     		.align	2
+ 1012              	.L50:
+ 1013 0230 00000000 		.word	assertion_count
+ 1014 0234 00000000 		.word	rtc_hrs
+ 1015 0238 30000000 		.word	.LC2
+ 1016 023c 00000000 		.word	text
+ 1017 0240 00000000 		.word	.LC0
+ 1018 0244 A0000000 		.word	.LC6
+ 1019 0248 BC000000 		.word	.LC7
+ 1020 024c 00000000 		.word	rtc_min
+ 1021 0250 00000000 		.word	rtc_sec
+ 1022 0254 14000000 		.word	.LC1
+ 1023 0258 7C000000 		.word	.LC5
+ 1024 025c FC000000 		.word	.LC9
+ 1025 0260 20010000 		.word	.LC10
+ 1026 0264 40010000 		.word	.LC11
+ 1027 0268 5C010000 		.word	.LC12
+ 1028              		.cfi_endproc
+ 1029              	.LFE6:
+ 1030              		.size	test_rtc_hrs, .-test_rtc_hrs
+ 1031              		.global	TestCollection
+ 1032              		.section	.rodata
+ 1033 017e 0000     		.align	2
+ 1034              	.LC13:
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 22
+
+
+ 1035 0180 5265616C 		.ascii	"Real Time Clock Seconds\000"
+ 1035      2054696D 
+ 1035      6520436C 
+ 1035      6F636B20 
+ 1035      5365636F 
+ 1036              		.align	2
+ 1037              	.LC14:
+ 1038 0198 5265616C 		.ascii	"Real Time Clock Minutes\000"
+ 1038      2054696D 
+ 1038      6520436C 
+ 1038      6F636B20 
+ 1038      4D696E75 
+ 1039              		.align	2
+ 1040              	.LC15:
+ 1041 01b0 5265616C 		.ascii	"Real Time Clock Hours\000"
+ 1041      2054696D 
+ 1041      6520436C 
+ 1041      6F636B20 
+ 1041      486F7572 
+ 1042              		.data
+ 1043              		.align	2
+ 1044              		.type	TestCollection, %object
+ 1045              		.size	TestCollection, 24
+ 1046              	TestCollection:
+ 1047 000c 80010000 		.word	.LC13
+ 1048 0010 00000000 		.word	test_rtc_sec
+ 1049 0014 98010000 		.word	.LC14
+ 1050 0018 00000000 		.word	test_rtc_min
+ 1051 001c B0010000 		.word	.LC15
+ 1052 0020 00000000 		.word	test_rtc_hrs
+ 1053              		.global	testsCount
+ 1054              		.section	.rodata
+ 1055 01c6 0000     		.align	2
+ 1056              		.type	testsCount, %object
+ 1057              		.size	testsCount, 4
+ 1058              	testsCount:
+ 1059 01c8 03000000 		.word	3
+ 1060              		.text
+ 1061              	.Letext0:
+ 1062              		.file 2 "minunit.h"
+ 1063              		.section	.debug_info,"",%progbits
+ 1064              	.Ldebug_info0:
+ 1065 0000 ED010000 		.4byte	0x1ed
+ 1066 0004 0400     		.2byte	0x4
+ 1067 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1068 000a 04       		.byte	0x4
+ 1069 000b 01       		.uleb128 0x1
+ 1070 000c 00000000 		.4byte	.LASF26
+ 1071 0010 01       		.byte	0x1
+ 1072 0011 00010000 		.4byte	.LASF27
+ 1073 0015 96000000 		.4byte	.LASF28
+ 1074 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1075 001d 00000000 		.4byte	0
+ 1076 0021 00000000 		.4byte	.Ldebug_line0
+ 1077 0025 02       		.uleb128 0x2
+ 1078 0026 01       		.byte	0x1
+ 1079 0027 06       		.byte	0x6
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 23
+
+
+ 1080 0028 20020000 		.4byte	.LASF0
+ 1081 002c 02       		.uleb128 0x2
+ 1082 002d 01       		.byte	0x1
+ 1083 002e 08       		.byte	0x8
+ 1084 002f 09010000 		.4byte	.LASF1
+ 1085 0033 02       		.uleb128 0x2
+ 1086 0034 02       		.byte	0x2
+ 1087 0035 05       		.byte	0x5
+ 1088 0036 F1010000 		.4byte	.LASF2
+ 1089 003a 02       		.uleb128 0x2
+ 1090 003b 02       		.byte	0x2
+ 1091 003c 07       		.byte	0x7
+ 1092 003d 43010000 		.4byte	.LASF3
+ 1093 0041 02       		.uleb128 0x2
+ 1094 0042 04       		.byte	0x4
+ 1095 0043 05       		.byte	0x5
+ 1096 0044 12020000 		.4byte	.LASF4
+ 1097 0048 02       		.uleb128 0x2
+ 1098 0049 04       		.byte	0x4
+ 1099 004a 07       		.byte	0x7
+ 1100 004b 24010000 		.4byte	.LASF5
+ 1101 004f 02       		.uleb128 0x2
+ 1102 0050 08       		.byte	0x8
+ 1103 0051 05       		.byte	0x5
+ 1104 0052 C2010000 		.4byte	.LASF6
+ 1105 0056 02       		.uleb128 0x2
+ 1106 0057 08       		.byte	0x8
+ 1107 0058 07       		.byte	0x7
+ 1108 0059 92010000 		.4byte	.LASF7
+ 1109 005d 03       		.uleb128 0x3
+ 1110 005e 04       		.byte	0x4
+ 1111 005f 05       		.byte	0x5
+ 1112 0060 696E7400 		.ascii	"int\000"
+ 1113 0064 02       		.uleb128 0x2
+ 1114 0065 04       		.byte	0x4
+ 1115 0066 07       		.byte	0x7
+ 1116 0067 85010000 		.4byte	.LASF8
+ 1117 006b 02       		.uleb128 0x2
+ 1118 006c 04       		.byte	0x4
+ 1119 006d 07       		.byte	0x7
+ 1120 006e A9010000 		.4byte	.LASF9
+ 1121 0072 04       		.uleb128 0x4
+ 1122 0073 04       		.byte	0x4
+ 1123 0074 78000000 		.4byte	0x78
+ 1124 0078 02       		.uleb128 0x2
+ 1125 0079 01       		.byte	0x1
+ 1126 007a 08       		.byte	0x8
+ 1127 007b 1B020000 		.4byte	.LASF10
+ 1128 007f 05       		.uleb128 0x5
+ 1129 0080 EB010000 		.4byte	.LASF29
+ 1130 0084 08       		.byte	0x8
+ 1131 0085 02       		.byte	0x2
+ 1132 0086 28       		.byte	0x28
+ 1133 0087 A4000000 		.4byte	0xa4
+ 1134 008b 06       		.uleb128 0x6
+ 1135 008c 6D736700 		.ascii	"msg\000"
+ 1136 0090 02       		.byte	0x2
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 24
+
+
+ 1137 0091 29       		.byte	0x29
+ 1138 0092 72000000 		.4byte	0x72
+ 1139 0096 00       		.byte	0
+ 1140 0097 07       		.uleb128 0x7
+ 1141 0098 80010000 		.4byte	.LASF11
+ 1142 009c 02       		.byte	0x2
+ 1143 009d 2A       		.byte	0x2a
+ 1144 009e A9000000 		.4byte	0xa9
+ 1145 00a2 04       		.byte	0x4
+ 1146 00a3 00       		.byte	0
+ 1147 00a4 08       		.uleb128 0x8
+ 1148 00a5 72000000 		.4byte	0x72
+ 1149 00a9 04       		.uleb128 0x4
+ 1150 00aa 04       		.byte	0x4
+ 1151 00ab A4000000 		.4byte	0xa4
+ 1152 00af 09       		.uleb128 0x9
+ 1153 00b0 56010000 		.4byte	.LASF12
+ 1154 00b4 01       		.byte	0x1
+ 1155 00b5 0A       		.byte	0xa
+ 1156 00b6 00000000 		.4byte	.LFB0
+ 1157 00ba 1C000000 		.4byte	.LFE0-.LFB0
+ 1158 00be 01       		.uleb128 0x1
+ 1159 00bf 9C       		.byte	0x9c
+ 1160 00c0 D1000000 		.4byte	0xd1
+ 1161 00c4 0A       		.uleb128 0xa
+ 1162 00c5 7300     		.ascii	"s\000"
+ 1163 00c7 01       		.byte	0x1
+ 1164 00c8 0A       		.byte	0xa
+ 1165 00c9 5D000000 		.4byte	0x5d
+ 1166 00cd 02       		.uleb128 0x2
+ 1167 00ce 91       		.byte	0x91
+ 1168 00cf 74       		.sleb128 -12
+ 1169 00d0 00       		.byte	0
+ 1170 00d1 09       		.uleb128 0x9
+ 1171 00d2 D0010000 		.4byte	.LASF13
+ 1172 00d6 01       		.byte	0x1
+ 1173 00d7 0F       		.byte	0xf
+ 1174 00d8 00000000 		.4byte	.LFB1
+ 1175 00dc 1C000000 		.4byte	.LFE1-.LFB1
+ 1176 00e0 01       		.uleb128 0x1
+ 1177 00e1 9C       		.byte	0x9c
+ 1178 00e2 F3000000 		.4byte	0xf3
+ 1179 00e6 0A       		.uleb128 0xa
+ 1180 00e7 6D00     		.ascii	"m\000"
+ 1181 00e9 01       		.byte	0x1
+ 1182 00ea 0F       		.byte	0xf
+ 1183 00eb 5D000000 		.4byte	0x5d
+ 1184 00ef 02       		.uleb128 0x2
+ 1185 00f0 91       		.byte	0x91
+ 1186 00f1 74       		.sleb128 -12
+ 1187 00f2 00       		.byte	0
+ 1188 00f3 09       		.uleb128 0x9
+ 1189 00f4 04020000 		.4byte	.LASF14
+ 1190 00f8 01       		.byte	0x1
+ 1191 00f9 14       		.byte	0x14
+ 1192 00fa 00000000 		.4byte	.LFB2
+ 1193 00fe 1C000000 		.4byte	.LFE2-.LFB2
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 25
+
+
+ 1194 0102 01       		.uleb128 0x1
+ 1195 0103 9C       		.byte	0x9c
+ 1196 0104 15010000 		.4byte	0x115
+ 1197 0108 0A       		.uleb128 0xa
+ 1198 0109 6800     		.ascii	"h\000"
+ 1199 010b 01       		.byte	0x1
+ 1200 010c 14       		.byte	0x14
+ 1201 010d 5D000000 		.4byte	0x5d
+ 1202 0111 02       		.uleb128 0x2
+ 1203 0112 91       		.byte	0x91
+ 1204 0113 74       		.sleb128 -12
+ 1205 0114 00       		.byte	0
+ 1206 0115 0B       		.uleb128 0xb
+ 1207 0116 FB010000 		.4byte	.LASF15
+ 1208 011a 01       		.byte	0x1
+ 1209 011b 19       		.byte	0x19
+ 1210 011c 00000000 		.4byte	.LFB3
+ 1211 0120 60000000 		.4byte	.LFE3-.LFB3
+ 1212 0124 01       		.uleb128 0x1
+ 1213 0125 9C       		.byte	0x9c
+ 1214 0126 0C       		.uleb128 0xc
+ 1215 0127 36010000 		.4byte	.LASF16
+ 1216 012b 01       		.byte	0x1
+ 1217 012c 2E       		.byte	0x2e
+ 1218 012d 72000000 		.4byte	0x72
+ 1219 0131 00000000 		.4byte	.LFB4
+ 1220 0135 0C010000 		.4byte	.LFE4-.LFB4
+ 1221 0139 01       		.uleb128 0x1
+ 1222 013a 9C       		.byte	0x9c
+ 1223 013b 0C       		.uleb128 0xc
+ 1224 013c 66010000 		.4byte	.LASF17
+ 1225 0140 01       		.byte	0x1
+ 1226 0141 3C       		.byte	0x3c
+ 1227 0142 72000000 		.4byte	0x72
+ 1228 0146 00000000 		.4byte	.LFB5
+ 1229 014a 94010000 		.4byte	.LFE5-.LFB5
+ 1230 014e 01       		.uleb128 0x1
+ 1231 014f 9C       		.byte	0x9c
+ 1232 0150 0C       		.uleb128 0xc
+ 1233 0151 73010000 		.4byte	.LASF18
+ 1234 0155 01       		.byte	0x1
+ 1235 0156 52       		.byte	0x52
+ 1236 0157 72000000 		.4byte	0x72
+ 1237 015b 00000000 		.4byte	.LFB6
+ 1238 015f 6C020000 		.4byte	.LFE6-.LFB6
+ 1239 0163 01       		.uleb128 0x1
+ 1240 0164 9C       		.byte	0x9c
+ 1241 0165 0D       		.uleb128 0xd
+ 1242 0166 B2010000 		.4byte	.LASF19
+ 1243 016a 02       		.byte	0x2
+ 1244 016b 2D       		.byte	0x2d
+ 1245 016c 5D000000 		.4byte	0x5d
+ 1246 0170 0E       		.uleb128 0xe
+ 1247 0171 78000000 		.4byte	0x78
+ 1248 0175 7B010000 		.4byte	0x17b
+ 1249 0179 0F       		.uleb128 0xf
+ 1250 017a 00       		.byte	0
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 26
+
+
+ 1251 017b 0D       		.uleb128 0xd
+ 1252 017c 1F010000 		.4byte	.LASF20
+ 1253 0180 02       		.byte	0x2
+ 1254 0181 2E       		.byte	0x2e
+ 1255 0182 70010000 		.4byte	0x170
+ 1256 0186 10       		.uleb128 0x10
+ 1257 0187 8E000000 		.4byte	.LASF21
+ 1258 018b 01       		.byte	0x1
+ 1259 018c 06       		.byte	0x6
+ 1260 018d 5D000000 		.4byte	0x5d
+ 1261 0191 05       		.uleb128 0x5
+ 1262 0192 03       		.byte	0x3
+ 1263 0193 00000000 		.4byte	rtc_sec
+ 1264 0197 10       		.uleb128 0x10
+ 1265 0198 F8000000 		.4byte	.LASF22
+ 1266 019c 01       		.byte	0x1
+ 1267 019d 07       		.byte	0x7
+ 1268 019e 5D000000 		.4byte	0x5d
+ 1269 01a2 05       		.uleb128 0x5
+ 1270 01a3 03       		.byte	0x3
+ 1271 01a4 00000000 		.4byte	rtc_min
+ 1272 01a8 10       		.uleb128 0x10
+ 1273 01a9 17010000 		.4byte	.LASF23
+ 1274 01ad 01       		.byte	0x1
+ 1275 01ae 08       		.byte	0x8
+ 1276 01af 5D000000 		.4byte	0x5d
+ 1277 01b3 05       		.uleb128 0x5
+ 1278 01b4 03       		.byte	0x3
+ 1279 01b5 00000000 		.4byte	rtc_hrs
+ 1280 01b9 0E       		.uleb128 0xe
+ 1281 01ba 7F000000 		.4byte	0x7f
+ 1282 01be C9010000 		.4byte	0x1c9
+ 1283 01c2 11       		.uleb128 0x11
+ 1284 01c3 6B000000 		.4byte	0x6b
+ 1285 01c7 02       		.byte	0x2
+ 1286 01c8 00       		.byte	0
+ 1287 01c9 10       		.uleb128 0x10
+ 1288 01ca 2C020000 		.4byte	.LASF24
+ 1289 01ce 01       		.byte	0x1
+ 1290 01cf 73       		.byte	0x73
+ 1291 01d0 B9010000 		.4byte	0x1b9
+ 1292 01d4 05       		.uleb128 0x5
+ 1293 01d5 03       		.byte	0x3
+ 1294 01d6 00000000 		.4byte	TestCollection
+ 1295 01da 10       		.uleb128 0x10
+ 1296 01db E0010000 		.4byte	.LASF25
+ 1297 01df 01       		.byte	0x1
+ 1298 01e0 7C       		.byte	0x7c
+ 1299 01e1 EB010000 		.4byte	0x1eb
+ 1300 01e5 05       		.uleb128 0x5
+ 1301 01e6 03       		.byte	0x3
+ 1302 01e7 00000000 		.4byte	testsCount
+ 1303 01eb 12       		.uleb128 0x12
+ 1304 01ec 5D000000 		.4byte	0x5d
+ 1305 01f0 00       		.byte	0
+ 1306              		.section	.debug_abbrev,"",%progbits
+ 1307              	.Ldebug_abbrev0:
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 27
+
+
+ 1308 0000 01       		.uleb128 0x1
+ 1309 0001 11       		.uleb128 0x11
+ 1310 0002 01       		.byte	0x1
+ 1311 0003 25       		.uleb128 0x25
+ 1312 0004 0E       		.uleb128 0xe
+ 1313 0005 13       		.uleb128 0x13
+ 1314 0006 0B       		.uleb128 0xb
+ 1315 0007 03       		.uleb128 0x3
+ 1316 0008 0E       		.uleb128 0xe
+ 1317 0009 1B       		.uleb128 0x1b
+ 1318 000a 0E       		.uleb128 0xe
+ 1319 000b 55       		.uleb128 0x55
+ 1320 000c 17       		.uleb128 0x17
+ 1321 000d 11       		.uleb128 0x11
+ 1322 000e 01       		.uleb128 0x1
+ 1323 000f 10       		.uleb128 0x10
+ 1324 0010 17       		.uleb128 0x17
+ 1325 0011 00       		.byte	0
+ 1326 0012 00       		.byte	0
+ 1327 0013 02       		.uleb128 0x2
+ 1328 0014 24       		.uleb128 0x24
+ 1329 0015 00       		.byte	0
+ 1330 0016 0B       		.uleb128 0xb
+ 1331 0017 0B       		.uleb128 0xb
+ 1332 0018 3E       		.uleb128 0x3e
+ 1333 0019 0B       		.uleb128 0xb
+ 1334 001a 03       		.uleb128 0x3
+ 1335 001b 0E       		.uleb128 0xe
+ 1336 001c 00       		.byte	0
+ 1337 001d 00       		.byte	0
+ 1338 001e 03       		.uleb128 0x3
+ 1339 001f 24       		.uleb128 0x24
+ 1340 0020 00       		.byte	0
+ 1341 0021 0B       		.uleb128 0xb
+ 1342 0022 0B       		.uleb128 0xb
+ 1343 0023 3E       		.uleb128 0x3e
+ 1344 0024 0B       		.uleb128 0xb
+ 1345 0025 03       		.uleb128 0x3
+ 1346 0026 08       		.uleb128 0x8
+ 1347 0027 00       		.byte	0
+ 1348 0028 00       		.byte	0
+ 1349 0029 04       		.uleb128 0x4
+ 1350 002a 0F       		.uleb128 0xf
+ 1351 002b 00       		.byte	0
+ 1352 002c 0B       		.uleb128 0xb
+ 1353 002d 0B       		.uleb128 0xb
+ 1354 002e 49       		.uleb128 0x49
+ 1355 002f 13       		.uleb128 0x13
+ 1356 0030 00       		.byte	0
+ 1357 0031 00       		.byte	0
+ 1358 0032 05       		.uleb128 0x5
+ 1359 0033 13       		.uleb128 0x13
+ 1360 0034 01       		.byte	0x1
+ 1361 0035 03       		.uleb128 0x3
+ 1362 0036 0E       		.uleb128 0xe
+ 1363 0037 0B       		.uleb128 0xb
+ 1364 0038 0B       		.uleb128 0xb
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 28
+
+
+ 1365 0039 3A       		.uleb128 0x3a
+ 1366 003a 0B       		.uleb128 0xb
+ 1367 003b 3B       		.uleb128 0x3b
+ 1368 003c 0B       		.uleb128 0xb
+ 1369 003d 01       		.uleb128 0x1
+ 1370 003e 13       		.uleb128 0x13
+ 1371 003f 00       		.byte	0
+ 1372 0040 00       		.byte	0
+ 1373 0041 06       		.uleb128 0x6
+ 1374 0042 0D       		.uleb128 0xd
+ 1375 0043 00       		.byte	0
+ 1376 0044 03       		.uleb128 0x3
+ 1377 0045 08       		.uleb128 0x8
+ 1378 0046 3A       		.uleb128 0x3a
+ 1379 0047 0B       		.uleb128 0xb
+ 1380 0048 3B       		.uleb128 0x3b
+ 1381 0049 0B       		.uleb128 0xb
+ 1382 004a 49       		.uleb128 0x49
+ 1383 004b 13       		.uleb128 0x13
+ 1384 004c 38       		.uleb128 0x38
+ 1385 004d 0B       		.uleb128 0xb
+ 1386 004e 00       		.byte	0
+ 1387 004f 00       		.byte	0
+ 1388 0050 07       		.uleb128 0x7
+ 1389 0051 0D       		.uleb128 0xd
+ 1390 0052 00       		.byte	0
+ 1391 0053 03       		.uleb128 0x3
+ 1392 0054 0E       		.uleb128 0xe
+ 1393 0055 3A       		.uleb128 0x3a
+ 1394 0056 0B       		.uleb128 0xb
+ 1395 0057 3B       		.uleb128 0x3b
+ 1396 0058 0B       		.uleb128 0xb
+ 1397 0059 49       		.uleb128 0x49
+ 1398 005a 13       		.uleb128 0x13
+ 1399 005b 38       		.uleb128 0x38
+ 1400 005c 0B       		.uleb128 0xb
+ 1401 005d 00       		.byte	0
+ 1402 005e 00       		.byte	0
+ 1403 005f 08       		.uleb128 0x8
+ 1404 0060 15       		.uleb128 0x15
+ 1405 0061 00       		.byte	0
+ 1406 0062 27       		.uleb128 0x27
+ 1407 0063 19       		.uleb128 0x19
+ 1408 0064 49       		.uleb128 0x49
+ 1409 0065 13       		.uleb128 0x13
+ 1410 0066 00       		.byte	0
+ 1411 0067 00       		.byte	0
+ 1412 0068 09       		.uleb128 0x9
+ 1413 0069 2E       		.uleb128 0x2e
+ 1414 006a 01       		.byte	0x1
+ 1415 006b 3F       		.uleb128 0x3f
+ 1416 006c 19       		.uleb128 0x19
+ 1417 006d 03       		.uleb128 0x3
+ 1418 006e 0E       		.uleb128 0xe
+ 1419 006f 3A       		.uleb128 0x3a
+ 1420 0070 0B       		.uleb128 0xb
+ 1421 0071 3B       		.uleb128 0x3b
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 29
+
+
+ 1422 0072 0B       		.uleb128 0xb
+ 1423 0073 27       		.uleb128 0x27
+ 1424 0074 19       		.uleb128 0x19
+ 1425 0075 11       		.uleb128 0x11
+ 1426 0076 01       		.uleb128 0x1
+ 1427 0077 12       		.uleb128 0x12
+ 1428 0078 06       		.uleb128 0x6
+ 1429 0079 40       		.uleb128 0x40
+ 1430 007a 18       		.uleb128 0x18
+ 1431 007b 9742     		.uleb128 0x2117
+ 1432 007d 19       		.uleb128 0x19
+ 1433 007e 01       		.uleb128 0x1
+ 1434 007f 13       		.uleb128 0x13
+ 1435 0080 00       		.byte	0
+ 1436 0081 00       		.byte	0
+ 1437 0082 0A       		.uleb128 0xa
+ 1438 0083 05       		.uleb128 0x5
+ 1439 0084 00       		.byte	0
+ 1440 0085 03       		.uleb128 0x3
+ 1441 0086 08       		.uleb128 0x8
+ 1442 0087 3A       		.uleb128 0x3a
+ 1443 0088 0B       		.uleb128 0xb
+ 1444 0089 3B       		.uleb128 0x3b
+ 1445 008a 0B       		.uleb128 0xb
+ 1446 008b 49       		.uleb128 0x49
+ 1447 008c 13       		.uleb128 0x13
+ 1448 008d 02       		.uleb128 0x2
+ 1449 008e 18       		.uleb128 0x18
+ 1450 008f 00       		.byte	0
+ 1451 0090 00       		.byte	0
+ 1452 0091 0B       		.uleb128 0xb
+ 1453 0092 2E       		.uleb128 0x2e
+ 1454 0093 00       		.byte	0
+ 1455 0094 3F       		.uleb128 0x3f
+ 1456 0095 19       		.uleb128 0x19
+ 1457 0096 03       		.uleb128 0x3
+ 1458 0097 0E       		.uleb128 0xe
+ 1459 0098 3A       		.uleb128 0x3a
+ 1460 0099 0B       		.uleb128 0xb
+ 1461 009a 3B       		.uleb128 0x3b
+ 1462 009b 0B       		.uleb128 0xb
+ 1463 009c 27       		.uleb128 0x27
+ 1464 009d 19       		.uleb128 0x19
+ 1465 009e 11       		.uleb128 0x11
+ 1466 009f 01       		.uleb128 0x1
+ 1467 00a0 12       		.uleb128 0x12
+ 1468 00a1 06       		.uleb128 0x6
+ 1469 00a2 40       		.uleb128 0x40
+ 1470 00a3 18       		.uleb128 0x18
+ 1471 00a4 9742     		.uleb128 0x2117
+ 1472 00a6 19       		.uleb128 0x19
+ 1473 00a7 00       		.byte	0
+ 1474 00a8 00       		.byte	0
+ 1475 00a9 0C       		.uleb128 0xc
+ 1476 00aa 2E       		.uleb128 0x2e
+ 1477 00ab 00       		.byte	0
+ 1478 00ac 3F       		.uleb128 0x3f
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 30
+
+
+ 1479 00ad 19       		.uleb128 0x19
+ 1480 00ae 03       		.uleb128 0x3
+ 1481 00af 0E       		.uleb128 0xe
+ 1482 00b0 3A       		.uleb128 0x3a
+ 1483 00b1 0B       		.uleb128 0xb
+ 1484 00b2 3B       		.uleb128 0x3b
+ 1485 00b3 0B       		.uleb128 0xb
+ 1486 00b4 49       		.uleb128 0x49
+ 1487 00b5 13       		.uleb128 0x13
+ 1488 00b6 11       		.uleb128 0x11
+ 1489 00b7 01       		.uleb128 0x1
+ 1490 00b8 12       		.uleb128 0x12
+ 1491 00b9 06       		.uleb128 0x6
+ 1492 00ba 40       		.uleb128 0x40
+ 1493 00bb 18       		.uleb128 0x18
+ 1494 00bc 9642     		.uleb128 0x2116
+ 1495 00be 19       		.uleb128 0x19
+ 1496 00bf 00       		.byte	0
+ 1497 00c0 00       		.byte	0
+ 1498 00c1 0D       		.uleb128 0xd
+ 1499 00c2 34       		.uleb128 0x34
+ 1500 00c3 00       		.byte	0
+ 1501 00c4 03       		.uleb128 0x3
+ 1502 00c5 0E       		.uleb128 0xe
+ 1503 00c6 3A       		.uleb128 0x3a
+ 1504 00c7 0B       		.uleb128 0xb
+ 1505 00c8 3B       		.uleb128 0x3b
+ 1506 00c9 0B       		.uleb128 0xb
+ 1507 00ca 49       		.uleb128 0x49
+ 1508 00cb 13       		.uleb128 0x13
+ 1509 00cc 3F       		.uleb128 0x3f
+ 1510 00cd 19       		.uleb128 0x19
+ 1511 00ce 3C       		.uleb128 0x3c
+ 1512 00cf 19       		.uleb128 0x19
+ 1513 00d0 00       		.byte	0
+ 1514 00d1 00       		.byte	0
+ 1515 00d2 0E       		.uleb128 0xe
+ 1516 00d3 01       		.uleb128 0x1
+ 1517 00d4 01       		.byte	0x1
+ 1518 00d5 49       		.uleb128 0x49
+ 1519 00d6 13       		.uleb128 0x13
+ 1520 00d7 01       		.uleb128 0x1
+ 1521 00d8 13       		.uleb128 0x13
+ 1522 00d9 00       		.byte	0
+ 1523 00da 00       		.byte	0
+ 1524 00db 0F       		.uleb128 0xf
+ 1525 00dc 21       		.uleb128 0x21
+ 1526 00dd 00       		.byte	0
+ 1527 00de 00       		.byte	0
+ 1528 00df 00       		.byte	0
+ 1529 00e0 10       		.uleb128 0x10
+ 1530 00e1 34       		.uleb128 0x34
+ 1531 00e2 00       		.byte	0
+ 1532 00e3 03       		.uleb128 0x3
+ 1533 00e4 0E       		.uleb128 0xe
+ 1534 00e5 3A       		.uleb128 0x3a
+ 1535 00e6 0B       		.uleb128 0xb
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 31
+
+
+ 1536 00e7 3B       		.uleb128 0x3b
+ 1537 00e8 0B       		.uleb128 0xb
+ 1538 00e9 49       		.uleb128 0x49
+ 1539 00ea 13       		.uleb128 0x13
+ 1540 00eb 3F       		.uleb128 0x3f
+ 1541 00ec 19       		.uleb128 0x19
+ 1542 00ed 02       		.uleb128 0x2
+ 1543 00ee 18       		.uleb128 0x18
+ 1544 00ef 00       		.byte	0
+ 1545 00f0 00       		.byte	0
+ 1546 00f1 11       		.uleb128 0x11
+ 1547 00f2 21       		.uleb128 0x21
+ 1548 00f3 00       		.byte	0
+ 1549 00f4 49       		.uleb128 0x49
+ 1550 00f5 13       		.uleb128 0x13
+ 1551 00f6 2F       		.uleb128 0x2f
+ 1552 00f7 0B       		.uleb128 0xb
+ 1553 00f8 00       		.byte	0
+ 1554 00f9 00       		.byte	0
+ 1555 00fa 12       		.uleb128 0x12
+ 1556 00fb 26       		.uleb128 0x26
+ 1557 00fc 00       		.byte	0
+ 1558 00fd 49       		.uleb128 0x49
+ 1559 00fe 13       		.uleb128 0x13
+ 1560 00ff 00       		.byte	0
+ 1561 0100 00       		.byte	0
+ 1562 0101 00       		.byte	0
+ 1563              		.section	.debug_aranges,"",%progbits
+ 1564 0000 4C000000 		.4byte	0x4c
+ 1565 0004 0200     		.2byte	0x2
+ 1566 0006 00000000 		.4byte	.Ldebug_info0
+ 1567 000a 04       		.byte	0x4
+ 1568 000b 00       		.byte	0
+ 1569 000c 0000     		.2byte	0
+ 1570 000e 0000     		.2byte	0
+ 1571 0010 00000000 		.4byte	.LFB0
+ 1572 0014 1C000000 		.4byte	.LFE0-.LFB0
+ 1573 0018 00000000 		.4byte	.LFB1
+ 1574 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 1575 0020 00000000 		.4byte	.LFB2
+ 1576 0024 1C000000 		.4byte	.LFE2-.LFB2
+ 1577 0028 00000000 		.4byte	.LFB3
+ 1578 002c 60000000 		.4byte	.LFE3-.LFB3
+ 1579 0030 00000000 		.4byte	.LFB4
+ 1580 0034 0C010000 		.4byte	.LFE4-.LFB4
+ 1581 0038 00000000 		.4byte	.LFB5
+ 1582 003c 94010000 		.4byte	.LFE5-.LFB5
+ 1583 0040 00000000 		.4byte	.LFB6
+ 1584 0044 6C020000 		.4byte	.LFE6-.LFB6
+ 1585 0048 00000000 		.4byte	0
+ 1586 004c 00000000 		.4byte	0
+ 1587              		.section	.debug_ranges,"",%progbits
+ 1588              	.Ldebug_ranges0:
+ 1589 0000 00000000 		.4byte	.LFB0
+ 1590 0004 1C000000 		.4byte	.LFE0
+ 1591 0008 00000000 		.4byte	.LFB1
+ 1592 000c 1C000000 		.4byte	.LFE1
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 32
+
+
+ 1593 0010 00000000 		.4byte	.LFB2
+ 1594 0014 1C000000 		.4byte	.LFE2
+ 1595 0018 00000000 		.4byte	.LFB3
+ 1596 001c 60000000 		.4byte	.LFE3
+ 1597 0020 00000000 		.4byte	.LFB4
+ 1598 0024 0C010000 		.4byte	.LFE4
+ 1599 0028 00000000 		.4byte	.LFB5
+ 1600 002c 94010000 		.4byte	.LFE5
+ 1601 0030 00000000 		.4byte	.LFB6
+ 1602 0034 6C020000 		.4byte	.LFE6
+ 1603 0038 00000000 		.4byte	0
+ 1604 003c 00000000 		.4byte	0
+ 1605              		.section	.debug_line,"",%progbits
+ 1606              	.Ldebug_line0:
+ 1607 0000 97010000 		.section	.debug_str,"MS",%progbits,1
+ 1607      02002C00 
+ 1607      00000201 
+ 1607      FB0E0D00 
+ 1607      01010101 
+ 1608              	.LASF26:
+ 1609 0000 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1609      4320342E 
+ 1609      392E3320 
+ 1609      32303135 
+ 1609      30333033 
+ 1610 0033 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1610      20726576 
+ 1610      6973696F 
+ 1610      6E203232 
+ 1610      31323230 
+ 1611 0066 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1611      66756E63 
+ 1611      74696F6E 
+ 1611      2D736563 
+ 1611      74696F6E 
+ 1612              	.LASF21:
+ 1613 008e 7274635F 		.ascii	"rtc_sec\000"
+ 1613      73656300 
+ 1614              	.LASF28:
+ 1615 0096 433A5C44 		.ascii	"C:\\Documents and Settings\\XPuser\\Desktop\\PSoC5 "
+ 1615      6F63756D 
+ 1615      656E7473 
+ 1615      20616E64 
+ 1615      20536574 
+ 1616 00c5 50726F74 		.ascii	"Prototyping Kit\\CE95277 ADC and UART\\minunit.cyds"
+ 1616      6F747970 
+ 1616      696E6720 
+ 1616      4B69745C 
+ 1616      43453935 
+ 1617 00f6 6E00     		.ascii	"n\000"
+ 1618              	.LASF22:
+ 1619 00f8 7274635F 		.ascii	"rtc_min\000"
+ 1619      6D696E00 
+ 1620              	.LASF27:
+ 1621 0100 636C6F63 		.ascii	"clock1.c\000"
+ 1621      6B312E63 
+ 1621      00
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 33
+
+
+ 1622              	.LASF1:
+ 1623 0109 756E7369 		.ascii	"unsigned char\000"
+ 1623      676E6564 
+ 1623      20636861 
+ 1623      7200
+ 1624              	.LASF23:
+ 1625 0117 7274635F 		.ascii	"rtc_hrs\000"
+ 1625      68727300 
+ 1626              	.LASF20:
+ 1627 011f 74657874 		.ascii	"text\000"
+ 1627      00
+ 1628              	.LASF5:
+ 1629 0124 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1629      20756E73 
+ 1629      69676E65 
+ 1629      6420696E 
+ 1629      7400
+ 1630              	.LASF16:
+ 1631 0136 74657374 		.ascii	"test_rtc_sec\000"
+ 1631      5F727463 
+ 1631      5F736563 
+ 1631      00
+ 1632              	.LASF3:
+ 1633 0143 73686F72 		.ascii	"short unsigned int\000"
+ 1633      7420756E 
+ 1633      7369676E 
+ 1633      65642069 
+ 1633      6E7400
+ 1634              	.LASF12:
+ 1635 0156 7274635F 		.ascii	"rtc_set_seconds\000"
+ 1635      7365745F 
+ 1635      7365636F 
+ 1635      6E647300 
+ 1636              	.LASF17:
+ 1637 0166 74657374 		.ascii	"test_rtc_min\000"
+ 1637      5F727463 
+ 1637      5F6D696E 
+ 1637      00
+ 1638              	.LASF18:
+ 1639 0173 74657374 		.ascii	"test_rtc_hrs\000"
+ 1639      5F727463 
+ 1639      5F687273 
+ 1639      00
+ 1640              	.LASF11:
+ 1641 0180 74657374 		.ascii	"test\000"
+ 1641      00
+ 1642              	.LASF8:
+ 1643 0185 756E7369 		.ascii	"unsigned int\000"
+ 1643      676E6564 
+ 1643      20696E74 
+ 1643      00
+ 1644              	.LASF7:
+ 1645 0192 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1645      206C6F6E 
+ 1645      6720756E 
+ 1645      7369676E 
+ 1645      65642069 
+ARM GAS  C:\DOCUME~1\XPuser\LOCALS~1\Temp\cc1VzXs5.s 			page 34
+
+
+ 1646              	.LASF9:
+ 1647 01a9 73697A65 		.ascii	"sizetype\000"
+ 1647      74797065 
+ 1647      00
+ 1648              	.LASF19:
+ 1649 01b2 61737365 		.ascii	"assertion_count\000"
+ 1649      7274696F 
+ 1649      6E5F636F 
+ 1649      756E7400 
+ 1650              	.LASF6:
+ 1651 01c2 6C6F6E67 		.ascii	"long long int\000"
+ 1651      206C6F6E 
+ 1651      6720696E 
+ 1651      7400
+ 1652              	.LASF13:
+ 1653 01d0 7274635F 		.ascii	"rtc_set_minutes\000"
+ 1653      7365745F 
+ 1653      6D696E75 
+ 1653      74657300 
+ 1654              	.LASF25:
+ 1655 01e0 74657374 		.ascii	"testsCount\000"
+ 1655      73436F75 
+ 1655      6E7400
+ 1656              	.LASF29:
+ 1657 01eb 54657374 		.ascii	"Tests\000"
+ 1657      7300
+ 1658              	.LASF2:
+ 1659 01f1 73686F72 		.ascii	"short int\000"
+ 1659      7420696E 
+ 1659      7400
+ 1660              	.LASF15:
+ 1661 01fb 7274635F 		.ascii	"rtc_tick\000"
+ 1661      7469636B 
+ 1661      00
+ 1662              	.LASF14:
+ 1663 0204 7274635F 		.ascii	"rtc_set_hours\000"
+ 1663      7365745F 
+ 1663      686F7572 
+ 1663      7300
+ 1664              	.LASF4:
+ 1665 0212 6C6F6E67 		.ascii	"long int\000"
+ 1665      20696E74 
+ 1665      00
+ 1666              	.LASF10:
+ 1667 021b 63686172 		.ascii	"char\000"
+ 1667      00
+ 1668              	.LASF0:
+ 1669 0220 7369676E 		.ascii	"signed char\000"
+ 1669      65642063 
+ 1669      68617200 
+ 1670              	.LASF24:
+ 1671 022c 54657374 		.ascii	"TestCollection\000"
+ 1671      436F6C6C 
+ 1671      65637469 
+ 1671      6F6E00
+ 1672              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

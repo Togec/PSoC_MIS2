@@ -1,0 +1,2247 @@
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"mbus.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	SND_NKE_FRAME
+  20              		.section	.rodata
+  21              		.align	2
+  22              		.type	SND_NKE_FRAME, %object
+  23              		.size	SND_NKE_FRAME, 5
+  24              	SND_NKE_FRAME:
+  25 0000 10       		.byte	16
+  26 0001 40       		.byte	64
+  27 0002 FE       		.byte	-2
+  28 0003 3E       		.byte	62
+  29 0004 16       		.byte	22
+  30              		.comm	uart2_tx_buffer,500,4
+  31              		.comm	uart2_rx_buffer,500,4
+  32              		.comm	mbus_rx_count,2,2
+  33              		.section	.text.mbus_cs,"ax",%progbits
+  34              		.align	2
+  35              		.global	mbus_cs
+  36              		.thumb
+  37              		.thumb_func
+  38              		.type	mbus_cs, %function
+  39              	mbus_cs:
+  40              	.LFB64:
+  41              		.file 1 "mbus.c"
+   1:mbus.c        **** /* ========================================
+   2:mbus.c        ****  *
+   3:mbus.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:mbus.c        ****  * All Rights Reserved
+   5:mbus.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:mbus.c        ****  *
+   7:mbus.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:mbus.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:mbus.c        ****  *
+  10:mbus.c        ****  * ========================================
+  11:mbus.c        **** */
+  12:mbus.c        **** #include <device.h>
+  13:mbus.c        **** #include "mbus.h"
+  14:mbus.c        **** 
+  15:mbus.c        **** 
+  16:mbus.c        **** 
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 2
+
+
+  17:mbus.c        **** const uint8 SND_NKE_FRAME[] = {0x10, 0x40, 0xFE, 0x3E, 0x16};
+  18:mbus.c        **** 
+  19:mbus.c        **** 
+  20:mbus.c        **** 
+  21:mbus.c        **** uint8 uart2_tx_buffer[500];
+  22:mbus.c        **** uint8 uart2_rx_buffer[500];
+  23:mbus.c        **** uint16 mbus_rx_count;
+  24:mbus.c        **** 
+  25:mbus.c        **** uint8 mbus_cs(uint8 * buffer, int count)
+  26:mbus.c        **** {
+  42              		.loc 1 26 0
+  43              		.cfi_startproc
+  44              		@ args = 0, pretend = 0, frame = 16
+  45              		@ frame_needed = 1, uses_anonymous_args = 0
+  46              		@ link register save eliminated.
+  47 0000 80B4     		push	{r7}
+  48              		.cfi_def_cfa_offset 4
+  49              		.cfi_offset 7, -4
+  50 0002 85B0     		sub	sp, sp, #20
+  51              		.cfi_def_cfa_offset 24
+  52 0004 00AF     		add	r7, sp, #0
+  53              		.cfi_def_cfa_register 7
+  54 0006 7860     		str	r0, [r7, #4]
+  55 0008 3960     		str	r1, [r7]
+  27:mbus.c        ****     int cs = 0;
+  56              		.loc 1 27 0
+  57 000a 0023     		movs	r3, #0
+  58 000c FB60     		str	r3, [r7, #12]
+  28:mbus.c        ****     while(count > 0)
+  59              		.loc 1 28 0
+  60 000e 0BE0     		b	.L2
+  61              	.L3:
+  29:mbus.c        ****     {
+  30:mbus.c        ****         cs += *buffer;
+  62              		.loc 1 30 0
+  63 0010 7B68     		ldr	r3, [r7, #4]
+  64 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  65 0014 1A46     		mov	r2, r3
+  66 0016 FB68     		ldr	r3, [r7, #12]
+  67 0018 1344     		add	r3, r3, r2
+  68 001a FB60     		str	r3, [r7, #12]
+  31:mbus.c        ****         buffer++;
+  69              		.loc 1 31 0
+  70 001c 7B68     		ldr	r3, [r7, #4]
+  71 001e 0133     		adds	r3, r3, #1
+  72 0020 7B60     		str	r3, [r7, #4]
+  32:mbus.c        ****         count--;
+  73              		.loc 1 32 0
+  74 0022 3B68     		ldr	r3, [r7]
+  75 0024 013B     		subs	r3, r3, #1
+  76 0026 3B60     		str	r3, [r7]
+  77              	.L2:
+  28:mbus.c        ****     {
+  78              		.loc 1 28 0
+  79 0028 3B68     		ldr	r3, [r7]
+  80 002a 002B     		cmp	r3, #0
+  81 002c F0DC     		bgt	.L3
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 3
+
+
+  33:mbus.c        ****     }
+  34:mbus.c        ****     return (cs & 0xFF);
+  82              		.loc 1 34 0
+  83 002e FB68     		ldr	r3, [r7, #12]
+  84 0030 DBB2     		uxtb	r3, r3
+  35:mbus.c        **** }
+  85              		.loc 1 35 0
+  86 0032 1846     		mov	r0, r3
+  87 0034 1437     		adds	r7, r7, #20
+  88              		.cfi_def_cfa_offset 4
+  89 0036 BD46     		mov	sp, r7
+  90              		.cfi_def_cfa_register 13
+  91              		@ sp needed
+  92 0038 80BC     		pop	{r7}
+  93              		.cfi_restore 7
+  94              		.cfi_def_cfa_offset 0
+  95 003a 7047     		bx	lr
+  96              		.cfi_endproc
+  97              	.LFE64:
+  98              		.size	mbus_cs, .-mbus_cs
+  99              		.comm	mbus_tmr_start,4,4
+ 100              		.comm	mbus_tmr_stop,4,4
+ 101              		.comm	mbus_bit_start,4,4
+ 102              		.comm	mbus_bit_stop,4,4
+ 103              		.comm	mbus_bit_min,4,4
+ 104              		.comm	mbus_bit_max,4,4
+ 105              		.comm	mbus_repeat_count,2,2
+ 106              		.section	.text.mbus_send_confirm,"ax",%progbits
+ 107              		.align	2
+ 108              		.global	mbus_send_confirm
+ 109              		.thumb
+ 110              		.thumb_func
+ 111              		.type	mbus_send_confirm, %function
+ 112              	mbus_send_confirm:
+ 113              	.LFB65:
+  36:mbus.c        **** 
+  37:mbus.c        **** uint32 mbus_tmr_start, mbus_tmr_stop;
+  38:mbus.c        **** 
+  39:mbus.c        **** uint32 mbus_bit_start, mbus_bit_stop;
+  40:mbus.c        **** 
+  41:mbus.c        **** uint32 mbus_bit_min, mbus_bit_max;
+  42:mbus.c        **** 
+  43:mbus.c        **** uint16 mbus_repeat_count;
+  44:mbus.c        **** 
+  45:mbus.c        **** uint8 mbus_send_confirm(const uint8 * buffer, unsigned int lenght)
+  46:mbus.c        **** {
+ 114              		.loc 1 46 0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 8
+ 117              		@ frame_needed = 1, uses_anonymous_args = 0
+ 118 0000 90B5     		push	{r4, r7, lr}
+ 119              		.cfi_def_cfa_offset 12
+ 120              		.cfi_offset 4, -12
+ 121              		.cfi_offset 7, -8
+ 122              		.cfi_offset 14, -4
+ 123 0002 83B0     		sub	sp, sp, #12
+ 124              		.cfi_def_cfa_offset 24
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 4
+
+
+ 125 0004 00AF     		add	r7, sp, #0
+ 126              		.cfi_def_cfa_register 7
+ 127 0006 7860     		str	r0, [r7, #4]
+ 128 0008 3960     		str	r1, [r7]
+  47:mbus.c        ****     mbus_repeat_count = 0;
+ 129              		.loc 1 47 0
+ 130 000a 3A4B     		ldr	r3, .L18
+ 131 000c 0022     		movs	r2, #0
+ 132 000e 1A80     		strh	r2, [r3]	@ movhi
+ 133              	.L14:
+ 134              	.LBB2:
+  48:mbus.c        ****     do {
+  49:mbus.c        ****         mbus_repeat_count++;
+ 135              		.loc 1 49 0
+ 136 0010 384B     		ldr	r3, .L18
+ 137 0012 1B88     		ldrh	r3, [r3]
+ 138 0014 0133     		adds	r3, r3, #1
+ 139 0016 9AB2     		uxth	r2, r3
+ 140 0018 364B     		ldr	r3, .L18
+ 141 001a 1A80     		strh	r2, [r3]	@ movhi
+  50:mbus.c        ****         UART_2_ClearTxBuffer();
+ 142              		.loc 1 50 0
+ 143 001c FFF7FEFF 		bl	UART_2_ClearTxBuffer
+  51:mbus.c        ****         UART_2_ClearRxBuffer();
+ 144              		.loc 1 51 0
+ 145 0020 FFF7FEFF 		bl	UART_2_ClearRxBuffer
+  52:mbus.c        ****         memcpy(uart2_rx_buffer,0,sizeof(uart2_rx_buffer));
+ 146              		.loc 1 52 0
+ 147 0024 344A     		ldr	r2, .L18+4
+ 148 0026 0023     		movs	r3, #0
+ 149 0028 1046     		mov	r0, r2
+ 150 002a 1946     		mov	r1, r3
+ 151 002c 4FF4FA73 		mov	r3, #500
+ 152 0030 1A46     		mov	r2, r3
+ 153 0032 FFF7FEFF 		bl	memcpy
+  53:mbus.c        ****         UART_2_PutArray(buffer, lenght);
+ 154              		.loc 1 53 0
+ 155 0036 3968     		ldr	r1, [r7]
+ 156 0038 7868     		ldr	r0, [r7, #4]
+ 157 003a FFF7FEFF 		bl	UART_2_PutArray
+ 158              	.LBB3:
+  54:mbus.c        ****         
+  55:mbus.c        ****         while (UART_2_GetTxBufferSize() > 0);
+ 159              		.loc 1 55 0
+ 160 003e 00BF     		nop
+ 161              	.L6:
+ 162              		.loc 1 55 0 is_stmt 0 discriminator 1
+ 163 0040 FFF7FEFF 		bl	UART_2_GetTxBufferSize
+ 164 0044 0346     		mov	r3, r0
+ 165 0046 002B     		cmp	r3, #0
+ 166 0048 FADC     		bgt	.L6
+ 167              	.LBE3:
+  56:mbus.c        ****         mbus_tmr_start = Timer_1_ReadCounter();
+ 168              		.loc 1 56 0 is_stmt 1
+ 169 004a FFF7FEFF 		bl	Timer_1_ReadCounter
+ 170 004e 0346     		mov	r3, r0
+ 171 0050 1A46     		mov	r2, r3
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 5
+
+
+ 172 0052 2A4B     		ldr	r3, .L18+8
+ 173 0054 1A60     		str	r2, [r3]
+ 174              	.L8:
+ 175              	.LBB4:
+  57:mbus.c        ****         do {
+  58:mbus.c        ****             mbus_tmr_stop = Timer_1_ReadCounter();
+ 176              		.loc 1 58 0 discriminator 2
+ 177 0056 FFF7FEFF 		bl	Timer_1_ReadCounter
+ 178 005a 0346     		mov	r3, r0
+ 179 005c 1A46     		mov	r2, r3
+ 180 005e 284B     		ldr	r3, .L18+12
+ 181 0060 1A60     		str	r2, [r3]
+  59:mbus.c        ****         } while ((UART_2_GetRxBufferSize() == 0) && ((mbus_tmr_start - mbus_tmr_stop) < MAX_WAIT_TI
+ 182              		.loc 1 59 0 discriminator 2
+ 183 0062 FFF7FEFF 		bl	UART_2_GetRxBufferSize
+ 184 0066 0346     		mov	r3, r0
+ 185 0068 002B     		cmp	r3, #0
+ 186 006a 07D1     		bne	.L7
+ 187              		.loc 1 59 0 is_stmt 0 discriminator 1
+ 188 006c 234B     		ldr	r3, .L18+8
+ 189 006e 1A68     		ldr	r2, [r3]
+ 190 0070 234B     		ldr	r3, .L18+12
+ 191 0072 1B68     		ldr	r3, [r3]
+ 192 0074 D31A     		subs	r3, r2, r3
+ 193 0076 234A     		ldr	r2, .L18+16
+ 194 0078 9342     		cmp	r3, r2
+ 195 007a ECD9     		bls	.L8
+ 196              	.L7:
+ 197              	.LBE4:
+  60:mbus.c        ****       
+  61:mbus.c        ****         mbus_rx_count = 0;
+ 198              		.loc 1 61 0 is_stmt 1
+ 199 007c 224B     		ldr	r3, .L18+20
+ 200 007e 0022     		movs	r2, #0
+ 201 0080 1A80     		strh	r2, [r3]	@ movhi
+ 202              	.LBB5:
+  62:mbus.c        ****         while ((UART_2_GetRxBufferSize() > 0) && (mbus_rx_count < sizeof(uart2_tx_buffer)))
+ 203              		.loc 1 62 0
+ 204 0082 0EE0     		b	.L9
+ 205              	.L11:
+ 206              	.LBB6:
+  63:mbus.c        ****         {
+  64:mbus.c        ****            uart2_rx_buffer[mbus_rx_count] = UART_2_ReadRxData();
+ 207              		.loc 1 64 0
+ 208 0084 204B     		ldr	r3, .L18+20
+ 209 0086 1B88     		ldrh	r3, [r3]
+ 210 0088 1C46     		mov	r4, r3
+ 211 008a FFF7FEFF 		bl	UART_2_ReadRxData
+ 212 008e 0346     		mov	r3, r0
+ 213 0090 DAB2     		uxtb	r2, r3
+ 214 0092 194B     		ldr	r3, .L18+4
+ 215 0094 1A55     		strb	r2, [r3, r4]
+  65:mbus.c        ****            mbus_rx_count++;
+ 216              		.loc 1 65 0
+ 217 0096 1C4B     		ldr	r3, .L18+20
+ 218 0098 1B88     		ldrh	r3, [r3]
+ 219 009a 0133     		adds	r3, r3, #1
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 6
+
+
+ 220 009c 9AB2     		uxth	r2, r3
+ 221 009e 1A4B     		ldr	r3, .L18+20
+ 222 00a0 1A80     		strh	r2, [r3]	@ movhi
+ 223              	.L9:
+ 224              	.LBE6:
+  62:mbus.c        ****         while ((UART_2_GetRxBufferSize() > 0) && (mbus_rx_count < sizeof(uart2_tx_buffer)))
+ 225              		.loc 1 62 0
+ 226 00a2 FFF7FEFF 		bl	UART_2_GetRxBufferSize
+ 227 00a6 0346     		mov	r3, r0
+ 228 00a8 002B     		cmp	r3, #0
+ 229 00aa 04DD     		ble	.L10
+  62:mbus.c        ****         while ((UART_2_GetRxBufferSize() > 0) && (mbus_rx_count < sizeof(uart2_tx_buffer)))
+ 230              		.loc 1 62 0 is_stmt 0 discriminator 1
+ 231 00ac 164B     		ldr	r3, .L18+20
+ 232 00ae 1B88     		ldrh	r3, [r3]
+ 233 00b0 B3F5FA7F 		cmp	r3, #500
+ 234 00b4 E6D3     		bcc	.L11
+ 235              	.L10:
+ 236              	.LBE5:
+  66:mbus.c        ****         }
+  67:mbus.c        ****         if ((mbus_rx_count == 1) && (uart2_rx_buffer[0] ==0xE5))
+ 237              		.loc 1 67 0 is_stmt 1
+ 238 00b6 144B     		ldr	r3, .L18+20
+ 239 00b8 1B88     		ldrh	r3, [r3]
+ 240 00ba 012B     		cmp	r3, #1
+ 241 00bc 03D1     		bne	.L12
+ 242              		.loc 1 67 0 is_stmt 0 discriminator 1
+ 243 00be 0E4B     		ldr	r3, .L18+4
+ 244 00c0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 245 00c2 E52B     		cmp	r3, #229
+ 246 00c4 06D0     		beq	.L13
+ 247              	.L12:
+  68:mbus.c        ****             break;
+  69:mbus.c        ****         else
+  70:mbus.c        ****         {
+  71:mbus.c        ****             CyDelay(200); // 330 bit times + 50ms, kai 2400bps
+ 248              		.loc 1 71 0 is_stmt 1
+ 249 00c6 C820     		movs	r0, #200
+ 250 00c8 FFF7FEFF 		bl	CyDelay
+ 251              	.LBE2:
+  72:mbus.c        ****         }
+  73:mbus.c        ****     } while (mbus_repeat_count < 3);
+ 252              		.loc 1 73 0
+ 253 00cc 094B     		ldr	r3, .L18
+ 254 00ce 1B88     		ldrh	r3, [r3]
+ 255 00d0 022B     		cmp	r3, #2
+ 256 00d2 9DD9     		bls	.L14
+ 257              	.L13:
+  74:mbus.c        ****     return ((mbus_rx_count == 1) && (uart2_rx_buffer[0] == 0xE5));
+ 258              		.loc 1 74 0
+ 259 00d4 0C4B     		ldr	r3, .L18+20
+ 260 00d6 1B88     		ldrh	r3, [r3]
+ 261 00d8 012B     		cmp	r3, #1
+ 262 00da 05D1     		bne	.L15
+ 263              		.loc 1 74 0 is_stmt 0 discriminator 1
+ 264 00dc 064B     		ldr	r3, .L18+4
+ 265 00de 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 7
+
+
+ 266 00e0 E52B     		cmp	r3, #229
+ 267 00e2 01D1     		bne	.L15
+ 268              		.loc 1 74 0 discriminator 3
+ 269 00e4 0123     		movs	r3, #1
+ 270 00e6 00E0     		b	.L16
+ 271              	.L15:
+ 272              		.loc 1 74 0 discriminator 4
+ 273 00e8 0023     		movs	r3, #0
+ 274              	.L16:
+ 275              		.loc 1 74 0 discriminator 6
+ 276 00ea DBB2     		uxtb	r3, r3
+  75:mbus.c        **** }
+ 277              		.loc 1 75 0 is_stmt 1 discriminator 6
+ 278 00ec 1846     		mov	r0, r3
+ 279 00ee 0C37     		adds	r7, r7, #12
+ 280              		.cfi_def_cfa_offset 12
+ 281 00f0 BD46     		mov	sp, r7
+ 282              		.cfi_def_cfa_register 13
+ 283              		@ sp needed
+ 284 00f2 90BD     		pop	{r4, r7, pc}
+ 285              	.L19:
+ 286              		.align	2
+ 287              	.L18:
+ 288 00f4 00000000 		.word	mbus_repeat_count
+ 289 00f8 00000000 		.word	uart2_rx_buffer
+ 290 00fc 00000000 		.word	mbus_tmr_start
+ 291 0100 00000000 		.word	mbus_tmr_stop
+ 292 0104 3F0D0300 		.word	199999
+ 293 0108 00000000 		.word	mbus_rx_count
+ 294              		.cfi_endproc
+ 295              	.LFE65:
+ 296              		.size	mbus_send_confirm, .-mbus_send_confirm
+ 297              		.comm	FCB_Bit,1,1
+ 298              		.section	.text.mbus_next_record,"ax",%progbits
+ 299              		.align	2
+ 300              		.global	mbus_next_record
+ 301              		.thumb
+ 302              		.thumb_func
+ 303              		.type	mbus_next_record, %function
+ 304              	mbus_next_record:
+ 305              	.LFB66:
+  76:mbus.c        **** 
+  77:mbus.c        **** uint8 FCB_Bit; //0x20
+  78:mbus.c        **** uint8 mbus_next_record(void)
+  79:mbus.c        **** {
+ 306              		.loc 1 79 0
+ 307              		.cfi_startproc
+ 308              		@ args = 0, pretend = 0, frame = 0
+ 309              		@ frame_needed = 1, uses_anonymous_args = 0
+ 310              		@ link register save eliminated.
+ 311 0000 80B4     		push	{r7}
+ 312              		.cfi_def_cfa_offset 4
+ 313              		.cfi_offset 7, -4
+ 314 0002 00AF     		add	r7, sp, #0
+ 315              		.cfi_def_cfa_register 7
+  80:mbus.c        ****     FCB_Bit ^= 0x20;
+ 316              		.loc 1 80 0
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 8
+
+
+ 317 0004 054B     		ldr	r3, .L21
+ 318 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 319 0008 83F02003 		eor	r3, r3, #32
+ 320 000c DAB2     		uxtb	r2, r3
+ 321 000e 034B     		ldr	r3, .L21
+ 322 0010 1A70     		strb	r2, [r3]
+  81:mbus.c        **** }
+ 323              		.loc 1 81 0
+ 324 0012 00BF     		nop
+ 325 0014 1846     		mov	r0, r3
+ 326 0016 BD46     		mov	sp, r7
+ 327              		.cfi_def_cfa_register 13
+ 328              		@ sp needed
+ 329 0018 80BC     		pop	{r7}
+ 330              		.cfi_restore 7
+ 331              		.cfi_def_cfa_offset 0
+ 332 001a 7047     		bx	lr
+ 333              	.L22:
+ 334              		.align	2
+ 335              	.L21:
+ 336 001c 00000000 		.word	FCB_Bit
+ 337              		.cfi_endproc
+ 338              	.LFE66:
+ 339              		.size	mbus_next_record, .-mbus_next_record
+ 340              		.section	.text.mbus_request_respond,"ax",%progbits
+ 341              		.align	2
+ 342              		.global	mbus_request_respond
+ 343              		.thumb
+ 344              		.thumb_func
+ 345              		.type	mbus_request_respond, %function
+ 346              	mbus_request_respond:
+ 347              	.LFB67:
+  82:mbus.c        **** 
+  83:mbus.c        **** uint8 mbus_request_respond(uint8 short_addres)
+  84:mbus.c        **** {
+ 348              		.loc 1 84 0
+ 349              		.cfi_startproc
+ 350              		@ args = 0, pretend = 0, frame = 8
+ 351              		@ frame_needed = 1, uses_anonymous_args = 0
+ 352 0000 90B5     		push	{r4, r7, lr}
+ 353              		.cfi_def_cfa_offset 12
+ 354              		.cfi_offset 4, -12
+ 355              		.cfi_offset 7, -8
+ 356              		.cfi_offset 14, -4
+ 357 0002 83B0     		sub	sp, sp, #12
+ 358              		.cfi_def_cfa_offset 24
+ 359 0004 00AF     		add	r7, sp, #0
+ 360              		.cfi_def_cfa_register 7
+ 361 0006 0346     		mov	r3, r0
+ 362 0008 FB71     		strb	r3, [r7, #7]
+  85:mbus.c        ****     uart2_tx_buffer[0] = 0x10;
+ 363              		.loc 1 85 0
+ 364 000a 784B     		ldr	r3, .L36
+ 365 000c 1022     		movs	r2, #16
+ 366 000e 1A70     		strb	r2, [r3]
+  86:mbus.c        ****     uart2_tx_buffer[1] = 0x5B | FCB_Bit;
+ 367              		.loc 1 86 0
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 9
+
+
+ 368 0010 774B     		ldr	r3, .L36+4
+ 369 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 370 0014 43F05B03 		orr	r3, r3, #91
+ 371 0018 DAB2     		uxtb	r2, r3
+ 372 001a 744B     		ldr	r3, .L36
+ 373 001c 5A70     		strb	r2, [r3, #1]
+  87:mbus.c        ****     uart2_tx_buffer[2] = short_addres;
+ 374              		.loc 1 87 0
+ 375 001e 734A     		ldr	r2, .L36
+ 376 0020 FB79     		ldrb	r3, [r7, #7]
+ 377 0022 9370     		strb	r3, [r2, #2]
+  88:mbus.c        ****     uart2_tx_buffer[3] = uart2_tx_buffer[1] + uart2_tx_buffer[2];
+ 378              		.loc 1 88 0
+ 379 0024 714B     		ldr	r3, .L36
+ 380 0026 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 381 0028 704B     		ldr	r3, .L36
+ 382 002a 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 383 002c 1344     		add	r3, r3, r2
+ 384 002e DAB2     		uxtb	r2, r3
+ 385 0030 6E4B     		ldr	r3, .L36
+ 386 0032 DA70     		strb	r2, [r3, #3]
+  89:mbus.c        ****     uart2_tx_buffer[4] = 0x16;
+ 387              		.loc 1 89 0
+ 388 0034 6D4B     		ldr	r3, .L36
+ 389 0036 1622     		movs	r2, #22
+ 390 0038 1A71     		strb	r2, [r3, #4]
+  90:mbus.c        ****     
+  91:mbus.c        ****     mbus_repeat_count = 0;
+ 391              		.loc 1 91 0
+ 392 003a 6E4B     		ldr	r3, .L36+8
+ 393 003c 0022     		movs	r2, #0
+ 394 003e 1A80     		strh	r2, [r3]	@ movhi
+ 395              	.L35:
+ 396              	.LBB7:
+  92:mbus.c        ****     do {
+  93:mbus.c        ****         mbus_repeat_count++;
+ 397              		.loc 1 93 0
+ 398 0040 6C4B     		ldr	r3, .L36+8
+ 399 0042 1B88     		ldrh	r3, [r3]
+ 400 0044 0133     		adds	r3, r3, #1
+ 401 0046 9AB2     		uxth	r2, r3
+ 402 0048 6A4B     		ldr	r3, .L36+8
+ 403 004a 1A80     		strh	r2, [r3]	@ movhi
+  94:mbus.c        ****         UART_2_ClearTxBuffer();
+ 404              		.loc 1 94 0
+ 405 004c FFF7FEFF 		bl	UART_2_ClearTxBuffer
+  95:mbus.c        ****         UART_2_ClearRxBuffer();
+ 406              		.loc 1 95 0
+ 407 0050 FFF7FEFF 		bl	UART_2_ClearRxBuffer
+  96:mbus.c        ****         memcpy(uart2_rx_buffer,0,sizeof(uart2_rx_buffer));
+ 408              		.loc 1 96 0
+ 409 0054 684A     		ldr	r2, .L36+12
+ 410 0056 0023     		movs	r3, #0
+ 411 0058 1046     		mov	r0, r2
+ 412 005a 1946     		mov	r1, r3
+ 413 005c 4FF4FA73 		mov	r3, #500
+ 414 0060 1A46     		mov	r2, r3
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 10
+
+
+ 415 0062 FFF7FEFF 		bl	memcpy
+  97:mbus.c        ****         UART_2_PutArray(uart2_tx_buffer, 5);
+ 416              		.loc 1 97 0
+ 417 0066 0521     		movs	r1, #5
+ 418 0068 6048     		ldr	r0, .L36
+ 419 006a FFF7FEFF 		bl	UART_2_PutArray
+ 420              	.LBB8:
+  98:mbus.c        ****         
+  99:mbus.c        ****         while (UART_2_GetTxBufferSize() > 0);
+ 421              		.loc 1 99 0
+ 422 006e 00BF     		nop
+ 423              	.L24:
+ 424              		.loc 1 99 0 is_stmt 0 discriminator 1
+ 425 0070 FFF7FEFF 		bl	UART_2_GetTxBufferSize
+ 426 0074 0346     		mov	r3, r0
+ 427 0076 002B     		cmp	r3, #0
+ 428 0078 FADC     		bgt	.L24
+ 429              	.LBE8:
+ 100:mbus.c        ****         
+ 101:mbus.c        ****         mbus_tmr_start = Timer_1_ReadCounter();
+ 430              		.loc 1 101 0 is_stmt 1
+ 431 007a FFF7FEFF 		bl	Timer_1_ReadCounter
+ 432 007e 0346     		mov	r3, r0
+ 433 0080 1A46     		mov	r2, r3
+ 434 0082 5E4B     		ldr	r3, .L36+16
+ 435 0084 1A60     		str	r2, [r3]
+ 436              	.L26:
+ 437              	.LBB9:
+ 102:mbus.c        ****         do {
+ 103:mbus.c        ****             mbus_tmr_stop = Timer_1_ReadCounter();
+ 438              		.loc 1 103 0 discriminator 2
+ 439 0086 FFF7FEFF 		bl	Timer_1_ReadCounter
+ 440 008a 0346     		mov	r3, r0
+ 441 008c 1A46     		mov	r2, r3
+ 442 008e 5C4B     		ldr	r3, .L36+20
+ 443 0090 1A60     		str	r2, [r3]
+ 104:mbus.c        ****         } while ((UART_2_GetRxBufferSize() == 0) && ((mbus_tmr_start - mbus_tmr_stop) < MAX_WAIT_TI
+ 444              		.loc 1 104 0 discriminator 2
+ 445 0092 FFF7FEFF 		bl	UART_2_GetRxBufferSize
+ 446 0096 0346     		mov	r3, r0
+ 447 0098 002B     		cmp	r3, #0
+ 448 009a 07D1     		bne	.L25
+ 449              		.loc 1 104 0 is_stmt 0 discriminator 1
+ 450 009c 574B     		ldr	r3, .L36+16
+ 451 009e 1A68     		ldr	r2, [r3]
+ 452 00a0 574B     		ldr	r3, .L36+20
+ 453 00a2 1B68     		ldr	r3, [r3]
+ 454 00a4 D31A     		subs	r3, r2, r3
+ 455 00a6 574A     		ldr	r2, .L36+24
+ 456 00a8 9342     		cmp	r3, r2
+ 457 00aa ECD9     		bls	.L26
+ 458              	.L25:
+ 459              	.LBE9:
+ 105:mbus.c        ****         // Pirmas baitas.
+ 106:mbus.c        ****         mbus_bit_min = MAX_WAIT_TIME;
+ 460              		.loc 1 106 0 is_stmt 1
+ 461 00ac 564B     		ldr	r3, .L36+28
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 11
+
+
+ 462 00ae 574A     		ldr	r2, .L36+32
+ 463 00b0 1A60     		str	r2, [r3]
+ 107:mbus.c        ****         mbus_bit_max = 0;
+ 464              		.loc 1 107 0
+ 465 00b2 574B     		ldr	r3, .L36+36
+ 466 00b4 0022     		movs	r2, #0
+ 467 00b6 1A60     		str	r2, [r3]
+ 108:mbus.c        ****         
+ 109:mbus.c        ****         mbus_rx_count = 0;
+ 468              		.loc 1 109 0
+ 469 00b8 564B     		ldr	r3, .L36+40
+ 470 00ba 0022     		movs	r2, #0
+ 471 00bc 1A80     		strh	r2, [r3]	@ movhi
+ 472              	.LBB10:
+ 110:mbus.c        ****         while ((UART_2_GetRxBufferSize() > 0) && (mbus_rx_count < sizeof(uart2_tx_buffer)))
+ 473              		.loc 1 110 0
+ 474 00be 4CE0     		b	.L27
+ 475              	.L32:
+ 476              	.LBB11:
+ 111:mbus.c        ****         {
+ 112:mbus.c        ****            uart2_rx_buffer[mbus_rx_count] = UART_2_ReadRxData();
+ 477              		.loc 1 112 0
+ 478 00c0 544B     		ldr	r3, .L36+40
+ 479 00c2 1B88     		ldrh	r3, [r3]
+ 480 00c4 1C46     		mov	r4, r3
+ 481 00c6 FFF7FEFF 		bl	UART_2_ReadRxData
+ 482 00ca 0346     		mov	r3, r0
+ 483 00cc DAB2     		uxtb	r2, r3
+ 484 00ce 4A4B     		ldr	r3, .L36+12
+ 485 00d0 1A55     		strb	r2, [r3, r4]
+ 113:mbus.c        ****            mbus_rx_count++;
+ 486              		.loc 1 113 0
+ 487 00d2 504B     		ldr	r3, .L36+40
+ 488 00d4 1B88     		ldrh	r3, [r3]
+ 489 00d6 0133     		adds	r3, r3, #1
+ 490 00d8 9AB2     		uxth	r2, r3
+ 491 00da 4E4B     		ldr	r3, .L36+40
+ 492 00dc 1A80     		strh	r2, [r3]	@ movhi
+ 114:mbus.c        ****            mbus_bit_start = Timer_1_ReadCounter();
+ 493              		.loc 1 114 0
+ 494 00de FFF7FEFF 		bl	Timer_1_ReadCounter
+ 495 00e2 0346     		mov	r3, r0
+ 496 00e4 1A46     		mov	r2, r3
+ 497 00e6 4C4B     		ldr	r3, .L36+44
+ 498 00e8 1A60     		str	r2, [r3]
+ 499              	.L29:
+ 115:mbus.c        ****            do {
+ 116:mbus.c        ****                mbus_bit_stop = Timer_1_ReadCounter();
+ 500              		.loc 1 116 0 discriminator 2
+ 501 00ea FFF7FEFF 		bl	Timer_1_ReadCounter
+ 502 00ee 0346     		mov	r3, r0
+ 503 00f0 1A46     		mov	r2, r3
+ 504 00f2 4A4B     		ldr	r3, .L36+48
+ 505 00f4 1A60     		str	r2, [r3]
+ 117:mbus.c        ****            } while ((UART_2_GetRxBufferSize() == 0) && ((mbus_bit_start - mbus_bit_stop) < MAX_WAIT
+ 506              		.loc 1 117 0 discriminator 2
+ 507 00f6 FFF7FEFF 		bl	UART_2_GetRxBufferSize
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 12
+
+
+ 508 00fa 0346     		mov	r3, r0
+ 509 00fc 002B     		cmp	r3, #0
+ 510 00fe 07D1     		bne	.L28
+ 511              		.loc 1 117 0 is_stmt 0 discriminator 1
+ 512 0100 454B     		ldr	r3, .L36+44
+ 513 0102 1A68     		ldr	r2, [r3]
+ 514 0104 454B     		ldr	r3, .L36+48
+ 515 0106 1B68     		ldr	r3, [r3]
+ 516 0108 D31A     		subs	r3, r2, r3
+ 517 010a 3E4A     		ldr	r2, .L36+24
+ 518 010c 9342     		cmp	r3, r2
+ 519 010e ECD9     		bls	.L29
+ 520              	.L28:
+ 118:mbus.c        ****            if (UART_2_GetRxBufferSize() > 0)
+ 521              		.loc 1 118 0 is_stmt 1
+ 522 0110 FFF7FEFF 		bl	UART_2_GetRxBufferSize
+ 523 0114 0346     		mov	r3, r0
+ 524 0116 002B     		cmp	r3, #0
+ 525 0118 1FDD     		ble	.L27
+ 119:mbus.c        ****            {
+ 120:mbus.c        ****               if (mbus_bit_max < (mbus_bit_start - mbus_bit_stop))  mbus_bit_max = (mbus_bit_start 
+ 526              		.loc 1 120 0
+ 527 011a 3F4B     		ldr	r3, .L36+44
+ 528 011c 1A68     		ldr	r2, [r3]
+ 529 011e 3F4B     		ldr	r3, .L36+48
+ 530 0120 1B68     		ldr	r3, [r3]
+ 531 0122 D21A     		subs	r2, r2, r3
+ 532 0124 3A4B     		ldr	r3, .L36+36
+ 533 0126 1B68     		ldr	r3, [r3]
+ 534 0128 9A42     		cmp	r2, r3
+ 535 012a 06D9     		bls	.L30
+ 536              		.loc 1 120 0 is_stmt 0 discriminator 1
+ 537 012c 3A4B     		ldr	r3, .L36+44
+ 538 012e 1A68     		ldr	r2, [r3]
+ 539 0130 3A4B     		ldr	r3, .L36+48
+ 540 0132 1B68     		ldr	r3, [r3]
+ 541 0134 D31A     		subs	r3, r2, r3
+ 542 0136 364A     		ldr	r2, .L36+36
+ 543 0138 1360     		str	r3, [r2]
+ 544              	.L30:
+ 121:mbus.c        ****               if (mbus_bit_min > (mbus_bit_start - mbus_bit_stop))  mbus_bit_min = (mbus_bit_start 
+ 545              		.loc 1 121 0 is_stmt 1
+ 546 013a 374B     		ldr	r3, .L36+44
+ 547 013c 1A68     		ldr	r2, [r3]
+ 548 013e 374B     		ldr	r3, .L36+48
+ 549 0140 1B68     		ldr	r3, [r3]
+ 550 0142 D21A     		subs	r2, r2, r3
+ 551 0144 304B     		ldr	r3, .L36+28
+ 552 0146 1B68     		ldr	r3, [r3]
+ 553 0148 9A42     		cmp	r2, r3
+ 554 014a 06D2     		bcs	.L27
+ 555              		.loc 1 121 0 is_stmt 0 discriminator 1
+ 556 014c 324B     		ldr	r3, .L36+44
+ 557 014e 1A68     		ldr	r2, [r3]
+ 558 0150 324B     		ldr	r3, .L36+48
+ 559 0152 1B68     		ldr	r3, [r3]
+ 560 0154 D31A     		subs	r3, r2, r3
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 13
+
+
+ 561 0156 2C4A     		ldr	r2, .L36+28
+ 562 0158 1360     		str	r3, [r2]
+ 563              	.L27:
+ 564              	.LBE11:
+ 110:mbus.c        ****         {
+ 565              		.loc 1 110 0 is_stmt 1
+ 566 015a FFF7FEFF 		bl	UART_2_GetRxBufferSize
+ 567 015e 0346     		mov	r3, r0
+ 568 0160 002B     		cmp	r3, #0
+ 569 0162 04DD     		ble	.L31
+ 110:mbus.c        ****         {
+ 570              		.loc 1 110 0 is_stmt 0 discriminator 1
+ 571 0164 2B4B     		ldr	r3, .L36+40
+ 572 0166 1B88     		ldrh	r3, [r3]
+ 573 0168 B3F5FA7F 		cmp	r3, #500
+ 574 016c A8D3     		bcc	.L32
+ 575              	.L31:
+ 576              	.LBE10:
+ 122:mbus.c        ****            }
+ 123:mbus.c        ****         }
+ 124:mbus.c        ****         if (
+ 125:mbus.c        ****                (mbus_rx_count > 9)
+ 577              		.loc 1 125 0 is_stmt 1
+ 578 016e 294B     		ldr	r3, .L36+40
+ 579 0170 1B88     		ldrh	r3, [r3]
+ 124:mbus.c        ****                (mbus_rx_count > 9)
+ 580              		.loc 1 124 0
+ 581 0172 092B     		cmp	r3, #9
+ 582 0174 2DD9     		bls	.L33
+ 126:mbus.c        ****             && (0x68 == uart2_rx_buffer[0])
+ 583              		.loc 1 126 0
+ 584 0176 204B     		ldr	r3, .L36+12
+ 585 0178 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 586 017a 682B     		cmp	r3, #104
+ 587 017c 29D1     		bne	.L33
+ 127:mbus.c        ****             && (uart2_rx_buffer[1] == uart2_rx_buffer[2])
+ 588              		.loc 1 127 0
+ 589 017e 1E4B     		ldr	r3, .L36+12
+ 590 0180 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 591 0182 1D4B     		ldr	r3, .L36+12
+ 592 0184 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 593 0186 9A42     		cmp	r2, r3
+ 594 0188 23D1     		bne	.L33
+ 128:mbus.c        ****             && (0x68 == uart2_rx_buffer[3])
+ 595              		.loc 1 128 0
+ 596 018a 1B4B     		ldr	r3, .L36+12
+ 597 018c DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ 598 018e 682B     		cmp	r3, #104
+ 599 0190 1FD1     		bne	.L33
+ 129:mbus.c        ****             && (mbus_rx_count == uart2_rx_buffer[1]+6)
+ 600              		.loc 1 129 0
+ 601 0192 204B     		ldr	r3, .L36+40
+ 602 0194 1B88     		ldrh	r3, [r3]
+ 603 0196 1A46     		mov	r2, r3
+ 604 0198 174B     		ldr	r3, .L36+12
+ 605 019a 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 606 019c 0633     		adds	r3, r3, #6
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 14
+
+
+ 607 019e 9A42     		cmp	r2, r3
+ 608 01a0 17D1     		bne	.L33
+ 130:mbus.c        ****             && (mbus_cs((uint8 *)&uart2_rx_buffer[4], uart2_rx_buffer[1]) == uart2_rx_buffer[4+uart
+ 609              		.loc 1 130 0
+ 610 01a2 154B     		ldr	r3, .L36+12
+ 611 01a4 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 612 01a6 1946     		mov	r1, r3
+ 613 01a8 1D48     		ldr	r0, .L36+52
+ 614 01aa FFF7FEFF 		bl	mbus_cs
+ 615 01ae 0346     		mov	r3, r0
+ 616 01b0 1946     		mov	r1, r3
+ 617 01b2 114B     		ldr	r3, .L36+12
+ 618 01b4 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 619 01b6 0433     		adds	r3, r3, #4
+ 620 01b8 0F4A     		ldr	r2, .L36+12
+ 621 01ba D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 622 01bc 9942     		cmp	r1, r3
+ 623 01be 08D1     		bne	.L33
+ 131:mbus.c        ****             && (0x16 == uart2_rx_buffer[5+uart2_rx_buffer[1]])
+ 624              		.loc 1 131 0
+ 625 01c0 0D4B     		ldr	r3, .L36+12
+ 626 01c2 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 627 01c4 0533     		adds	r3, r3, #5
+ 628 01c6 0C4A     		ldr	r2, .L36+12
+ 629 01c8 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 630 01ca 162B     		cmp	r3, #22
+ 631 01cc 01D1     		bne	.L33
+ 132:mbus.c        ****         )
+ 133:mbus.c        ****             return 1;
+ 632              		.loc 1 133 0
+ 633 01ce 0123     		movs	r3, #1
+ 634 01d0 08E0     		b	.L34
+ 635              	.L33:
+ 134:mbus.c        ****         else
+ 135:mbus.c        ****         {
+ 136:mbus.c        ****             CyDelay(200); // 330 bit times + 50ms, kai 2400bps
+ 636              		.loc 1 136 0
+ 637 01d2 C820     		movs	r0, #200
+ 638 01d4 FFF7FEFF 		bl	CyDelay
+ 639              	.LBE7:
+ 137:mbus.c        ****         }
+ 138:mbus.c        ****     } while (mbus_repeat_count < 3);
+ 640              		.loc 1 138 0
+ 641 01d8 064B     		ldr	r3, .L36+8
+ 642 01da 1B88     		ldrh	r3, [r3]
+ 643 01dc 022B     		cmp	r3, #2
+ 644 01de 7FF62FAF 		bls	.L35
+ 139:mbus.c        ****     return 0;
+ 645              		.loc 1 139 0
+ 646 01e2 0023     		movs	r3, #0
+ 647              	.L34:
+ 140:mbus.c        **** }
+ 648              		.loc 1 140 0
+ 649 01e4 1846     		mov	r0, r3
+ 650 01e6 0C37     		adds	r7, r7, #12
+ 651              		.cfi_def_cfa_offset 12
+ 652 01e8 BD46     		mov	sp, r7
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 15
+
+
+ 653              		.cfi_def_cfa_register 13
+ 654              		@ sp needed
+ 655 01ea 90BD     		pop	{r4, r7, pc}
+ 656              	.L37:
+ 657              		.align	2
+ 658              	.L36:
+ 659 01ec 00000000 		.word	uart2_tx_buffer
+ 660 01f0 00000000 		.word	FCB_Bit
+ 661 01f4 00000000 		.word	mbus_repeat_count
+ 662 01f8 00000000 		.word	uart2_rx_buffer
+ 663 01fc 00000000 		.word	mbus_tmr_start
+ 664 0200 00000000 		.word	mbus_tmr_stop
+ 665 0204 3F0D0300 		.word	199999
+ 666 0208 00000000 		.word	mbus_bit_min
+ 667 020c 400D0300 		.word	200000
+ 668 0210 00000000 		.word	mbus_bit_max
+ 669 0214 00000000 		.word	mbus_rx_count
+ 670 0218 00000000 		.word	mbus_bit_start
+ 671 021c 00000000 		.word	mbus_bit_stop
+ 672 0220 04000000 		.word	uart2_rx_buffer+4
+ 673              		.cfi_endproc
+ 674              	.LFE67:
+ 675              		.size	mbus_request_respond, .-mbus_request_respond
+ 676              		.section	.text.mbus_snd_nke,"ax",%progbits
+ 677              		.align	2
+ 678              		.global	mbus_snd_nke
+ 679              		.thumb
+ 680              		.thumb_func
+ 681              		.type	mbus_snd_nke, %function
+ 682              	mbus_snd_nke:
+ 683              	.LFB68:
+ 141:mbus.c        **** 
+ 142:mbus.c        **** uint8 mbus_snd_nke(uint8 short_addres)
+ 143:mbus.c        **** {
+ 684              		.loc 1 143 0
+ 685              		.cfi_startproc
+ 686              		@ args = 0, pretend = 0, frame = 8
+ 687              		@ frame_needed = 1, uses_anonymous_args = 0
+ 688 0000 80B5     		push	{r7, lr}
+ 689              		.cfi_def_cfa_offset 8
+ 690              		.cfi_offset 7, -8
+ 691              		.cfi_offset 14, -4
+ 692 0002 82B0     		sub	sp, sp, #8
+ 693              		.cfi_def_cfa_offset 16
+ 694 0004 00AF     		add	r7, sp, #0
+ 695              		.cfi_def_cfa_register 7
+ 696 0006 0346     		mov	r3, r0
+ 697 0008 FB71     		strb	r3, [r7, #7]
+ 144:mbus.c        ****     FCB_Bit = 0;
+ 698              		.loc 1 144 0
+ 699 000a 104B     		ldr	r3, .L40
+ 700 000c 0022     		movs	r2, #0
+ 701 000e 1A70     		strb	r2, [r3]
+ 145:mbus.c        ****     uart2_tx_buffer[0] = 0x10;
+ 702              		.loc 1 145 0
+ 703 0010 0F4B     		ldr	r3, .L40+4
+ 704 0012 1022     		movs	r2, #16
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 16
+
+
+ 705 0014 1A70     		strb	r2, [r3]
+ 146:mbus.c        ****     uart2_tx_buffer[1] = 0x40;
+ 706              		.loc 1 146 0
+ 707 0016 0E4B     		ldr	r3, .L40+4
+ 708 0018 4022     		movs	r2, #64
+ 709 001a 5A70     		strb	r2, [r3, #1]
+ 147:mbus.c        ****     uart2_tx_buffer[2] = short_addres;
+ 710              		.loc 1 147 0
+ 711 001c 0C4A     		ldr	r2, .L40+4
+ 712 001e FB79     		ldrb	r3, [r7, #7]
+ 713 0020 9370     		strb	r3, [r2, #2]
+ 148:mbus.c        ****     uart2_tx_buffer[3] = uart2_tx_buffer[1] + uart2_tx_buffer[2];
+ 714              		.loc 1 148 0
+ 715 0022 0B4B     		ldr	r3, .L40+4
+ 716 0024 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 717 0026 0A4B     		ldr	r3, .L40+4
+ 718 0028 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 719 002a 1344     		add	r3, r3, r2
+ 720 002c DAB2     		uxtb	r2, r3
+ 721 002e 084B     		ldr	r3, .L40+4
+ 722 0030 DA70     		strb	r2, [r3, #3]
+ 149:mbus.c        ****     uart2_tx_buffer[4] = 0x16;
+ 723              		.loc 1 149 0
+ 724 0032 074B     		ldr	r3, .L40+4
+ 725 0034 1622     		movs	r2, #22
+ 726 0036 1A71     		strb	r2, [r3, #4]
+ 150:mbus.c        ****     
+ 151:mbus.c        ****     return mbus_send_confirm((const uint8 *)&uart2_tx_buffer,5);
+ 727              		.loc 1 151 0
+ 728 0038 0521     		movs	r1, #5
+ 729 003a 0548     		ldr	r0, .L40+4
+ 730 003c FFF7FEFF 		bl	mbus_send_confirm
+ 731 0040 0346     		mov	r3, r0
+ 152:mbus.c        **** }
+ 732              		.loc 1 152 0
+ 733 0042 1846     		mov	r0, r3
+ 734 0044 0837     		adds	r7, r7, #8
+ 735              		.cfi_def_cfa_offset 8
+ 736 0046 BD46     		mov	sp, r7
+ 737              		.cfi_def_cfa_register 13
+ 738              		@ sp needed
+ 739 0048 80BD     		pop	{r7, pc}
+ 740              	.L41:
+ 741 004a 00BF     		.align	2
+ 742              	.L40:
+ 743 004c 00000000 		.word	FCB_Bit
+ 744 0050 00000000 		.word	uart2_tx_buffer
+ 745              		.cfi_endproc
+ 746              	.LFE68:
+ 747              		.size	mbus_snd_nke, .-mbus_snd_nke
+ 748              		.section	.text.mbus_snd_ud2,"ax",%progbits
+ 749              		.align	2
+ 750              		.global	mbus_snd_ud2
+ 751              		.thumb
+ 752              		.thumb_func
+ 753              		.type	mbus_snd_ud2, %function
+ 754              	mbus_snd_ud2:
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 17
+
+
+ 755              	.LFB69:
+ 153:mbus.c        **** uint8 mbus_snd_ud2(uint8 short_addres, const uint8 * user_data, unsigned int lenght)
+ 154:mbus.c        **** {
+ 756              		.loc 1 154 0
+ 757              		.cfi_startproc
+ 758              		@ args = 0, pretend = 0, frame = 16
+ 759              		@ frame_needed = 1, uses_anonymous_args = 0
+ 760              		@ link register save eliminated.
+ 761 0000 80B4     		push	{r7}
+ 762              		.cfi_def_cfa_offset 4
+ 763              		.cfi_offset 7, -4
+ 764 0002 85B0     		sub	sp, sp, #20
+ 765              		.cfi_def_cfa_offset 24
+ 766 0004 00AF     		add	r7, sp, #0
+ 767              		.cfi_def_cfa_register 7
+ 768 0006 0346     		mov	r3, r0
+ 769 0008 B960     		str	r1, [r7, #8]
+ 770 000a 7A60     		str	r2, [r7, #4]
+ 771 000c FB73     		strb	r3, [r7, #15]
+ 155:mbus.c        ****     
+ 156:mbus.c        **** }
+ 772              		.loc 1 156 0
+ 773 000e 00BF     		nop
+ 774 0010 1846     		mov	r0, r3
+ 775 0012 1437     		adds	r7, r7, #20
+ 776              		.cfi_def_cfa_offset 4
+ 777 0014 BD46     		mov	sp, r7
+ 778              		.cfi_def_cfa_register 13
+ 779              		@ sp needed
+ 780 0016 80BC     		pop	{r7}
+ 781              		.cfi_restore 7
+ 782              		.cfi_def_cfa_offset 0
+ 783 0018 7047     		bx	lr
+ 784              		.cfi_endproc
+ 785              	.LFE69:
+ 786              		.size	mbus_snd_ud2, .-mbus_snd_ud2
+ 787 001a 00BF     		.text
+ 788              	.Letext0:
+ 789              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 790              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 791              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 792              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 793              		.section	.debug_info,"",%progbits
+ 794              	.Ldebug_info0:
+ 795 0000 67040000 		.4byte	0x467
+ 796 0004 0400     		.2byte	0x4
+ 797 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 798 000a 04       		.byte	0x4
+ 799 000b 01       		.uleb128 0x1
+ 800 000c 0E000000 		.4byte	.LASF49
+ 801 0010 0C       		.byte	0xc
+ 802 0011 FE000000 		.4byte	.LASF50
+ 803 0015 02020000 		.4byte	.LASF51
+ 804 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 805 001d 00000000 		.4byte	0
+ 806 0021 00000000 		.4byte	.Ldebug_line0
+ 807 0025 02       		.uleb128 0x2
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 18
+
+
+ 808 0026 01       		.byte	0x1
+ 809 0027 06       		.byte	0x6
+ 810 0028 9A030000 		.4byte	.LASF0
+ 811 002c 02       		.uleb128 0x2
+ 812 002d 01       		.byte	0x1
+ 813 002e 08       		.byte	0x8
+ 814 002f 33010000 		.4byte	.LASF1
+ 815 0033 02       		.uleb128 0x2
+ 816 0034 02       		.byte	0x2
+ 817 0035 05       		.byte	0x5
+ 818 0036 D0010000 		.4byte	.LASF2
+ 819 003a 02       		.uleb128 0x2
+ 820 003b 02       		.byte	0x2
+ 821 003c 07       		.byte	0x7
+ 822 003d 66010000 		.4byte	.LASF3
+ 823 0041 03       		.uleb128 0x3
+ 824 0042 B7000000 		.4byte	.LASF9
+ 825 0046 02       		.byte	0x2
+ 826 0047 3F       		.byte	0x3f
+ 827 0048 4C000000 		.4byte	0x4c
+ 828 004c 02       		.uleb128 0x2
+ 829 004d 04       		.byte	0x4
+ 830 004e 05       		.byte	0x5
+ 831 004f C9000000 		.4byte	.LASF4
+ 832 0053 02       		.uleb128 0x2
+ 833 0054 04       		.byte	0x4
+ 834 0055 07       		.byte	0x7
+ 835 0056 B1010000 		.4byte	.LASF5
+ 836 005a 02       		.uleb128 0x2
+ 837 005b 08       		.byte	0x8
+ 838 005c 05       		.byte	0x5
+ 839 005d 0B030000 		.4byte	.LASF6
+ 840 0061 02       		.uleb128 0x2
+ 841 0062 08       		.byte	0x8
+ 842 0063 07       		.byte	0x7
+ 843 0064 12010000 		.4byte	.LASF7
+ 844 0068 04       		.uleb128 0x4
+ 845 0069 04       		.byte	0x4
+ 846 006a 05       		.byte	0x5
+ 847 006b 696E7400 		.ascii	"int\000"
+ 848 006f 02       		.uleb128 0x2
+ 849 0070 04       		.byte	0x4
+ 850 0071 07       		.byte	0x7
+ 851 0072 F5010000 		.4byte	.LASF8
+ 852 0076 03       		.uleb128 0x3
+ 853 0077 FA020000 		.4byte	.LASF10
+ 854 007b 03       		.byte	0x3
+ 855 007c 2C       		.byte	0x2c
+ 856 007d 41000000 		.4byte	0x41
+ 857 0081 05       		.uleb128 0x5
+ 858 0082 56030000 		.4byte	.LASF11
+ 859 0086 04       		.byte	0x4
+ 860 0087 9201     		.2byte	0x192
+ 861 0089 2C000000 		.4byte	0x2c
+ 862 008d 05       		.uleb128 0x5
+ 863 008e DA010000 		.4byte	.LASF12
+ 864 0092 04       		.byte	0x4
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 19
+
+
+ 865 0093 9301     		.2byte	0x193
+ 866 0095 3A000000 		.4byte	0x3a
+ 867 0099 05       		.uleb128 0x5
+ 868 009a EE010000 		.4byte	.LASF13
+ 869 009e 04       		.byte	0x4
+ 870 009f 9401     		.2byte	0x194
+ 871 00a1 53000000 		.4byte	0x53
+ 872 00a5 02       		.uleb128 0x2
+ 873 00a6 04       		.byte	0x4
+ 874 00a7 04       		.byte	0x4
+ 875 00a8 9C000000 		.4byte	.LASF14
+ 876 00ac 02       		.uleb128 0x2
+ 877 00ad 08       		.byte	0x8
+ 878 00ae 04       		.byte	0x4
+ 879 00af 79010000 		.4byte	.LASF15
+ 880 00b3 02       		.uleb128 0x2
+ 881 00b4 01       		.byte	0x1
+ 882 00b5 08       		.byte	0x8
+ 883 00b6 28030000 		.4byte	.LASF16
+ 884 00ba 02       		.uleb128 0x2
+ 885 00bb 08       		.byte	0x8
+ 886 00bc 04       		.byte	0x4
+ 887 00bd 7C030000 		.4byte	.LASF17
+ 888 00c1 02       		.uleb128 0x2
+ 889 00c2 04       		.byte	0x4
+ 890 00c3 07       		.byte	0x7
+ 891 00c4 02030000 		.4byte	.LASF18
+ 892 00c8 06       		.uleb128 0x6
+ 893 00c9 20030000 		.4byte	.LASF21
+ 894 00cd 01       		.byte	0x1
+ 895 00ce 19       		.byte	0x19
+ 896 00cf 81000000 		.4byte	0x81
+ 897 00d3 00000000 		.4byte	.LFB64
+ 898 00d7 3C000000 		.4byte	.LFE64-.LFB64
+ 899 00db 01       		.uleb128 0x1
+ 900 00dc 9C       		.byte	0x9c
+ 901 00dd 0B010000 		.4byte	0x10b
+ 902 00e1 07       		.uleb128 0x7
+ 903 00e2 4F030000 		.4byte	.LASF19
+ 904 00e6 01       		.byte	0x1
+ 905 00e7 19       		.byte	0x19
+ 906 00e8 0B010000 		.4byte	0x10b
+ 907 00ec 02       		.uleb128 0x2
+ 908 00ed 91       		.byte	0x91
+ 909 00ee 6C       		.sleb128 -20
+ 910 00ef 07       		.uleb128 0x7
+ 911 00f0 2D030000 		.4byte	.LASF20
+ 912 00f4 01       		.byte	0x1
+ 913 00f5 19       		.byte	0x19
+ 914 00f6 68000000 		.4byte	0x68
+ 915 00fa 02       		.uleb128 0x2
+ 916 00fb 91       		.byte	0x91
+ 917 00fc 68       		.sleb128 -24
+ 918 00fd 08       		.uleb128 0x8
+ 919 00fe 637300   		.ascii	"cs\000"
+ 920 0101 01       		.byte	0x1
+ 921 0102 1B       		.byte	0x1b
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 20
+
+
+ 922 0103 68000000 		.4byte	0x68
+ 923 0107 02       		.uleb128 0x2
+ 924 0108 91       		.byte	0x91
+ 925 0109 74       		.sleb128 -12
+ 926 010a 00       		.byte	0
+ 927 010b 09       		.uleb128 0x9
+ 928 010c 04       		.byte	0x4
+ 929 010d 81000000 		.4byte	0x81
+ 930 0111 0A       		.uleb128 0xa
+ 931 0112 C5030000 		.4byte	.LASF22
+ 932 0116 01       		.byte	0x1
+ 933 0117 2D       		.byte	0x2d
+ 934 0118 81000000 		.4byte	0x81
+ 935 011c 00000000 		.4byte	.LFB65
+ 936 0120 0C010000 		.4byte	.LFE65-.LFB65
+ 937 0124 01       		.uleb128 0x1
+ 938 0125 9C       		.byte	0x9c
+ 939 0126 FD010000 		.4byte	0x1fd
+ 940 012a 07       		.uleb128 0x7
+ 941 012b 4F030000 		.4byte	.LASF19
+ 942 012f 01       		.byte	0x1
+ 943 0130 2D       		.byte	0x2d
+ 944 0131 FD010000 		.4byte	0x1fd
+ 945 0135 02       		.uleb128 0x2
+ 946 0136 91       		.byte	0x91
+ 947 0137 6C       		.sleb128 -20
+ 948 0138 07       		.uleb128 0x7
+ 949 0139 19030000 		.4byte	.LASF23
+ 950 013d 01       		.byte	0x1
+ 951 013e 2D       		.byte	0x2d
+ 952 013f 6F000000 		.4byte	0x6f
+ 953 0143 02       		.uleb128 0x2
+ 954 0144 91       		.byte	0x91
+ 955 0145 68       		.sleb128 -24
+ 956 0146 0B       		.uleb128 0xb
+ 957 0147 10000000 		.4byte	.LBB2
+ 958 014b BC000000 		.4byte	.LBE2-.LBB2
+ 959 014f 0C       		.uleb128 0xc
+ 960 0150 D7020000 		.4byte	.LASF24
+ 961 0154 01       		.byte	0x1
+ 962 0155 32       		.byte	0x32
+ 963 0156 68000000 		.4byte	0x68
+ 964 015a 60010000 		.4byte	0x160
+ 965 015e 0D       		.uleb128 0xd
+ 966 015f 00       		.byte	0
+ 967 0160 0C       		.uleb128 0xc
+ 968 0161 A2000000 		.4byte	.LASF25
+ 969 0165 01       		.byte	0x1
+ 970 0166 33       		.byte	0x33
+ 971 0167 68000000 		.4byte	0x68
+ 972 016b 71010000 		.4byte	0x171
+ 973 016f 0D       		.uleb128 0xd
+ 974 0170 00       		.byte	0
+ 975 0171 0C       		.uleb128 0xc
+ 976 0172 C7020000 		.4byte	.LASF26
+ 977 0176 01       		.byte	0x1
+ 978 0177 35       		.byte	0x35
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 21
+
+
+ 979 0178 68000000 		.4byte	0x68
+ 980 017c 82010000 		.4byte	0x182
+ 981 0180 0D       		.uleb128 0xd
+ 982 0181 00       		.byte	0
+ 983 0182 0C       		.uleb128 0xc
+ 984 0183 9D010000 		.4byte	.LASF27
+ 985 0187 01       		.byte	0x1
+ 986 0188 38       		.byte	0x38
+ 987 0189 68000000 		.4byte	0x68
+ 988 018d 93010000 		.4byte	0x193
+ 989 0191 0D       		.uleb128 0xd
+ 990 0192 00       		.byte	0
+ 991 0193 0E       		.uleb128 0xe
+ 992 0194 3E000000 		.4byte	.LBB3
+ 993 0198 0C000000 		.4byte	.LBE3-.LBB3
+ 994 019c AE010000 		.4byte	0x1ae
+ 995 01a0 0F       		.uleb128 0xf
+ 996 01a1 E7000000 		.4byte	.LASF28
+ 997 01a5 01       		.byte	0x1
+ 998 01a6 37       		.byte	0x37
+ 999 01a7 68000000 		.4byte	0x68
+ 1000 01ab 0D       		.uleb128 0xd
+ 1001 01ac 00       		.byte	0
+ 1002 01ad 00       		.byte	0
+ 1003 01ae 0E       		.uleb128 0xe
+ 1004 01af 56000000 		.4byte	.LBB4
+ 1005 01b3 26000000 		.4byte	.LBE4-.LBB4
+ 1006 01b7 C9010000 		.4byte	0x1c9
+ 1007 01bb 0F       		.uleb128 0xf
+ 1008 01bc 4F010000 		.4byte	.LASF29
+ 1009 01c0 01       		.byte	0x1
+ 1010 01c1 3B       		.byte	0x3b
+ 1011 01c2 68000000 		.4byte	0x68
+ 1012 01c6 0D       		.uleb128 0xd
+ 1013 01c7 00       		.byte	0
+ 1014 01c8 00       		.byte	0
+ 1015 01c9 0B       		.uleb128 0xb
+ 1016 01ca 82000000 		.4byte	.LBB5
+ 1017 01ce 34000000 		.4byte	.LBE5-.LBB5
+ 1018 01d2 0C       		.uleb128 0xc
+ 1019 01d3 4F010000 		.4byte	.LASF29
+ 1020 01d7 01       		.byte	0x1
+ 1021 01d8 3B       		.byte	0x3b
+ 1022 01d9 68000000 		.4byte	0x68
+ 1023 01dd E3010000 		.4byte	0x1e3
+ 1024 01e1 0D       		.uleb128 0xd
+ 1025 01e2 00       		.byte	0
+ 1026 01e3 0B       		.uleb128 0xb
+ 1027 01e4 84000000 		.4byte	.LBB6
+ 1028 01e8 1E000000 		.4byte	.LBE6-.LBB6
+ 1029 01ec 0F       		.uleb128 0xf
+ 1030 01ed 88030000 		.4byte	.LASF30
+ 1031 01f1 01       		.byte	0x1
+ 1032 01f2 40       		.byte	0x40
+ 1033 01f3 68000000 		.4byte	0x68
+ 1034 01f7 0D       		.uleb128 0xd
+ 1035 01f8 00       		.byte	0
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 22
+
+
+ 1036 01f9 00       		.byte	0
+ 1037 01fa 00       		.byte	0
+ 1038 01fb 00       		.byte	0
+ 1039 01fc 00       		.byte	0
+ 1040 01fd 09       		.uleb128 0x9
+ 1041 01fe 04       		.byte	0x4
+ 1042 01ff 03020000 		.4byte	0x203
+ 1043 0203 10       		.uleb128 0x10
+ 1044 0204 81000000 		.4byte	0x81
+ 1045 0208 11       		.uleb128 0x11
+ 1046 0209 6B030000 		.4byte	.LASF52
+ 1047 020d 01       		.byte	0x1
+ 1048 020e 4E       		.byte	0x4e
+ 1049 020f 81000000 		.4byte	0x81
+ 1050 0213 00000000 		.4byte	.LFB66
+ 1051 0217 20000000 		.4byte	.LFE66-.LFB66
+ 1052 021b 01       		.uleb128 0x1
+ 1053 021c 9C       		.byte	0x9c
+ 1054 021d 0A       		.uleb128 0xa
+ 1055 021e D2000000 		.4byte	.LASF31
+ 1056 0222 01       		.byte	0x1
+ 1057 0223 53       		.byte	0x53
+ 1058 0224 81000000 		.4byte	0x81
+ 1059 0228 00000000 		.4byte	.LFB67
+ 1060 022c 24020000 		.4byte	.LFE67-.LFB67
+ 1061 0230 01       		.uleb128 0x1
+ 1062 0231 9C       		.byte	0x9c
+ 1063 0232 FB020000 		.4byte	0x2fb
+ 1064 0236 07       		.uleb128 0x7
+ 1065 0237 05010000 		.4byte	.LASF32
+ 1066 023b 01       		.byte	0x1
+ 1067 023c 53       		.byte	0x53
+ 1068 023d 81000000 		.4byte	0x81
+ 1069 0241 02       		.uleb128 0x2
+ 1070 0242 91       		.byte	0x91
+ 1071 0243 6F       		.sleb128 -17
+ 1072 0244 0B       		.uleb128 0xb
+ 1073 0245 40000000 		.4byte	.LBB7
+ 1074 0249 98010000 		.4byte	.LBE7-.LBB7
+ 1075 024d 0C       		.uleb128 0xc
+ 1076 024e D7020000 		.4byte	.LASF24
+ 1077 0252 01       		.byte	0x1
+ 1078 0253 32       		.byte	0x32
+ 1079 0254 68000000 		.4byte	0x68
+ 1080 0258 5E020000 		.4byte	0x25e
+ 1081 025c 0D       		.uleb128 0xd
+ 1082 025d 00       		.byte	0
+ 1083 025e 0C       		.uleb128 0xc
+ 1084 025f A2000000 		.4byte	.LASF25
+ 1085 0263 01       		.byte	0x1
+ 1086 0264 33       		.byte	0x33
+ 1087 0265 68000000 		.4byte	0x68
+ 1088 0269 6F020000 		.4byte	0x26f
+ 1089 026d 0D       		.uleb128 0xd
+ 1090 026e 00       		.byte	0
+ 1091 026f 0C       		.uleb128 0xc
+ 1092 0270 C7020000 		.4byte	.LASF26
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 23
+
+
+ 1093 0274 01       		.byte	0x1
+ 1094 0275 35       		.byte	0x35
+ 1095 0276 68000000 		.4byte	0x68
+ 1096 027a 80020000 		.4byte	0x280
+ 1097 027e 0D       		.uleb128 0xd
+ 1098 027f 00       		.byte	0
+ 1099 0280 0C       		.uleb128 0xc
+ 1100 0281 9D010000 		.4byte	.LASF27
+ 1101 0285 01       		.byte	0x1
+ 1102 0286 38       		.byte	0x38
+ 1103 0287 68000000 		.4byte	0x68
+ 1104 028b 91020000 		.4byte	0x291
+ 1105 028f 0D       		.uleb128 0xd
+ 1106 0290 00       		.byte	0
+ 1107 0291 0E       		.uleb128 0xe
+ 1108 0292 6E000000 		.4byte	.LBB8
+ 1109 0296 0C000000 		.4byte	.LBE8-.LBB8
+ 1110 029a AC020000 		.4byte	0x2ac
+ 1111 029e 0F       		.uleb128 0xf
+ 1112 029f E7000000 		.4byte	.LASF28
+ 1113 02a3 01       		.byte	0x1
+ 1114 02a4 37       		.byte	0x37
+ 1115 02a5 68000000 		.4byte	0x68
+ 1116 02a9 0D       		.uleb128 0xd
+ 1117 02aa 00       		.byte	0
+ 1118 02ab 00       		.byte	0
+ 1119 02ac 0E       		.uleb128 0xe
+ 1120 02ad 86000000 		.4byte	.LBB9
+ 1121 02b1 26000000 		.4byte	.LBE9-.LBB9
+ 1122 02b5 C7020000 		.4byte	0x2c7
+ 1123 02b9 0F       		.uleb128 0xf
+ 1124 02ba 4F010000 		.4byte	.LASF29
+ 1125 02be 01       		.byte	0x1
+ 1126 02bf 3B       		.byte	0x3b
+ 1127 02c0 68000000 		.4byte	0x68
+ 1128 02c4 0D       		.uleb128 0xd
+ 1129 02c5 00       		.byte	0
+ 1130 02c6 00       		.byte	0
+ 1131 02c7 0B       		.uleb128 0xb
+ 1132 02c8 BE000000 		.4byte	.LBB10
+ 1133 02cc B0000000 		.4byte	.LBE10-.LBB10
+ 1134 02d0 0C       		.uleb128 0xc
+ 1135 02d1 4F010000 		.4byte	.LASF29
+ 1136 02d5 01       		.byte	0x1
+ 1137 02d6 3B       		.byte	0x3b
+ 1138 02d7 68000000 		.4byte	0x68
+ 1139 02db E1020000 		.4byte	0x2e1
+ 1140 02df 0D       		.uleb128 0xd
+ 1141 02e0 00       		.byte	0
+ 1142 02e1 0B       		.uleb128 0xb
+ 1143 02e2 C0000000 		.4byte	.LBB11
+ 1144 02e6 9A000000 		.4byte	.LBE11-.LBB11
+ 1145 02ea 0F       		.uleb128 0xf
+ 1146 02eb 88030000 		.4byte	.LASF30
+ 1147 02ef 01       		.byte	0x1
+ 1148 02f0 40       		.byte	0x40
+ 1149 02f1 68000000 		.4byte	0x68
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 24
+
+
+ 1150 02f5 0D       		.uleb128 0xd
+ 1151 02f6 00       		.byte	0
+ 1152 02f7 00       		.byte	0
+ 1153 02f8 00       		.byte	0
+ 1154 02f9 00       		.byte	0
+ 1155 02fa 00       		.byte	0
+ 1156 02fb 0A       		.uleb128 0xa
+ 1157 02fc C3010000 		.4byte	.LASF33
+ 1158 0300 01       		.byte	0x1
+ 1159 0301 8E       		.byte	0x8e
+ 1160 0302 81000000 		.4byte	0x81
+ 1161 0306 00000000 		.4byte	.LFB68
+ 1162 030a 54000000 		.4byte	.LFE68-.LFB68
+ 1163 030e 01       		.uleb128 0x1
+ 1164 030f 9C       		.byte	0x9c
+ 1165 0310 23030000 		.4byte	0x323
+ 1166 0314 07       		.uleb128 0x7
+ 1167 0315 05010000 		.4byte	.LASF32
+ 1168 0319 01       		.byte	0x1
+ 1169 031a 8E       		.byte	0x8e
+ 1170 031b 81000000 		.4byte	0x81
+ 1171 031f 02       		.uleb128 0x2
+ 1172 0320 91       		.byte	0x91
+ 1173 0321 77       		.sleb128 -9
+ 1174 0322 00       		.byte	0
+ 1175 0323 06       		.uleb128 0x6
+ 1176 0324 33030000 		.4byte	.LASF34
+ 1177 0328 01       		.byte	0x1
+ 1178 0329 99       		.byte	0x99
+ 1179 032a 81000000 		.4byte	0x81
+ 1180 032e 00000000 		.4byte	.LFB69
+ 1181 0332 1A000000 		.4byte	.LFE69-.LFB69
+ 1182 0336 01       		.uleb128 0x1
+ 1183 0337 9C       		.byte	0x9c
+ 1184 0338 67030000 		.4byte	0x367
+ 1185 033c 07       		.uleb128 0x7
+ 1186 033d 05010000 		.4byte	.LASF32
+ 1187 0341 01       		.byte	0x1
+ 1188 0342 99       		.byte	0x99
+ 1189 0343 81000000 		.4byte	0x81
+ 1190 0347 02       		.uleb128 0x2
+ 1191 0348 91       		.byte	0x91
+ 1192 0349 77       		.sleb128 -9
+ 1193 034a 07       		.uleb128 0x7
+ 1194 034b 29010000 		.4byte	.LASF35
+ 1195 034f 01       		.byte	0x1
+ 1196 0350 99       		.byte	0x99
+ 1197 0351 FD010000 		.4byte	0x1fd
+ 1198 0355 02       		.uleb128 0x2
+ 1199 0356 91       		.byte	0x91
+ 1200 0357 70       		.sleb128 -16
+ 1201 0358 07       		.uleb128 0x7
+ 1202 0359 19030000 		.4byte	.LASF23
+ 1203 035d 01       		.byte	0x1
+ 1204 035e 99       		.byte	0x99
+ 1205 035f 6F000000 		.4byte	0x6f
+ 1206 0363 02       		.uleb128 0x2
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 25
+
+
+ 1207 0364 91       		.byte	0x91
+ 1208 0365 6C       		.sleb128 -20
+ 1209 0366 00       		.byte	0
+ 1210 0367 12       		.uleb128 0x12
+ 1211 0368 90010000 		.4byte	.LASF36
+ 1212 036c 05       		.byte	0x5
+ 1213 036d 9606     		.2byte	0x696
+ 1214 036f 73030000 		.4byte	0x373
+ 1215 0373 13       		.uleb128 0x13
+ 1216 0374 76000000 		.4byte	0x76
+ 1217 0378 14       		.uleb128 0x14
+ 1218 0379 81000000 		.4byte	0x81
+ 1219 037d 89030000 		.4byte	0x389
+ 1220 0381 15       		.uleb128 0x15
+ 1221 0382 C1000000 		.4byte	0xc1
+ 1222 0386 F301     		.2byte	0x1f3
+ 1223 0388 00       		.byte	0
+ 1224 0389 16       		.uleb128 0x16
+ 1225 038a 80010000 		.4byte	.LASF37
+ 1226 038e 01       		.byte	0x1
+ 1227 038f 15       		.byte	0x15
+ 1228 0390 78030000 		.4byte	0x378
+ 1229 0394 05       		.uleb128 0x5
+ 1230 0395 03       		.byte	0x3
+ 1231 0396 00000000 		.4byte	uart2_tx_buffer
+ 1232 039a 16       		.uleb128 0x16
+ 1233 039b B7020000 		.4byte	.LASF38
+ 1234 039f 01       		.byte	0x1
+ 1235 03a0 16       		.byte	0x16
+ 1236 03a1 78030000 		.4byte	0x378
+ 1237 03a5 05       		.uleb128 0x5
+ 1238 03a6 03       		.byte	0x3
+ 1239 03a7 00000000 		.4byte	uart2_rx_buffer
+ 1240 03ab 16       		.uleb128 0x16
+ 1241 03ac 00000000 		.4byte	.LASF39
+ 1242 03b0 01       		.byte	0x1
+ 1243 03b1 17       		.byte	0x17
+ 1244 03b2 8D000000 		.4byte	0x8d
+ 1245 03b6 05       		.uleb128 0x5
+ 1246 03b7 03       		.byte	0x3
+ 1247 03b8 00000000 		.4byte	mbus_rx_count
+ 1248 03bc 16       		.uleb128 0x16
+ 1249 03bd 5C030000 		.4byte	.LASF40
+ 1250 03c1 01       		.byte	0x1
+ 1251 03c2 25       		.byte	0x25
+ 1252 03c3 99000000 		.4byte	0x99
+ 1253 03c7 05       		.uleb128 0x5
+ 1254 03c8 03       		.byte	0x3
+ 1255 03c9 00000000 		.4byte	mbus_tmr_start
+ 1256 03cd 16       		.uleb128 0x16
+ 1257 03ce A9020000 		.4byte	.LASF41
+ 1258 03d2 01       		.byte	0x1
+ 1259 03d3 25       		.byte	0x25
+ 1260 03d4 99000000 		.4byte	0x99
+ 1261 03d8 05       		.uleb128 0x5
+ 1262 03d9 03       		.byte	0x3
+ 1263 03da 00000000 		.4byte	mbus_tmr_stop
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 26
+
+
+ 1264 03de 16       		.uleb128 0x16
+ 1265 03df A6030000 		.4byte	.LASF42
+ 1266 03e3 01       		.byte	0x1
+ 1267 03e4 29       		.byte	0x29
+ 1268 03e5 99000000 		.4byte	0x99
+ 1269 03e9 05       		.uleb128 0x5
+ 1270 03ea 03       		.byte	0x3
+ 1271 03eb 00000000 		.4byte	mbus_bit_min
+ 1272 03ef 16       		.uleb128 0x16
+ 1273 03f0 E1010000 		.4byte	.LASF43
+ 1274 03f4 01       		.byte	0x1
+ 1275 03f5 29       		.byte	0x29
+ 1276 03f6 99000000 		.4byte	0x99
+ 1277 03fa 05       		.uleb128 0x5
+ 1278 03fb 03       		.byte	0x3
+ 1279 03fc 00000000 		.4byte	mbus_bit_max
+ 1280 0400 16       		.uleb128 0x16
+ 1281 0401 B3030000 		.4byte	.LASF44
+ 1282 0405 01       		.byte	0x1
+ 1283 0406 2B       		.byte	0x2b
+ 1284 0407 8D000000 		.4byte	0x8d
+ 1285 040b 05       		.uleb128 0x5
+ 1286 040c 03       		.byte	0x3
+ 1287 040d 00000000 		.4byte	mbus_repeat_count
+ 1288 0411 14       		.uleb128 0x14
+ 1289 0412 03020000 		.4byte	0x203
+ 1290 0416 21040000 		.4byte	0x421
+ 1291 041a 17       		.uleb128 0x17
+ 1292 041b C1000000 		.4byte	0xc1
+ 1293 041f 04       		.byte	0x4
+ 1294 0420 00       		.byte	0
+ 1295 0421 16       		.uleb128 0x16
+ 1296 0422 EC020000 		.4byte	.LASF45
+ 1297 0426 01       		.byte	0x1
+ 1298 0427 11       		.byte	0x11
+ 1299 0428 32040000 		.4byte	0x432
+ 1300 042c 05       		.uleb128 0x5
+ 1301 042d 03       		.byte	0x3
+ 1302 042e 00000000 		.4byte	SND_NKE_FRAME
+ 1303 0432 10       		.uleb128 0x10
+ 1304 0433 11040000 		.4byte	0x411
+ 1305 0437 16       		.uleb128 0x16
+ 1306 0438 40030000 		.4byte	.LASF46
+ 1307 043c 01       		.byte	0x1
+ 1308 043d 27       		.byte	0x27
+ 1309 043e 99000000 		.4byte	0x99
+ 1310 0442 05       		.uleb128 0x5
+ 1311 0443 03       		.byte	0x3
+ 1312 0444 00000000 		.4byte	mbus_bit_start
+ 1313 0448 16       		.uleb128 0x16
+ 1314 0449 41010000 		.4byte	.LASF47
+ 1315 044d 01       		.byte	0x1
+ 1316 044e 27       		.byte	0x27
+ 1317 044f 99000000 		.4byte	0x99
+ 1318 0453 05       		.uleb128 0x5
+ 1319 0454 03       		.byte	0x3
+ 1320 0455 00000000 		.4byte	mbus_bit_stop
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 27
+
+
+ 1321 0459 16       		.uleb128 0x16
+ 1322 045a C1000000 		.4byte	.LASF48
+ 1323 045e 01       		.byte	0x1
+ 1324 045f 4D       		.byte	0x4d
+ 1325 0460 81000000 		.4byte	0x81
+ 1326 0464 05       		.uleb128 0x5
+ 1327 0465 03       		.byte	0x3
+ 1328 0466 00000000 		.4byte	FCB_Bit
+ 1329 046a 00       		.byte	0
+ 1330              		.section	.debug_abbrev,"",%progbits
+ 1331              	.Ldebug_abbrev0:
+ 1332 0000 01       		.uleb128 0x1
+ 1333 0001 11       		.uleb128 0x11
+ 1334 0002 01       		.byte	0x1
+ 1335 0003 25       		.uleb128 0x25
+ 1336 0004 0E       		.uleb128 0xe
+ 1337 0005 13       		.uleb128 0x13
+ 1338 0006 0B       		.uleb128 0xb
+ 1339 0007 03       		.uleb128 0x3
+ 1340 0008 0E       		.uleb128 0xe
+ 1341 0009 1B       		.uleb128 0x1b
+ 1342 000a 0E       		.uleb128 0xe
+ 1343 000b 55       		.uleb128 0x55
+ 1344 000c 17       		.uleb128 0x17
+ 1345 000d 11       		.uleb128 0x11
+ 1346 000e 01       		.uleb128 0x1
+ 1347 000f 10       		.uleb128 0x10
+ 1348 0010 17       		.uleb128 0x17
+ 1349 0011 00       		.byte	0
+ 1350 0012 00       		.byte	0
+ 1351 0013 02       		.uleb128 0x2
+ 1352 0014 24       		.uleb128 0x24
+ 1353 0015 00       		.byte	0
+ 1354 0016 0B       		.uleb128 0xb
+ 1355 0017 0B       		.uleb128 0xb
+ 1356 0018 3E       		.uleb128 0x3e
+ 1357 0019 0B       		.uleb128 0xb
+ 1358 001a 03       		.uleb128 0x3
+ 1359 001b 0E       		.uleb128 0xe
+ 1360 001c 00       		.byte	0
+ 1361 001d 00       		.byte	0
+ 1362 001e 03       		.uleb128 0x3
+ 1363 001f 16       		.uleb128 0x16
+ 1364 0020 00       		.byte	0
+ 1365 0021 03       		.uleb128 0x3
+ 1366 0022 0E       		.uleb128 0xe
+ 1367 0023 3A       		.uleb128 0x3a
+ 1368 0024 0B       		.uleb128 0xb
+ 1369 0025 3B       		.uleb128 0x3b
+ 1370 0026 0B       		.uleb128 0xb
+ 1371 0027 49       		.uleb128 0x49
+ 1372 0028 13       		.uleb128 0x13
+ 1373 0029 00       		.byte	0
+ 1374 002a 00       		.byte	0
+ 1375 002b 04       		.uleb128 0x4
+ 1376 002c 24       		.uleb128 0x24
+ 1377 002d 00       		.byte	0
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 28
+
+
+ 1378 002e 0B       		.uleb128 0xb
+ 1379 002f 0B       		.uleb128 0xb
+ 1380 0030 3E       		.uleb128 0x3e
+ 1381 0031 0B       		.uleb128 0xb
+ 1382 0032 03       		.uleb128 0x3
+ 1383 0033 08       		.uleb128 0x8
+ 1384 0034 00       		.byte	0
+ 1385 0035 00       		.byte	0
+ 1386 0036 05       		.uleb128 0x5
+ 1387 0037 16       		.uleb128 0x16
+ 1388 0038 00       		.byte	0
+ 1389 0039 03       		.uleb128 0x3
+ 1390 003a 0E       		.uleb128 0xe
+ 1391 003b 3A       		.uleb128 0x3a
+ 1392 003c 0B       		.uleb128 0xb
+ 1393 003d 3B       		.uleb128 0x3b
+ 1394 003e 05       		.uleb128 0x5
+ 1395 003f 49       		.uleb128 0x49
+ 1396 0040 13       		.uleb128 0x13
+ 1397 0041 00       		.byte	0
+ 1398 0042 00       		.byte	0
+ 1399 0043 06       		.uleb128 0x6
+ 1400 0044 2E       		.uleb128 0x2e
+ 1401 0045 01       		.byte	0x1
+ 1402 0046 3F       		.uleb128 0x3f
+ 1403 0047 19       		.uleb128 0x19
+ 1404 0048 03       		.uleb128 0x3
+ 1405 0049 0E       		.uleb128 0xe
+ 1406 004a 3A       		.uleb128 0x3a
+ 1407 004b 0B       		.uleb128 0xb
+ 1408 004c 3B       		.uleb128 0x3b
+ 1409 004d 0B       		.uleb128 0xb
+ 1410 004e 27       		.uleb128 0x27
+ 1411 004f 19       		.uleb128 0x19
+ 1412 0050 49       		.uleb128 0x49
+ 1413 0051 13       		.uleb128 0x13
+ 1414 0052 11       		.uleb128 0x11
+ 1415 0053 01       		.uleb128 0x1
+ 1416 0054 12       		.uleb128 0x12
+ 1417 0055 06       		.uleb128 0x6
+ 1418 0056 40       		.uleb128 0x40
+ 1419 0057 18       		.uleb128 0x18
+ 1420 0058 9742     		.uleb128 0x2117
+ 1421 005a 19       		.uleb128 0x19
+ 1422 005b 01       		.uleb128 0x1
+ 1423 005c 13       		.uleb128 0x13
+ 1424 005d 00       		.byte	0
+ 1425 005e 00       		.byte	0
+ 1426 005f 07       		.uleb128 0x7
+ 1427 0060 05       		.uleb128 0x5
+ 1428 0061 00       		.byte	0
+ 1429 0062 03       		.uleb128 0x3
+ 1430 0063 0E       		.uleb128 0xe
+ 1431 0064 3A       		.uleb128 0x3a
+ 1432 0065 0B       		.uleb128 0xb
+ 1433 0066 3B       		.uleb128 0x3b
+ 1434 0067 0B       		.uleb128 0xb
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 29
+
+
+ 1435 0068 49       		.uleb128 0x49
+ 1436 0069 13       		.uleb128 0x13
+ 1437 006a 02       		.uleb128 0x2
+ 1438 006b 18       		.uleb128 0x18
+ 1439 006c 00       		.byte	0
+ 1440 006d 00       		.byte	0
+ 1441 006e 08       		.uleb128 0x8
+ 1442 006f 34       		.uleb128 0x34
+ 1443 0070 00       		.byte	0
+ 1444 0071 03       		.uleb128 0x3
+ 1445 0072 08       		.uleb128 0x8
+ 1446 0073 3A       		.uleb128 0x3a
+ 1447 0074 0B       		.uleb128 0xb
+ 1448 0075 3B       		.uleb128 0x3b
+ 1449 0076 0B       		.uleb128 0xb
+ 1450 0077 49       		.uleb128 0x49
+ 1451 0078 13       		.uleb128 0x13
+ 1452 0079 02       		.uleb128 0x2
+ 1453 007a 18       		.uleb128 0x18
+ 1454 007b 00       		.byte	0
+ 1455 007c 00       		.byte	0
+ 1456 007d 09       		.uleb128 0x9
+ 1457 007e 0F       		.uleb128 0xf
+ 1458 007f 00       		.byte	0
+ 1459 0080 0B       		.uleb128 0xb
+ 1460 0081 0B       		.uleb128 0xb
+ 1461 0082 49       		.uleb128 0x49
+ 1462 0083 13       		.uleb128 0x13
+ 1463 0084 00       		.byte	0
+ 1464 0085 00       		.byte	0
+ 1465 0086 0A       		.uleb128 0xa
+ 1466 0087 2E       		.uleb128 0x2e
+ 1467 0088 01       		.byte	0x1
+ 1468 0089 3F       		.uleb128 0x3f
+ 1469 008a 19       		.uleb128 0x19
+ 1470 008b 03       		.uleb128 0x3
+ 1471 008c 0E       		.uleb128 0xe
+ 1472 008d 3A       		.uleb128 0x3a
+ 1473 008e 0B       		.uleb128 0xb
+ 1474 008f 3B       		.uleb128 0x3b
+ 1475 0090 0B       		.uleb128 0xb
+ 1476 0091 27       		.uleb128 0x27
+ 1477 0092 19       		.uleb128 0x19
+ 1478 0093 49       		.uleb128 0x49
+ 1479 0094 13       		.uleb128 0x13
+ 1480 0095 11       		.uleb128 0x11
+ 1481 0096 01       		.uleb128 0x1
+ 1482 0097 12       		.uleb128 0x12
+ 1483 0098 06       		.uleb128 0x6
+ 1484 0099 40       		.uleb128 0x40
+ 1485 009a 18       		.uleb128 0x18
+ 1486 009b 9642     		.uleb128 0x2116
+ 1487 009d 19       		.uleb128 0x19
+ 1488 009e 01       		.uleb128 0x1
+ 1489 009f 13       		.uleb128 0x13
+ 1490 00a0 00       		.byte	0
+ 1491 00a1 00       		.byte	0
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 30
+
+
+ 1492 00a2 0B       		.uleb128 0xb
+ 1493 00a3 0B       		.uleb128 0xb
+ 1494 00a4 01       		.byte	0x1
+ 1495 00a5 11       		.uleb128 0x11
+ 1496 00a6 01       		.uleb128 0x1
+ 1497 00a7 12       		.uleb128 0x12
+ 1498 00a8 06       		.uleb128 0x6
+ 1499 00a9 00       		.byte	0
+ 1500 00aa 00       		.byte	0
+ 1501 00ab 0C       		.uleb128 0xc
+ 1502 00ac 2E       		.uleb128 0x2e
+ 1503 00ad 01       		.byte	0x1
+ 1504 00ae 3F       		.uleb128 0x3f
+ 1505 00af 19       		.uleb128 0x19
+ 1506 00b0 03       		.uleb128 0x3
+ 1507 00b1 0E       		.uleb128 0xe
+ 1508 00b2 3A       		.uleb128 0x3a
+ 1509 00b3 0B       		.uleb128 0xb
+ 1510 00b4 3B       		.uleb128 0x3b
+ 1511 00b5 0B       		.uleb128 0xb
+ 1512 00b6 49       		.uleb128 0x49
+ 1513 00b7 13       		.uleb128 0x13
+ 1514 00b8 3C       		.uleb128 0x3c
+ 1515 00b9 19       		.uleb128 0x19
+ 1516 00ba 01       		.uleb128 0x1
+ 1517 00bb 13       		.uleb128 0x13
+ 1518 00bc 00       		.byte	0
+ 1519 00bd 00       		.byte	0
+ 1520 00be 0D       		.uleb128 0xd
+ 1521 00bf 18       		.uleb128 0x18
+ 1522 00c0 00       		.byte	0
+ 1523 00c1 00       		.byte	0
+ 1524 00c2 00       		.byte	0
+ 1525 00c3 0E       		.uleb128 0xe
+ 1526 00c4 0B       		.uleb128 0xb
+ 1527 00c5 01       		.byte	0x1
+ 1528 00c6 11       		.uleb128 0x11
+ 1529 00c7 01       		.uleb128 0x1
+ 1530 00c8 12       		.uleb128 0x12
+ 1531 00c9 06       		.uleb128 0x6
+ 1532 00ca 01       		.uleb128 0x1
+ 1533 00cb 13       		.uleb128 0x13
+ 1534 00cc 00       		.byte	0
+ 1535 00cd 00       		.byte	0
+ 1536 00ce 0F       		.uleb128 0xf
+ 1537 00cf 2E       		.uleb128 0x2e
+ 1538 00d0 01       		.byte	0x1
+ 1539 00d1 3F       		.uleb128 0x3f
+ 1540 00d2 19       		.uleb128 0x19
+ 1541 00d3 03       		.uleb128 0x3
+ 1542 00d4 0E       		.uleb128 0xe
+ 1543 00d5 3A       		.uleb128 0x3a
+ 1544 00d6 0B       		.uleb128 0xb
+ 1545 00d7 3B       		.uleb128 0x3b
+ 1546 00d8 0B       		.uleb128 0xb
+ 1547 00d9 49       		.uleb128 0x49
+ 1548 00da 13       		.uleb128 0x13
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 31
+
+
+ 1549 00db 3C       		.uleb128 0x3c
+ 1550 00dc 19       		.uleb128 0x19
+ 1551 00dd 00       		.byte	0
+ 1552 00de 00       		.byte	0
+ 1553 00df 10       		.uleb128 0x10
+ 1554 00e0 26       		.uleb128 0x26
+ 1555 00e1 00       		.byte	0
+ 1556 00e2 49       		.uleb128 0x49
+ 1557 00e3 13       		.uleb128 0x13
+ 1558 00e4 00       		.byte	0
+ 1559 00e5 00       		.byte	0
+ 1560 00e6 11       		.uleb128 0x11
+ 1561 00e7 2E       		.uleb128 0x2e
+ 1562 00e8 00       		.byte	0
+ 1563 00e9 3F       		.uleb128 0x3f
+ 1564 00ea 19       		.uleb128 0x19
+ 1565 00eb 03       		.uleb128 0x3
+ 1566 00ec 0E       		.uleb128 0xe
+ 1567 00ed 3A       		.uleb128 0x3a
+ 1568 00ee 0B       		.uleb128 0xb
+ 1569 00ef 3B       		.uleb128 0x3b
+ 1570 00f0 0B       		.uleb128 0xb
+ 1571 00f1 27       		.uleb128 0x27
+ 1572 00f2 19       		.uleb128 0x19
+ 1573 00f3 49       		.uleb128 0x49
+ 1574 00f4 13       		.uleb128 0x13
+ 1575 00f5 11       		.uleb128 0x11
+ 1576 00f6 01       		.uleb128 0x1
+ 1577 00f7 12       		.uleb128 0x12
+ 1578 00f8 06       		.uleb128 0x6
+ 1579 00f9 40       		.uleb128 0x40
+ 1580 00fa 18       		.uleb128 0x18
+ 1581 00fb 9742     		.uleb128 0x2117
+ 1582 00fd 19       		.uleb128 0x19
+ 1583 00fe 00       		.byte	0
+ 1584 00ff 00       		.byte	0
+ 1585 0100 12       		.uleb128 0x12
+ 1586 0101 34       		.uleb128 0x34
+ 1587 0102 00       		.byte	0
+ 1588 0103 03       		.uleb128 0x3
+ 1589 0104 0E       		.uleb128 0xe
+ 1590 0105 3A       		.uleb128 0x3a
+ 1591 0106 0B       		.uleb128 0xb
+ 1592 0107 3B       		.uleb128 0x3b
+ 1593 0108 05       		.uleb128 0x5
+ 1594 0109 49       		.uleb128 0x49
+ 1595 010a 13       		.uleb128 0x13
+ 1596 010b 3F       		.uleb128 0x3f
+ 1597 010c 19       		.uleb128 0x19
+ 1598 010d 3C       		.uleb128 0x3c
+ 1599 010e 19       		.uleb128 0x19
+ 1600 010f 00       		.byte	0
+ 1601 0110 00       		.byte	0
+ 1602 0111 13       		.uleb128 0x13
+ 1603 0112 35       		.uleb128 0x35
+ 1604 0113 00       		.byte	0
+ 1605 0114 49       		.uleb128 0x49
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 32
+
+
+ 1606 0115 13       		.uleb128 0x13
+ 1607 0116 00       		.byte	0
+ 1608 0117 00       		.byte	0
+ 1609 0118 14       		.uleb128 0x14
+ 1610 0119 01       		.uleb128 0x1
+ 1611 011a 01       		.byte	0x1
+ 1612 011b 49       		.uleb128 0x49
+ 1613 011c 13       		.uleb128 0x13
+ 1614 011d 01       		.uleb128 0x1
+ 1615 011e 13       		.uleb128 0x13
+ 1616 011f 00       		.byte	0
+ 1617 0120 00       		.byte	0
+ 1618 0121 15       		.uleb128 0x15
+ 1619 0122 21       		.uleb128 0x21
+ 1620 0123 00       		.byte	0
+ 1621 0124 49       		.uleb128 0x49
+ 1622 0125 13       		.uleb128 0x13
+ 1623 0126 2F       		.uleb128 0x2f
+ 1624 0127 05       		.uleb128 0x5
+ 1625 0128 00       		.byte	0
+ 1626 0129 00       		.byte	0
+ 1627 012a 16       		.uleb128 0x16
+ 1628 012b 34       		.uleb128 0x34
+ 1629 012c 00       		.byte	0
+ 1630 012d 03       		.uleb128 0x3
+ 1631 012e 0E       		.uleb128 0xe
+ 1632 012f 3A       		.uleb128 0x3a
+ 1633 0130 0B       		.uleb128 0xb
+ 1634 0131 3B       		.uleb128 0x3b
+ 1635 0132 0B       		.uleb128 0xb
+ 1636 0133 49       		.uleb128 0x49
+ 1637 0134 13       		.uleb128 0x13
+ 1638 0135 3F       		.uleb128 0x3f
+ 1639 0136 19       		.uleb128 0x19
+ 1640 0137 02       		.uleb128 0x2
+ 1641 0138 18       		.uleb128 0x18
+ 1642 0139 00       		.byte	0
+ 1643 013a 00       		.byte	0
+ 1644 013b 17       		.uleb128 0x17
+ 1645 013c 21       		.uleb128 0x21
+ 1646 013d 00       		.byte	0
+ 1647 013e 49       		.uleb128 0x49
+ 1648 013f 13       		.uleb128 0x13
+ 1649 0140 2F       		.uleb128 0x2f
+ 1650 0141 0B       		.uleb128 0xb
+ 1651 0142 00       		.byte	0
+ 1652 0143 00       		.byte	0
+ 1653 0144 00       		.byte	0
+ 1654              		.section	.debug_aranges,"",%progbits
+ 1655 0000 44000000 		.4byte	0x44
+ 1656 0004 0200     		.2byte	0x2
+ 1657 0006 00000000 		.4byte	.Ldebug_info0
+ 1658 000a 04       		.byte	0x4
+ 1659 000b 00       		.byte	0
+ 1660 000c 0000     		.2byte	0
+ 1661 000e 0000     		.2byte	0
+ 1662 0010 00000000 		.4byte	.LFB64
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 33
+
+
+ 1663 0014 3C000000 		.4byte	.LFE64-.LFB64
+ 1664 0018 00000000 		.4byte	.LFB65
+ 1665 001c 0C010000 		.4byte	.LFE65-.LFB65
+ 1666 0020 00000000 		.4byte	.LFB66
+ 1667 0024 20000000 		.4byte	.LFE66-.LFB66
+ 1668 0028 00000000 		.4byte	.LFB67
+ 1669 002c 24020000 		.4byte	.LFE67-.LFB67
+ 1670 0030 00000000 		.4byte	.LFB68
+ 1671 0034 54000000 		.4byte	.LFE68-.LFB68
+ 1672 0038 00000000 		.4byte	.LFB69
+ 1673 003c 1A000000 		.4byte	.LFE69-.LFB69
+ 1674 0040 00000000 		.4byte	0
+ 1675 0044 00000000 		.4byte	0
+ 1676              		.section	.debug_ranges,"",%progbits
+ 1677              	.Ldebug_ranges0:
+ 1678 0000 00000000 		.4byte	.LFB64
+ 1679 0004 3C000000 		.4byte	.LFE64
+ 1680 0008 00000000 		.4byte	.LFB65
+ 1681 000c 0C010000 		.4byte	.LFE65
+ 1682 0010 00000000 		.4byte	.LFB66
+ 1683 0014 20000000 		.4byte	.LFE66
+ 1684 0018 00000000 		.4byte	.LFB67
+ 1685 001c 24020000 		.4byte	.LFE67
+ 1686 0020 00000000 		.4byte	.LFB68
+ 1687 0024 54000000 		.4byte	.LFE68
+ 1688 0028 00000000 		.4byte	.LFB69
+ 1689 002c 1A000000 		.4byte	.LFE69
+ 1690 0030 00000000 		.4byte	0
+ 1691 0034 00000000 		.4byte	0
+ 1692              		.section	.debug_line,"",%progbits
+ 1693              	.Ldebug_line0:
+ 1694 0000 7C020000 		.section	.debug_str,"MS",%progbits,1
+ 1694      02004C01 
+ 1694      00000201 
+ 1694      FB0E0D00 
+ 1694      01010101 
+ 1695              	.LASF39:
+ 1696 0000 6D627573 		.ascii	"mbus_rx_count\000"
+ 1696      5F72785F 
+ 1696      636F756E 
+ 1696      7400
+ 1697              	.LASF49:
+ 1698 000e 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1698      43313120 
+ 1698      352E342E 
+ 1698      31203230 
+ 1698      31363036 
+ 1699 0041 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1699      20726576 
+ 1699      6973696F 
+ 1699      6E203233 
+ 1699      37373135 
+ 1700 0074 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1700      66756E63 
+ 1700      74696F6E 
+ 1700      2D736563 
+ 1700      74696F6E 
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 34
+
+
+ 1701              	.LASF14:
+ 1702 009c 666C6F61 		.ascii	"float\000"
+ 1702      7400
+ 1703              	.LASF25:
+ 1704 00a2 55415254 		.ascii	"UART_2_ClearRxBuffer\000"
+ 1704      5F325F43 
+ 1704      6C656172 
+ 1704      52784275 
+ 1704      66666572 
+ 1705              	.LASF9:
+ 1706 00b7 5F5F696E 		.ascii	"__int32_t\000"
+ 1706      7433325F 
+ 1706      7400
+ 1707              	.LASF48:
+ 1708 00c1 4643425F 		.ascii	"FCB_Bit\000"
+ 1708      42697400 
+ 1709              	.LASF4:
+ 1710 00c9 6C6F6E67 		.ascii	"long int\000"
+ 1710      20696E74 
+ 1710      00
+ 1711              	.LASF31:
+ 1712 00d2 6D627573 		.ascii	"mbus_request_respond\000"
+ 1712      5F726571 
+ 1712      75657374 
+ 1712      5F726573 
+ 1712      706F6E64 
+ 1713              	.LASF28:
+ 1714 00e7 55415254 		.ascii	"UART_2_GetTxBufferSize\000"
+ 1714      5F325F47 
+ 1714      65745478 
+ 1714      42756666 
+ 1714      65725369 
+ 1715              	.LASF50:
+ 1716 00fe 6D627573 		.ascii	"mbus.c\000"
+ 1716      2E6300
+ 1717              	.LASF32:
+ 1718 0105 73686F72 		.ascii	"short_addres\000"
+ 1718      745F6164 
+ 1718      64726573 
+ 1718      00
+ 1719              	.LASF7:
+ 1720 0112 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1720      206C6F6E 
+ 1720      6720756E 
+ 1720      7369676E 
+ 1720      65642069 
+ 1721              	.LASF35:
+ 1722 0129 75736572 		.ascii	"user_data\000"
+ 1722      5F646174 
+ 1722      6100
+ 1723              	.LASF1:
+ 1724 0133 756E7369 		.ascii	"unsigned char\000"
+ 1724      676E6564 
+ 1724      20636861 
+ 1724      7200
+ 1725              	.LASF47:
+ 1726 0141 6D627573 		.ascii	"mbus_bit_stop\000"
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 35
+
+
+ 1726      5F626974 
+ 1726      5F73746F 
+ 1726      7000
+ 1727              	.LASF29:
+ 1728 014f 55415254 		.ascii	"UART_2_GetRxBufferSize\000"
+ 1728      5F325F47 
+ 1728      65745278 
+ 1728      42756666 
+ 1728      65725369 
+ 1729              	.LASF3:
+ 1730 0166 73686F72 		.ascii	"short unsigned int\000"
+ 1730      7420756E 
+ 1730      7369676E 
+ 1730      65642069 
+ 1730      6E7400
+ 1731              	.LASF15:
+ 1732 0179 646F7562 		.ascii	"double\000"
+ 1732      6C6500
+ 1733              	.LASF37:
+ 1734 0180 75617274 		.ascii	"uart2_tx_buffer\000"
+ 1734      325F7478 
+ 1734      5F627566 
+ 1734      66657200 
+ 1735              	.LASF36:
+ 1736 0190 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1736      52784275 
+ 1736      66666572 
+ 1736      00
+ 1737              	.LASF27:
+ 1738 019d 54696D65 		.ascii	"Timer_1_ReadCounter\000"
+ 1738      725F315F 
+ 1738      52656164 
+ 1738      436F756E 
+ 1738      74657200 
+ 1739              	.LASF5:
+ 1740 01b1 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1740      20756E73 
+ 1740      69676E65 
+ 1740      6420696E 
+ 1740      7400
+ 1741              	.LASF33:
+ 1742 01c3 6D627573 		.ascii	"mbus_snd_nke\000"
+ 1742      5F736E64 
+ 1742      5F6E6B65 
+ 1742      00
+ 1743              	.LASF2:
+ 1744 01d0 73686F72 		.ascii	"short int\000"
+ 1744      7420696E 
+ 1744      7400
+ 1745              	.LASF12:
+ 1746 01da 75696E74 		.ascii	"uint16\000"
+ 1746      313600
+ 1747              	.LASF43:
+ 1748 01e1 6D627573 		.ascii	"mbus_bit_max\000"
+ 1748      5F626974 
+ 1748      5F6D6178 
+ 1748      00
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 36
+
+
+ 1749              	.LASF13:
+ 1750 01ee 75696E74 		.ascii	"uint32\000"
+ 1750      333200
+ 1751              	.LASF8:
+ 1752 01f5 756E7369 		.ascii	"unsigned int\000"
+ 1752      676E6564 
+ 1752      20696E74 
+ 1752      00
+ 1753              	.LASF51:
+ 1754 0202 433A5C55 		.ascii	"C:\\Users\\tomas.gecas\\Documents\\Dropbox\\Shared\\"
+ 1754      73657273 
+ 1754      5C746F6D 
+ 1754      61732E67 
+ 1754      65636173 
+ 1755 0230 50534F43 		.ascii	"PSOC\\workspace 20171113\\workspace 20171004\\works"
+ 1755      5C776F72 
+ 1755      6B737061 
+ 1755      63652032 
+ 1755      30313731 
+ 1756 0260 70616365 		.ascii	"pace\\minunit_arch stendo 0927\\minunit_arch\\minun"
+ 1756      5C6D696E 
+ 1756      756E6974 
+ 1756      5F617263 
+ 1756      68207374 
+ 1757 0290 69745F61 		.ascii	"it_arch\\stendo_MIS.cydsn\000"
+ 1757      7263685C 
+ 1757      7374656E 
+ 1757      646F5F4D 
+ 1757      49532E63 
+ 1758              	.LASF41:
+ 1759 02a9 6D627573 		.ascii	"mbus_tmr_stop\000"
+ 1759      5F746D72 
+ 1759      5F73746F 
+ 1759      7000
+ 1760              	.LASF38:
+ 1761 02b7 75617274 		.ascii	"uart2_rx_buffer\000"
+ 1761      325F7278 
+ 1761      5F627566 
+ 1761      66657200 
+ 1762              	.LASF26:
+ 1763 02c7 55415254 		.ascii	"UART_2_PutArray\000"
+ 1763      5F325F50 
+ 1763      75744172 
+ 1763      72617900 
+ 1764              	.LASF24:
+ 1765 02d7 55415254 		.ascii	"UART_2_ClearTxBuffer\000"
+ 1765      5F325F43 
+ 1765      6C656172 
+ 1765      54784275 
+ 1765      66666572 
+ 1766              	.LASF45:
+ 1767 02ec 534E445F 		.ascii	"SND_NKE_FRAME\000"
+ 1767      4E4B455F 
+ 1767      4652414D 
+ 1767      4500
+ 1768              	.LASF10:
+ 1769 02fa 696E7433 		.ascii	"int32_t\000"
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 37
+
+
+ 1769      325F7400 
+ 1770              	.LASF18:
+ 1771 0302 73697A65 		.ascii	"sizetype\000"
+ 1771      74797065 
+ 1771      00
+ 1772              	.LASF6:
+ 1773 030b 6C6F6E67 		.ascii	"long long int\000"
+ 1773      206C6F6E 
+ 1773      6720696E 
+ 1773      7400
+ 1774              	.LASF23:
+ 1775 0319 6C656E67 		.ascii	"lenght\000"
+ 1775      687400
+ 1776              	.LASF21:
+ 1777 0320 6D627573 		.ascii	"mbus_cs\000"
+ 1777      5F637300 
+ 1778              	.LASF16:
+ 1779 0328 63686172 		.ascii	"char\000"
+ 1779      00
+ 1780              	.LASF20:
+ 1781 032d 636F756E 		.ascii	"count\000"
+ 1781      7400
+ 1782              	.LASF34:
+ 1783 0333 6D627573 		.ascii	"mbus_snd_ud2\000"
+ 1783      5F736E64 
+ 1783      5F756432 
+ 1783      00
+ 1784              	.LASF46:
+ 1785 0340 6D627573 		.ascii	"mbus_bit_start\000"
+ 1785      5F626974 
+ 1785      5F737461 
+ 1785      727400
+ 1786              	.LASF19:
+ 1787 034f 62756666 		.ascii	"buffer\000"
+ 1787      657200
+ 1788              	.LASF11:
+ 1789 0356 75696E74 		.ascii	"uint8\000"
+ 1789      3800
+ 1790              	.LASF40:
+ 1791 035c 6D627573 		.ascii	"mbus_tmr_start\000"
+ 1791      5F746D72 
+ 1791      5F737461 
+ 1791      727400
+ 1792              	.LASF52:
+ 1793 036b 6D627573 		.ascii	"mbus_next_record\000"
+ 1793      5F6E6578 
+ 1793      745F7265 
+ 1793      636F7264 
+ 1793      00
+ 1794              	.LASF17:
+ 1795 037c 6C6F6E67 		.ascii	"long double\000"
+ 1795      20646F75 
+ 1795      626C6500 
+ 1796              	.LASF30:
+ 1797 0388 55415254 		.ascii	"UART_2_ReadRxData\000"
+ 1797      5F325F52 
+ 1797      65616452 
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccy293cz.s 			page 38
+
+
+ 1797      78446174 
+ 1797      6100
+ 1798              	.LASF0:
+ 1799 039a 7369676E 		.ascii	"signed char\000"
+ 1799      65642063 
+ 1799      68617200 
+ 1800              	.LASF42:
+ 1801 03a6 6D627573 		.ascii	"mbus_bit_min\000"
+ 1801      5F626974 
+ 1801      5F6D696E 
+ 1801      00
+ 1802              	.LASF44:
+ 1803 03b3 6D627573 		.ascii	"mbus_repeat_count\000"
+ 1803      5F726570 
+ 1803      6561745F 
+ 1803      636F756E 
+ 1803      7400
+ 1804              	.LASF22:
+ 1805 03c5 6D627573 		.ascii	"mbus_send_confirm\000"
+ 1805      5F73656E 
+ 1805      645F636F 
+ 1805      6E666972 
+ 1805      6D00
+ 1806              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

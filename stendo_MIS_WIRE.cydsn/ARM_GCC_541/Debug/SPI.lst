@@ -1,0 +1,927 @@
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"SPI.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.rodata
+  20              		.align	2
+  21              	.LC0:
+  22 0000 5350494D 		.ascii	"SPIM Rx data: \015\012\015\012\000"
+  22      20527820 
+  22      64617461 
+  22      3A200D0A 
+  22      0D0A00
+  23 0013 00       		.align	2
+  24              	.LC1:
+  25 0014 25782000 		.ascii	"%x \000"
+  26              		.align	2
+  27              	.LC2:
+  28 0018 0D0A0D0A 		.ascii	"\015\012\015\012\000"
+  28      00
+  29 001d 000000   		.align	2
+  30              	.LC3:
+  31 0020 53504953 		.ascii	"SPIS Rx data: \015\012\015\012\000"
+  31      20527820 
+  31      64617461 
+  31      3A200D0A 
+  31      0D0A00
+  32              		.section	.text.SPI_main,"ax",%progbits
+  33              		.align	2
+  34              		.global	SPI_main
+  35              		.thumb
+  36              		.thumb_func
+  37              		.type	SPI_main, %function
+  38              	SPI_main:
+  39              	.LFB64:
+  40              		.file 1 "SPI.c"
+   1:SPI.c         **** /*******************************************************************************
+   2:SPI.c         **** * File Name: main.c
+   3:SPI.c         **** *
+   4:SPI.c         **** * Version: 1.0
+   5:SPI.c         **** *
+   6:SPI.c         **** * Description:
+   7:SPI.c         **** *  This is source code for example project of the SPI
+   8:SPI.c         **** *  (Master, Slave) components.
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 2
+
+
+   9:SPI.c         **** *  Parameters used:
+  10:SPI.c         **** *   Mode                0(CPHA ==0, CPOL ==0)                
+  11:SPI.c         **** *   Data lines          MOSI+MISO
+  12:SPI.c         **** *   Shift direction     MSB First
+  13:SPI.c         **** *   DataBits:           8 
+  14:SPI.c         **** *   Bit Rate            1Mbit/s
+  15:SPI.c         **** *   Clock source        External 
+  16:SPI.c         **** *
+  17:SPI.c         **** *  SPI communication test using software buffer. 8 bytes are transmitted
+  18:SPI.c         **** *  between SPI Master and SPI Slave.
+  19:SPI.c         **** *  Received data are displayed on LCD. 
+  20:SPI.c         **** *
+  21:SPI.c         **** ********************************************************************************
+  22:SPI.c         **** * Copyright 2012, Cypress Semiconductor Corporation. All rights reserved.
+  23:SPI.c         **** * This software is owned by Cypress Semiconductor Corporation and is protected
+  24:SPI.c         **** * by and subject to worldwide patent and copyright laws and treaties.
+  25:SPI.c         **** * Therefore, you may use this software only as provided in the license agreement
+  26:SPI.c         **** * accompanying the software package from which you obtained this software.
+  27:SPI.c         **** * CYPRESS AND ITS SUPPLIERS MAKE NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  28:SPI.c         **** * WITH REGARD TO THIS SOFTWARE, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT,
+  29:SPI.c         **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  30:SPI.c         **** *******************************************************************************/
+  31:SPI.c         **** 
+  32:SPI.c         **** #include <device.h>
+  33:SPI.c         **** #include "SPI.h"
+  34:SPI.c         **** #include "stdio.h"
+  35:SPI.c         **** 
+  36:SPI.c         **** 
+  37:SPI.c         **** /*******************************************************************************
+  38:SPI.c         **** * Function Name: main
+  39:SPI.c         **** ********************************************************************************
+  40:SPI.c         **** *
+  41:SPI.c         **** * Summary:
+  42:SPI.c         **** *  Main function performs following functions:
+  43:SPI.c         **** *   1. Declares cycle counter variable.
+  44:SPI.c         **** *   2. Enables interrupts.
+  45:SPI.c         **** *   3. Starts all used components.
+  46:SPI.c         **** *   3. Writes values to be sent into the SPI Slave's and Master's input buffers.
+  47:SPI.c         **** *   4. Waits for the Slave's SPI Done state generation.
+  48:SPI.c         **** *   5. Displays SPI Master and Slave received data.
+  49:SPI.c         **** *
+  50:SPI.c         **** * Parameters:
+  51:SPI.c         **** *  None.
+  52:SPI.c         **** *
+  53:SPI.c         **** * Return:
+  54:SPI.c         **** *  None.
+  55:SPI.c         **** *
+  56:SPI.c         **** *******************************************************************************/
+  57:SPI.c         **** void SPI_main(uint32 TotCounter)
+  58:SPI.c         **** {
+  41              		.loc 1 58 0
+  42              		.cfi_startproc
+  43              		@ args = 0, pretend = 0, frame = 24
+  44              		@ frame_needed = 1, uses_anonymous_args = 0
+  45 0000 80B5     		push	{r7, lr}
+  46              		.cfi_def_cfa_offset 8
+  47              		.cfi_offset 7, -8
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 3
+
+
+  48              		.cfi_offset 14, -4
+  49 0002 86B0     		sub	sp, sp, #24
+  50              		.cfi_def_cfa_offset 32
+  51 0004 00AF     		add	r7, sp, #0
+  52              		.cfi_def_cfa_register 7
+  53 0006 7860     		str	r0, [r7, #4]
+  59:SPI.c         ****     uint8 i = 0u;
+  54              		.loc 1 59 0
+  55 0008 0023     		movs	r3, #0
+  56 000a FB75     		strb	r3, [r7, #23]
+  60:SPI.c         ****     
+  61:SPI.c         ****     /* Software buffers use internal interrupt functionality to interact with
+  62:SPI.c         ****     * hardware buffers. Thus global interrupt enable command should be called 
+  63:SPI.c         ****     */
+  64:SPI.c         ****     CyGlobalIntEnable;
+  57              		.loc 1 64 0
+  58              		.syntax unified
+  59              	@ 64 "SPI.c" 1
+  60 000c 62B6     		CPSIE   i
+  61              	@ 0 "" 2
+  65:SPI.c         ****     
+  66:SPI.c         ****     /* We need to start Character LCD, SPI Master and Slave components */
+  67:SPI.c         ****   //  LCD_Start();
+  68:SPI.c         ****    
+  69:SPI.c         ****    // SPIM_Start();
+  70:SPI.c         ****    // SPIS_Start();
+  71:SPI.c         ****     
+  72:SPI.c         ****     /* SPI communication is provided in Mode 0. So, the first byte
+  73:SPI.c         ****     * should be written directly to the SPI Slave 
+  74:SPI.c         ****     */
+  75:SPI.c         ****     SPIS_WriteTxDataZero(0x01u);
+  62              		.loc 1 75 0
+  63              		.thumb
+  64              		.syntax unified
+  65 000e 0120     		movs	r0, #1
+  66 0010 FFF7FEFF 		bl	SPIS_WriteTxDataZero
+  76:SPI.c         ****     
+  77:SPI.c         ****     /* Other 7 bytes are written to the SPIS Tx software buffer */
+  78:SPI.c         ****    SPIS_WriteTxData(TotCounter>>24);
+  67              		.loc 1 78 0
+  68 0014 7B68     		ldr	r3, [r7, #4]
+  69 0016 1B0E     		lsrs	r3, r3, #24
+  70 0018 DBB2     		uxtb	r3, r3
+  71 001a 1846     		mov	r0, r3
+  72 001c FFF7FEFF 		bl	SPIS_WriteTxData
+  79:SPI.c         ****    SPIS_WriteTxData(TotCounter>>16);
+  73              		.loc 1 79 0
+  74 0020 7B68     		ldr	r3, [r7, #4]
+  75 0022 1B0C     		lsrs	r3, r3, #16
+  76 0024 DBB2     		uxtb	r3, r3
+  77 0026 1846     		mov	r0, r3
+  78 0028 FFF7FEFF 		bl	SPIS_WriteTxData
+  80:SPI.c         ****    SPIS_WriteTxData(TotCounter>>8);
+  79              		.loc 1 80 0
+  80 002c 7B68     		ldr	r3, [r7, #4]
+  81 002e 1B0A     		lsrs	r3, r3, #8
+  82 0030 DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 4
+
+
+  83 0032 1846     		mov	r0, r3
+  84 0034 FFF7FEFF 		bl	SPIS_WriteTxData
+  81:SPI.c         ****    SPIS_WriteTxData(TotCounter);
+  85              		.loc 1 81 0
+  86 0038 7B68     		ldr	r3, [r7, #4]
+  87 003a DBB2     		uxtb	r3, r3
+  88 003c 1846     		mov	r0, r3
+  89 003e FFF7FEFF 		bl	SPIS_WriteTxData
+  82:SPI.c         ****    
+  83:SPI.c         ****    //SPIS_WriteTxData(0x66u);
+  84:SPI.c         ****    //SPIS_WriteTxData(0x77u);
+  85:SPI.c         ****    // SPIS_WriteTxData(0x88u);
+  86:SPI.c         **** 
+  87:SPI.c         ****     /* writing data to the SPIM software buffer */
+  88:SPI.c         ****     SPIM_WriteTxData(0x99u); /* initiates data transmission */
+  90              		.loc 1 88 0
+  91 0042 9920     		movs	r0, #153
+  92 0044 FFF7FEFF 		bl	SPIM_WriteTxData
+  89:SPI.c         ****     SPIM_WriteTxData(0xAAu);
+  93              		.loc 1 89 0
+  94 0048 AA20     		movs	r0, #170
+  95 004a FFF7FEFF 		bl	SPIM_WriteTxData
+  90:SPI.c         ****     SPIM_WriteTxData(0xBBu);
+  96              		.loc 1 90 0
+  97 004e BB20     		movs	r0, #187
+  98 0050 FFF7FEFF 		bl	SPIM_WriteTxData
+  91:SPI.c         ****     SPIM_WriteTxData(0xCCu);
+  99              		.loc 1 91 0
+ 100 0054 CC20     		movs	r0, #204
+ 101 0056 FFF7FEFF 		bl	SPIM_WriteTxData
+  92:SPI.c         ****     SPIM_WriteTxData(0xDDu);
+ 102              		.loc 1 92 0
+ 103 005a DD20     		movs	r0, #221
+ 104 005c FFF7FEFF 		bl	SPIM_WriteTxData
+  93:SPI.c         ****    // SPIM_WriteTxData(0xEEu);
+  94:SPI.c         ****   //  SPIM_WriteTxData(0xFFu);
+  95:SPI.c         ****    // SPIM_WriteTxData(0x12u);
+  96:SPI.c         **** 
+  97:SPI.c         ****     /* We need to know the moment when SPI communication is complete
+  98:SPI.c         ****     * to display received data. SPIS_SPI_DONE status should be polled. 
+  99:SPI.c         ****     */
+ 100:SPI.c         ****     while(!(SPIS_ReadTxStatus() & SPIS_STS_SPI_DONE));
+ 105              		.loc 1 100 0
+ 106 0060 00BF     		nop
+ 107              	.L2:
+ 108              		.loc 1 100 0 is_stmt 0 discriminator 1
+ 109 0062 FFF7FEFF 		bl	SPIS_ReadTxStatus
+ 110 0066 0346     		mov	r3, r0
+ 111 0068 03F00103 		and	r3, r3, #1
+ 112 006c 002B     		cmp	r3, #0
+ 113 006e F8D0     		beq	.L2
+ 101:SPI.c         ****     
+ 102:SPI.c         ****     /* SPI communication is complete so we can display received data */
+ 103:SPI.c         ****     
+ 104:SPI.c         ****   //  LCD_Position(0u,0u);
+ 105:SPI.c         ****     UART_1_PutString("SPIM Rx data: \r\n\r\n");
+ 114              		.loc 1 105 0 is_stmt 1
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 5
+
+
+ 115 0070 2248     		ldr	r0, .L7
+ 116 0072 FFF7FEFF 		bl	UART_1_PutString
+ 106:SPI.c         ****     
+ 107:SPI.c         ****     char M_Rx_char[3];
+ 108:SPI.c         ****     char S_Rx_char[3];
+ 109:SPI.c         ****     uint8 M_Rx_int;
+ 110:SPI.c         ****     uint8 S_Rx_int;
+ 111:SPI.c         ****     //LCD_Position(1u,0u);
+ 112:SPI.c         ****     for(i=0u; i<5u; i++)
+ 117              		.loc 1 112 0
+ 118 0076 0023     		movs	r3, #0
+ 119 0078 FB75     		strb	r3, [r7, #23]
+ 120 007a 12E0     		b	.L3
+ 121              	.L4:
+ 113:SPI.c         ****     {
+ 114:SPI.c         ****         /* Read from SPIM Rx software buffer */
+ 115:SPI.c         ****         M_Rx_int=SPIM_ReadRxData();
+ 122              		.loc 1 115 0 discriminator 3
+ 123 007c FFF7FEFF 		bl	SPIM_ReadRxData
+ 124 0080 0346     		mov	r3, r0
+ 125 0082 BB75     		strb	r3, [r7, #22]
+ 116:SPI.c         ****         sprintf(M_Rx_char,"%x ",M_Rx_int);
+ 126              		.loc 1 116 0 discriminator 3
+ 127 0084 BA7D     		ldrb	r2, [r7, #22]	@ zero_extendqisi2
+ 128 0086 07F11003 		add	r3, r7, #16
+ 129 008a 1D49     		ldr	r1, .L7+4
+ 130 008c 1846     		mov	r0, r3
+ 131 008e FFF7FEFF 		bl	sprintf
+ 117:SPI.c         ****         UART_1_PutString(M_Rx_char);
+ 132              		.loc 1 117 0 discriminator 3
+ 133 0092 07F11003 		add	r3, r7, #16
+ 134 0096 1846     		mov	r0, r3
+ 135 0098 FFF7FEFF 		bl	UART_1_PutString
+ 112:SPI.c         ****     {
+ 136              		.loc 1 112 0 discriminator 3
+ 137 009c FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
+ 138 009e 0133     		adds	r3, r3, #1
+ 139 00a0 FB75     		strb	r3, [r7, #23]
+ 140              	.L3:
+ 112:SPI.c         ****     {
+ 141              		.loc 1 112 0 is_stmt 0 discriminator 1
+ 142 00a2 FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
+ 143 00a4 042B     		cmp	r3, #4
+ 144 00a6 E9D9     		bls	.L4
+ 118:SPI.c         ****     }
+ 119:SPI.c         **** 
+ 120:SPI.c         ****     CyDelay(1000u);
+ 145              		.loc 1 120 0 is_stmt 1
+ 146 00a8 4FF47A70 		mov	r0, #1000
+ 147 00ac FFF7FEFF 		bl	CyDelay
+ 121:SPI.c         ****     UART_1_PutString("\r\n\r\n");
+ 148              		.loc 1 121 0
+ 149 00b0 1448     		ldr	r0, .L7+8
+ 150 00b2 FFF7FEFF 		bl	UART_1_PutString
+ 122:SPI.c         ****   //  LCD_ClearDisplay();
+ 123:SPI.c         ****     
+ 124:SPI.c         ****     //LCD_Position(0u,0u);
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 6
+
+
+ 125:SPI.c         ****     UART_1_PutString("SPIS Rx data: \r\n\r\n");
+ 151              		.loc 1 125 0
+ 152 00b6 1448     		ldr	r0, .L7+12
+ 153 00b8 FFF7FEFF 		bl	UART_1_PutString
+ 126:SPI.c         ****     
+ 127:SPI.c         ****    // LCD_Position(1u,0u);
+ 128:SPI.c         ****     
+ 129:SPI.c         ****     for(i=0u; i<5u; i++)
+ 154              		.loc 1 129 0
+ 155 00bc 0023     		movs	r3, #0
+ 156 00be FB75     		strb	r3, [r7, #23]
+ 157 00c0 12E0     		b	.L5
+ 158              	.L6:
+ 130:SPI.c         ****     {
+ 131:SPI.c         ****         /* Read from SPIS Rx software buffer */
+ 132:SPI.c         ****        S_Rx_int=SPIS_ReadRxData();
+ 159              		.loc 1 132 0 discriminator 3
+ 160 00c2 FFF7FEFF 		bl	SPIS_ReadRxData
+ 161 00c6 0346     		mov	r3, r0
+ 162 00c8 7B75     		strb	r3, [r7, #21]
+ 133:SPI.c         ****         sprintf(S_Rx_char,"%x ",S_Rx_int);
+ 163              		.loc 1 133 0 discriminator 3
+ 164 00ca 7A7D     		ldrb	r2, [r7, #21]	@ zero_extendqisi2
+ 165 00cc 07F10C03 		add	r3, r7, #12
+ 166 00d0 0B49     		ldr	r1, .L7+4
+ 167 00d2 1846     		mov	r0, r3
+ 168 00d4 FFF7FEFF 		bl	sprintf
+ 134:SPI.c         ****        UART_1_PutString(S_Rx_char);       
+ 169              		.loc 1 134 0 discriminator 3
+ 170 00d8 07F10C03 		add	r3, r7, #12
+ 171 00dc 1846     		mov	r0, r3
+ 172 00de FFF7FEFF 		bl	UART_1_PutString
+ 129:SPI.c         ****     {
+ 173              		.loc 1 129 0 discriminator 3
+ 174 00e2 FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
+ 175 00e4 0133     		adds	r3, r3, #1
+ 176 00e6 FB75     		strb	r3, [r7, #23]
+ 177              	.L5:
+ 129:SPI.c         ****     {
+ 178              		.loc 1 129 0 is_stmt 0 discriminator 1
+ 179 00e8 FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
+ 180 00ea 042B     		cmp	r3, #4
+ 181 00ec E9D9     		bls	.L6
+ 135:SPI.c         ****     }
+ 136:SPI.c         ****     UART_1_PutString("\r\n\r\n");
+ 182              		.loc 1 136 0 is_stmt 1
+ 183 00ee 0548     		ldr	r0, .L7+8
+ 184 00f0 FFF7FEFF 		bl	UART_1_PutString
+ 137:SPI.c         ****     //while(1u){;}
+ 138:SPI.c         ****       
+ 139:SPI.c         **** }    
+ 185              		.loc 1 139 0
+ 186 00f4 00BF     		nop
+ 187 00f6 1837     		adds	r7, r7, #24
+ 188              		.cfi_def_cfa_offset 8
+ 189 00f8 BD46     		mov	sp, r7
+ 190              		.cfi_def_cfa_register 13
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 7
+
+
+ 191              		@ sp needed
+ 192 00fa 80BD     		pop	{r7, pc}
+ 193              	.L8:
+ 194              		.align	2
+ 195              	.L7:
+ 196 00fc 00000000 		.word	.LC0
+ 197 0100 14000000 		.word	.LC1
+ 198 0104 18000000 		.word	.LC2
+ 199 0108 20000000 		.word	.LC3
+ 200              		.cfi_endproc
+ 201              	.LFE64:
+ 202              		.size	SPI_main, .-SPI_main
+ 203              		.text
+ 204              	.Letext0:
+ 205              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 206              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 207              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 208              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 209              		.section	.debug_info,"",%progbits
+ 210              	.Ldebug_info0:
+ 211 0000 42010000 		.4byte	0x142
+ 212 0004 0400     		.2byte	0x4
+ 213 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 214 000a 04       		.byte	0x4
+ 215 000b 01       		.uleb128 0x1
+ 216 000c 22010000 		.4byte	.LASF22
+ 217 0010 0C       		.byte	0xc
+ 218 0011 05010000 		.4byte	.LASF23
+ 219 0015 46000000 		.4byte	.LASF24
+ 220 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 221 001d 00000000 		.4byte	0
+ 222 0021 00000000 		.4byte	.Ldebug_line0
+ 223 0025 02       		.uleb128 0x2
+ 224 0026 01       		.byte	0x1
+ 225 0027 06       		.byte	0x6
+ 226 0028 34000000 		.4byte	.LASF0
+ 227 002c 02       		.uleb128 0x2
+ 228 002d 01       		.byte	0x1
+ 229 002e 08       		.byte	0x8
+ 230 002f B0010000 		.4byte	.LASF1
+ 231 0033 02       		.uleb128 0x2
+ 232 0034 02       		.byte	0x2
+ 233 0035 05       		.byte	0x5
+ 234 0036 36020000 		.4byte	.LASF2
+ 235 003a 02       		.uleb128 0x2
+ 236 003b 02       		.byte	0x2
+ 237 003c 07       		.byte	0x7
+ 238 003d F2010000 		.4byte	.LASF3
+ 239 0041 03       		.uleb128 0x3
+ 240 0042 1B020000 		.4byte	.LASF9
+ 241 0046 02       		.byte	0x2
+ 242 0047 3F       		.byte	0x3f
+ 243 0048 4C000000 		.4byte	0x4c
+ 244 004c 02       		.uleb128 0x2
+ 245 004d 04       		.byte	0x4
+ 246 004e 05       		.byte	0x5
+ 247 004f E9010000 		.4byte	.LASF4
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 8
+
+
+ 248 0053 02       		.uleb128 0x2
+ 249 0054 04       		.byte	0x4
+ 250 0055 07       		.byte	0x7
+ 251 0056 D0010000 		.4byte	.LASF5
+ 252 005a 02       		.uleb128 0x2
+ 253 005b 08       		.byte	0x8
+ 254 005c 05       		.byte	0x5
+ 255 005d 00000000 		.4byte	.LASF6
+ 256 0061 02       		.uleb128 0x2
+ 257 0062 08       		.byte	0x8
+ 258 0063 07       		.byte	0x7
+ 259 0064 0B010000 		.4byte	.LASF7
+ 260 0068 04       		.uleb128 0x4
+ 261 0069 04       		.byte	0x4
+ 262 006a 05       		.byte	0x5
+ 263 006b 696E7400 		.ascii	"int\000"
+ 264 006f 02       		.uleb128 0x2
+ 265 0070 04       		.byte	0x4
+ 266 0071 07       		.byte	0x7
+ 267 0072 15000000 		.4byte	.LASF8
+ 268 0076 03       		.uleb128 0x3
+ 269 0077 4A020000 		.4byte	.LASF10
+ 270 007b 03       		.byte	0x3
+ 271 007c 2C       		.byte	0x2c
+ 272 007d 41000000 		.4byte	0x41
+ 273 0081 05       		.uleb128 0x5
+ 274 0082 40000000 		.4byte	.LASF11
+ 275 0086 04       		.byte	0x4
+ 276 0087 9201     		.2byte	0x192
+ 277 0089 2C000000 		.4byte	0x2c
+ 278 008d 05       		.uleb128 0x5
+ 279 008e 0E000000 		.4byte	.LASF12
+ 280 0092 04       		.byte	0x4
+ 281 0093 9401     		.2byte	0x194
+ 282 0095 53000000 		.4byte	0x53
+ 283 0099 02       		.uleb128 0x2
+ 284 009a 04       		.byte	0x4
+ 285 009b 04       		.byte	0x4
+ 286 009c 25020000 		.4byte	.LASF13
+ 287 00a0 02       		.uleb128 0x2
+ 288 00a1 08       		.byte	0x8
+ 289 00a2 04       		.byte	0x4
+ 290 00a3 E2010000 		.4byte	.LASF14
+ 291 00a7 02       		.uleb128 0x2
+ 292 00a8 01       		.byte	0x1
+ 293 00a9 08       		.byte	0x8
+ 294 00aa BE010000 		.4byte	.LASF15
+ 295 00ae 02       		.uleb128 0x2
+ 296 00af 08       		.byte	0x8
+ 297 00b0 04       		.byte	0x4
+ 298 00b1 0F020000 		.4byte	.LASF16
+ 299 00b5 02       		.uleb128 0x2
+ 300 00b6 04       		.byte	0x4
+ 301 00b7 07       		.byte	0x7
+ 302 00b8 52020000 		.4byte	.LASF17
+ 303 00bc 06       		.uleb128 0x6
+ 304 00bd 2B000000 		.4byte	.LASF25
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 9
+
+
+ 305 00c1 01       		.byte	0x1
+ 306 00c2 39       		.byte	0x39
+ 307 00c3 00000000 		.4byte	.LFB64
+ 308 00c7 0C010000 		.4byte	.LFE64-.LFB64
+ 309 00cb 01       		.uleb128 0x1
+ 310 00cc 9C       		.byte	0x9c
+ 311 00cd 24010000 		.4byte	0x124
+ 312 00d1 07       		.uleb128 0x7
+ 313 00d2 2B020000 		.4byte	.LASF26
+ 314 00d6 01       		.byte	0x1
+ 315 00d7 39       		.byte	0x39
+ 316 00d8 8D000000 		.4byte	0x8d
+ 317 00dc 02       		.uleb128 0x2
+ 318 00dd 91       		.byte	0x91
+ 319 00de 64       		.sleb128 -28
+ 320 00df 08       		.uleb128 0x8
+ 321 00e0 6900     		.ascii	"i\000"
+ 322 00e2 01       		.byte	0x1
+ 323 00e3 3B       		.byte	0x3b
+ 324 00e4 81000000 		.4byte	0x81
+ 325 00e8 02       		.uleb128 0x2
+ 326 00e9 91       		.byte	0x91
+ 327 00ea 77       		.sleb128 -9
+ 328 00eb 09       		.uleb128 0x9
+ 329 00ec 05020000 		.4byte	.LASF18
+ 330 00f0 01       		.byte	0x1
+ 331 00f1 6B       		.byte	0x6b
+ 332 00f2 24010000 		.4byte	0x124
+ 333 00f6 02       		.uleb128 0x2
+ 334 00f7 91       		.byte	0x91
+ 335 00f8 70       		.sleb128 -16
+ 336 00f9 09       		.uleb128 0x9
+ 337 00fa 40020000 		.4byte	.LASF19
+ 338 00fe 01       		.byte	0x1
+ 339 00ff 6C       		.byte	0x6c
+ 340 0100 24010000 		.4byte	0x124
+ 341 0104 02       		.uleb128 0x2
+ 342 0105 91       		.byte	0x91
+ 343 0106 6C       		.sleb128 -20
+ 344 0107 09       		.uleb128 0x9
+ 345 0108 22000000 		.4byte	.LASF20
+ 346 010c 01       		.byte	0x1
+ 347 010d 6D       		.byte	0x6d
+ 348 010e 81000000 		.4byte	0x81
+ 349 0112 02       		.uleb128 0x2
+ 350 0113 91       		.byte	0x91
+ 351 0114 76       		.sleb128 -10
+ 352 0115 09       		.uleb128 0x9
+ 353 0116 5B020000 		.4byte	.LASF21
+ 354 011a 01       		.byte	0x1
+ 355 011b 6E       		.byte	0x6e
+ 356 011c 81000000 		.4byte	0x81
+ 357 0120 02       		.uleb128 0x2
+ 358 0121 91       		.byte	0x91
+ 359 0122 75       		.sleb128 -11
+ 360 0123 00       		.byte	0
+ 361 0124 0A       		.uleb128 0xa
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 10
+
+
+ 362 0125 A7000000 		.4byte	0xa7
+ 363 0129 34010000 		.4byte	0x134
+ 364 012d 0B       		.uleb128 0xb
+ 365 012e B5000000 		.4byte	0xb5
+ 366 0132 02       		.byte	0x2
+ 367 0133 00       		.byte	0
+ 368 0134 0C       		.uleb128 0xc
+ 369 0135 C3010000 		.4byte	.LASF27
+ 370 0139 05       		.byte	0x5
+ 371 013a 9606     		.2byte	0x696
+ 372 013c 40010000 		.4byte	0x140
+ 373 0140 0D       		.uleb128 0xd
+ 374 0141 76000000 		.4byte	0x76
+ 375 0145 00       		.byte	0
+ 376              		.section	.debug_abbrev,"",%progbits
+ 377              	.Ldebug_abbrev0:
+ 378 0000 01       		.uleb128 0x1
+ 379 0001 11       		.uleb128 0x11
+ 380 0002 01       		.byte	0x1
+ 381 0003 25       		.uleb128 0x25
+ 382 0004 0E       		.uleb128 0xe
+ 383 0005 13       		.uleb128 0x13
+ 384 0006 0B       		.uleb128 0xb
+ 385 0007 03       		.uleb128 0x3
+ 386 0008 0E       		.uleb128 0xe
+ 387 0009 1B       		.uleb128 0x1b
+ 388 000a 0E       		.uleb128 0xe
+ 389 000b 55       		.uleb128 0x55
+ 390 000c 17       		.uleb128 0x17
+ 391 000d 11       		.uleb128 0x11
+ 392 000e 01       		.uleb128 0x1
+ 393 000f 10       		.uleb128 0x10
+ 394 0010 17       		.uleb128 0x17
+ 395 0011 00       		.byte	0
+ 396 0012 00       		.byte	0
+ 397 0013 02       		.uleb128 0x2
+ 398 0014 24       		.uleb128 0x24
+ 399 0015 00       		.byte	0
+ 400 0016 0B       		.uleb128 0xb
+ 401 0017 0B       		.uleb128 0xb
+ 402 0018 3E       		.uleb128 0x3e
+ 403 0019 0B       		.uleb128 0xb
+ 404 001a 03       		.uleb128 0x3
+ 405 001b 0E       		.uleb128 0xe
+ 406 001c 00       		.byte	0
+ 407 001d 00       		.byte	0
+ 408 001e 03       		.uleb128 0x3
+ 409 001f 16       		.uleb128 0x16
+ 410 0020 00       		.byte	0
+ 411 0021 03       		.uleb128 0x3
+ 412 0022 0E       		.uleb128 0xe
+ 413 0023 3A       		.uleb128 0x3a
+ 414 0024 0B       		.uleb128 0xb
+ 415 0025 3B       		.uleb128 0x3b
+ 416 0026 0B       		.uleb128 0xb
+ 417 0027 49       		.uleb128 0x49
+ 418 0028 13       		.uleb128 0x13
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 11
+
+
+ 419 0029 00       		.byte	0
+ 420 002a 00       		.byte	0
+ 421 002b 04       		.uleb128 0x4
+ 422 002c 24       		.uleb128 0x24
+ 423 002d 00       		.byte	0
+ 424 002e 0B       		.uleb128 0xb
+ 425 002f 0B       		.uleb128 0xb
+ 426 0030 3E       		.uleb128 0x3e
+ 427 0031 0B       		.uleb128 0xb
+ 428 0032 03       		.uleb128 0x3
+ 429 0033 08       		.uleb128 0x8
+ 430 0034 00       		.byte	0
+ 431 0035 00       		.byte	0
+ 432 0036 05       		.uleb128 0x5
+ 433 0037 16       		.uleb128 0x16
+ 434 0038 00       		.byte	0
+ 435 0039 03       		.uleb128 0x3
+ 436 003a 0E       		.uleb128 0xe
+ 437 003b 3A       		.uleb128 0x3a
+ 438 003c 0B       		.uleb128 0xb
+ 439 003d 3B       		.uleb128 0x3b
+ 440 003e 05       		.uleb128 0x5
+ 441 003f 49       		.uleb128 0x49
+ 442 0040 13       		.uleb128 0x13
+ 443 0041 00       		.byte	0
+ 444 0042 00       		.byte	0
+ 445 0043 06       		.uleb128 0x6
+ 446 0044 2E       		.uleb128 0x2e
+ 447 0045 01       		.byte	0x1
+ 448 0046 3F       		.uleb128 0x3f
+ 449 0047 19       		.uleb128 0x19
+ 450 0048 03       		.uleb128 0x3
+ 451 0049 0E       		.uleb128 0xe
+ 452 004a 3A       		.uleb128 0x3a
+ 453 004b 0B       		.uleb128 0xb
+ 454 004c 3B       		.uleb128 0x3b
+ 455 004d 0B       		.uleb128 0xb
+ 456 004e 27       		.uleb128 0x27
+ 457 004f 19       		.uleb128 0x19
+ 458 0050 11       		.uleb128 0x11
+ 459 0051 01       		.uleb128 0x1
+ 460 0052 12       		.uleb128 0x12
+ 461 0053 06       		.uleb128 0x6
+ 462 0054 40       		.uleb128 0x40
+ 463 0055 18       		.uleb128 0x18
+ 464 0056 9642     		.uleb128 0x2116
+ 465 0058 19       		.uleb128 0x19
+ 466 0059 01       		.uleb128 0x1
+ 467 005a 13       		.uleb128 0x13
+ 468 005b 00       		.byte	0
+ 469 005c 00       		.byte	0
+ 470 005d 07       		.uleb128 0x7
+ 471 005e 05       		.uleb128 0x5
+ 472 005f 00       		.byte	0
+ 473 0060 03       		.uleb128 0x3
+ 474 0061 0E       		.uleb128 0xe
+ 475 0062 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 12
+
+
+ 476 0063 0B       		.uleb128 0xb
+ 477 0064 3B       		.uleb128 0x3b
+ 478 0065 0B       		.uleb128 0xb
+ 479 0066 49       		.uleb128 0x49
+ 480 0067 13       		.uleb128 0x13
+ 481 0068 02       		.uleb128 0x2
+ 482 0069 18       		.uleb128 0x18
+ 483 006a 00       		.byte	0
+ 484 006b 00       		.byte	0
+ 485 006c 08       		.uleb128 0x8
+ 486 006d 34       		.uleb128 0x34
+ 487 006e 00       		.byte	0
+ 488 006f 03       		.uleb128 0x3
+ 489 0070 08       		.uleb128 0x8
+ 490 0071 3A       		.uleb128 0x3a
+ 491 0072 0B       		.uleb128 0xb
+ 492 0073 3B       		.uleb128 0x3b
+ 493 0074 0B       		.uleb128 0xb
+ 494 0075 49       		.uleb128 0x49
+ 495 0076 13       		.uleb128 0x13
+ 496 0077 02       		.uleb128 0x2
+ 497 0078 18       		.uleb128 0x18
+ 498 0079 00       		.byte	0
+ 499 007a 00       		.byte	0
+ 500 007b 09       		.uleb128 0x9
+ 501 007c 34       		.uleb128 0x34
+ 502 007d 00       		.byte	0
+ 503 007e 03       		.uleb128 0x3
+ 504 007f 0E       		.uleb128 0xe
+ 505 0080 3A       		.uleb128 0x3a
+ 506 0081 0B       		.uleb128 0xb
+ 507 0082 3B       		.uleb128 0x3b
+ 508 0083 0B       		.uleb128 0xb
+ 509 0084 49       		.uleb128 0x49
+ 510 0085 13       		.uleb128 0x13
+ 511 0086 02       		.uleb128 0x2
+ 512 0087 18       		.uleb128 0x18
+ 513 0088 00       		.byte	0
+ 514 0089 00       		.byte	0
+ 515 008a 0A       		.uleb128 0xa
+ 516 008b 01       		.uleb128 0x1
+ 517 008c 01       		.byte	0x1
+ 518 008d 49       		.uleb128 0x49
+ 519 008e 13       		.uleb128 0x13
+ 520 008f 01       		.uleb128 0x1
+ 521 0090 13       		.uleb128 0x13
+ 522 0091 00       		.byte	0
+ 523 0092 00       		.byte	0
+ 524 0093 0B       		.uleb128 0xb
+ 525 0094 21       		.uleb128 0x21
+ 526 0095 00       		.byte	0
+ 527 0096 49       		.uleb128 0x49
+ 528 0097 13       		.uleb128 0x13
+ 529 0098 2F       		.uleb128 0x2f
+ 530 0099 0B       		.uleb128 0xb
+ 531 009a 00       		.byte	0
+ 532 009b 00       		.byte	0
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 13
+
+
+ 533 009c 0C       		.uleb128 0xc
+ 534 009d 34       		.uleb128 0x34
+ 535 009e 00       		.byte	0
+ 536 009f 03       		.uleb128 0x3
+ 537 00a0 0E       		.uleb128 0xe
+ 538 00a1 3A       		.uleb128 0x3a
+ 539 00a2 0B       		.uleb128 0xb
+ 540 00a3 3B       		.uleb128 0x3b
+ 541 00a4 05       		.uleb128 0x5
+ 542 00a5 49       		.uleb128 0x49
+ 543 00a6 13       		.uleb128 0x13
+ 544 00a7 3F       		.uleb128 0x3f
+ 545 00a8 19       		.uleb128 0x19
+ 546 00a9 3C       		.uleb128 0x3c
+ 547 00aa 19       		.uleb128 0x19
+ 548 00ab 00       		.byte	0
+ 549 00ac 00       		.byte	0
+ 550 00ad 0D       		.uleb128 0xd
+ 551 00ae 35       		.uleb128 0x35
+ 552 00af 00       		.byte	0
+ 553 00b0 49       		.uleb128 0x49
+ 554 00b1 13       		.uleb128 0x13
+ 555 00b2 00       		.byte	0
+ 556 00b3 00       		.byte	0
+ 557 00b4 00       		.byte	0
+ 558              		.section	.debug_aranges,"",%progbits
+ 559 0000 1C000000 		.4byte	0x1c
+ 560 0004 0200     		.2byte	0x2
+ 561 0006 00000000 		.4byte	.Ldebug_info0
+ 562 000a 04       		.byte	0x4
+ 563 000b 00       		.byte	0
+ 564 000c 0000     		.2byte	0
+ 565 000e 0000     		.2byte	0
+ 566 0010 00000000 		.4byte	.LFB64
+ 567 0014 0C010000 		.4byte	.LFE64-.LFB64
+ 568 0018 00000000 		.4byte	0
+ 569 001c 00000000 		.4byte	0
+ 570              		.section	.debug_ranges,"",%progbits
+ 571              	.Ldebug_ranges0:
+ 572 0000 00000000 		.4byte	.LFB64
+ 573 0004 0C010000 		.4byte	.LFE64
+ 574 0008 00000000 		.4byte	0
+ 575 000c 00000000 		.4byte	0
+ 576              		.section	.debug_line,"",%progbits
+ 577              	.Ldebug_line0:
+ 578 0000 B4010000 		.section	.debug_str,"MS",%progbits,1
+ 578      02004B01 
+ 578      00000201 
+ 578      FB0E0D00 
+ 578      01010101 
+ 579              	.LASF6:
+ 580 0000 6C6F6E67 		.ascii	"long long int\000"
+ 580      206C6F6E 
+ 580      6720696E 
+ 580      7400
+ 581              	.LASF12:
+ 582 000e 75696E74 		.ascii	"uint32\000"
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 14
+
+
+ 582      333200
+ 583              	.LASF8:
+ 584 0015 756E7369 		.ascii	"unsigned int\000"
+ 584      676E6564 
+ 584      20696E74 
+ 584      00
+ 585              	.LASF20:
+ 586 0022 4D5F5278 		.ascii	"M_Rx_int\000"
+ 586      5F696E74 
+ 586      00
+ 587              	.LASF25:
+ 588 002b 5350495F 		.ascii	"SPI_main\000"
+ 588      6D61696E 
+ 588      00
+ 589              	.LASF0:
+ 590 0034 7369676E 		.ascii	"signed char\000"
+ 590      65642063 
+ 590      68617200 
+ 591              	.LASF11:
+ 592 0040 75696E74 		.ascii	"uint8\000"
+ 592      3800
+ 593              	.LASF24:
+ 594 0046 433A5C55 		.ascii	"C:\\Users\\tomas.gecas\\Documents\\Dropbox\\Shared\\"
+ 594      73657273 
+ 594      5C746F6D 
+ 594      61732E67 
+ 594      65636173 
+ 595 0074 50534F43 		.ascii	"PSOC\\workspace 20171130\\workspace 20171113\\works"
+ 595      5C776F72 
+ 595      6B737061 
+ 595      63652032 
+ 595      30313731 
+ 596 00a4 70616365 		.ascii	"pace 20171004\\workspace\\minunit_arch stendo 0927\\"
+ 596      20323031 
+ 596      37313030 
+ 596      345C776F 
+ 596      726B7370 
+ 597 00d5 6D696E75 		.ascii	"minunit_arch\\minunit_arch\\stendo_MIS_WIRE.cydsn\000"
+ 597      6E69745F 
+ 597      61726368 
+ 597      5C6D696E 
+ 597      756E6974 
+ 598              	.LASF23:
+ 599 0105 5350492E 		.ascii	"SPI.c\000"
+ 599      6300
+ 600              	.LASF7:
+ 601 010b 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 601      206C6F6E 
+ 601      6720756E 
+ 601      7369676E 
+ 601      65642069 
+ 602              	.LASF22:
+ 603 0122 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 603      43313120 
+ 603      352E342E 
+ 603      31203230 
+ 603      31363036 
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 15
+
+
+ 604 0155 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 604      20726576 
+ 604      6973696F 
+ 604      6E203233 
+ 604      37373135 
+ 605 0188 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 605      66756E63 
+ 605      74696F6E 
+ 605      2D736563 
+ 605      74696F6E 
+ 606              	.LASF1:
+ 607 01b0 756E7369 		.ascii	"unsigned char\000"
+ 607      676E6564 
+ 607      20636861 
+ 607      7200
+ 608              	.LASF15:
+ 609 01be 63686172 		.ascii	"char\000"
+ 609      00
+ 610              	.LASF27:
+ 611 01c3 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 611      52784275 
+ 611      66666572 
+ 611      00
+ 612              	.LASF5:
+ 613 01d0 6C6F6E67 		.ascii	"long unsigned int\000"
+ 613      20756E73 
+ 613      69676E65 
+ 613      6420696E 
+ 613      7400
+ 614              	.LASF14:
+ 615 01e2 646F7562 		.ascii	"double\000"
+ 615      6C6500
+ 616              	.LASF4:
+ 617 01e9 6C6F6E67 		.ascii	"long int\000"
+ 617      20696E74 
+ 617      00
+ 618              	.LASF3:
+ 619 01f2 73686F72 		.ascii	"short unsigned int\000"
+ 619      7420756E 
+ 619      7369676E 
+ 619      65642069 
+ 619      6E7400
+ 620              	.LASF18:
+ 621 0205 4D5F5278 		.ascii	"M_Rx_char\000"
+ 621      5F636861 
+ 621      7200
+ 622              	.LASF16:
+ 623 020f 6C6F6E67 		.ascii	"long double\000"
+ 623      20646F75 
+ 623      626C6500 
+ 624              	.LASF9:
+ 625 021b 5F5F696E 		.ascii	"__int32_t\000"
+ 625      7433325F 
+ 625      7400
+ 626              	.LASF13:
+ 627 0225 666C6F61 		.ascii	"float\000"
+ 627      7400
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccAktOyX.s 			page 16
+
+
+ 628              	.LASF26:
+ 629 022b 546F7443 		.ascii	"TotCounter\000"
+ 629      6F756E74 
+ 629      657200
+ 630              	.LASF2:
+ 631 0236 73686F72 		.ascii	"short int\000"
+ 631      7420696E 
+ 631      7400
+ 632              	.LASF19:
+ 633 0240 535F5278 		.ascii	"S_Rx_char\000"
+ 633      5F636861 
+ 633      7200
+ 634              	.LASF10:
+ 635 024a 696E7433 		.ascii	"int32_t\000"
+ 635      325F7400 
+ 636              	.LASF17:
+ 637 0252 73697A65 		.ascii	"sizetype\000"
+ 637      74797065 
+ 637      00
+ 638              	.LASF21:
+ 639 025b 535F5278 		.ascii	"S_Rx_int\000"
+ 639      5F696E74 
+ 639      00
+ 640              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

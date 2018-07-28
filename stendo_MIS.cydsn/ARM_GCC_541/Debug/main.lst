@@ -1,0 +1,2710 @@
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	txt,500,4
+  20              		.comm	buffer,4,4
+  21              		.comm	checksum,1,1
+  22              		.global	old_MIS1_pulse
+  23              		.bss
+  24              		.align	2
+  25              		.type	old_MIS1_pulse, %object
+  26              		.size	old_MIS1_pulse, 4
+  27              	old_MIS1_pulse:
+  28 0000 00000000 		.space	4
+  29              		.global	MIS1_lastpulse_time
+  30              		.align	2
+  31              		.type	MIS1_lastpulse_time, %object
+  32              		.size	MIS1_lastpulse_time, 4
+  33              	MIS1_lastpulse_time:
+  34 0004 00000000 		.space	4
+  35              		.global	old_MIS2_pulse
+  36              		.align	2
+  37              		.type	old_MIS2_pulse, %object
+  38              		.size	old_MIS2_pulse, 4
+  39              	old_MIS2_pulse:
+  40 0008 00000000 		.space	4
+  41              		.global	MIS2_lastpulse_time
+  42              		.align	2
+  43              		.type	MIS2_lastpulse_time, %object
+  44              		.size	MIS2_lastpulse_time, 4
+  45              	MIS2_lastpulse_time:
+  46 000c 00000000 		.space	4
+  47              		.global	old_MIS3_pulse
+  48              		.align	2
+  49              		.type	old_MIS3_pulse, %object
+  50              		.size	old_MIS3_pulse, 4
+  51              	old_MIS3_pulse:
+  52 0010 00000000 		.space	4
+  53              		.global	MIS3_lastpulse_time
+  54              		.align	2
+  55              		.type	MIS3_lastpulse_time, %object
+  56              		.size	MIS3_lastpulse_time, 4
+  57              	MIS3_lastpulse_time:
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 2
+
+
+  58 0014 00000000 		.space	4
+  59              		.global	old_MIS4_pulse
+  60              		.align	2
+  61              		.type	old_MIS4_pulse, %object
+  62              		.size	old_MIS4_pulse, 4
+  63              	old_MIS4_pulse:
+  64 0018 00000000 		.space	4
+  65              		.global	MIS4_lastpulse_time
+  66              		.align	2
+  67              		.type	MIS4_lastpulse_time, %object
+  68              		.size	MIS4_lastpulse_time, 4
+  69              	MIS4_lastpulse_time:
+  70 001c 00000000 		.space	4
+  71              		.section	.text.isr_START_handler,"ax",%progbits
+  72              		.align	2
+  73              		.global	isr_START_handler
+  74              		.thumb
+  75              		.thumb_func
+  76              		.type	isr_START_handler, %function
+  77              	isr_START_handler:
+  78              	.LFB64:
+  79              		.file 1 "main.c"
+   1:main.c        **** /******************************************************************************
+   2:main.c        **** * Project Name		: MinUnit -- a minimal unit testing framework for C
+   3:main.c        **** * File Name			: main.c
+   4:main.c        **** * Version 			: **
+   5:main.c        **** * Device Used		: CY8C5888LTI-LP097
+   6:main.c        **** * Software Used		: PSoC Creator 3.1 SP2
+   7:main.c        **** * Compiler    		: ARM GCC 4.8.4, ARM RVDS Generic, ARM MDK Generic
+   8:main.c        **** * Related Hardware	: CY8CKIT059 PSoC 5 LP Prototyping Kit 
+   9:main.c        **** *******************************************************************************/
+  10:main.c        **** 
+  11:main.c        **** #include <device.h>
+  12:main.c        **** #include <stdio.h>
+  13:main.c        **** #include <string.h>
+  14:main.c        **** #include "assert.h"
+  15:main.c        **** #include "mis.h"
+  16:main.c        **** #include "SPI.h"
+  17:main.c        **** 
+  18:main.c        **** char txt[500];
+  19:main.c        **** int32 buffer;
+  20:main.c        **** uint8 checksum;
+  21:main.c        **** 
+  22:main.c        ****    uint32 old_MIS1_pulse = 0;
+  23:main.c        ****     uint32 MIS1_lastpulse_time = 0;
+  24:main.c        ****     
+  25:main.c        ****     uint32 old_MIS2_pulse = 0;
+  26:main.c        ****     uint32 MIS2_lastpulse_time = 0;
+  27:main.c        ****     
+  28:main.c        ****     uint32 old_MIS3_pulse = 0;
+  29:main.c        ****     uint32 MIS3_lastpulse_time = 0;
+  30:main.c        ****     
+  31:main.c        ****     uint32 old_MIS4_pulse = 0;
+  32:main.c        ****     uint32 MIS4_lastpulse_time = 0;
+  33:main.c        **** 
+  34:main.c        **** CY_ISR(isr_START_handler)
+  35:main.c        **** {
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 3
+
+
+  80              		.loc 1 35 0
+  81              		.cfi_startproc
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 1, uses_anonymous_args = 0
+  84 0000 80B5     		push	{r7, lr}
+  85              		.cfi_def_cfa_offset 8
+  86              		.cfi_offset 7, -8
+  87              		.cfi_offset 14, -4
+  88 0002 00AF     		add	r7, sp, #0
+  89              		.cfi_def_cfa_register 7
+  36:main.c        ****    //UART_1_PutString("SG START \r\n\r\n");
+  37:main.c        ****    MIS_Start();
+  90              		.loc 1 37 0
+  91 0004 FFF7FEFF 		bl	MIS_Start
+  38:main.c        ****    
+  39:main.c        **** }
+  92              		.loc 1 39 0
+  93 0008 00BF     		nop
+  94 000a 80BD     		pop	{r7, pc}
+  95              		.cfi_endproc
+  96              	.LFE64:
+  97              		.size	isr_START_handler, .-isr_START_handler
+  98              		.section	.text.isr_STOP_handler,"ax",%progbits
+  99              		.align	2
+ 100              		.global	isr_STOP_handler
+ 101              		.thumb
+ 102              		.thumb_func
+ 103              		.type	isr_STOP_handler, %function
+ 104              	isr_STOP_handler:
+ 105              	.LFB65:
+  40:main.c        **** 
+  41:main.c        **** CY_ISR(isr_STOP_handler)
+  42:main.c        **** {
+ 106              		.loc 1 42 0
+ 107              		.cfi_startproc
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 1, uses_anonymous_args = 0
+ 110 0000 80B5     		push	{r7, lr}
+ 111              		.cfi_def_cfa_offset 8
+ 112              		.cfi_offset 7, -8
+ 113              		.cfi_offset 14, -4
+ 114 0002 00AF     		add	r7, sp, #0
+ 115              		.cfi_def_cfa_register 7
+  43:main.c        ****   // UART_1_PutString("SG STOP \r\n\r\n"); 
+  44:main.c        ****    MIS_Stop();
+ 116              		.loc 1 44 0
+ 117 0004 FFF7FEFF 		bl	MIS_Stop
+  45:main.c        ****   
+  46:main.c        **** }
+ 118              		.loc 1 46 0
+ 119 0008 00BF     		nop
+ 120 000a 80BD     		pop	{r7, pc}
+ 121              		.cfi_endproc
+ 122              	.LFE65:
+ 123              		.size	isr_STOP_handler, .-isr_STOP_handler
+ 124              		.section	.text.isr_TURN_CONT_MODE_handler,"ax",%progbits
+ 125              		.align	2
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 4
+
+
+ 126              		.global	isr_TURN_CONT_MODE_handler
+ 127              		.thumb
+ 128              		.thumb_func
+ 129              		.type	isr_TURN_CONT_MODE_handler, %function
+ 130              	isr_TURN_CONT_MODE_handler:
+ 131              	.LFB66:
+  47:main.c        **** 
+  48:main.c        **** CY_ISR(isr_TURN_CONT_MODE_handler)
+  49:main.c        **** {
+ 132              		.loc 1 49 0
+ 133              		.cfi_startproc
+ 134              		@ args = 0, pretend = 0, frame = 0
+ 135              		@ frame_needed = 1, uses_anonymous_args = 0
+ 136 0000 80B5     		push	{r7, lr}
+ 137              		.cfi_def_cfa_offset 8
+ 138              		.cfi_offset 7, -8
+ 139              		.cfi_offset 14, -4
+ 140 0002 00AF     		add	r7, sp, #0
+ 141              		.cfi_def_cfa_register 7
+  50:main.c        ****   MIS1_SetBurstTimeout(10);
+ 142              		.loc 1 50 0
+ 143 0004 0A20     		movs	r0, #10
+ 144 0006 FFF7FEFF 		bl	MIS1_SetBurstTimeout
+  51:main.c        ****   MIS2_SetBurstTimeout(10); /* 10us pulse timeout in packet */
+ 145              		.loc 1 51 0
+ 146 000a 0A20     		movs	r0, #10
+ 147 000c FFF7FEFF 		bl	MIS2_SetBurstTimeout
+  52:main.c        ****   MIS3_SetBurstTimeout(10);
+ 148              		.loc 1 52 0
+ 149 0010 0A20     		movs	r0, #10
+ 150 0012 FFF7FEFF 		bl	MIS3_SetBurstTimeout
+  53:main.c        ****   MIS4_SetBurstTimeout(10);
+ 151              		.loc 1 53 0
+ 152 0016 0A20     		movs	r0, #10
+ 153 0018 FFF7FEFF 		bl	MIS4_SetBurstTimeout
+  54:main.c        ****    
+  55:main.c        **** }
+ 154              		.loc 1 55 0
+ 155 001c 00BF     		nop
+ 156 001e 80BD     		pop	{r7, pc}
+ 157              		.cfi_endproc
+ 158              	.LFE66:
+ 159              		.size	isr_TURN_CONT_MODE_handler, .-isr_TURN_CONT_MODE_handler
+ 160              		.section	.text.isr_TURN_OFF_CONT_MODE_handler,"ax",%progbits
+ 161              		.align	2
+ 162              		.global	isr_TURN_OFF_CONT_MODE_handler
+ 163              		.thumb
+ 164              		.thumb_func
+ 165              		.type	isr_TURN_OFF_CONT_MODE_handler, %function
+ 166              	isr_TURN_OFF_CONT_MODE_handler:
+ 167              	.LFB67:
+  56:main.c        **** 
+  57:main.c        **** CY_ISR(isr_TURN_OFF_CONT_MODE_handler)
+  58:main.c        **** {
+ 168              		.loc 1 58 0
+ 169              		.cfi_startproc
+ 170              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 5
+
+
+ 171              		@ frame_needed = 1, uses_anonymous_args = 0
+ 172 0000 80B5     		push	{r7, lr}
+ 173              		.cfi_def_cfa_offset 8
+ 174              		.cfi_offset 7, -8
+ 175              		.cfi_offset 14, -4
+ 176 0002 00AF     		add	r7, sp, #0
+ 177              		.cfi_def_cfa_register 7
+  59:main.c        ****     MIS1_SetBurstTimeout(5000);
+ 178              		.loc 1 59 0
+ 179 0004 41F28830 		movw	r0, #5000
+ 180 0008 FFF7FEFF 		bl	MIS1_SetBurstTimeout
+  60:main.c        ****     MIS2_SetBurstTimeout(5000); /* 5ms pulse timeout in packet */
+ 181              		.loc 1 60 0
+ 182 000c 41F28830 		movw	r0, #5000
+ 183 0010 FFF7FEFF 		bl	MIS2_SetBurstTimeout
+  61:main.c        ****     MIS3_SetBurstTimeout(5000);
+ 184              		.loc 1 61 0
+ 185 0014 41F28830 		movw	r0, #5000
+ 186 0018 FFF7FEFF 		bl	MIS3_SetBurstTimeout
+  62:main.c        ****     MIS4_SetBurstTimeout(5000);
+ 187              		.loc 1 62 0
+ 188 001c 41F28830 		movw	r0, #5000
+ 189 0020 FFF7FEFF 		bl	MIS4_SetBurstTimeout
+  63:main.c        ****   
+  64:main.c        **** }
+ 190              		.loc 1 64 0
+ 191 0024 00BF     		nop
+ 192 0026 80BD     		pop	{r7, pc}
+ 193              		.cfi_endproc
+ 194              	.LFE67:
+ 195              		.size	isr_TURN_OFF_CONT_MODE_handler, .-isr_TURN_OFF_CONT_MODE_handler
+ 196              		.section	.text.isr_CS_Rise_handler,"ax",%progbits
+ 197              		.align	2
+ 198              		.global	isr_CS_Rise_handler
+ 199              		.thumb
+ 200              		.thumb_func
+ 201              		.type	isr_CS_Rise_handler, %function
+ 202              	isr_CS_Rise_handler:
+ 203              	.LFB68:
+  65:main.c        **** 
+  66:main.c        **** 
+  67:main.c        **** 
+  68:main.c        **** CY_ISR(isr_CS_Rise_handler)
+  69:main.c        **** {
+ 204              		.loc 1 69 0
+ 205              		.cfi_startproc
+ 206              		@ args = 0, pretend = 0, frame = 8
+ 207              		@ frame_needed = 1, uses_anonymous_args = 0
+ 208 0000 80B5     		push	{r7, lr}
+ 209              		.cfi_def_cfa_offset 8
+ 210              		.cfi_offset 7, -8
+ 211              		.cfi_offset 14, -4
+ 212 0002 82B0     		sub	sp, sp, #8
+ 213              		.cfi_def_cfa_offset 16
+ 214 0004 00AF     		add	r7, sp, #0
+ 215              		.cfi_def_cfa_register 7
+  70:main.c        ****     uint8 b = SPIS_ReadRxData();
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 6
+
+
+ 216              		.loc 1 70 0
+ 217 0006 FFF7FEFF 		bl	SPIS_ReadRxData
+ 218 000a 0346     		mov	r3, r0
+ 219 000c FB71     		strb	r3, [r7, #7]
+  71:main.c        ****   
+  72:main.c        ****     buffer = 0;
+ 220              		.loc 1 72 0
+ 221 000e 5F4B     		ldr	r3, .L27
+ 222 0010 0022     		movs	r2, #0
+ 223 0012 1A60     		str	r2, [r3]
+  73:main.c        ****    
+  74:main.c        ****    // sprintf(txt,"RX %d \n",b); 
+  75:main.c        ****    // assert(0 == 0, txt);
+  76:main.c        ****     switch(b)
+ 224              		.loc 1 76 0
+ 225 0014 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 226 0016 0C2B     		cmp	r3, #12
+ 227 0018 6DD0     		beq	.L7
+ 228 001a 0C2B     		cmp	r3, #12
+ 229 001c 11DC     		bgt	.L8
+ 230 001e 042B     		cmp	r3, #4
+ 231 0020 41D0     		beq	.L9
+ 232 0022 042B     		cmp	r3, #4
+ 233 0024 06DC     		bgt	.L10
+ 234 0026 022B     		cmp	r3, #2
+ 235 0028 29D0     		beq	.L11
+ 236 002a 022B     		cmp	r3, #2
+ 237 002c 34DC     		bgt	.L12
+ 238 002e 012B     		cmp	r3, #1
+ 239 0030 1ED0     		beq	.L13
+ 240 0032 87E0     		b	.L6
+ 241              	.L10:
+ 242 0034 0A2B     		cmp	r3, #10
+ 243 0036 4AD0     		beq	.L14
+ 244 0038 0A2B     		cmp	r3, #10
+ 245 003a 55DC     		bgt	.L15
+ 246 003c 092B     		cmp	r3, #9
+ 247 003e 3FD0     		beq	.L16
+ 248 0040 80E0     		b	.L6
+ 249              	.L8:
+ 250 0042 122B     		cmp	r3, #18
+ 251 0044 22D0     		beq	.L17
+ 252 0046 122B     		cmp	r3, #18
+ 253 0048 06DC     		bgt	.L18
+ 254 004a 0E2B     		cmp	r3, #14
+ 255 004c 67D0     		beq	.L19
+ 256 004e 0E2B     		cmp	r3, #14
+ 257 0050 5EDB     		blt	.L20
+ 258 0052 0F2B     		cmp	r3, #15
+ 259 0054 6AD0     		beq	.L21
+ 260 0056 75E0     		b	.L6
+ 261              	.L18:
+ 262 0058 1A2B     		cmp	r3, #26
+ 263 005a 3FD0     		beq	.L22
+ 264 005c 1A2B     		cmp	r3, #26
+ 265 005e 02DC     		bgt	.L23
+ 266 0060 142B     		cmp	r3, #20
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 7
+
+
+ 267 0062 27D0     		beq	.L24
+ 268 0064 6EE0     		b	.L6
+ 269              	.L23:
+ 270 0066 1C2B     		cmp	r3, #28
+ 271 0068 4CD0     		beq	.L25
+ 272 006a FF2B     		cmp	r3, #255
+ 273 006c 64D0     		beq	.L26
+ 274 006e 69E0     		b	.L6
+ 275              	.L13:
+  77:main.c        ****         {
+  78:main.c        ****             case 0x01:
+  79:main.c        ****                buffer = MIS1_ReadCount();
+ 276              		.loc 1 79 0
+ 277 0070 FFF7FEFF 		bl	MIS1_ReadCount
+ 278 0074 0346     		mov	r3, r0
+ 279 0076 1A46     		mov	r2, r3
+ 280 0078 444B     		ldr	r3, .L27
+ 281 007a 1A60     		str	r2, [r3]
+  80:main.c        ****              //buffer = 286331153;
+  81:main.c        ****             break;
+ 282              		.loc 1 81 0
+ 283 007c 62E0     		b	.L6
+ 284              	.L11:
+  82:main.c        ****              case 0x02:
+  83:main.c        ****                buffer = MIS1_ReadCurTime();
+ 285              		.loc 1 83 0
+ 286 007e FFF7FEFF 		bl	MIS1_ReadCurTime
+ 287 0082 0346     		mov	r3, r0
+ 288 0084 1A46     		mov	r2, r3
+ 289 0086 414B     		ldr	r3, .L27
+ 290 0088 1A60     		str	r2, [r3]
+  84:main.c        ****           //  buffer = 572662306;
+  85:main.c        ****             break;
+ 291              		.loc 1 85 0
+ 292 008a 5BE0     		b	.L6
+ 293              	.L17:
+  86:main.c        ****            case 0x12:
+  87:main.c        ****                buffer = MIS1_lastpulse_time;
+ 294              		.loc 1 87 0
+ 295 008c 404B     		ldr	r3, .L27+4
+ 296 008e 1B68     		ldr	r3, [r3]
+ 297 0090 1A46     		mov	r2, r3
+ 298 0092 3E4B     		ldr	r3, .L27
+ 299 0094 1A60     		str	r2, [r3]
+  88:main.c        ****             break;
+ 300              		.loc 1 88 0
+ 301 0096 55E0     		b	.L6
+ 302              	.L12:
+  89:main.c        ****             case 0x03:
+  90:main.c        ****                buffer = MIS2_ReadCount();
+ 303              		.loc 1 90 0
+ 304 0098 FFF7FEFF 		bl	MIS2_ReadCount
+ 305 009c 0346     		mov	r3, r0
+ 306 009e 1A46     		mov	r2, r3
+ 307 00a0 3A4B     		ldr	r3, .L27
+ 308 00a2 1A60     		str	r2, [r3]
+  91:main.c        ****             break;
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 8
+
+
+ 309              		.loc 1 91 0
+ 310 00a4 4EE0     		b	.L6
+ 311              	.L9:
+  92:main.c        ****              case 0x04:
+  93:main.c        ****                buffer = MIS2_ReadCurTime();
+ 312              		.loc 1 93 0
+ 313 00a6 FFF7FEFF 		bl	MIS2_ReadCurTime
+ 314 00aa 0346     		mov	r3, r0
+ 315 00ac 1A46     		mov	r2, r3
+ 316 00ae 374B     		ldr	r3, .L27
+ 317 00b0 1A60     		str	r2, [r3]
+  94:main.c        ****                break;         
+ 318              		.loc 1 94 0
+ 319 00b2 47E0     		b	.L6
+ 320              	.L24:
+  95:main.c        ****             case 0x14:
+  96:main.c        ****                buffer = MIS2_lastpulse_time;
+ 321              		.loc 1 96 0
+ 322 00b4 374B     		ldr	r3, .L27+8
+ 323 00b6 1B68     		ldr	r3, [r3]
+ 324 00b8 1A46     		mov	r2, r3
+ 325 00ba 344B     		ldr	r3, .L27
+ 326 00bc 1A60     		str	r2, [r3]
+  97:main.c        ****             break;
+ 327              		.loc 1 97 0
+ 328 00be 41E0     		b	.L6
+ 329              	.L16:
+  98:main.c        ****             case 0x09:
+  99:main.c        ****                buffer = MIS3_ReadCount();
+ 330              		.loc 1 99 0
+ 331 00c0 FFF7FEFF 		bl	MIS3_ReadCount
+ 332 00c4 0346     		mov	r3, r0
+ 333 00c6 1A46     		mov	r2, r3
+ 334 00c8 304B     		ldr	r3, .L27
+ 335 00ca 1A60     		str	r2, [r3]
+ 100:main.c        ****                break;
+ 336              		.loc 1 100 0
+ 337 00cc 3AE0     		b	.L6
+ 338              	.L14:
+ 101:main.c        ****             case 0x0A:
+ 102:main.c        ****                buffer = MIS3_ReadCurTime();
+ 339              		.loc 1 102 0
+ 340 00ce FFF7FEFF 		bl	MIS3_ReadCurTime
+ 341 00d2 0346     		mov	r3, r0
+ 342 00d4 1A46     		mov	r2, r3
+ 343 00d6 2D4B     		ldr	r3, .L27
+ 344 00d8 1A60     		str	r2, [r3]
+ 103:main.c        ****                break;
+ 345              		.loc 1 103 0
+ 346 00da 33E0     		b	.L6
+ 347              	.L22:
+ 104:main.c        ****             case 0x1A:
+ 105:main.c        ****                buffer = MIS3_lastpulse_time;
+ 348              		.loc 1 105 0
+ 349 00dc 2E4B     		ldr	r3, .L27+12
+ 350 00de 1B68     		ldr	r3, [r3]
+ 351 00e0 1A46     		mov	r2, r3
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 9
+
+
+ 352 00e2 2A4B     		ldr	r3, .L27
+ 353 00e4 1A60     		str	r2, [r3]
+ 106:main.c        ****             break;
+ 354              		.loc 1 106 0
+ 355 00e6 2DE0     		b	.L6
+ 356              	.L15:
+ 107:main.c        ****             case 0x0B:
+ 108:main.c        ****                buffer = MIS4_ReadCount();
+ 357              		.loc 1 108 0
+ 358 00e8 FFF7FEFF 		bl	MIS4_ReadCount
+ 359 00ec 0346     		mov	r3, r0
+ 360 00ee 1A46     		mov	r2, r3
+ 361 00f0 264B     		ldr	r3, .L27
+ 362 00f2 1A60     		str	r2, [r3]
+ 109:main.c        ****                break;
+ 363              		.loc 1 109 0
+ 364 00f4 26E0     		b	.L6
+ 365              	.L7:
+ 110:main.c        ****             case 0x0C:
+ 111:main.c        ****                buffer = MIS4_ReadCurTime();
+ 366              		.loc 1 111 0
+ 367 00f6 FFF7FEFF 		bl	MIS4_ReadCurTime
+ 368 00fa 0346     		mov	r3, r0
+ 369 00fc 1A46     		mov	r2, r3
+ 370 00fe 234B     		ldr	r3, .L27
+ 371 0100 1A60     		str	r2, [r3]
+ 112:main.c        ****                break;
+ 372              		.loc 1 112 0
+ 373 0102 1FE0     		b	.L6
+ 374              	.L25:
+ 113:main.c        ****             case 0x1C:
+ 114:main.c        ****                buffer = MIS4_lastpulse_time;
+ 375              		.loc 1 114 0
+ 376 0104 254B     		ldr	r3, .L27+16
+ 377 0106 1B68     		ldr	r3, [r3]
+ 378 0108 1A46     		mov	r2, r3
+ 379 010a 204B     		ldr	r3, .L27
+ 380 010c 1A60     		str	r2, [r3]
+ 115:main.c        ****             break;
+ 381              		.loc 1 115 0
+ 382 010e 19E0     		b	.L6
+ 383              	.L20:
+ 116:main.c        ****             
+ 117:main.c        ****             case 0x0D:   //  1 - 2 QuadDecoder
+ 118:main.c        ****                buffer = QuadDec_1_GetCounter();
+ 384              		.loc 1 118 0
+ 385 0110 FFF7FEFF 		bl	QuadDec_1_GetCounter
+ 386 0114 0346     		mov	r3, r0
+ 387 0116 1A46     		mov	r2, r3
+ 388 0118 1C4B     		ldr	r3, .L27
+ 389 011a 1A60     		str	r2, [r3]
+ 119:main.c        ****                break;
+ 390              		.loc 1 119 0
+ 391 011c 12E0     		b	.L6
+ 392              	.L19:
+ 120:main.c        ****             
+ 121:main.c        ****             case 0x0E:   //  3 - 4 QuadDecoder
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 10
+
+
+ 122:main.c        ****                buffer = QuadDec_2_GetCounter();
+ 393              		.loc 1 122 0
+ 394 011e FFF7FEFF 		bl	QuadDec_2_GetCounter
+ 395 0122 0346     		mov	r3, r0
+ 396 0124 1A46     		mov	r2, r3
+ 397 0126 194B     		ldr	r3, .L27
+ 398 0128 1A60     		str	r2, [r3]
+ 123:main.c        ****                break;
+ 399              		.loc 1 123 0
+ 400 012a 0BE0     		b	.L6
+ 401              	.L21:
+ 124:main.c        ****             
+ 125:main.c        ****             case 0x0F:   //  Read MIS 1-4 Pulse Counter Enable status
+ 126:main.c        ****                buffer = MIS_PulseCounterStatus();
+ 402              		.loc 1 126 0
+ 403 012c FFF7FEFF 		bl	MIS_PulseCounterStatus
+ 404 0130 0246     		mov	r2, r0
+ 405 0132 164B     		ldr	r3, .L27
+ 406 0134 1A60     		str	r2, [r3]
+ 127:main.c        ****                break;
+ 407              		.loc 1 127 0
+ 408 0136 05E0     		b	.L6
+ 409              	.L26:
+ 128:main.c        ****             
+ 129:main.c        ****             case 0xFF:   //  Restart counters
+ 130:main.c        ****                buffer = 0;
+ 410              		.loc 1 130 0
+ 411 0138 144B     		ldr	r3, .L27
+ 412 013a 0022     		movs	r2, #0
+ 413 013c 1A60     		str	r2, [r3]
+ 131:main.c        ****                MIS_Start();
+ 414              		.loc 1 131 0
+ 415 013e FFF7FEFF 		bl	MIS_Start
+ 132:main.c        ****              //  UART_1_PutString("Restart counters \r\n\r\n");
+ 133:main.c        ****                break;
+ 416              		.loc 1 133 0
+ 417 0142 00BF     		nop
+ 418              	.L6:
+ 134:main.c        ****         }
+ 135:main.c        ****         
+ 136:main.c        ****     SPIS_ClearRxBuffer();
+ 419              		.loc 1 136 0
+ 420 0144 FFF7FEFF 		bl	SPIS_ClearRxBuffer
+ 137:main.c        ****     SPIS_ClearTxBuffer();
+ 421              		.loc 1 137 0
+ 422 0148 FFF7FEFF 		bl	SPIS_ClearTxBuffer
+ 138:main.c        ****     
+ 139:main.c        ****     uint8 * p = (uint8 *)&buffer;
+ 423              		.loc 1 139 0
+ 424 014c 0F4B     		ldr	r3, .L27
+ 425 014e 3B60     		str	r3, [r7]
+ 140:main.c        ****     //  LED1_Write(1);
+ 141:main.c        ****     SPIS_WriteTxDataZero(0x5Au);
+ 426              		.loc 1 141 0
+ 427 0150 5A20     		movs	r0, #90
+ 428 0152 FFF7FEFF 		bl	SPIS_WriteTxDataZero
+ 142:main.c        ****     /* Other 7 bytes are written to the SPIS Tx software buffer */
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 11
+
+
+ 143:main.c        ****     SPIS_WriteTxData(p[0]);
+ 429              		.loc 1 143 0
+ 430 0156 3B68     		ldr	r3, [r7]
+ 431 0158 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 432 015a 1846     		mov	r0, r3
+ 433 015c FFF7FEFF 		bl	SPIS_WriteTxData
+ 144:main.c        ****     SPIS_WriteTxData(p[1]);
+ 434              		.loc 1 144 0
+ 435 0160 3B68     		ldr	r3, [r7]
+ 436 0162 0133     		adds	r3, r3, #1
+ 437 0164 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 438 0166 1846     		mov	r0, r3
+ 439 0168 FFF7FEFF 		bl	SPIS_WriteTxData
+ 145:main.c        ****     SPIS_WriteTxData(p[2]);
+ 440              		.loc 1 145 0
+ 441 016c 3B68     		ldr	r3, [r7]
+ 442 016e 0233     		adds	r3, r3, #2
+ 443 0170 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 444 0172 1846     		mov	r0, r3
+ 445 0174 FFF7FEFF 		bl	SPIS_WriteTxData
+ 146:main.c        ****     SPIS_WriteTxData(p[3]);
+ 446              		.loc 1 146 0
+ 447 0178 3B68     		ldr	r3, [r7]
+ 448 017a 0333     		adds	r3, r3, #3
+ 449 017c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 450 017e 1846     		mov	r0, r3
+ 451 0180 FFF7FEFF 		bl	SPIS_WriteTxData
+ 147:main.c        ****   //  LED1_Write(0);
+ 148:main.c        ****   //  sprintf(txt,"TX %x %x %x %x \n",p[0],p[1],p[2],p[3]); 
+ 149:main.c        ****   //  assert(0 == 0, txt);
+ 150:main.c        ****     
+ 151:main.c        **** }
+ 452              		.loc 1 151 0
+ 453 0184 00BF     		nop
+ 454 0186 0837     		adds	r7, r7, #8
+ 455              		.cfi_def_cfa_offset 8
+ 456 0188 BD46     		mov	sp, r7
+ 457              		.cfi_def_cfa_register 13
+ 458              		@ sp needed
+ 459 018a 80BD     		pop	{r7, pc}
+ 460              	.L28:
+ 461              		.align	2
+ 462              	.L27:
+ 463 018c 00000000 		.word	buffer
+ 464 0190 00000000 		.word	MIS1_lastpulse_time
+ 465 0194 00000000 		.word	MIS2_lastpulse_time
+ 466 0198 00000000 		.word	MIS3_lastpulse_time
+ 467 019c 00000000 		.word	MIS4_lastpulse_time
+ 468              		.cfi_endproc
+ 469              	.LFE68:
+ 470              		.size	isr_CS_Rise_handler, .-isr_CS_Rise_handler
+ 471              		.section	.text.isr_QuadDec_1_handler,"ax",%progbits
+ 472              		.align	2
+ 473              		.global	isr_QuadDec_1_handler
+ 474              		.thumb
+ 475              		.thumb_func
+ 476              		.type	isr_QuadDec_1_handler, %function
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 12
+
+
+ 477              	isr_QuadDec_1_handler:
+ 478              	.LFB69:
+ 152:main.c        **** 
+ 153:main.c        **** CY_ISR(isr_QuadDec_1_handler)
+ 154:main.c        **** {
+ 479              		.loc 1 154 0
+ 480              		.cfi_startproc
+ 481              		@ args = 0, pretend = 0, frame = 0
+ 482              		@ frame_needed = 1, uses_anonymous_args = 0
+ 483 0000 80B5     		push	{r7, lr}
+ 484              		.cfi_def_cfa_offset 8
+ 485              		.cfi_offset 7, -8
+ 486              		.cfi_offset 14, -4
+ 487 0002 00AF     		add	r7, sp, #0
+ 488              		.cfi_def_cfa_register 7
+ 155:main.c        ****     /* Clear Inerrupt */
+ 156:main.c        ****    	QuadDec_1_Init(); //Initializes or restores default configuration provided with the customizer
+ 489              		.loc 1 156 0
+ 490 0004 FFF7FEFF 		bl	QuadDec_1_Init
+ 157:main.c        **** }    
+ 491              		.loc 1 157 0
+ 492 0008 00BF     		nop
+ 493 000a 80BD     		pop	{r7, pc}
+ 494              		.cfi_endproc
+ 495              	.LFE69:
+ 496              		.size	isr_QuadDec_1_handler, .-isr_QuadDec_1_handler
+ 497              		.section	.text.isr_QuadDec_2_handler,"ax",%progbits
+ 498              		.align	2
+ 499              		.global	isr_QuadDec_2_handler
+ 500              		.thumb
+ 501              		.thumb_func
+ 502              		.type	isr_QuadDec_2_handler, %function
+ 503              	isr_QuadDec_2_handler:
+ 504              	.LFB70:
+ 158:main.c        **** 
+ 159:main.c        **** CY_ISR(isr_QuadDec_2_handler)
+ 160:main.c        **** {
+ 505              		.loc 1 160 0
+ 506              		.cfi_startproc
+ 507              		@ args = 0, pretend = 0, frame = 0
+ 508              		@ frame_needed = 1, uses_anonymous_args = 0
+ 509 0000 80B5     		push	{r7, lr}
+ 510              		.cfi_def_cfa_offset 8
+ 511              		.cfi_offset 7, -8
+ 512              		.cfi_offset 14, -4
+ 513 0002 00AF     		add	r7, sp, #0
+ 514              		.cfi_def_cfa_register 7
+ 161:main.c        ****     QuadDec_2_Init();
+ 515              		.loc 1 161 0
+ 516 0004 FFF7FEFF 		bl	QuadDec_2_Init
+ 162:main.c        **** }  
+ 517              		.loc 1 162 0
+ 518 0008 00BF     		nop
+ 519 000a 80BD     		pop	{r7, pc}
+ 520              		.cfi_endproc
+ 521              	.LFE70:
+ 522              		.size	isr_QuadDec_2_handler, .-isr_QuadDec_2_handler
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 13
+
+
+ 523              		.section	.text.debug_master_cmd,"ax",%progbits
+ 524              		.align	2
+ 525              		.global	debug_master_cmd
+ 526              		.thumb
+ 527              		.thumb_func
+ 528              		.type	debug_master_cmd, %function
+ 529              	debug_master_cmd:
+ 530              	.LFB71:
+ 163:main.c        **** 
+ 164:main.c        **** 
+ 165:main.c        **** void debug_master_cmd(uint8 cmd)
+ 166:main.c        **** {
+ 531              		.loc 1 166 0
+ 532              		.cfi_startproc
+ 533              		@ args = 0, pretend = 0, frame = 24
+ 534              		@ frame_needed = 1, uses_anonymous_args = 0
+ 535 0000 90B5     		push	{r4, r7, lr}
+ 536              		.cfi_def_cfa_offset 12
+ 537              		.cfi_offset 4, -12
+ 538              		.cfi_offset 7, -8
+ 539              		.cfi_offset 14, -4
+ 540 0002 87B0     		sub	sp, sp, #28
+ 541              		.cfi_def_cfa_offset 40
+ 542 0004 00AF     		add	r7, sp, #0
+ 543              		.cfi_def_cfa_register 7
+ 544 0006 0346     		mov	r3, r0
+ 545 0008 FB71     		strb	r3, [r7, #7]
+ 167:main.c        ****     uint8 spi_data[16];
+ 168:main.c        ****     SPIM_ClearRxBuffer();
+ 546              		.loc 1 168 0
+ 547 000a FFF7FEFF 		bl	SPIM_ClearRxBuffer
+ 169:main.c        ****     SPIM_ClearTxBuffer();
+ 548              		.loc 1 169 0
+ 549 000e FFF7FEFF 		bl	SPIM_ClearTxBuffer
+ 170:main.c        ****     memcpy(spi_data,0,sizeof(spi_data));
+ 550              		.loc 1 170 0
+ 551 0012 0023     		movs	r3, #0
+ 552 0014 07F10804 		add	r4, r7, #8
+ 553 0018 0FCB     		ldmia	r3, {r0, r1, r2, r3}
+ 554 001a 84E80F00 		stmia	r4, {r0, r1, r2, r3}
+ 171:main.c        ****     spi_data[0] = cmd;
+ 555              		.loc 1 171 0
+ 556 001e FB79     		ldrb	r3, [r7, #7]
+ 557 0020 3B72     		strb	r3, [r7, #8]
+ 172:main.c        ****    // SPIM_CS_Write(0);
+ 173:main.c        ****     SPIM_PutArray(spi_data, 5);
+ 558              		.loc 1 173 0
+ 559 0022 07F10803 		add	r3, r7, #8
+ 560 0026 0521     		movs	r1, #5
+ 561 0028 1846     		mov	r0, r3
+ 562 002a FFF7FEFF 		bl	SPIM_PutArray
+ 174:main.c        ****     CyDelay(1);
+ 563              		.loc 1 174 0
+ 564 002e 0120     		movs	r0, #1
+ 565 0030 FFF7FEFF 		bl	CyDelay
+ 175:main.c        ****    // SPIM_CS_Write(1);
+ 176:main.c        **** }
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 14
+
+
+ 566              		.loc 1 176 0
+ 567 0034 00BF     		nop
+ 568 0036 1C37     		adds	r7, r7, #28
+ 569              		.cfi_def_cfa_offset 12
+ 570 0038 BD46     		mov	sp, r7
+ 571              		.cfi_def_cfa_register 13
+ 572              		@ sp needed
+ 573 003a 90BD     		pop	{r4, r7, pc}
+ 574              		.cfi_endproc
+ 575              	.LFE71:
+ 576              		.size	debug_master_cmd, .-debug_master_cmd
+ 577              		.section	.text.debug_master_read,"ax",%progbits
+ 578              		.align	2
+ 579              		.global	debug_master_read
+ 580              		.thumb
+ 581              		.thumb_func
+ 582              		.type	debug_master_read, %function
+ 583              	debug_master_read:
+ 584              	.LFB72:
+ 177:main.c        **** 
+ 178:main.c        **** uint32 debug_master_read(uint8 cmd)
+ 179:main.c        **** {
+ 585              		.loc 1 179 0
+ 586              		.cfi_startproc
+ 587              		@ args = 0, pretend = 0, frame = 48
+ 588              		@ frame_needed = 1, uses_anonymous_args = 0
+ 589 0000 90B5     		push	{r4, r7, lr}
+ 590              		.cfi_def_cfa_offset 12
+ 591              		.cfi_offset 4, -12
+ 592              		.cfi_offset 7, -8
+ 593              		.cfi_offset 14, -4
+ 594 0002 8DB0     		sub	sp, sp, #52
+ 595              		.cfi_def_cfa_offset 64
+ 596 0004 00AF     		add	r7, sp, #0
+ 597              		.cfi_def_cfa_register 7
+ 598 0006 0346     		mov	r3, r0
+ 599 0008 FB71     		strb	r3, [r7, #7]
+ 180:main.c        ****     uint8 spi_data[16];
+ 181:main.c        ****     uint32 result = 0xFFFFFFFF;
+ 600              		.loc 1 181 0
+ 601 000a 4FF0FF33 		mov	r3, #-1
+ 602 000e FB60     		str	r3, [r7, #12]
+ 182:main.c        ****     uint8 *p = (uint8 *)&result;
+ 603              		.loc 1 182 0
+ 604 0010 07F10C03 		add	r3, r7, #12
+ 605 0014 BB62     		str	r3, [r7, #40]
+ 183:main.c        ****     
+ 184:main.c        ****     SPIM_ClearRxBuffer();
+ 606              		.loc 1 184 0
+ 607 0016 FFF7FEFF 		bl	SPIM_ClearRxBuffer
+ 185:main.c        ****     SPIM_ClearTxBuffer();
+ 608              		.loc 1 185 0
+ 609 001a FFF7FEFF 		bl	SPIM_ClearTxBuffer
+ 186:main.c        ****     memcpy(spi_data,0,sizeof(spi_data));
+ 610              		.loc 1 186 0
+ 611 001e 0023     		movs	r3, #0
+ 612 0020 07F11004 		add	r4, r7, #16
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 15
+
+
+ 613 0024 0FCB     		ldmia	r3, {r0, r1, r2, r3}
+ 614 0026 84E80F00 		stmia	r4, {r0, r1, r2, r3}
+ 187:main.c        ****     spi_data[0] = cmd;
+ 615              		.loc 1 187 0
+ 616 002a FB79     		ldrb	r3, [r7, #7]
+ 617 002c 3B74     		strb	r3, [r7, #16]
+ 188:main.c        ****    // SPIM_CS_Write(0);
+ 189:main.c        ****     SPIM_PutArray(spi_data, 5);
+ 618              		.loc 1 189 0
+ 619 002e 07F11003 		add	r3, r7, #16
+ 620 0032 0521     		movs	r1, #5
+ 621 0034 1846     		mov	r0, r3
+ 622 0036 FFF7FEFF 		bl	SPIM_PutArray
+ 190:main.c        ****     CyDelay(1);
+ 623              		.loc 1 190 0
+ 624 003a 0120     		movs	r0, #1
+ 625 003c FFF7FEFF 		bl	CyDelay
+ 191:main.c        ****    // SPIM_CS_Write(1);
+ 192:main.c        ****     int b_cnt = SPIM_GetRxBufferSize();
+ 626              		.loc 1 192 0
+ 627 0040 FFF7FEFF 		bl	SPIM_GetRxBufferSize
+ 628 0044 0346     		mov	r3, r0
+ 629 0046 7B62     		str	r3, [r7, #36]
+ 193:main.c        ****     if (b_cnt == 5)
+ 630              		.loc 1 193 0
+ 631 0048 7B6A     		ldr	r3, [r7, #36]
+ 632 004a 052B     		cmp	r3, #5
+ 633 004c 18D1     		bne	.L33
+ 634              	.LBB2:
+ 194:main.c        ****     {
+ 195:main.c        ****         int i;
+ 196:main.c        ****         uint8 signature = SPIM_ReadByte();
+ 635              		.loc 1 196 0
+ 636 004e FFF7FEFF 		bl	SPIM_ReadRxData
+ 637 0052 0346     		mov	r3, r0
+ 638 0054 87F82330 		strb	r3, [r7, #35]
+ 197:main.c        ****         if (signature == 0x5A)
+ 639              		.loc 1 197 0
+ 640 0058 97F82330 		ldrb	r3, [r7, #35]	@ zero_extendqisi2
+ 641 005c 5A2B     		cmp	r3, #90
+ 642 005e 0FD1     		bne	.L33
+ 198:main.c        ****         {
+ 199:main.c        ****             for (i=0; i < 4; i++)
+ 643              		.loc 1 199 0
+ 644 0060 0023     		movs	r3, #0
+ 645 0062 FB62     		str	r3, [r7, #44]
+ 646 0064 09E0     		b	.L34
+ 647              	.L35:
+ 200:main.c        ****             {
+ 201:main.c        ****                 p[i] = SPIM_ReadByte();
+ 648              		.loc 1 201 0 discriminator 3
+ 649 0066 FB6A     		ldr	r3, [r7, #44]
+ 650 0068 BA6A     		ldr	r2, [r7, #40]
+ 651 006a D418     		adds	r4, r2, r3
+ 652 006c FFF7FEFF 		bl	SPIM_ReadRxData
+ 653 0070 0346     		mov	r3, r0
+ 654 0072 2370     		strb	r3, [r4]
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 16
+
+
+ 199:main.c        ****             {
+ 655              		.loc 1 199 0 discriminator 3
+ 656 0074 FB6A     		ldr	r3, [r7, #44]
+ 657 0076 0133     		adds	r3, r3, #1
+ 658 0078 FB62     		str	r3, [r7, #44]
+ 659              	.L34:
+ 199:main.c        ****             {
+ 660              		.loc 1 199 0 is_stmt 0 discriminator 1
+ 661 007a FB6A     		ldr	r3, [r7, #44]
+ 662 007c 032B     		cmp	r3, #3
+ 663 007e F2DD     		ble	.L35
+ 664              	.L33:
+ 665              	.LBE2:
+ 202:main.c        ****             }
+ 203:main.c        ****         }
+ 204:main.c        ****     }
+ 205:main.c        ****     return  result;
+ 666              		.loc 1 205 0 is_stmt 1
+ 667 0080 FB68     		ldr	r3, [r7, #12]
+ 206:main.c        **** }
+ 668              		.loc 1 206 0
+ 669 0082 1846     		mov	r0, r3
+ 670 0084 3437     		adds	r7, r7, #52
+ 671              		.cfi_def_cfa_offset 12
+ 672 0086 BD46     		mov	sp, r7
+ 673              		.cfi_def_cfa_register 13
+ 674              		@ sp needed
+ 675 0088 90BD     		pop	{r4, r7, pc}
+ 676              		.cfi_endproc
+ 677              	.LFE72:
+ 678              		.size	debug_master_read, .-debug_master_read
+ 679 008a 00BF     		.section	.rodata
+ 680              		.align	2
+ 681              	.LC0:
+ 682 0000 1B5B324A 		.ascii	"\033[2J\033[H\000"
+ 682      1B5B4800 
+ 683              		.align	2
+ 684              	.LC1:
+ 685 0008 41206D69 		.ascii	"A minimal unit testing framework for C\015\012\015\012"
+ 685      6E696D61 
+ 685      6C20756E 
+ 685      69742074 
+ 685      65737469 
+ 686 0032 00       		.ascii	"\000"
+ 687              		.section	.text.main,"ax",%progbits
+ 688              		.align	2
+ 689              		.global	main
+ 690              		.thumb
+ 691              		.thumb_func
+ 692              		.type	main, %function
+ 693              	main:
+ 694              	.LFB73:
+ 207:main.c        ****     
+ 208:main.c        **** int main()
+ 209:main.c        **** {    
+ 695              		.loc 1 209 0
+ 696              		.cfi_startproc
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 17
+
+
+ 697              		@ args = 0, pretend = 0, frame = 32
+ 698              		@ frame_needed = 1, uses_anonymous_args = 0
+ 699 0000 80B5     		push	{r7, lr}
+ 700              		.cfi_def_cfa_offset 8
+ 701              		.cfi_offset 7, -8
+ 702              		.cfi_offset 14, -4
+ 703 0002 88B0     		sub	sp, sp, #32
+ 704              		.cfi_def_cfa_offset 40
+ 705 0004 00AF     		add	r7, sp, #0
+ 706              		.cfi_def_cfa_register 7
+ 210:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 707              		.loc 1 210 0
+ 708              		.syntax unified
+ 709              	@ 210 "main.c" 1
+ 710 0006 62B6     		CPSIE   i
+ 711              	@ 0 "" 2
+ 211:main.c        ****     /* Start the components */
+ 212:main.c        ****     
+ 213:main.c        ****     SPIM_Start();
+ 712              		.loc 1 213 0
+ 713              		.thumb
+ 714              		.syntax unified
+ 715 0008 FFF7FEFF 		bl	SPIM_Start
+ 214:main.c        ****     SPIS_Start();
+ 716              		.loc 1 214 0
+ 717 000c FFF7FEFF 		bl	SPIS_Start
+ 215:main.c        ****     UART_1_Start();
+ 718              		.loc 1 215 0
+ 719 0010 FFF7FEFF 		bl	UART_1_Start
+ 216:main.c        ****     QuadDec_1_Start();
+ 720              		.loc 1 216 0
+ 721 0014 FFF7FEFF 		bl	QuadDec_1_Start
+ 217:main.c        ****     QuadDec_2_Start();
+ 722              		.loc 1 217 0
+ 723 0018 FFF7FEFF 		bl	QuadDec_2_Start
+ 218:main.c        **** 
+ 219:main.c        ****   //  isr_SPI_StartEx(isr_SPI_handler);
+ 220:main.c        ****     isr_CS_Rise_StartEx(isr_CS_Rise_handler);
+ 724              		.loc 1 220 0
+ 725 001c 4E48     		ldr	r0, .L43
+ 726 001e FFF7FEFF 		bl	isr_CS_Rise_StartEx
+ 221:main.c        ****         
+ 222:main.c        ****     isr_START_StartEx(isr_START_handler);
+ 727              		.loc 1 222 0
+ 728 0022 4E48     		ldr	r0, .L43+4
+ 729 0024 FFF7FEFF 		bl	isr_START_StartEx
+ 223:main.c        ****     isr_STOP_StartEx(isr_STOP_handler);
+ 730              		.loc 1 223 0
+ 731 0028 4D48     		ldr	r0, .L43+8
+ 732 002a FFF7FEFF 		bl	isr_STOP_StartEx
+ 224:main.c        ****     
+ 225:main.c        ****   
+ 226:main.c        ****     
+ 227:main.c        ****     isr_TURN_CONT_MODE_StartEx(isr_TURN_CONT_MODE_handler);
+ 733              		.loc 1 227 0
+ 734 002e 4D48     		ldr	r0, .L43+12
+ 735 0030 FFF7FEFF 		bl	isr_TURN_CONT_MODE_StartEx
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 18
+
+
+ 228:main.c        ****     isr_TURN_OFF_CONT_MODE_StartEx(isr_TURN_OFF_CONT_MODE_handler);
+ 736              		.loc 1 228 0
+ 737 0034 4C48     		ldr	r0, .L43+16
+ 738 0036 FFF7FEFF 		bl	isr_TURN_OFF_CONT_MODE_StartEx
+ 229:main.c        ****     
+ 230:main.c        **** 
+ 231:main.c        ****     /* Quadrature Decoder isr */
+ 232:main.c        ****     isr_QuadDec_1_StartEx(isr_QuadDec_1_handler);
+ 739              		.loc 1 232 0
+ 740 003a 4C48     		ldr	r0, .L43+20
+ 741 003c FFF7FEFF 		bl	isr_QuadDec_1_StartEx
+ 233:main.c        ****     isr_QuadDec_2_StartEx(isr_QuadDec_2_handler);
+ 742              		.loc 1 233 0
+ 743 0040 4B48     		ldr	r0, .L43+24
+ 744 0042 FFF7FEFF 		bl	isr_QuadDec_2_StartEx
+ 234:main.c        ****    
+ 235:main.c        ****     
+ 236:main.c        ****     
+ 237:main.c        ****     /* MIS 1------------------------------------------ */
+ 238:main.c        ****     isr_PulseCounter_1_StartEx(isr_PulseCounter_1_handler);
+ 745              		.loc 1 238 0
+ 746 0046 4B48     		ldr	r0, .L43+28
+ 747 0048 FFF7FEFF 		bl	isr_PulseCounter_1_StartEx
+ 239:main.c        ****     isr_Capture_1_StartEx(isr_Capture_1);
+ 748              		.loc 1 239 0
+ 749 004c 4A48     		ldr	r0, .L43+32
+ 750 004e FFF7FEFF 		bl	isr_Capture_1_StartEx
+ 240:main.c        ****      BurstTimeout_1_Start();
+ 751              		.loc 1 240 0
+ 752 0052 FFF7FEFF 		bl	BurstTimeout_1_Start
+ 241:main.c        ****     PulseCounter_1_Start();
+ 753              		.loc 1 241 0
+ 754 0056 FFF7FEFF 		bl	PulseCounter_1_Start
+ 242:main.c        ****    
+ 243:main.c        ****     /* MIS 2------------------------------------------ */
+ 244:main.c        ****     isr_PulseCounter_2_StartEx(isr_PulseCounter_2_handler);
+ 755              		.loc 1 244 0
+ 756 005a 4848     		ldr	r0, .L43+36
+ 757 005c FFF7FEFF 		bl	isr_PulseCounter_2_StartEx
+ 245:main.c        ****     isr_Capture_2_StartEx(isr_Capture_2);
+ 758              		.loc 1 245 0
+ 759 0060 4748     		ldr	r0, .L43+40
+ 760 0062 FFF7FEFF 		bl	isr_Capture_2_StartEx
+ 246:main.c        ****     PulseCounter_2_Start();
+ 761              		.loc 1 246 0
+ 762 0066 FFF7FEFF 		bl	PulseCounter_2_Start
+ 247:main.c        ****     BurstTimeout_2_Start();
+ 763              		.loc 1 247 0
+ 764 006a FFF7FEFF 		bl	BurstTimeout_2_Start
+ 248:main.c        ****     
+ 249:main.c        ****     /* MIS 3------------------------------------------ */
+ 250:main.c        ****     isr_PulseCounter_3_StartEx(isr_PulseCounter_3_handler);
+ 765              		.loc 1 250 0
+ 766 006e 4548     		ldr	r0, .L43+44
+ 767 0070 FFF7FEFF 		bl	isr_PulseCounter_3_StartEx
+ 251:main.c        ****     isr_Capture_3_StartEx(isr_Capture_3);
+ 768              		.loc 1 251 0
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 19
+
+
+ 769 0074 4448     		ldr	r0, .L43+48
+ 770 0076 FFF7FEFF 		bl	isr_Capture_3_StartEx
+ 252:main.c        ****     PulseCounter_3_Start();
+ 771              		.loc 1 252 0
+ 772 007a FFF7FEFF 		bl	PulseCounter_3_Start
+ 253:main.c        ****     BurstTimeout_3_Start();
+ 773              		.loc 1 253 0
+ 774 007e FFF7FEFF 		bl	BurstTimeout_3_Start
+ 254:main.c        ****     
+ 255:main.c        ****     /* MIS 4------------------------------------------ */
+ 256:main.c        ****     isr_PulseCounter_4_StartEx(isr_PulseCounter_4_handler);
+ 775              		.loc 1 256 0
+ 776 0082 4248     		ldr	r0, .L43+52
+ 777 0084 FFF7FEFF 		bl	isr_PulseCounter_4_StartEx
+ 257:main.c        ****     isr_Capture_4_StartEx(isr_Capture_4);
+ 778              		.loc 1 257 0
+ 779 0088 4148     		ldr	r0, .L43+56
+ 780 008a FFF7FEFF 		bl	isr_Capture_4_StartEx
+ 258:main.c        ****     PulseCounter_4_Start();
+ 781              		.loc 1 258 0
+ 782 008e FFF7FEFF 		bl	PulseCounter_4_Start
+ 259:main.c        ****     BurstTimeout_4_Start();
+ 783              		.loc 1 259 0
+ 784 0092 FFF7FEFF 		bl	BurstTimeout_4_Start
+ 260:main.c        ****     
+ 261:main.c        ****     
+ 262:main.c        ****     isr_Timestamp_StartEx(isr_Timestamp_handler);
+ 785              		.loc 1 262 0
+ 786 0096 3F48     		ldr	r0, .L43+60
+ 787 0098 FFF7FEFF 		bl	isr_Timestamp_StartEx
+ 263:main.c        ****     Timestamp_Start();
+ 788              		.loc 1 263 0
+ 789 009c FFF7FEFF 		bl	Timestamp_Start
+ 264:main.c        ****   //  EdgeDetect_1_Start();
+ 265:main.c        **** 
+ 266:main.c        ****     
+ 267:main.c        ****     UART_1_PutString("\x1b[2J\x1b[H"); //erase screen and go home
+ 790              		.loc 1 267 0
+ 791 00a0 3D48     		ldr	r0, .L43+64
+ 792 00a2 FFF7FEFF 		bl	UART_1_PutString
+ 268:main.c        ****     UART_1_PutString("A minimal unit testing framework for C\r\n\r\n");
+ 793              		.loc 1 268 0
+ 794 00a6 3D48     		ldr	r0, .L43+68
+ 795 00a8 FFF7FEFF 		bl	UART_1_PutString
+ 269:main.c        **** 
+ 270:main.c        ****     //test_X10();
+ 271:main.c        ****     MIS1_SetBurstTimeout(5000);
+ 796              		.loc 1 271 0
+ 797 00ac 41F28830 		movw	r0, #5000
+ 798 00b0 FFF7FEFF 		bl	MIS1_SetBurstTimeout
+ 272:main.c        ****     MIS2_SetBurstTimeout(5000); /* 5ms pulse timeout in packet */
+ 799              		.loc 1 272 0
+ 800 00b4 41F28830 		movw	r0, #5000
+ 801 00b8 FFF7FEFF 		bl	MIS2_SetBurstTimeout
+ 273:main.c        ****     MIS3_SetBurstTimeout(5000);
+ 802              		.loc 1 273 0
+ 803 00bc 41F28830 		movw	r0, #5000
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 20
+
+
+ 804 00c0 FFF7FEFF 		bl	MIS3_SetBurstTimeout
+ 274:main.c        ****     MIS4_SetBurstTimeout(5000);
+ 805              		.loc 1 274 0
+ 806 00c4 41F28830 		movw	r0, #5000
+ 807 00c8 FFF7FEFF 		bl	MIS4_SetBurstTimeout
+ 808              	.L42:
+ 809              	.LBB3:
+ 275:main.c        ****     
+ 276:main.c        **** //    MIS_Debug_Write(1);
+ 277:main.c        ****     //    UART_1_PutString("DEBUG 1 \r\n\r\n");
+ 278:main.c        ****      //   CyDelay(6000);
+ 279:main.c        ****        
+ 280:main.c        ****  
+ 281:main.c        ****     
+ 282:main.c        ****     
+ 283:main.c        ****     
+ 284:main.c        ****     do
+ 285:main.c        ****     {
+ 286:main.c        ****        
+ 287:main.c        ****        
+ 288:main.c        ****       
+ 289:main.c        **** 
+ 290:main.c        ****         
+ 291:main.c        ****         /* --- MIS 1 --- *//*
+ 292:main.c        ****         uint32 MIS1_pulse_count;
+ 293:main.c        ****         uint32 MIS1_pulse_time;
+ 294:main.c        ****         do
+ 295:main.c        ****         {
+ 296:main.c        ****             debug_master_cmd(1);
+ 297:main.c        ****             MIS1_pulse_count = debug_master_read(1);
+ 298:main.c        ****             
+ 299:main.c        ****             debug_master_cmd(2);
+ 300:main.c        ****             MIS1_pulse_time = debug_master_read(2);            
+ 301:main.c        ****         } while (MIS1_pulse_time == 0);*/
+ 302:main.c        ****         //////////////////////////////////////////
+ 303:main.c        ****         
+ 304:main.c        ****         /* --- MIS 2 --- *//*
+ 305:main.c        ****         uint32 MIS2_pulse_count;
+ 306:main.c        ****         uint32 MIS2_pulse_time;
+ 307:main.c        ****         do
+ 308:main.c        ****         {
+ 309:main.c        ****             debug_master_cmd(3);
+ 310:main.c        ****             MIS2_pulse_count = debug_master_read(3);
+ 311:main.c        **** 
+ 312:main.c        ****             debug_master_cmd(4);
+ 313:main.c        ****             MIS2_pulse_time = debug_master_read(4);
+ 314:main.c        ****         } while (MIS2_pulse_time == 0);*/
+ 315:main.c        ****          //////////////////////////////////////////
+ 316:main.c        ****         
+ 317:main.c        ****         /* --- MIS 3 --- *//*
+ 318:main.c        ****         uint32 MIS3_pulse_count;
+ 319:main.c        ****         uint32 MIS3_pulse_time;
+ 320:main.c        ****         do
+ 321:main.c        ****         {
+ 322:main.c        ****             debug_master_cmd(9);
+ 323:main.c        ****             MIS3_pulse_count = debug_master_read(9);
+ 324:main.c        ****             
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 21
+
+
+ 325:main.c        ****             debug_master_cmd(0x0A);
+ 326:main.c        ****             MIS3_pulse_time = debug_master_read(0x0A);            
+ 327:main.c        ****         } while (MIS3_pulse_time == 0);*/
+ 328:main.c        ****          //////////////////////////////////////////
+ 329:main.c        ****         
+ 330:main.c        ****         /* --- MIS 4 --- *//*
+ 331:main.c        ****         uint32 MIS4_pulse_count;
+ 332:main.c        ****         uint32 MIS4_pulse_time;
+ 333:main.c        ****         do
+ 334:main.c        ****         {
+ 335:main.c        ****             debug_master_cmd(0x0B);
+ 336:main.c        ****             MIS4_pulse_count = debug_master_read(0x0B);
+ 337:main.c        ****             
+ 338:main.c        ****             debug_master_cmd(0x0C);
+ 339:main.c        ****             MIS4_pulse_time = debug_master_read(0x0C);            
+ 340:main.c        ****         } while (MIS4_pulse_time == 0);*/
+ 341:main.c        ****          //////////////////////////////////////////
+ 342:main.c        ****         
+ 343:main.c        ****         /* --- MIS Quad 1-2 --- *//*
+ 344:main.c        ****         uint32 Quad_dec_1_count;
+ 345:main.c        ****         uint8 Quad_Dec_1_Event;
+ 346:main.c        ****         
+ 347:main.c        ****         do
+ 348:main.c        ****         {
+ 349:main.c        ****             debug_master_cmd(0x0D);
+ 350:main.c        ****             Quad_dec_1_count = debug_master_read(0x0D);
+ 351:main.c        ****             Quad_Dec_1_Event = QuadDec_1_GetEvents();
+ 352:main.c        ****             
+ 353:main.c        ****             debug_master_cmd(2);
+ 354:main.c        ****             MIS1_pulse_time = debug_master_read(2);  
+ 355:main.c        ****             
+ 356:main.c        ****         } while (MIS1_pulse_time == 0);*/
+ 357:main.c        ****         //////////////////////////////////////////
+ 358:main.c        ****         
+ 359:main.c        ****         /* --- MIS Quad 3-4 --- *//*
+ 360:main.c        ****         uint32 Quad_dec_2_count;
+ 361:main.c        ****         uint8 Quad_Dec_2_Event;
+ 362:main.c        ****         
+ 363:main.c        ****         do
+ 364:main.c        ****         {
+ 365:main.c        ****             debug_master_cmd(0x0E);
+ 366:main.c        ****             Quad_dec_2_count = debug_master_read(0x0E);
+ 367:main.c        ****             Quad_Dec_2_Event = QuadDec_2_GetEvents();
+ 368:main.c        ****             
+ 369:main.c        ****             debug_master_cmd(0x0A);
+ 370:main.c        ****             MIS3_pulse_time = debug_master_read(0x0A);            
+ 371:main.c        ****         } while (MIS3_pulse_time == 0);*/
+ 372:main.c        ****         //////////////////////////////////////////
+ 373:main.c        ****         
+ 374:main.c        ****         
+ 375:main.c        ****       //  sprintf(txt, "MIS1 PulseCounter = %ld MIS3 PulseCounter = %ld", MIS1_ReadCount(), MIS3_Re
+ 376:main.c        ****        // assert(0 == 0, txt);
+ 377:main.c        ****         
+ 378:main.c        ****         
+ 379:main.c        ****         /*
+ 380:main.c        ****         sprintf(txt, " startMIS1 PulseCounter = %ld  curTime = %ld", MIS1_ReadCount(), MIS1_ReadCur
+ 381:main.c        ****         assert(0 == 0, txt); 
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 22
+
+
+ 382:main.c        ****         
+ 383:main.c        ****         for(uint32 i = 0;i<5;i++){
+ 384:main.c        ****             
+ 385:main.c        ****         sprintf(txt, "i = %ld  MIS1 PulseCounter = %ld  curTime = %ld",i, MIS1_ReadCount(), MIS1_Re
+ 386:main.c        ****         assert(0 == 0, txt);
+ 387:main.c        ****         CyDelay(2000);
+ 388:main.c        ****         
+ 389:main.c        ****         }
+ 390:main.c        ****         */
+ 391:main.c        ****         /*
+ 392:main.c        ****         MIS_Debug_Write(1);
+ 393:main.c        ****         CyDelay(10000);
+ 394:main.c        ****         MIS_Debug_Write(0);
+ 395:main.c        ****         CyDelay(1000);*/
+ 396:main.c        ****         
+ 397:main.c        ****         
+ 398:main.c        ****         
+ 399:main.c        ****         uint32 new_MIS1_pulse = MIS1_ReadCount();
+ 810              		.loc 1 399 0
+ 811 00cc FFF7FEFF 		bl	MIS1_ReadCount
+ 812 00d0 F861     		str	r0, [r7, #28]
+ 400:main.c        ****         uint32 new_MIS1_lastpulse_time = MIS1_ReadCurTime();
+ 813              		.loc 1 400 0
+ 814 00d2 FFF7FEFF 		bl	MIS1_ReadCurTime
+ 815 00d6 B861     		str	r0, [r7, #24]
+ 401:main.c        ****         if(new_MIS1_pulse > old_MIS1_pulse)
+ 816              		.loc 1 401 0
+ 817 00d8 314B     		ldr	r3, .L43+72
+ 818 00da 1B68     		ldr	r3, [r3]
+ 819 00dc FA69     		ldr	r2, [r7, #28]
+ 820 00de 9A42     		cmp	r2, r3
+ 821 00e0 05D9     		bls	.L38
+ 402:main.c        ****             {
+ 403:main.c        ****                 MIS1_lastpulse_time = new_MIS1_lastpulse_time;
+ 822              		.loc 1 403 0
+ 823 00e2 304A     		ldr	r2, .L43+76
+ 824 00e4 BB69     		ldr	r3, [r7, #24]
+ 825 00e6 1360     		str	r3, [r2]
+ 404:main.c        ****                 old_MIS1_pulse = new_MIS1_pulse;
+ 826              		.loc 1 404 0
+ 827 00e8 2D4A     		ldr	r2, .L43+72
+ 828 00ea FB69     		ldr	r3, [r7, #28]
+ 829 00ec 1360     		str	r3, [r2]
+ 830              	.L38:
+ 405:main.c        ****             }
+ 406:main.c        ****             
+ 407:main.c        ****             
+ 408:main.c        ****         uint32 new_MIS2_pulse = MIS2_ReadCount();
+ 831              		.loc 1 408 0
+ 832 00ee FFF7FEFF 		bl	MIS2_ReadCount
+ 833 00f2 7861     		str	r0, [r7, #20]
+ 409:main.c        ****         uint32 new_MIS2_lastpulse_time = MIS2_ReadCurTime();
+ 834              		.loc 1 409 0
+ 835 00f4 FFF7FEFF 		bl	MIS2_ReadCurTime
+ 836 00f8 3861     		str	r0, [r7, #16]
+ 410:main.c        ****         if(new_MIS2_pulse > old_MIS2_pulse)
+ 837              		.loc 1 410 0
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 23
+
+
+ 838 00fa 2B4B     		ldr	r3, .L43+80
+ 839 00fc 1B68     		ldr	r3, [r3]
+ 840 00fe 7A69     		ldr	r2, [r7, #20]
+ 841 0100 9A42     		cmp	r2, r3
+ 842 0102 05D9     		bls	.L39
+ 411:main.c        ****             {
+ 412:main.c        ****                 MIS2_lastpulse_time = new_MIS2_lastpulse_time;
+ 843              		.loc 1 412 0
+ 844 0104 294A     		ldr	r2, .L43+84
+ 845 0106 3B69     		ldr	r3, [r7, #16]
+ 846 0108 1360     		str	r3, [r2]
+ 413:main.c        ****                 old_MIS2_pulse = new_MIS2_pulse;
+ 847              		.loc 1 413 0
+ 848 010a 274A     		ldr	r2, .L43+80
+ 849 010c 7B69     		ldr	r3, [r7, #20]
+ 850 010e 1360     		str	r3, [r2]
+ 851              	.L39:
+ 414:main.c        ****             }
+ 415:main.c        ****         
+ 416:main.c        ****             
+ 417:main.c        ****         uint32 new_MIS3_pulse = MIS3_ReadCount();
+ 852              		.loc 1 417 0
+ 853 0110 FFF7FEFF 		bl	MIS3_ReadCount
+ 854 0114 F860     		str	r0, [r7, #12]
+ 418:main.c        ****         uint32 new_MIS3_lastpulse_time = MIS3_ReadCurTime();
+ 855              		.loc 1 418 0
+ 856 0116 FFF7FEFF 		bl	MIS3_ReadCurTime
+ 857 011a B860     		str	r0, [r7, #8]
+ 419:main.c        ****         if(new_MIS2_pulse > old_MIS3_pulse)
+ 858              		.loc 1 419 0
+ 859 011c 244B     		ldr	r3, .L43+88
+ 860 011e 1B68     		ldr	r3, [r3]
+ 861 0120 7A69     		ldr	r2, [r7, #20]
+ 862 0122 9A42     		cmp	r2, r3
+ 863 0124 05D9     		bls	.L40
+ 420:main.c        ****             {
+ 421:main.c        ****                 MIS3_lastpulse_time = new_MIS3_lastpulse_time;
+ 864              		.loc 1 421 0
+ 865 0126 234A     		ldr	r2, .L43+92
+ 866 0128 BB68     		ldr	r3, [r7, #8]
+ 867 012a 1360     		str	r3, [r2]
+ 422:main.c        ****                 old_MIS3_pulse = new_MIS3_pulse;
+ 868              		.loc 1 422 0
+ 869 012c 204A     		ldr	r2, .L43+88
+ 870 012e FB68     		ldr	r3, [r7, #12]
+ 871 0130 1360     		str	r3, [r2]
+ 872              	.L40:
+ 423:main.c        ****             }
+ 424:main.c        **** 
+ 425:main.c        ****         uint32 new_MIS4_pulse = MIS4_ReadCount();
+ 873              		.loc 1 425 0
+ 874 0132 FFF7FEFF 		bl	MIS4_ReadCount
+ 875 0136 7860     		str	r0, [r7, #4]
+ 426:main.c        ****         uint32 new_MIS4_lastpulse_time = MIS4_ReadCurTime();
+ 876              		.loc 1 426 0
+ 877 0138 FFF7FEFF 		bl	MIS4_ReadCurTime
+ 878 013c 3860     		str	r0, [r7]
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 24
+
+
+ 427:main.c        ****         if(new_MIS4_pulse > old_MIS4_pulse)
+ 879              		.loc 1 427 0
+ 880 013e 1E4B     		ldr	r3, .L43+96
+ 881 0140 1B68     		ldr	r3, [r3]
+ 882 0142 7A68     		ldr	r2, [r7, #4]
+ 883 0144 9A42     		cmp	r2, r3
+ 884 0146 C1D9     		bls	.L42
+ 428:main.c        ****             {
+ 429:main.c        ****                 MIS4_lastpulse_time = new_MIS4_lastpulse_time;
+ 885              		.loc 1 429 0
+ 886 0148 1C4A     		ldr	r2, .L43+100
+ 887 014a 3B68     		ldr	r3, [r7]
+ 888 014c 1360     		str	r3, [r2]
+ 430:main.c        ****                 old_MIS4_pulse = new_MIS4_pulse;
+ 889              		.loc 1 430 0
+ 890 014e 1A4A     		ldr	r2, .L43+96
+ 891 0150 7B68     		ldr	r3, [r7, #4]
+ 892 0152 1360     		str	r3, [r2]
+ 893              	.LBE3:
+ 431:main.c        ****             }
+ 432:main.c        ****         
+ 433:main.c        ****          // CyDelay(20000);  
+ 434:main.c        ****       
+ 435:main.c        ****         
+ 436:main.c        ****         /*
+ 437:main.c        ****         MIS_Debug_Write(0);
+ 438:main.c        ****          CyDelay(1000);
+ 439:main.c        ****         sprintf(txt, "  MIS1 PulseCounter = %ld  LastPulseTime = %ld", new_MIS1_pulse, MIS1_lastpul
+ 440:main.c        ****         assert(0 == 0, txt);
+ 441:main.c        ****         sprintf(txt, "MIS1 PulseCounter = %ld TotTime = %ld", MIS1_ReadCount(), MIS1_ReadCurTime())
+ 442:main.c        ****         assert(0 == 0, txt);
+ 443:main.c        ****         CyDelay(9000);
+ 444:main.c        ****        */
+ 445:main.c        ****         
+ 446:main.c        ****         //sprintf(txt,"hw_old = %ld  hw_new = %ld", hw_old, hw_new);
+ 447:main.c        ****         //assert(0 == 0, txt);
+ 448:main.c        ****         //CyDelay(1000);
+ 449:main.c        ****         
+ 450:main.c        ****         
+ 451:main.c        ****         /*
+ 452:main.c        ****         for(uint32 fi = 0;fi<3;fi++){
+ 453:main.c        ****             
+ 454:main.c        ****         sprintf(txt, "fi = %ld  MIS1 PulseCounter = %ld  curTime = %ld",fi, MIS1_ReadCount(), MIS1_
+ 455:main.c        ****         assert(0 == 0, txt);
+ 456:main.c        ****         CyDelay(2000);
+ 457:main.c        ****         
+ 458:main.c        ****         }
+ 459:main.c        ****         */
+ 460:main.c        ****         
+ 461:main.c        ****         
+ 462:main.c        ****       //  sprintf(txt, "MIS3 PulseCounter = %ld TotTime = %ld", MIS3_ReadCount(), MIS3_ReadCurTime(
+ 463:main.c        ****       //  assert(0 == 0, txt);
+ 464:main.c        ****        
+ 465:main.c        ****         
+ 466:main.c        ****        // CyDelay(1000);
+ 467:main.c        ****         
+ 468:main.c        ****       //  MIS_Debug_Write(0);
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 25
+
+
+ 469:main.c        ****       // UART_1_PutString("DEBUG 0 \r\n\r\n");
+ 470:main.c        ****         
+ 471:main.c        ****            /*  
+ 472:main.c        ****         sprintf(txt, "MIS2 PulseCounter = %ld TotTime = %ld", MIS2_pulse_count, MIS2_pulse_time);
+ 473:main.c        ****         assert(0 == 0, txt);
+ 474:main.c        ****         
+ 475:main.c        ****         
+ 476:main.c        ****         
+ 477:main.c        ****         sprintf(txt, "MIS3 PulseCounter = %ld TotTime = %ld", MIS3_pulse_count, MIS3_pulse_time);
+ 478:main.c        ****         assert(0 == 0, txt);
+ 479:main.c        ****              
+ 480:main.c        ****         sprintf(txt, "MIS4 PulseCounter = %ld TotTime = %ld", MIS4_pulse_count, MIS4_pulse_time);
+ 481:main.c        ****         assert(0 == 0, txt);
+ 482:main.c        ****         
+ 483:main.c        ****         sprintf(txt, "MIS 1-2 QuadCounter = %ld TotTime = %ld Event = %d", Quad_dec_1_count, MIS1_p
+ 484:main.c        ****         assert(0 == 0, txt);
+ 485:main.c        ****         
+ 486:main.c        ****         sprintf(txt, "MIS 3-4 QuadCounter = %ld TotTime = %ld Event = %d", Quad_dec_2_count, MIS3_p
+ 487:main.c        ****         assert(0 == 0, txt);
+ 488:main.c        ****        */
+ 489:main.c        ****         
+ 490:main.c        ****         
+ 491:main.c        ****     } while (1);
+ 894              		.loc 1 491 0
+ 895 0154 BAE7     		b	.L42
+ 896              	.L44:
+ 897 0156 00BF     		.align	2
+ 898              	.L43:
+ 899 0158 00000000 		.word	isr_CS_Rise_handler
+ 900 015c 00000000 		.word	isr_START_handler
+ 901 0160 00000000 		.word	isr_STOP_handler
+ 902 0164 00000000 		.word	isr_TURN_CONT_MODE_handler
+ 903 0168 00000000 		.word	isr_TURN_OFF_CONT_MODE_handler
+ 904 016c 00000000 		.word	isr_QuadDec_1_handler
+ 905 0170 00000000 		.word	isr_QuadDec_2_handler
+ 906 0174 00000000 		.word	isr_PulseCounter_1_handler
+ 907 0178 00000000 		.word	isr_Capture_1
+ 908 017c 00000000 		.word	isr_PulseCounter_2_handler
+ 909 0180 00000000 		.word	isr_Capture_2
+ 910 0184 00000000 		.word	isr_PulseCounter_3_handler
+ 911 0188 00000000 		.word	isr_Capture_3
+ 912 018c 00000000 		.word	isr_PulseCounter_4_handler
+ 913 0190 00000000 		.word	isr_Capture_4
+ 914 0194 00000000 		.word	isr_Timestamp_handler
+ 915 0198 00000000 		.word	.LC0
+ 916 019c 08000000 		.word	.LC1
+ 917 01a0 00000000 		.word	old_MIS1_pulse
+ 918 01a4 00000000 		.word	MIS1_lastpulse_time
+ 919 01a8 00000000 		.word	old_MIS2_pulse
+ 920 01ac 00000000 		.word	MIS2_lastpulse_time
+ 921 01b0 00000000 		.word	old_MIS3_pulse
+ 922 01b4 00000000 		.word	MIS3_lastpulse_time
+ 923 01b8 00000000 		.word	old_MIS4_pulse
+ 924 01bc 00000000 		.word	MIS4_lastpulse_time
+ 925              		.cfi_endproc
+ 926              	.LFE73:
+ 927              		.size	main, .-main
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 26
+
+
+ 928              		.text
+ 929              	.Letext0:
+ 930              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 931              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 932              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 933              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 934              		.section	.debug_info,"",%progbits
+ 935              	.Ldebug_info0:
+ 936 0000 9C030000 		.4byte	0x39c
+ 937 0004 0400     		.2byte	0x4
+ 938 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 939 000a 04       		.byte	0x4
+ 940 000b 01       		.uleb128 0x1
+ 941 000c 14000000 		.4byte	.LASF51
+ 942 0010 0C       		.byte	0xc
+ 943 0011 00030000 		.4byte	.LASF52
+ 944 0015 D3010000 		.4byte	.LASF53
+ 945 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 946 001d 00000000 		.4byte	0
+ 947 0021 00000000 		.4byte	.Ldebug_line0
+ 948 0025 02       		.uleb128 0x2
+ 949 0026 01       		.byte	0x1
+ 950 0027 06       		.byte	0x6
+ 951 0028 A4030000 		.4byte	.LASF0
+ 952 002c 02       		.uleb128 0x2
+ 953 002d 01       		.byte	0x1
+ 954 002e 08       		.byte	0x8
+ 955 002f 4E010000 		.4byte	.LASF1
+ 956 0033 02       		.uleb128 0x2
+ 957 0034 02       		.byte	0x2
+ 958 0035 05       		.byte	0x5
+ 959 0036 20030000 		.4byte	.LASF2
+ 960 003a 02       		.uleb128 0x2
+ 961 003b 02       		.byte	0x2
+ 962 003c 07       		.byte	0x7
+ 963 003d C8000000 		.4byte	.LASF3
+ 964 0041 03       		.uleb128 0x3
+ 965 0042 AC000000 		.4byte	.LASF9
+ 966 0046 02       		.byte	0x2
+ 967 0047 3F       		.byte	0x3f
+ 968 0048 4C000000 		.4byte	0x4c
+ 969 004c 02       		.uleb128 0x2
+ 970 004d 04       		.byte	0x4
+ 971 004e 05       		.byte	0x5
+ 972 004f 7B030000 		.4byte	.LASF4
+ 973 0053 02       		.uleb128 0x2
+ 974 0054 04       		.byte	0x4
+ 975 0055 07       		.byte	0x7
+ 976 0056 A3010000 		.4byte	.LASF5
+ 977 005a 02       		.uleb128 0x2
+ 978 005b 08       		.byte	0x8
+ 979 005c 05       		.byte	0x5
+ 980 005d F2020000 		.4byte	.LASF6
+ 981 0061 02       		.uleb128 0x2
+ 982 0062 08       		.byte	0x8
+ 983 0063 07       		.byte	0x7
+ 984 0064 9A020000 		.4byte	.LASF7
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 27
+
+
+ 985 0068 04       		.uleb128 0x4
+ 986 0069 04       		.byte	0x4
+ 987 006a 05       		.byte	0x5
+ 988 006b 696E7400 		.ascii	"int\000"
+ 989 006f 02       		.uleb128 0x2
+ 990 0070 04       		.byte	0x4
+ 991 0071 07       		.byte	0x7
+ 992 0072 79020000 		.4byte	.LASF8
+ 993 0076 03       		.uleb128 0x3
+ 994 0077 E1020000 		.4byte	.LASF10
+ 995 007b 03       		.byte	0x3
+ 996 007c 2C       		.byte	0x2c
+ 997 007d 41000000 		.4byte	0x41
+ 998 0081 05       		.uleb128 0x5
+ 999 0082 49030000 		.4byte	.LASF11
+ 1000 0086 04       		.byte	0x4
+ 1001 0087 9201     		.2byte	0x192
+ 1002 0089 2C000000 		.4byte	0x2c
+ 1003 008d 05       		.uleb128 0x5
+ 1004 008e 6D020000 		.4byte	.LASF12
+ 1005 0092 04       		.byte	0x4
+ 1006 0093 9401     		.2byte	0x194
+ 1007 0095 53000000 		.4byte	0x53
+ 1008 0099 05       		.uleb128 0x5
+ 1009 009a 72010000 		.4byte	.LASF13
+ 1010 009e 04       		.byte	0x4
+ 1011 009f 9701     		.2byte	0x197
+ 1012 00a1 4C000000 		.4byte	0x4c
+ 1013 00a5 02       		.uleb128 0x2
+ 1014 00a6 04       		.byte	0x4
+ 1015 00a7 04       		.byte	0x4
+ 1016 00a8 21010000 		.4byte	.LASF14
+ 1017 00ac 02       		.uleb128 0x2
+ 1018 00ad 08       		.byte	0x8
+ 1019 00ae 04       		.byte	0x4
+ 1020 00af ED000000 		.4byte	.LASF15
+ 1021 00b3 02       		.uleb128 0x2
+ 1022 00b4 01       		.byte	0x1
+ 1023 00b5 08       		.byte	0x8
+ 1024 00b6 07030000 		.4byte	.LASF16
+ 1025 00ba 02       		.uleb128 0x2
+ 1026 00bb 08       		.byte	0x8
+ 1027 00bc 04       		.byte	0x4
+ 1028 00bd 98030000 		.4byte	.LASF17
+ 1029 00c1 02       		.uleb128 0x2
+ 1030 00c2 04       		.byte	0x4
+ 1031 00c3 07       		.byte	0x7
+ 1032 00c4 E9020000 		.4byte	.LASF18
+ 1033 00c8 06       		.uleb128 0x6
+ 1034 00c9 DB000000 		.4byte	.LASF19
+ 1035 00cd 01       		.byte	0x1
+ 1036 00ce 22       		.byte	0x22
+ 1037 00cf 00000000 		.4byte	.LFB64
+ 1038 00d3 0C000000 		.4byte	.LFE64-.LFB64
+ 1039 00d7 01       		.uleb128 0x1
+ 1040 00d8 9C       		.byte	0x9c
+ 1041 00d9 06       		.uleb128 0x6
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 28
+
+
+ 1042 00da B1020000 		.4byte	.LASF20
+ 1043 00de 01       		.byte	0x1
+ 1044 00df 29       		.byte	0x29
+ 1045 00e0 00000000 		.4byte	.LFB65
+ 1046 00e4 0C000000 		.4byte	.LFE65-.LFB65
+ 1047 00e8 01       		.uleb128 0x1
+ 1048 00e9 9C       		.byte	0x9c
+ 1049 00ea 06       		.uleb128 0x6
+ 1050 00eb B0030000 		.4byte	.LASF21
+ 1051 00ef 01       		.byte	0x1
+ 1052 00f0 30       		.byte	0x30
+ 1053 00f1 00000000 		.4byte	.LFB66
+ 1054 00f5 20000000 		.4byte	.LFE66-.LFB66
+ 1055 00f9 01       		.uleb128 0x1
+ 1056 00fa 9C       		.byte	0x9c
+ 1057 00fb 06       		.uleb128 0x6
+ 1058 00fc E1030000 		.4byte	.LASF22
+ 1059 0100 01       		.byte	0x1
+ 1060 0101 39       		.byte	0x39
+ 1061 0102 00000000 		.4byte	.LFB67
+ 1062 0106 28000000 		.4byte	.LFE67-.LFB67
+ 1063 010a 01       		.uleb128 0x1
+ 1064 010b 9C       		.byte	0x9c
+ 1065 010c 07       		.uleb128 0x7
+ 1066 010d 84030000 		.4byte	.LASF25
+ 1067 0111 01       		.byte	0x1
+ 1068 0112 44       		.byte	0x44
+ 1069 0113 00000000 		.4byte	.LFB68
+ 1070 0117 A0010000 		.4byte	.LFE68-.LFB68
+ 1071 011b 01       		.uleb128 0x1
+ 1072 011c 9C       		.byte	0x9c
+ 1073 011d 3A010000 		.4byte	0x13a
+ 1074 0121 08       		.uleb128 0x8
+ 1075 0122 6200     		.ascii	"b\000"
+ 1076 0124 01       		.byte	0x1
+ 1077 0125 46       		.byte	0x46
+ 1078 0126 81000000 		.4byte	0x81
+ 1079 012a 02       		.uleb128 0x2
+ 1080 012b 91       		.byte	0x91
+ 1081 012c 77       		.sleb128 -9
+ 1082 012d 08       		.uleb128 0x8
+ 1083 012e 7000     		.ascii	"p\000"
+ 1084 0130 01       		.byte	0x1
+ 1085 0131 8B       		.byte	0x8b
+ 1086 0132 3A010000 		.4byte	0x13a
+ 1087 0136 02       		.uleb128 0x2
+ 1088 0137 91       		.byte	0x91
+ 1089 0138 70       		.sleb128 -16
+ 1090 0139 00       		.byte	0
+ 1091 013a 09       		.uleb128 0x9
+ 1092 013b 04       		.byte	0x4
+ 1093 013c 81000000 		.4byte	0x81
+ 1094 0140 06       		.uleb128 0x6
+ 1095 0141 CB030000 		.4byte	.LASF23
+ 1096 0145 01       		.byte	0x1
+ 1097 0146 99       		.byte	0x99
+ 1098 0147 00000000 		.4byte	.LFB69
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 29
+
+
+ 1099 014b 0C000000 		.4byte	.LFE69-.LFB69
+ 1100 014f 01       		.uleb128 0x1
+ 1101 0150 9C       		.byte	0x9c
+ 1102 0151 06       		.uleb128 0x6
+ 1103 0152 5C010000 		.4byte	.LASF24
+ 1104 0156 01       		.byte	0x1
+ 1105 0157 9F       		.byte	0x9f
+ 1106 0158 00000000 		.4byte	.LFB70
+ 1107 015c 0C000000 		.4byte	.LFE70-.LFB70
+ 1108 0160 01       		.uleb128 0x1
+ 1109 0161 9C       		.byte	0x9c
+ 1110 0162 07       		.uleb128 0x7
+ 1111 0163 5C020000 		.4byte	.LASF26
+ 1112 0167 01       		.byte	0x1
+ 1113 0168 A5       		.byte	0xa5
+ 1114 0169 00000000 		.4byte	.LFB71
+ 1115 016d 3C000000 		.4byte	.LFE71-.LFB71
+ 1116 0171 01       		.uleb128 0x1
+ 1117 0172 9C       		.byte	0x9c
+ 1118 0173 94010000 		.4byte	0x194
+ 1119 0177 0A       		.uleb128 0xa
+ 1120 0178 636D6400 		.ascii	"cmd\000"
+ 1121 017c 01       		.byte	0x1
+ 1122 017d A5       		.byte	0xa5
+ 1123 017e 81000000 		.4byte	0x81
+ 1124 0182 02       		.uleb128 0x2
+ 1125 0183 91       		.byte	0x91
+ 1126 0184 5F       		.sleb128 -33
+ 1127 0185 0B       		.uleb128 0xb
+ 1128 0186 72030000 		.4byte	.LASF27
+ 1129 018a 01       		.byte	0x1
+ 1130 018b A7       		.byte	0xa7
+ 1131 018c 94010000 		.4byte	0x194
+ 1132 0190 02       		.uleb128 0x2
+ 1133 0191 91       		.byte	0x91
+ 1134 0192 60       		.sleb128 -32
+ 1135 0193 00       		.byte	0
+ 1136 0194 0C       		.uleb128 0xc
+ 1137 0195 81000000 		.4byte	0x81
+ 1138 0199 A4010000 		.4byte	0x1a4
+ 1139 019d 0D       		.uleb128 0xd
+ 1140 019e C1000000 		.4byte	0xc1
+ 1141 01a2 0F       		.byte	0xf
+ 1142 01a3 00       		.byte	0
+ 1143 01a4 0E       		.uleb128 0xe
+ 1144 01a5 B6000000 		.4byte	.LASF54
+ 1145 01a9 01       		.byte	0x1
+ 1146 01aa B2       		.byte	0xb2
+ 1147 01ab 8D000000 		.4byte	0x8d
+ 1148 01af 00000000 		.4byte	.LFB72
+ 1149 01b3 8A000000 		.4byte	.LFE72-.LFB72
+ 1150 01b7 01       		.uleb128 0x1
+ 1151 01b8 9C       		.byte	0x9c
+ 1152 01b9 26020000 		.4byte	0x226
+ 1153 01bd 0A       		.uleb128 0xa
+ 1154 01be 636D6400 		.ascii	"cmd\000"
+ 1155 01c2 01       		.byte	0x1
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 30
+
+
+ 1156 01c3 B2       		.byte	0xb2
+ 1157 01c4 81000000 		.4byte	0x81
+ 1158 01c8 02       		.uleb128 0x2
+ 1159 01c9 91       		.byte	0x91
+ 1160 01ca 47       		.sleb128 -57
+ 1161 01cb 0B       		.uleb128 0xb
+ 1162 01cc 72030000 		.4byte	.LASF27
+ 1163 01d0 01       		.byte	0x1
+ 1164 01d1 B4       		.byte	0xb4
+ 1165 01d2 94010000 		.4byte	0x194
+ 1166 01d6 02       		.uleb128 0x2
+ 1167 01d7 91       		.byte	0x91
+ 1168 01d8 50       		.sleb128 -48
+ 1169 01d9 0B       		.uleb128 0xb
+ 1170 01da C2020000 		.4byte	.LASF28
+ 1171 01de 01       		.byte	0x1
+ 1172 01df B5       		.byte	0xb5
+ 1173 01e0 8D000000 		.4byte	0x8d
+ 1174 01e4 02       		.uleb128 0x2
+ 1175 01e5 91       		.byte	0x91
+ 1176 01e6 4C       		.sleb128 -52
+ 1177 01e7 08       		.uleb128 0x8
+ 1178 01e8 7000     		.ascii	"p\000"
+ 1179 01ea 01       		.byte	0x1
+ 1180 01eb B6       		.byte	0xb6
+ 1181 01ec 3A010000 		.4byte	0x13a
+ 1182 01f0 02       		.uleb128 0x2
+ 1183 01f1 91       		.byte	0x91
+ 1184 01f2 68       		.sleb128 -24
+ 1185 01f3 0B       		.uleb128 0xb
+ 1186 01f4 1B010000 		.4byte	.LASF29
+ 1187 01f8 01       		.byte	0x1
+ 1188 01f9 C0       		.byte	0xc0
+ 1189 01fa 68000000 		.4byte	0x68
+ 1190 01fe 02       		.uleb128 0x2
+ 1191 01ff 91       		.byte	0x91
+ 1192 0200 64       		.sleb128 -28
+ 1193 0201 0F       		.uleb128 0xf
+ 1194 0202 4E000000 		.4byte	.LBB2
+ 1195 0206 32000000 		.4byte	.LBE2-.LBB2
+ 1196 020a 08       		.uleb128 0x8
+ 1197 020b 6900     		.ascii	"i\000"
+ 1198 020d 01       		.byte	0x1
+ 1199 020e C3       		.byte	0xc3
+ 1200 020f 68000000 		.4byte	0x68
+ 1201 0213 02       		.uleb128 0x2
+ 1202 0214 91       		.byte	0x91
+ 1203 0215 6C       		.sleb128 -20
+ 1204 0216 0B       		.uleb128 0xb
+ 1205 0217 A2000000 		.4byte	.LASF30
+ 1206 021b 01       		.byte	0x1
+ 1207 021c C4       		.byte	0xc4
+ 1208 021d 81000000 		.4byte	0x81
+ 1209 0221 02       		.uleb128 0x2
+ 1210 0222 91       		.byte	0x91
+ 1211 0223 63       		.sleb128 -29
+ 1212 0224 00       		.byte	0
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 31
+
+
+ 1213 0225 00       		.byte	0
+ 1214 0226 10       		.uleb128 0x10
+ 1215 0227 74020000 		.4byte	.LASF31
+ 1216 022b 01       		.byte	0x1
+ 1217 022c D0       		.byte	0xd0
+ 1218 022d 68000000 		.4byte	0x68
+ 1219 0231 00000000 		.4byte	.LFB73
+ 1220 0235 C0010000 		.4byte	.LFE73-.LFB73
+ 1221 0239 01       		.uleb128 0x1
+ 1222 023a 9C       		.byte	0x9c
+ 1223 023b C2020000 		.4byte	0x2c2
+ 1224 023f 0F       		.uleb128 0xf
+ 1225 0240 CC000000 		.4byte	.LBB3
+ 1226 0244 88000000 		.4byte	.LBE3-.LBB3
+ 1227 0248 11       		.uleb128 0x11
+ 1228 0249 3F010000 		.4byte	.LASF32
+ 1229 024d 01       		.byte	0x1
+ 1230 024e 8F01     		.2byte	0x18f
+ 1231 0250 8D000000 		.4byte	0x8d
+ 1232 0254 02       		.uleb128 0x2
+ 1233 0255 91       		.byte	0x91
+ 1234 0256 74       		.sleb128 -12
+ 1235 0257 11       		.uleb128 0x11
+ 1236 0258 2A030000 		.4byte	.LASF33
+ 1237 025c 01       		.byte	0x1
+ 1238 025d 9001     		.2byte	0x190
+ 1239 025f 8D000000 		.4byte	0x8d
+ 1240 0263 02       		.uleb128 0x2
+ 1241 0264 91       		.byte	0x91
+ 1242 0265 70       		.sleb128 -16
+ 1243 0266 11       		.uleb128 0x11
+ 1244 0267 87010000 		.4byte	.LASF34
+ 1245 026b 01       		.byte	0x1
+ 1246 026c 9801     		.2byte	0x198
+ 1247 026e 8D000000 		.4byte	0x8d
+ 1248 0272 02       		.uleb128 0x2
+ 1249 0273 91       		.byte	0x91
+ 1250 0274 6C       		.sleb128 -20
+ 1251 0275 11       		.uleb128 0x11
+ 1252 0276 C9020000 		.4byte	.LASF35
+ 1253 027a 01       		.byte	0x1
+ 1254 027b 9901     		.2byte	0x199
+ 1255 027d 8D000000 		.4byte	0x8d
+ 1256 0281 02       		.uleb128 0x2
+ 1257 0282 91       		.byte	0x91
+ 1258 0283 68       		.sleb128 -24
+ 1259 0284 11       		.uleb128 0x11
+ 1260 0285 C4010000 		.4byte	.LASF36
+ 1261 0289 01       		.byte	0x1
+ 1262 028a A101     		.2byte	0x1a1
+ 1263 028c 8D000000 		.4byte	0x8d
+ 1264 0290 02       		.uleb128 0x2
+ 1265 0291 91       		.byte	0x91
+ 1266 0292 64       		.sleb128 -28
+ 1267 0293 11       		.uleb128 0x11
+ 1268 0294 03010000 		.4byte	.LASF37
+ 1269 0298 01       		.byte	0x1
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 32
+
+
+ 1270 0299 A201     		.2byte	0x1a2
+ 1271 029b 8D000000 		.4byte	0x8d
+ 1272 029f 02       		.uleb128 0x2
+ 1273 02a0 91       		.byte	0x91
+ 1274 02a1 60       		.sleb128 -32
+ 1275 02a2 11       		.uleb128 0x11
+ 1276 02a3 63030000 		.4byte	.LASF38
+ 1277 02a7 01       		.byte	0x1
+ 1278 02a8 A901     		.2byte	0x1a9
+ 1279 02aa 8D000000 		.4byte	0x8d
+ 1280 02ae 02       		.uleb128 0x2
+ 1281 02af 91       		.byte	0x91
+ 1282 02b0 5C       		.sleb128 -36
+ 1283 02b1 11       		.uleb128 0x11
+ 1284 02b2 44020000 		.4byte	.LASF39
+ 1285 02b6 01       		.byte	0x1
+ 1286 02b7 AA01     		.2byte	0x1aa
+ 1287 02b9 8D000000 		.4byte	0x8d
+ 1288 02bd 02       		.uleb128 0x2
+ 1289 02be 91       		.byte	0x91
+ 1290 02bf 58       		.sleb128 -40
+ 1291 02c0 00       		.byte	0
+ 1292 02c1 00       		.byte	0
+ 1293 02c2 12       		.uleb128 0x12
+ 1294 02c3 96010000 		.4byte	.LASF40
+ 1295 02c7 05       		.byte	0x5
+ 1296 02c8 9606     		.2byte	0x696
+ 1297 02ca CE020000 		.4byte	0x2ce
+ 1298 02ce 13       		.uleb128 0x13
+ 1299 02cf 76000000 		.4byte	0x76
+ 1300 02d3 0C       		.uleb128 0xc
+ 1301 02d4 B3000000 		.4byte	0xb3
+ 1302 02d8 E4020000 		.4byte	0x2e4
+ 1303 02dc 14       		.uleb128 0x14
+ 1304 02dd C1000000 		.4byte	0xc1
+ 1305 02e1 F301     		.2byte	0x1f3
+ 1306 02e3 00       		.byte	0
+ 1307 02e4 15       		.uleb128 0x15
+ 1308 02e5 74787400 		.ascii	"txt\000"
+ 1309 02e9 01       		.byte	0x1
+ 1310 02ea 12       		.byte	0x12
+ 1311 02eb D3020000 		.4byte	0x2d3
+ 1312 02ef 05       		.uleb128 0x5
+ 1313 02f0 03       		.byte	0x3
+ 1314 02f1 00000000 		.4byte	txt
+ 1315 02f5 16       		.uleb128 0x16
+ 1316 02f6 42030000 		.4byte	.LASF41
+ 1317 02fa 01       		.byte	0x1
+ 1318 02fb 13       		.byte	0x13
+ 1319 02fc 99000000 		.4byte	0x99
+ 1320 0300 05       		.uleb128 0x5
+ 1321 0301 03       		.byte	0x3
+ 1322 0302 00000000 		.4byte	buffer
+ 1323 0306 16       		.uleb128 0x16
+ 1324 0307 27010000 		.4byte	.LASF42
+ 1325 030b 01       		.byte	0x1
+ 1326 030c 14       		.byte	0x14
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 33
+
+
+ 1327 030d 81000000 		.4byte	0x81
+ 1328 0311 05       		.uleb128 0x5
+ 1329 0312 03       		.byte	0x3
+ 1330 0313 00000000 		.4byte	checksum
+ 1331 0317 16       		.uleb128 0x16
+ 1332 0318 F4000000 		.4byte	.LASF43
+ 1333 031c 01       		.byte	0x1
+ 1334 031d 16       		.byte	0x16
+ 1335 031e 8D000000 		.4byte	0x8d
+ 1336 0322 05       		.uleb128 0x5
+ 1337 0323 03       		.byte	0x3
+ 1338 0324 00000000 		.4byte	old_MIS1_pulse
+ 1339 0328 16       		.uleb128 0x16
+ 1340 0329 4F030000 		.4byte	.LASF44
+ 1341 032d 01       		.byte	0x1
+ 1342 032e 17       		.byte	0x17
+ 1343 032f 8D000000 		.4byte	0x8d
+ 1344 0333 05       		.uleb128 0x5
+ 1345 0334 03       		.byte	0x3
+ 1346 0335 00000000 		.4byte	MIS1_lastpulse_time
+ 1347 0339 16       		.uleb128 0x16
+ 1348 033a 30010000 		.4byte	.LASF45
+ 1349 033e 01       		.byte	0x1
+ 1350 033f 19       		.byte	0x19
+ 1351 0340 8D000000 		.4byte	0x8d
+ 1352 0344 05       		.uleb128 0x5
+ 1353 0345 03       		.byte	0x3
+ 1354 0346 00000000 		.4byte	old_MIS2_pulse
+ 1355 034a 16       		.uleb128 0x16
+ 1356 034b 86020000 		.4byte	.LASF46
+ 1357 034f 01       		.byte	0x1
+ 1358 0350 1A       		.byte	0x1a
+ 1359 0351 8D000000 		.4byte	0x8d
+ 1360 0355 05       		.uleb128 0x5
+ 1361 0356 03       		.byte	0x3
+ 1362 0357 00000000 		.4byte	MIS2_lastpulse_time
+ 1363 035b 16       		.uleb128 0x16
+ 1364 035c 78010000 		.4byte	.LASF47
+ 1365 0360 01       		.byte	0x1
+ 1366 0361 1C       		.byte	0x1c
+ 1367 0362 8D000000 		.4byte	0x8d
+ 1368 0366 05       		.uleb128 0x5
+ 1369 0367 03       		.byte	0x3
+ 1370 0368 00000000 		.4byte	old_MIS3_pulse
+ 1371 036c 16       		.uleb128 0x16
+ 1372 036d 0C030000 		.4byte	.LASF48
+ 1373 0371 01       		.byte	0x1
+ 1374 0372 1D       		.byte	0x1d
+ 1375 0373 8D000000 		.4byte	0x8d
+ 1376 0377 05       		.uleb128 0x5
+ 1377 0378 03       		.byte	0x3
+ 1378 0379 00000000 		.4byte	MIS3_lastpulse_time
+ 1379 037d 16       		.uleb128 0x16
+ 1380 037e B5010000 		.4byte	.LASF49
+ 1381 0382 01       		.byte	0x1
+ 1382 0383 1F       		.byte	0x1f
+ 1383 0384 8D000000 		.4byte	0x8d
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 34
+
+
+ 1384 0388 05       		.uleb128 0x5
+ 1385 0389 03       		.byte	0x3
+ 1386 038a 00000000 		.4byte	old_MIS4_pulse
+ 1387 038e 16       		.uleb128 0x16
+ 1388 038f 00000000 		.4byte	.LASF50
+ 1389 0393 01       		.byte	0x1
+ 1390 0394 20       		.byte	0x20
+ 1391 0395 8D000000 		.4byte	0x8d
+ 1392 0399 05       		.uleb128 0x5
+ 1393 039a 03       		.byte	0x3
+ 1394 039b 00000000 		.4byte	MIS4_lastpulse_time
+ 1395 039f 00       		.byte	0
+ 1396              		.section	.debug_abbrev,"",%progbits
+ 1397              	.Ldebug_abbrev0:
+ 1398 0000 01       		.uleb128 0x1
+ 1399 0001 11       		.uleb128 0x11
+ 1400 0002 01       		.byte	0x1
+ 1401 0003 25       		.uleb128 0x25
+ 1402 0004 0E       		.uleb128 0xe
+ 1403 0005 13       		.uleb128 0x13
+ 1404 0006 0B       		.uleb128 0xb
+ 1405 0007 03       		.uleb128 0x3
+ 1406 0008 0E       		.uleb128 0xe
+ 1407 0009 1B       		.uleb128 0x1b
+ 1408 000a 0E       		.uleb128 0xe
+ 1409 000b 55       		.uleb128 0x55
+ 1410 000c 17       		.uleb128 0x17
+ 1411 000d 11       		.uleb128 0x11
+ 1412 000e 01       		.uleb128 0x1
+ 1413 000f 10       		.uleb128 0x10
+ 1414 0010 17       		.uleb128 0x17
+ 1415 0011 00       		.byte	0
+ 1416 0012 00       		.byte	0
+ 1417 0013 02       		.uleb128 0x2
+ 1418 0014 24       		.uleb128 0x24
+ 1419 0015 00       		.byte	0
+ 1420 0016 0B       		.uleb128 0xb
+ 1421 0017 0B       		.uleb128 0xb
+ 1422 0018 3E       		.uleb128 0x3e
+ 1423 0019 0B       		.uleb128 0xb
+ 1424 001a 03       		.uleb128 0x3
+ 1425 001b 0E       		.uleb128 0xe
+ 1426 001c 00       		.byte	0
+ 1427 001d 00       		.byte	0
+ 1428 001e 03       		.uleb128 0x3
+ 1429 001f 16       		.uleb128 0x16
+ 1430 0020 00       		.byte	0
+ 1431 0021 03       		.uleb128 0x3
+ 1432 0022 0E       		.uleb128 0xe
+ 1433 0023 3A       		.uleb128 0x3a
+ 1434 0024 0B       		.uleb128 0xb
+ 1435 0025 3B       		.uleb128 0x3b
+ 1436 0026 0B       		.uleb128 0xb
+ 1437 0027 49       		.uleb128 0x49
+ 1438 0028 13       		.uleb128 0x13
+ 1439 0029 00       		.byte	0
+ 1440 002a 00       		.byte	0
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 35
+
+
+ 1441 002b 04       		.uleb128 0x4
+ 1442 002c 24       		.uleb128 0x24
+ 1443 002d 00       		.byte	0
+ 1444 002e 0B       		.uleb128 0xb
+ 1445 002f 0B       		.uleb128 0xb
+ 1446 0030 3E       		.uleb128 0x3e
+ 1447 0031 0B       		.uleb128 0xb
+ 1448 0032 03       		.uleb128 0x3
+ 1449 0033 08       		.uleb128 0x8
+ 1450 0034 00       		.byte	0
+ 1451 0035 00       		.byte	0
+ 1452 0036 05       		.uleb128 0x5
+ 1453 0037 16       		.uleb128 0x16
+ 1454 0038 00       		.byte	0
+ 1455 0039 03       		.uleb128 0x3
+ 1456 003a 0E       		.uleb128 0xe
+ 1457 003b 3A       		.uleb128 0x3a
+ 1458 003c 0B       		.uleb128 0xb
+ 1459 003d 3B       		.uleb128 0x3b
+ 1460 003e 05       		.uleb128 0x5
+ 1461 003f 49       		.uleb128 0x49
+ 1462 0040 13       		.uleb128 0x13
+ 1463 0041 00       		.byte	0
+ 1464 0042 00       		.byte	0
+ 1465 0043 06       		.uleb128 0x6
+ 1466 0044 2E       		.uleb128 0x2e
+ 1467 0045 00       		.byte	0
+ 1468 0046 3F       		.uleb128 0x3f
+ 1469 0047 19       		.uleb128 0x19
+ 1470 0048 03       		.uleb128 0x3
+ 1471 0049 0E       		.uleb128 0xe
+ 1472 004a 3A       		.uleb128 0x3a
+ 1473 004b 0B       		.uleb128 0xb
+ 1474 004c 3B       		.uleb128 0x3b
+ 1475 004d 0B       		.uleb128 0xb
+ 1476 004e 27       		.uleb128 0x27
+ 1477 004f 19       		.uleb128 0x19
+ 1478 0050 11       		.uleb128 0x11
+ 1479 0051 01       		.uleb128 0x1
+ 1480 0052 12       		.uleb128 0x12
+ 1481 0053 06       		.uleb128 0x6
+ 1482 0054 40       		.uleb128 0x40
+ 1483 0055 18       		.uleb128 0x18
+ 1484 0056 9642     		.uleb128 0x2116
+ 1485 0058 19       		.uleb128 0x19
+ 1486 0059 00       		.byte	0
+ 1487 005a 00       		.byte	0
+ 1488 005b 07       		.uleb128 0x7
+ 1489 005c 2E       		.uleb128 0x2e
+ 1490 005d 01       		.byte	0x1
+ 1491 005e 3F       		.uleb128 0x3f
+ 1492 005f 19       		.uleb128 0x19
+ 1493 0060 03       		.uleb128 0x3
+ 1494 0061 0E       		.uleb128 0xe
+ 1495 0062 3A       		.uleb128 0x3a
+ 1496 0063 0B       		.uleb128 0xb
+ 1497 0064 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 36
+
+
+ 1498 0065 0B       		.uleb128 0xb
+ 1499 0066 27       		.uleb128 0x27
+ 1500 0067 19       		.uleb128 0x19
+ 1501 0068 11       		.uleb128 0x11
+ 1502 0069 01       		.uleb128 0x1
+ 1503 006a 12       		.uleb128 0x12
+ 1504 006b 06       		.uleb128 0x6
+ 1505 006c 40       		.uleb128 0x40
+ 1506 006d 18       		.uleb128 0x18
+ 1507 006e 9642     		.uleb128 0x2116
+ 1508 0070 19       		.uleb128 0x19
+ 1509 0071 01       		.uleb128 0x1
+ 1510 0072 13       		.uleb128 0x13
+ 1511 0073 00       		.byte	0
+ 1512 0074 00       		.byte	0
+ 1513 0075 08       		.uleb128 0x8
+ 1514 0076 34       		.uleb128 0x34
+ 1515 0077 00       		.byte	0
+ 1516 0078 03       		.uleb128 0x3
+ 1517 0079 08       		.uleb128 0x8
+ 1518 007a 3A       		.uleb128 0x3a
+ 1519 007b 0B       		.uleb128 0xb
+ 1520 007c 3B       		.uleb128 0x3b
+ 1521 007d 0B       		.uleb128 0xb
+ 1522 007e 49       		.uleb128 0x49
+ 1523 007f 13       		.uleb128 0x13
+ 1524 0080 02       		.uleb128 0x2
+ 1525 0081 18       		.uleb128 0x18
+ 1526 0082 00       		.byte	0
+ 1527 0083 00       		.byte	0
+ 1528 0084 09       		.uleb128 0x9
+ 1529 0085 0F       		.uleb128 0xf
+ 1530 0086 00       		.byte	0
+ 1531 0087 0B       		.uleb128 0xb
+ 1532 0088 0B       		.uleb128 0xb
+ 1533 0089 49       		.uleb128 0x49
+ 1534 008a 13       		.uleb128 0x13
+ 1535 008b 00       		.byte	0
+ 1536 008c 00       		.byte	0
+ 1537 008d 0A       		.uleb128 0xa
+ 1538 008e 05       		.uleb128 0x5
+ 1539 008f 00       		.byte	0
+ 1540 0090 03       		.uleb128 0x3
+ 1541 0091 08       		.uleb128 0x8
+ 1542 0092 3A       		.uleb128 0x3a
+ 1543 0093 0B       		.uleb128 0xb
+ 1544 0094 3B       		.uleb128 0x3b
+ 1545 0095 0B       		.uleb128 0xb
+ 1546 0096 49       		.uleb128 0x49
+ 1547 0097 13       		.uleb128 0x13
+ 1548 0098 02       		.uleb128 0x2
+ 1549 0099 18       		.uleb128 0x18
+ 1550 009a 00       		.byte	0
+ 1551 009b 00       		.byte	0
+ 1552 009c 0B       		.uleb128 0xb
+ 1553 009d 34       		.uleb128 0x34
+ 1554 009e 00       		.byte	0
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 37
+
+
+ 1555 009f 03       		.uleb128 0x3
+ 1556 00a0 0E       		.uleb128 0xe
+ 1557 00a1 3A       		.uleb128 0x3a
+ 1558 00a2 0B       		.uleb128 0xb
+ 1559 00a3 3B       		.uleb128 0x3b
+ 1560 00a4 0B       		.uleb128 0xb
+ 1561 00a5 49       		.uleb128 0x49
+ 1562 00a6 13       		.uleb128 0x13
+ 1563 00a7 02       		.uleb128 0x2
+ 1564 00a8 18       		.uleb128 0x18
+ 1565 00a9 00       		.byte	0
+ 1566 00aa 00       		.byte	0
+ 1567 00ab 0C       		.uleb128 0xc
+ 1568 00ac 01       		.uleb128 0x1
+ 1569 00ad 01       		.byte	0x1
+ 1570 00ae 49       		.uleb128 0x49
+ 1571 00af 13       		.uleb128 0x13
+ 1572 00b0 01       		.uleb128 0x1
+ 1573 00b1 13       		.uleb128 0x13
+ 1574 00b2 00       		.byte	0
+ 1575 00b3 00       		.byte	0
+ 1576 00b4 0D       		.uleb128 0xd
+ 1577 00b5 21       		.uleb128 0x21
+ 1578 00b6 00       		.byte	0
+ 1579 00b7 49       		.uleb128 0x49
+ 1580 00b8 13       		.uleb128 0x13
+ 1581 00b9 2F       		.uleb128 0x2f
+ 1582 00ba 0B       		.uleb128 0xb
+ 1583 00bb 00       		.byte	0
+ 1584 00bc 00       		.byte	0
+ 1585 00bd 0E       		.uleb128 0xe
+ 1586 00be 2E       		.uleb128 0x2e
+ 1587 00bf 01       		.byte	0x1
+ 1588 00c0 3F       		.uleb128 0x3f
+ 1589 00c1 19       		.uleb128 0x19
+ 1590 00c2 03       		.uleb128 0x3
+ 1591 00c3 0E       		.uleb128 0xe
+ 1592 00c4 3A       		.uleb128 0x3a
+ 1593 00c5 0B       		.uleb128 0xb
+ 1594 00c6 3B       		.uleb128 0x3b
+ 1595 00c7 0B       		.uleb128 0xb
+ 1596 00c8 27       		.uleb128 0x27
+ 1597 00c9 19       		.uleb128 0x19
+ 1598 00ca 49       		.uleb128 0x49
+ 1599 00cb 13       		.uleb128 0x13
+ 1600 00cc 11       		.uleb128 0x11
+ 1601 00cd 01       		.uleb128 0x1
+ 1602 00ce 12       		.uleb128 0x12
+ 1603 00cf 06       		.uleb128 0x6
+ 1604 00d0 40       		.uleb128 0x40
+ 1605 00d1 18       		.uleb128 0x18
+ 1606 00d2 9642     		.uleb128 0x2116
+ 1607 00d4 19       		.uleb128 0x19
+ 1608 00d5 01       		.uleb128 0x1
+ 1609 00d6 13       		.uleb128 0x13
+ 1610 00d7 00       		.byte	0
+ 1611 00d8 00       		.byte	0
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 38
+
+
+ 1612 00d9 0F       		.uleb128 0xf
+ 1613 00da 0B       		.uleb128 0xb
+ 1614 00db 01       		.byte	0x1
+ 1615 00dc 11       		.uleb128 0x11
+ 1616 00dd 01       		.uleb128 0x1
+ 1617 00de 12       		.uleb128 0x12
+ 1618 00df 06       		.uleb128 0x6
+ 1619 00e0 00       		.byte	0
+ 1620 00e1 00       		.byte	0
+ 1621 00e2 10       		.uleb128 0x10
+ 1622 00e3 2E       		.uleb128 0x2e
+ 1623 00e4 01       		.byte	0x1
+ 1624 00e5 3F       		.uleb128 0x3f
+ 1625 00e6 19       		.uleb128 0x19
+ 1626 00e7 03       		.uleb128 0x3
+ 1627 00e8 0E       		.uleb128 0xe
+ 1628 00e9 3A       		.uleb128 0x3a
+ 1629 00ea 0B       		.uleb128 0xb
+ 1630 00eb 3B       		.uleb128 0x3b
+ 1631 00ec 0B       		.uleb128 0xb
+ 1632 00ed 49       		.uleb128 0x49
+ 1633 00ee 13       		.uleb128 0x13
+ 1634 00ef 11       		.uleb128 0x11
+ 1635 00f0 01       		.uleb128 0x1
+ 1636 00f1 12       		.uleb128 0x12
+ 1637 00f2 06       		.uleb128 0x6
+ 1638 00f3 40       		.uleb128 0x40
+ 1639 00f4 18       		.uleb128 0x18
+ 1640 00f5 9642     		.uleb128 0x2116
+ 1641 00f7 19       		.uleb128 0x19
+ 1642 00f8 01       		.uleb128 0x1
+ 1643 00f9 13       		.uleb128 0x13
+ 1644 00fa 00       		.byte	0
+ 1645 00fb 00       		.byte	0
+ 1646 00fc 11       		.uleb128 0x11
+ 1647 00fd 34       		.uleb128 0x34
+ 1648 00fe 00       		.byte	0
+ 1649 00ff 03       		.uleb128 0x3
+ 1650 0100 0E       		.uleb128 0xe
+ 1651 0101 3A       		.uleb128 0x3a
+ 1652 0102 0B       		.uleb128 0xb
+ 1653 0103 3B       		.uleb128 0x3b
+ 1654 0104 05       		.uleb128 0x5
+ 1655 0105 49       		.uleb128 0x49
+ 1656 0106 13       		.uleb128 0x13
+ 1657 0107 02       		.uleb128 0x2
+ 1658 0108 18       		.uleb128 0x18
+ 1659 0109 00       		.byte	0
+ 1660 010a 00       		.byte	0
+ 1661 010b 12       		.uleb128 0x12
+ 1662 010c 34       		.uleb128 0x34
+ 1663 010d 00       		.byte	0
+ 1664 010e 03       		.uleb128 0x3
+ 1665 010f 0E       		.uleb128 0xe
+ 1666 0110 3A       		.uleb128 0x3a
+ 1667 0111 0B       		.uleb128 0xb
+ 1668 0112 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 39
+
+
+ 1669 0113 05       		.uleb128 0x5
+ 1670 0114 49       		.uleb128 0x49
+ 1671 0115 13       		.uleb128 0x13
+ 1672 0116 3F       		.uleb128 0x3f
+ 1673 0117 19       		.uleb128 0x19
+ 1674 0118 3C       		.uleb128 0x3c
+ 1675 0119 19       		.uleb128 0x19
+ 1676 011a 00       		.byte	0
+ 1677 011b 00       		.byte	0
+ 1678 011c 13       		.uleb128 0x13
+ 1679 011d 35       		.uleb128 0x35
+ 1680 011e 00       		.byte	0
+ 1681 011f 49       		.uleb128 0x49
+ 1682 0120 13       		.uleb128 0x13
+ 1683 0121 00       		.byte	0
+ 1684 0122 00       		.byte	0
+ 1685 0123 14       		.uleb128 0x14
+ 1686 0124 21       		.uleb128 0x21
+ 1687 0125 00       		.byte	0
+ 1688 0126 49       		.uleb128 0x49
+ 1689 0127 13       		.uleb128 0x13
+ 1690 0128 2F       		.uleb128 0x2f
+ 1691 0129 05       		.uleb128 0x5
+ 1692 012a 00       		.byte	0
+ 1693 012b 00       		.byte	0
+ 1694 012c 15       		.uleb128 0x15
+ 1695 012d 34       		.uleb128 0x34
+ 1696 012e 00       		.byte	0
+ 1697 012f 03       		.uleb128 0x3
+ 1698 0130 08       		.uleb128 0x8
+ 1699 0131 3A       		.uleb128 0x3a
+ 1700 0132 0B       		.uleb128 0xb
+ 1701 0133 3B       		.uleb128 0x3b
+ 1702 0134 0B       		.uleb128 0xb
+ 1703 0135 49       		.uleb128 0x49
+ 1704 0136 13       		.uleb128 0x13
+ 1705 0137 3F       		.uleb128 0x3f
+ 1706 0138 19       		.uleb128 0x19
+ 1707 0139 02       		.uleb128 0x2
+ 1708 013a 18       		.uleb128 0x18
+ 1709 013b 00       		.byte	0
+ 1710 013c 00       		.byte	0
+ 1711 013d 16       		.uleb128 0x16
+ 1712 013e 34       		.uleb128 0x34
+ 1713 013f 00       		.byte	0
+ 1714 0140 03       		.uleb128 0x3
+ 1715 0141 0E       		.uleb128 0xe
+ 1716 0142 3A       		.uleb128 0x3a
+ 1717 0143 0B       		.uleb128 0xb
+ 1718 0144 3B       		.uleb128 0x3b
+ 1719 0145 0B       		.uleb128 0xb
+ 1720 0146 49       		.uleb128 0x49
+ 1721 0147 13       		.uleb128 0x13
+ 1722 0148 3F       		.uleb128 0x3f
+ 1723 0149 19       		.uleb128 0x19
+ 1724 014a 02       		.uleb128 0x2
+ 1725 014b 18       		.uleb128 0x18
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 40
+
+
+ 1726 014c 00       		.byte	0
+ 1727 014d 00       		.byte	0
+ 1728 014e 00       		.byte	0
+ 1729              		.section	.debug_aranges,"",%progbits
+ 1730 0000 64000000 		.4byte	0x64
+ 1731 0004 0200     		.2byte	0x2
+ 1732 0006 00000000 		.4byte	.Ldebug_info0
+ 1733 000a 04       		.byte	0x4
+ 1734 000b 00       		.byte	0
+ 1735 000c 0000     		.2byte	0
+ 1736 000e 0000     		.2byte	0
+ 1737 0010 00000000 		.4byte	.LFB64
+ 1738 0014 0C000000 		.4byte	.LFE64-.LFB64
+ 1739 0018 00000000 		.4byte	.LFB65
+ 1740 001c 0C000000 		.4byte	.LFE65-.LFB65
+ 1741 0020 00000000 		.4byte	.LFB66
+ 1742 0024 20000000 		.4byte	.LFE66-.LFB66
+ 1743 0028 00000000 		.4byte	.LFB67
+ 1744 002c 28000000 		.4byte	.LFE67-.LFB67
+ 1745 0030 00000000 		.4byte	.LFB68
+ 1746 0034 A0010000 		.4byte	.LFE68-.LFB68
+ 1747 0038 00000000 		.4byte	.LFB69
+ 1748 003c 0C000000 		.4byte	.LFE69-.LFB69
+ 1749 0040 00000000 		.4byte	.LFB70
+ 1750 0044 0C000000 		.4byte	.LFE70-.LFB70
+ 1751 0048 00000000 		.4byte	.LFB71
+ 1752 004c 3C000000 		.4byte	.LFE71-.LFB71
+ 1753 0050 00000000 		.4byte	.LFB72
+ 1754 0054 8A000000 		.4byte	.LFE72-.LFB72
+ 1755 0058 00000000 		.4byte	.LFB73
+ 1756 005c C0010000 		.4byte	.LFE73-.LFB73
+ 1757 0060 00000000 		.4byte	0
+ 1758 0064 00000000 		.4byte	0
+ 1759              		.section	.debug_ranges,"",%progbits
+ 1760              	.Ldebug_ranges0:
+ 1761 0000 00000000 		.4byte	.LFB64
+ 1762 0004 0C000000 		.4byte	.LFE64
+ 1763 0008 00000000 		.4byte	.LFB65
+ 1764 000c 0C000000 		.4byte	.LFE65
+ 1765 0010 00000000 		.4byte	.LFB66
+ 1766 0014 20000000 		.4byte	.LFE66
+ 1767 0018 00000000 		.4byte	.LFB67
+ 1768 001c 28000000 		.4byte	.LFE67
+ 1769 0020 00000000 		.4byte	.LFB68
+ 1770 0024 A0010000 		.4byte	.LFE68
+ 1771 0028 00000000 		.4byte	.LFB69
+ 1772 002c 0C000000 		.4byte	.LFE69
+ 1773 0030 00000000 		.4byte	.LFB70
+ 1774 0034 0C000000 		.4byte	.LFE70
+ 1775 0038 00000000 		.4byte	.LFB71
+ 1776 003c 3C000000 		.4byte	.LFE71
+ 1777 0040 00000000 		.4byte	.LFB72
+ 1778 0044 8A000000 		.4byte	.LFE72
+ 1779 0048 00000000 		.4byte	.LFB73
+ 1780 004c C0010000 		.4byte	.LFE73
+ 1781 0050 00000000 		.4byte	0
+ 1782 0054 00000000 		.4byte	0
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 41
+
+
+ 1783              		.section	.debug_line,"",%progbits
+ 1784              	.Ldebug_line0:
+ 1785 0000 95020000 		.section	.debug_str,"MS",%progbits,1
+ 1785      02004C01 
+ 1785      00000201 
+ 1785      FB0E0D00 
+ 1785      01010101 
+ 1786              	.LASF50:
+ 1787 0000 4D495334 		.ascii	"MIS4_lastpulse_time\000"
+ 1787      5F6C6173 
+ 1787      7470756C 
+ 1787      73655F74 
+ 1787      696D6500 
+ 1788              	.LASF51:
+ 1789 0014 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1789      43313120 
+ 1789      352E342E 
+ 1789      31203230 
+ 1789      31363036 
+ 1790 0047 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1790      20726576 
+ 1790      6973696F 
+ 1790      6E203233 
+ 1790      37373135 
+ 1791 007a 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1791      66756E63 
+ 1791      74696F6E 
+ 1791      2D736563 
+ 1791      74696F6E 
+ 1792              	.LASF30:
+ 1793 00a2 7369676E 		.ascii	"signature\000"
+ 1793      61747572 
+ 1793      6500
+ 1794              	.LASF9:
+ 1795 00ac 5F5F696E 		.ascii	"__int32_t\000"
+ 1795      7433325F 
+ 1795      7400
+ 1796              	.LASF54:
+ 1797 00b6 64656275 		.ascii	"debug_master_read\000"
+ 1797      675F6D61 
+ 1797      73746572 
+ 1797      5F726561 
+ 1797      6400
+ 1798              	.LASF3:
+ 1799 00c8 73686F72 		.ascii	"short unsigned int\000"
+ 1799      7420756E 
+ 1799      7369676E 
+ 1799      65642069 
+ 1799      6E7400
+ 1800              	.LASF19:
+ 1801 00db 6973725F 		.ascii	"isr_START_handler\000"
+ 1801      53544152 
+ 1801      545F6861 
+ 1801      6E646C65 
+ 1801      7200
+ 1802              	.LASF15:
+ 1803 00ed 646F7562 		.ascii	"double\000"
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 42
+
+
+ 1803      6C6500
+ 1804              	.LASF43:
+ 1805 00f4 6F6C645F 		.ascii	"old_MIS1_pulse\000"
+ 1805      4D495331 
+ 1805      5F70756C 
+ 1805      736500
+ 1806              	.LASF37:
+ 1807 0103 6E65775F 		.ascii	"new_MIS3_lastpulse_time\000"
+ 1807      4D495333 
+ 1807      5F6C6173 
+ 1807      7470756C 
+ 1807      73655F74 
+ 1808              	.LASF29:
+ 1809 011b 625F636E 		.ascii	"b_cnt\000"
+ 1809      7400
+ 1810              	.LASF14:
+ 1811 0121 666C6F61 		.ascii	"float\000"
+ 1811      7400
+ 1812              	.LASF42:
+ 1813 0127 63686563 		.ascii	"checksum\000"
+ 1813      6B73756D 
+ 1813      00
+ 1814              	.LASF45:
+ 1815 0130 6F6C645F 		.ascii	"old_MIS2_pulse\000"
+ 1815      4D495332 
+ 1815      5F70756C 
+ 1815      736500
+ 1816              	.LASF32:
+ 1817 013f 6E65775F 		.ascii	"new_MIS1_pulse\000"
+ 1817      4D495331 
+ 1817      5F70756C 
+ 1817      736500
+ 1818              	.LASF1:
+ 1819 014e 756E7369 		.ascii	"unsigned char\000"
+ 1819      676E6564 
+ 1819      20636861 
+ 1819      7200
+ 1820              	.LASF24:
+ 1821 015c 6973725F 		.ascii	"isr_QuadDec_2_handler\000"
+ 1821      51756164 
+ 1821      4465635F 
+ 1821      325F6861 
+ 1821      6E646C65 
+ 1822              	.LASF13:
+ 1823 0172 696E7433 		.ascii	"int32\000"
+ 1823      3200
+ 1824              	.LASF47:
+ 1825 0178 6F6C645F 		.ascii	"old_MIS3_pulse\000"
+ 1825      4D495333 
+ 1825      5F70756C 
+ 1825      736500
+ 1826              	.LASF34:
+ 1827 0187 6E65775F 		.ascii	"new_MIS2_pulse\000"
+ 1827      4D495332 
+ 1827      5F70756C 
+ 1827      736500
+ 1828              	.LASF40:
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 43
+
+
+ 1829 0196 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1829      52784275 
+ 1829      66666572 
+ 1829      00
+ 1830              	.LASF5:
+ 1831 01a3 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1831      20756E73 
+ 1831      69676E65 
+ 1831      6420696E 
+ 1831      7400
+ 1832              	.LASF49:
+ 1833 01b5 6F6C645F 		.ascii	"old_MIS4_pulse\000"
+ 1833      4D495334 
+ 1833      5F70756C 
+ 1833      736500
+ 1834              	.LASF36:
+ 1835 01c4 6E65775F 		.ascii	"new_MIS3_pulse\000"
+ 1835      4D495333 
+ 1835      5F70756C 
+ 1835      736500
+ 1836              	.LASF53:
+ 1837 01d3 453A5C5F 		.ascii	"E:\\_Axis projektai\\workspace180601\\workspace\\mi"
+ 1837      41786973 
+ 1837      2070726F 
+ 1837      6A656B74 
+ 1837      61695C77 
+ 1838 0202 6E756E69 		.ascii	"nunit_arch stendo 0927\\minunit_arch\\minunit_arch\\"
+ 1838      745F6172 
+ 1838      63682073 
+ 1838      74656E64 
+ 1838      6F203039 
+ 1839 0233 7374656E 		.ascii	"stendo_MIS.cydsn\000"
+ 1839      646F5F4D 
+ 1839      49532E63 
+ 1839      7964736E 
+ 1839      00
+ 1840              	.LASF39:
+ 1841 0244 6E65775F 		.ascii	"new_MIS4_lastpulse_time\000"
+ 1841      4D495334 
+ 1841      5F6C6173 
+ 1841      7470756C 
+ 1841      73655F74 
+ 1842              	.LASF26:
+ 1843 025c 64656275 		.ascii	"debug_master_cmd\000"
+ 1843      675F6D61 
+ 1843      73746572 
+ 1843      5F636D64 
+ 1843      00
+ 1844              	.LASF12:
+ 1845 026d 75696E74 		.ascii	"uint32\000"
+ 1845      333200
+ 1846              	.LASF31:
+ 1847 0274 6D61696E 		.ascii	"main\000"
+ 1847      00
+ 1848              	.LASF8:
+ 1849 0279 756E7369 		.ascii	"unsigned int\000"
+ 1849      676E6564 
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 44
+
+
+ 1849      20696E74 
+ 1849      00
+ 1850              	.LASF46:
+ 1851 0286 4D495332 		.ascii	"MIS2_lastpulse_time\000"
+ 1851      5F6C6173 
+ 1851      7470756C 
+ 1851      73655F74 
+ 1851      696D6500 
+ 1852              	.LASF7:
+ 1853 029a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1853      206C6F6E 
+ 1853      6720756E 
+ 1853      7369676E 
+ 1853      65642069 
+ 1854              	.LASF20:
+ 1855 02b1 6973725F 		.ascii	"isr_STOP_handler\000"
+ 1855      53544F50 
+ 1855      5F68616E 
+ 1855      646C6572 
+ 1855      00
+ 1856              	.LASF28:
+ 1857 02c2 72657375 		.ascii	"result\000"
+ 1857      6C7400
+ 1858              	.LASF35:
+ 1859 02c9 6E65775F 		.ascii	"new_MIS2_lastpulse_time\000"
+ 1859      4D495332 
+ 1859      5F6C6173 
+ 1859      7470756C 
+ 1859      73655F74 
+ 1860              	.LASF10:
+ 1861 02e1 696E7433 		.ascii	"int32_t\000"
+ 1861      325F7400 
+ 1862              	.LASF18:
+ 1863 02e9 73697A65 		.ascii	"sizetype\000"
+ 1863      74797065 
+ 1863      00
+ 1864              	.LASF6:
+ 1865 02f2 6C6F6E67 		.ascii	"long long int\000"
+ 1865      206C6F6E 
+ 1865      6720696E 
+ 1865      7400
+ 1866              	.LASF52:
+ 1867 0300 6D61696E 		.ascii	"main.c\000"
+ 1867      2E6300
+ 1868              	.LASF16:
+ 1869 0307 63686172 		.ascii	"char\000"
+ 1869      00
+ 1870              	.LASF48:
+ 1871 030c 4D495333 		.ascii	"MIS3_lastpulse_time\000"
+ 1871      5F6C6173 
+ 1871      7470756C 
+ 1871      73655F74 
+ 1871      696D6500 
+ 1872              	.LASF2:
+ 1873 0320 73686F72 		.ascii	"short int\000"
+ 1873      7420696E 
+ 1873      7400
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 45
+
+
+ 1874              	.LASF33:
+ 1875 032a 6E65775F 		.ascii	"new_MIS1_lastpulse_time\000"
+ 1875      4D495331 
+ 1875      5F6C6173 
+ 1875      7470756C 
+ 1875      73655F74 
+ 1876              	.LASF41:
+ 1877 0342 62756666 		.ascii	"buffer\000"
+ 1877      657200
+ 1878              	.LASF11:
+ 1879 0349 75696E74 		.ascii	"uint8\000"
+ 1879      3800
+ 1880              	.LASF44:
+ 1881 034f 4D495331 		.ascii	"MIS1_lastpulse_time\000"
+ 1881      5F6C6173 
+ 1881      7470756C 
+ 1881      73655F74 
+ 1881      696D6500 
+ 1882              	.LASF38:
+ 1883 0363 6E65775F 		.ascii	"new_MIS4_pulse\000"
+ 1883      4D495334 
+ 1883      5F70756C 
+ 1883      736500
+ 1884              	.LASF27:
+ 1885 0372 7370695F 		.ascii	"spi_data\000"
+ 1885      64617461 
+ 1885      00
+ 1886              	.LASF4:
+ 1887 037b 6C6F6E67 		.ascii	"long int\000"
+ 1887      20696E74 
+ 1887      00
+ 1888              	.LASF25:
+ 1889 0384 6973725F 		.ascii	"isr_CS_Rise_handler\000"
+ 1889      43535F52 
+ 1889      6973655F 
+ 1889      68616E64 
+ 1889      6C657200 
+ 1890              	.LASF17:
+ 1891 0398 6C6F6E67 		.ascii	"long double\000"
+ 1891      20646F75 
+ 1891      626C6500 
+ 1892              	.LASF0:
+ 1893 03a4 7369676E 		.ascii	"signed char\000"
+ 1893      65642063 
+ 1893      68617200 
+ 1894              	.LASF21:
+ 1895 03b0 6973725F 		.ascii	"isr_TURN_CONT_MODE_handler\000"
+ 1895      5455524E 
+ 1895      5F434F4E 
+ 1895      545F4D4F 
+ 1895      44455F68 
+ 1896              	.LASF23:
+ 1897 03cb 6973725F 		.ascii	"isr_QuadDec_1_handler\000"
+ 1897      51756164 
+ 1897      4465635F 
+ 1897      315F6861 
+ 1897      6E646C65 
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cc1LukKy.s 			page 46
+
+
+ 1898              	.LASF22:
+ 1899 03e1 6973725F 		.ascii	"isr_TURN_OFF_CONT_MODE_handler\000"
+ 1899      5455524E 
+ 1899      5F4F4646 
+ 1899      5F434F4E 
+ 1899      545F4D4F 
+ 1900              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

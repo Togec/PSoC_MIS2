@@ -1,0 +1,824 @@
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"SPIS_DMA.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	txChannel,1,1
+  20              		.comm	rxChannel,1,1
+  21              		.comm	txTD,1,1
+  22              		.comm	rxTD,1,1
+  23              		.global	txBuffer
+  24              		.data
+  25              		.align	2
+  26              		.type	txBuffer, %object
+  27              		.size	txBuffer, 7
+  28              	txBuffer:
+  29 0000 09       		.byte	9
+  30 0001 0A       		.byte	10
+  31 0002 0B       		.byte	11
+  32 0003 0C       		.byte	12
+  33 0004 0D       		.byte	13
+  34 0005 0E       		.byte	14
+  35 0006 0F       		.byte	15
+  36              		.comm	rxBuffer,8,4
+  37              		.section	.rodata
+  38              		.align	2
+  39              	.LC0:
+  40 0000 53504920 		.ascii	"SPI Slave\000"
+  40      536C6176 
+  40      6500
+  41 000a 0000     		.align	2
+  42              	.LC1:
+  43 000c 536C6176 		.ascii	"Slave Rx data:\000"
+  43      65205278 
+  43      20646174 
+  43      613A00
+  44              		.section	.text.main_SPIS_DMA,"ax",%progbits
+  45              		.align	2
+  46              		.global	main_SPIS_DMA
+  47              		.thumb
+  48              		.thumb_func
+  49              		.type	main_SPIS_DMA, %function
+  50              	main_SPIS_DMA:
+  51              	.LFB64:
+  52              		.file 1 "SPIS_DMA.c"
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 2
+
+
+   1:SPIS_DMA.c    **** /*******************************************************************************
+   2:SPIS_DMA.c    **** * File Name: main.c
+   3:SPIS_DMA.c    **** *
+   4:SPIS_DMA.c    **** * Version: 1.10
+   5:SPIS_DMA.c    **** *
+   6:SPIS_DMA.c    **** * Description:
+   7:SPIS_DMA.c    **** *  This is source code for example project of the SPI
+   8:SPIS_DMA.c    **** *  Slave component.
+   9:SPIS_DMA.c    **** *  Parameters used:
+  10:SPIS_DMA.c    **** *   Mode                CPHA == 0, CPOL == 0                
+  11:SPIS_DMA.c    **** *   Data lines          MOSI+MISO
+  12:SPIS_DMA.c    **** *   Shift direction     MSB First
+  13:SPIS_DMA.c    **** *   DataBits:           8 
+  14:SPIS_DMA.c    **** *   Bit Rate            1Mbit
+  15:SPIS_DMA.c    **** *   Clock source        External 
+  16:SPIS_DMA.c    **** *
+  17:SPIS_DMA.c    **** *  SPI communication test using DMA. 8 bytes are transmitted
+  18:SPIS_DMA.c    **** *  between SPI Master and SPI Slave.
+  19:SPIS_DMA.c    **** *  Transmitted and received data are displayed on LCD. 
+  20:SPIS_DMA.c    **** *
+  21:SPIS_DMA.c    **** ********************************************************************************
+  22:SPIS_DMA.c    **** * Copyright 2012-2015, Cypress Semiconductor Corporation. All rights reserved.
+  23:SPIS_DMA.c    **** * This software is owned by Cypress Semiconductor Corporation and is protected
+  24:SPIS_DMA.c    **** * by and subject to worldwide patent and copyright laws and treaties.
+  25:SPIS_DMA.c    **** * Therefore, you may use this software only as provided in the license agreement
+  26:SPIS_DMA.c    **** * accompanying the software package from which you obtained this software.
+  27:SPIS_DMA.c    **** * CYPRESS AND ITS SUPPLIERS MAKE NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  28:SPIS_DMA.c    **** * WITH REGARD TO THIS SOFTWARE, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT,
+  29:SPIS_DMA.c    **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  30:SPIS_DMA.c    **** *******************************************************************************/
+  31:SPIS_DMA.c    **** 
+  32:SPIS_DMA.c    **** #include <device.h>
+  33:SPIS_DMA.c    **** #include "SPIS_DMA.h"
+  34:SPIS_DMA.c    **** 
+  35:SPIS_DMA.c    **** void DmaTxConfiguration(void);
+  36:SPIS_DMA.c    **** void DmaRxConfiguration(void);
+  37:SPIS_DMA.c    **** 
+  38:SPIS_DMA.c    **** /* DMA Configuration for DMA_TX */
+  39:SPIS_DMA.c    **** #define DMA_TX_BYTES_PER_BURST      (1u)
+  40:SPIS_DMA.c    **** #define DMA_TX_REQUEST_PER_BURST    (1u)
+  41:SPIS_DMA.c    **** #define DMA_TX_SRC_BASE             (CYDEV_SRAM_BASE)
+  42:SPIS_DMA.c    **** #define DMA_TX_DST_BASE             (CYDEV_PERIPH_BASE)
+  43:SPIS_DMA.c    **** 
+  44:SPIS_DMA.c    **** /* DMA Configuration for DMA_RX */
+  45:SPIS_DMA.c    **** #define DMA_RX_BYTES_PER_BURST      (1u)
+  46:SPIS_DMA.c    **** #define DMA_RX_REQUEST_PER_BURST    (1u)
+  47:SPIS_DMA.c    **** #define DMA_RX_SRC_BASE             (CYDEV_PERIPH_BASE)
+  48:SPIS_DMA.c    **** #define DMA_RX_DST_BASE             (CYDEV_SRAM_BASE)
+  49:SPIS_DMA.c    **** 
+  50:SPIS_DMA.c    **** #define BUFFER_SIZE                 (8u)
+  51:SPIS_DMA.c    **** #define STORE_TD_CFG_ONCMPLT        (1u)
+  52:SPIS_DMA.c    **** 
+  53:SPIS_DMA.c    **** /* Variable declarations for DMA_TX and DMA_RX*/
+  54:SPIS_DMA.c    **** uint8 txChannel, rxChannel;
+  55:SPIS_DMA.c    **** uint8 txTD, rxTD;
+  56:SPIS_DMA.c    **** 
+  57:SPIS_DMA.c    **** /* The txBuffer size is equal (BUFFER_SIZE-1) because for SPI Mode where CPHA == 0 and
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 3
+
+
+  58:SPIS_DMA.c    **** * CPOL == 0 one byte writes directly in SPI TX FIFO using SPIS_WriteTxDataZero() API.
+  59:SPIS_DMA.c    **** */
+  60:SPIS_DMA.c    **** uint8 txBuffer [BUFFER_SIZE-1] = {0x09u, 0x0Au, 0x0Bu, 0x0Cu, 0x0Du, 0x0Eu, 0x0Fu};
+  61:SPIS_DMA.c    **** uint8 rxBuffer [BUFFER_SIZE];
+  62:SPIS_DMA.c    **** 
+  63:SPIS_DMA.c    **** 
+  64:SPIS_DMA.c    **** /*******************************************************************************
+  65:SPIS_DMA.c    **** * Function Name: main
+  66:SPIS_DMA.c    **** ********************************************************************************
+  67:SPIS_DMA.c    **** * Summary:
+  68:SPIS_DMA.c    **** *  Main function performs following functions:
+  69:SPIS_DMA.c    **** *   1. Starts Character LCD and print project info
+  70:SPIS_DMA.c    **** *   2. Starts SPI Slave component
+  71:SPIS_DMA.c    **** *   3. Configures the DMA transfer for RX and TX directions
+  72:SPIS_DMA.c    **** *   4. Displays the results on Character LCD
+  73:SPIS_DMA.c    **** *   
+  74:SPIS_DMA.c    **** * Parameters:
+  75:SPIS_DMA.c    **** *  None.
+  76:SPIS_DMA.c    **** *
+  77:SPIS_DMA.c    **** * Return:
+  78:SPIS_DMA.c    **** *  None.
+  79:SPIS_DMA.c    **** *
+  80:SPIS_DMA.c    **** *******************************************************************************/
+  81:SPIS_DMA.c    **** int main_SPIS_DMA()
+  82:SPIS_DMA.c    **** {
+  53              		.loc 1 82 0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 8
+  56              		@ frame_needed = 1, uses_anonymous_args = 0
+  57 0000 80B5     		push	{r7, lr}
+  58              		.cfi_def_cfa_offset 8
+  59              		.cfi_offset 7, -8
+  60              		.cfi_offset 14, -4
+  61 0002 82B0     		sub	sp, sp, #8
+  62              		.cfi_def_cfa_offset 16
+  63 0004 00AF     		add	r7, sp, #0
+  64              		.cfi_def_cfa_register 7
+  83:SPIS_DMA.c    ****     uint8 i;
+  84:SPIS_DMA.c    ****     
+  85:SPIS_DMA.c    **** //    DmaTxConfiguration();
+  86:SPIS_DMA.c    **** //   DmaRxConfiguration();
+  87:SPIS_DMA.c    **** 
+  88:SPIS_DMA.c    ****     SPIS_Start();
+  65              		.loc 1 88 0
+  66 0006 FFF7FEFF 		bl	SPIS_Start
+  89:SPIS_DMA.c    ****     SPIS_WriteTxDataZero(0x00u);
+  67              		.loc 1 89 0
+  68 000a 0020     		movs	r0, #0
+  69 000c FFF7FEFF 		bl	SPIS_WriteTxDataZero
+  90:SPIS_DMA.c    ****     
+  91:SPIS_DMA.c    ****     CyDmaChEnable(rxChannel, STORE_TD_CFG_ONCMPLT);
+  70              		.loc 1 91 0
+  71 0010 144B     		ldr	r3, .L6
+  72 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  73 0014 0121     		movs	r1, #1
+  74 0016 1846     		mov	r0, r3
+  75 0018 FFF7FEFF 		bl	CyDmaChEnable
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 4
+
+
+  92:SPIS_DMA.c    ****     CyDmaChEnable(txChannel, STORE_TD_CFG_ONCMPLT);   
+  76              		.loc 1 92 0
+  77 001c 124B     		ldr	r3, .L6+4
+  78 001e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  79 0020 0121     		movs	r1, #1
+  80 0022 1846     		mov	r0, r3
+  81 0024 FFF7FEFF 		bl	CyDmaChEnable
+  93:SPIS_DMA.c    ****     
+  94:SPIS_DMA.c    ****     //LCD_Start();
+  95:SPIS_DMA.c    ****     //LCD_Position(0u,0u);
+  96:SPIS_DMA.c    ****     //LCD_PrintString("SPI Slave");
+  97:SPIS_DMA.c    ****     //LCD_Position(1u,0u);
+  98:SPIS_DMA.c    ****     //LCD_PrintString("example");
+  99:SPIS_DMA.c    ****     
+ 100:SPIS_DMA.c    ****     UART_1_PutString("SPI Slave");
+  82              		.loc 1 100 0
+  83 0028 1048     		ldr	r0, .L6+8
+  84 002a FFF7FEFF 		bl	UART_1_PutString
+ 101:SPIS_DMA.c    ****     
+ 102:SPIS_DMA.c    ****     
+ 103:SPIS_DMA.c    ****     while(0u == (SPIS_ReadTxStatus() & SPIS_STS_SPI_DONE))
+  85              		.loc 1 103 0
+  86 002e 00BF     		nop
+  87              	.L2:
+  88              		.loc 1 103 0 is_stmt 0 discriminator 1
+  89 0030 FFF7FEFF 		bl	SPIS_ReadTxStatus
+  90 0034 0346     		mov	r3, r0
+  91 0036 03F00103 		and	r3, r3, #1
+  92 003a 002B     		cmp	r3, #0
+  93 003c F8D0     		beq	.L2
+ 104:SPIS_DMA.c    ****     {
+ 105:SPIS_DMA.c    ****     }
+ 106:SPIS_DMA.c    ****     
+ 107:SPIS_DMA.c    ****    // LCD_ClearDisplay();
+ 108:SPIS_DMA.c    ****  //   LCD_Position(0u,0u);
+ 109:SPIS_DMA.c    ****   //  LCD_PrintString("Slave Rx data:");
+ 110:SPIS_DMA.c    ****    // LCD_Position(1u,0u);
+ 111:SPIS_DMA.c    ****     
+ 112:SPIS_DMA.c    ****    UART_1_PutString("Slave Rx data:");
+  94              		.loc 1 112 0 is_stmt 1
+  95 003e 0C48     		ldr	r0, .L6+12
+  96 0040 FFF7FEFF 		bl	UART_1_PutString
+ 113:SPIS_DMA.c    ****            
+ 114:SPIS_DMA.c    ****     for(i=0u; i<BUFFER_SIZE; i++)
+  97              		.loc 1 114 0
+  98 0044 0023     		movs	r3, #0
+  99 0046 FB71     		strb	r3, [r7, #7]
+ 100 0048 08E0     		b	.L3
+ 101              	.L4:
+ 115:SPIS_DMA.c    ****     {
+ 116:SPIS_DMA.c    ****         UART_1_PutChar(rxBuffer[i]);
+ 102              		.loc 1 116 0 discriminator 3
+ 103 004a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 104 004c 094A     		ldr	r2, .L6+16
+ 105 004e D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 106 0050 1846     		mov	r0, r3
+ 107 0052 FFF7FEFF 		bl	UART_1_PutChar
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 5
+
+
+ 114:SPIS_DMA.c    ****     {
+ 108              		.loc 1 114 0 discriminator 3
+ 109 0056 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 110 0058 0133     		adds	r3, r3, #1
+ 111 005a FB71     		strb	r3, [r7, #7]
+ 112              	.L3:
+ 114:SPIS_DMA.c    ****     {
+ 113              		.loc 1 114 0 is_stmt 0 discriminator 1
+ 114 005c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 115 005e 072B     		cmp	r3, #7
+ 116 0060 F3D9     		bls	.L4
+ 117              	.L5:
+ 117:SPIS_DMA.c    ****     }        
+ 118:SPIS_DMA.c    ****     
+ 119:SPIS_DMA.c    ****     for(;;)
+ 120:SPIS_DMA.c    ****     {
+ 121:SPIS_DMA.c    ****     }
+ 118              		.loc 1 121 0 is_stmt 1 discriminator 1
+ 119 0062 FEE7     		b	.L5
+ 120              	.L7:
+ 121              		.align	2
+ 122              	.L6:
+ 123 0064 00000000 		.word	rxChannel
+ 124 0068 00000000 		.word	txChannel
+ 125 006c 00000000 		.word	.LC0
+ 126 0070 0C000000 		.word	.LC1
+ 127 0074 00000000 		.word	rxBuffer
+ 128              		.cfi_endproc
+ 129              	.LFE64:
+ 130              		.size	main_SPIS_DMA, .-main_SPIS_DMA
+ 131              		.text
+ 132              	.Letext0:
+ 133              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 134              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 135              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 136              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 137              		.section	.debug_info,"",%progbits
+ 138              	.Ldebug_info0:
+ 139 0000 6A010000 		.4byte	0x16a
+ 140 0004 0400     		.2byte	0x4
+ 141 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 142 000a 04       		.byte	0x4
+ 143 000b 01       		.uleb128 0x1
+ 144 000c 2D010000 		.4byte	.LASF24
+ 145 0010 0C       		.byte	0xc
+ 146 0011 22010000 		.4byte	.LASF25
+ 147 0015 47000000 		.4byte	.LASF26
+ 148 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 149 001d 00000000 		.4byte	0
+ 150 0021 00000000 		.4byte	.Ldebug_line0
+ 151 0025 02       		.uleb128 0x2
+ 152 0026 01       		.byte	0x1
+ 153 0027 06       		.byte	0x6
+ 154 0028 0B020000 		.4byte	.LASF0
+ 155 002c 02       		.uleb128 0x2
+ 156 002d 01       		.byte	0x1
+ 157 002e 08       		.byte	0x8
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 6
+
+
+ 158 002f BB010000 		.4byte	.LASF1
+ 159 0033 02       		.uleb128 0x2
+ 160 0034 02       		.byte	0x2
+ 161 0035 05       		.byte	0x5
+ 162 0036 33020000 		.4byte	.LASF2
+ 163 003a 02       		.uleb128 0x2
+ 164 003b 02       		.byte	0x2
+ 165 003c 07       		.byte	0x7
+ 166 003d 0E000000 		.4byte	.LASF3
+ 167 0041 03       		.uleb128 0x3
+ 168 0042 23020000 		.4byte	.LASF9
+ 169 0046 02       		.byte	0x2
+ 170 0047 3F       		.byte	0x3f
+ 171 0048 4C000000 		.4byte	0x4c
+ 172 004c 02       		.uleb128 0x2
+ 173 004d 04       		.byte	0x4
+ 174 004e 05       		.byte	0x5
+ 175 004f CE010000 		.4byte	.LASF4
+ 176 0053 02       		.uleb128 0x2
+ 177 0054 04       		.byte	0x4
+ 178 0055 07       		.byte	0x7
+ 179 0056 07010000 		.4byte	.LASF5
+ 180 005a 02       		.uleb128 0x2
+ 181 005b 08       		.byte	0x8
+ 182 005c 05       		.byte	0x5
+ 183 005d 00000000 		.4byte	.LASF6
+ 184 0061 02       		.uleb128 0x2
+ 185 0062 08       		.byte	0x8
+ 186 0063 07       		.byte	0x7
+ 187 0064 D7010000 		.4byte	.LASF7
+ 188 0068 04       		.uleb128 0x4
+ 189 0069 04       		.byte	0x4
+ 190 006a 05       		.byte	0x5
+ 191 006b 696E7400 		.ascii	"int\000"
+ 192 006f 02       		.uleb128 0x2
+ 193 0070 04       		.byte	0x4
+ 194 0071 07       		.byte	0x7
+ 195 0072 2B000000 		.4byte	.LASF8
+ 196 0076 03       		.uleb128 0x3
+ 197 0077 3D020000 		.4byte	.LASF10
+ 198 007b 03       		.byte	0x3
+ 199 007c 2C       		.byte	0x2c
+ 200 007d 41000000 		.4byte	0x41
+ 201 0081 05       		.uleb128 0x5
+ 202 0082 01010000 		.4byte	.LASF11
+ 203 0086 04       		.byte	0x4
+ 204 0087 9201     		.2byte	0x192
+ 205 0089 2C000000 		.4byte	0x2c
+ 206 008d 02       		.uleb128 0x2
+ 207 008e 04       		.byte	0x4
+ 208 008f 04       		.byte	0x4
+ 209 0090 2D020000 		.4byte	.LASF12
+ 210 0094 02       		.uleb128 0x2
+ 211 0095 08       		.byte	0x8
+ 212 0096 04       		.byte	0x4
+ 213 0097 EE010000 		.4byte	.LASF13
+ 214 009b 02       		.uleb128 0x2
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 7
+
+
+ 215 009c 01       		.byte	0x1
+ 216 009d 08       		.byte	0x8
+ 217 009e C9010000 		.4byte	.LASF14
+ 218 00a2 02       		.uleb128 0x2
+ 219 00a3 08       		.byte	0x8
+ 220 00a4 04       		.byte	0x4
+ 221 00a5 17020000 		.4byte	.LASF15
+ 222 00a9 02       		.uleb128 0x2
+ 223 00aa 04       		.byte	0x4
+ 224 00ab 07       		.byte	0x7
+ 225 00ac 45020000 		.4byte	.LASF16
+ 226 00b0 06       		.uleb128 0x6
+ 227 00b1 F3000000 		.4byte	.LASF27
+ 228 00b5 01       		.byte	0x1
+ 229 00b6 51       		.byte	0x51
+ 230 00b7 68000000 		.4byte	0x68
+ 231 00bb 00000000 		.4byte	.LFB64
+ 232 00bf 78000000 		.4byte	.LFE64-.LFB64
+ 233 00c3 01       		.uleb128 0x1
+ 234 00c4 9C       		.byte	0x9c
+ 235 00c5 D6000000 		.4byte	0xd6
+ 236 00c9 07       		.uleb128 0x7
+ 237 00ca 6900     		.ascii	"i\000"
+ 238 00cc 01       		.byte	0x1
+ 239 00cd 53       		.byte	0x53
+ 240 00ce 81000000 		.4byte	0x81
+ 241 00d2 02       		.uleb128 0x2
+ 242 00d3 91       		.byte	0x91
+ 243 00d4 77       		.sleb128 -9
+ 244 00d5 00       		.byte	0
+ 245 00d6 08       		.uleb128 0x8
+ 246 00d7 FE010000 		.4byte	.LASF17
+ 247 00db 05       		.byte	0x5
+ 248 00dc 9606     		.2byte	0x696
+ 249 00de E2000000 		.4byte	0xe2
+ 250 00e2 09       		.uleb128 0x9
+ 251 00e3 76000000 		.4byte	0x76
+ 252 00e7 0A       		.uleb128 0xa
+ 253 00e8 38000000 		.4byte	.LASF18
+ 254 00ec 01       		.byte	0x1
+ 255 00ed 36       		.byte	0x36
+ 256 00ee 81000000 		.4byte	0x81
+ 257 00f2 05       		.uleb128 0x5
+ 258 00f3 03       		.byte	0x3
+ 259 00f4 00000000 		.4byte	txChannel
+ 260 00f8 0A       		.uleb128 0xa
+ 261 00f9 21000000 		.4byte	.LASF19
+ 262 00fd 01       		.byte	0x1
+ 263 00fe 36       		.byte	0x36
+ 264 00ff 81000000 		.4byte	0x81
+ 265 0103 05       		.uleb128 0x5
+ 266 0104 03       		.byte	0x3
+ 267 0105 00000000 		.4byte	rxChannel
+ 268 0109 0A       		.uleb128 0xa
+ 269 010a EE000000 		.4byte	.LASF20
+ 270 010e 01       		.byte	0x1
+ 271 010f 37       		.byte	0x37
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 8
+
+
+ 272 0110 81000000 		.4byte	0x81
+ 273 0114 05       		.uleb128 0x5
+ 274 0115 03       		.byte	0x3
+ 275 0116 00000000 		.4byte	txTD
+ 276 011a 0A       		.uleb128 0xa
+ 277 011b 42000000 		.4byte	.LASF21
+ 278 011f 01       		.byte	0x1
+ 279 0120 37       		.byte	0x37
+ 280 0121 81000000 		.4byte	0x81
+ 281 0125 05       		.uleb128 0x5
+ 282 0126 03       		.byte	0x3
+ 283 0127 00000000 		.4byte	rxTD
+ 284 012b 0B       		.uleb128 0xb
+ 285 012c 81000000 		.4byte	0x81
+ 286 0130 3B010000 		.4byte	0x13b
+ 287 0134 0C       		.uleb128 0xc
+ 288 0135 A9000000 		.4byte	0xa9
+ 289 0139 06       		.byte	0x6
+ 290 013a 00       		.byte	0
+ 291 013b 0A       		.uleb128 0xa
+ 292 013c F5010000 		.4byte	.LASF22
+ 293 0140 01       		.byte	0x1
+ 294 0141 3C       		.byte	0x3c
+ 295 0142 2B010000 		.4byte	0x12b
+ 296 0146 05       		.uleb128 0x5
+ 297 0147 03       		.byte	0x3
+ 298 0148 00000000 		.4byte	txBuffer
+ 299 014c 0B       		.uleb128 0xb
+ 300 014d 81000000 		.4byte	0x81
+ 301 0151 5C010000 		.4byte	0x15c
+ 302 0155 0C       		.uleb128 0xc
+ 303 0156 A9000000 		.4byte	0xa9
+ 304 015a 07       		.byte	0x7
+ 305 015b 00       		.byte	0
+ 306 015c 0A       		.uleb128 0xa
+ 307 015d 19010000 		.4byte	.LASF23
+ 308 0161 01       		.byte	0x1
+ 309 0162 3D       		.byte	0x3d
+ 310 0163 4C010000 		.4byte	0x14c
+ 311 0167 05       		.uleb128 0x5
+ 312 0168 03       		.byte	0x3
+ 313 0169 00000000 		.4byte	rxBuffer
+ 314 016d 00       		.byte	0
+ 315              		.section	.debug_abbrev,"",%progbits
+ 316              	.Ldebug_abbrev0:
+ 317 0000 01       		.uleb128 0x1
+ 318 0001 11       		.uleb128 0x11
+ 319 0002 01       		.byte	0x1
+ 320 0003 25       		.uleb128 0x25
+ 321 0004 0E       		.uleb128 0xe
+ 322 0005 13       		.uleb128 0x13
+ 323 0006 0B       		.uleb128 0xb
+ 324 0007 03       		.uleb128 0x3
+ 325 0008 0E       		.uleb128 0xe
+ 326 0009 1B       		.uleb128 0x1b
+ 327 000a 0E       		.uleb128 0xe
+ 328 000b 55       		.uleb128 0x55
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 9
+
+
+ 329 000c 17       		.uleb128 0x17
+ 330 000d 11       		.uleb128 0x11
+ 331 000e 01       		.uleb128 0x1
+ 332 000f 10       		.uleb128 0x10
+ 333 0010 17       		.uleb128 0x17
+ 334 0011 00       		.byte	0
+ 335 0012 00       		.byte	0
+ 336 0013 02       		.uleb128 0x2
+ 337 0014 24       		.uleb128 0x24
+ 338 0015 00       		.byte	0
+ 339 0016 0B       		.uleb128 0xb
+ 340 0017 0B       		.uleb128 0xb
+ 341 0018 3E       		.uleb128 0x3e
+ 342 0019 0B       		.uleb128 0xb
+ 343 001a 03       		.uleb128 0x3
+ 344 001b 0E       		.uleb128 0xe
+ 345 001c 00       		.byte	0
+ 346 001d 00       		.byte	0
+ 347 001e 03       		.uleb128 0x3
+ 348 001f 16       		.uleb128 0x16
+ 349 0020 00       		.byte	0
+ 350 0021 03       		.uleb128 0x3
+ 351 0022 0E       		.uleb128 0xe
+ 352 0023 3A       		.uleb128 0x3a
+ 353 0024 0B       		.uleb128 0xb
+ 354 0025 3B       		.uleb128 0x3b
+ 355 0026 0B       		.uleb128 0xb
+ 356 0027 49       		.uleb128 0x49
+ 357 0028 13       		.uleb128 0x13
+ 358 0029 00       		.byte	0
+ 359 002a 00       		.byte	0
+ 360 002b 04       		.uleb128 0x4
+ 361 002c 24       		.uleb128 0x24
+ 362 002d 00       		.byte	0
+ 363 002e 0B       		.uleb128 0xb
+ 364 002f 0B       		.uleb128 0xb
+ 365 0030 3E       		.uleb128 0x3e
+ 366 0031 0B       		.uleb128 0xb
+ 367 0032 03       		.uleb128 0x3
+ 368 0033 08       		.uleb128 0x8
+ 369 0034 00       		.byte	0
+ 370 0035 00       		.byte	0
+ 371 0036 05       		.uleb128 0x5
+ 372 0037 16       		.uleb128 0x16
+ 373 0038 00       		.byte	0
+ 374 0039 03       		.uleb128 0x3
+ 375 003a 0E       		.uleb128 0xe
+ 376 003b 3A       		.uleb128 0x3a
+ 377 003c 0B       		.uleb128 0xb
+ 378 003d 3B       		.uleb128 0x3b
+ 379 003e 05       		.uleb128 0x5
+ 380 003f 49       		.uleb128 0x49
+ 381 0040 13       		.uleb128 0x13
+ 382 0041 00       		.byte	0
+ 383 0042 00       		.byte	0
+ 384 0043 06       		.uleb128 0x6
+ 385 0044 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 10
+
+
+ 386 0045 01       		.byte	0x1
+ 387 0046 3F       		.uleb128 0x3f
+ 388 0047 19       		.uleb128 0x19
+ 389 0048 03       		.uleb128 0x3
+ 390 0049 0E       		.uleb128 0xe
+ 391 004a 3A       		.uleb128 0x3a
+ 392 004b 0B       		.uleb128 0xb
+ 393 004c 3B       		.uleb128 0x3b
+ 394 004d 0B       		.uleb128 0xb
+ 395 004e 49       		.uleb128 0x49
+ 396 004f 13       		.uleb128 0x13
+ 397 0050 11       		.uleb128 0x11
+ 398 0051 01       		.uleb128 0x1
+ 399 0052 12       		.uleb128 0x12
+ 400 0053 06       		.uleb128 0x6
+ 401 0054 40       		.uleb128 0x40
+ 402 0055 18       		.uleb128 0x18
+ 403 0056 9642     		.uleb128 0x2116
+ 404 0058 19       		.uleb128 0x19
+ 405 0059 01       		.uleb128 0x1
+ 406 005a 13       		.uleb128 0x13
+ 407 005b 00       		.byte	0
+ 408 005c 00       		.byte	0
+ 409 005d 07       		.uleb128 0x7
+ 410 005e 34       		.uleb128 0x34
+ 411 005f 00       		.byte	0
+ 412 0060 03       		.uleb128 0x3
+ 413 0061 08       		.uleb128 0x8
+ 414 0062 3A       		.uleb128 0x3a
+ 415 0063 0B       		.uleb128 0xb
+ 416 0064 3B       		.uleb128 0x3b
+ 417 0065 0B       		.uleb128 0xb
+ 418 0066 49       		.uleb128 0x49
+ 419 0067 13       		.uleb128 0x13
+ 420 0068 02       		.uleb128 0x2
+ 421 0069 18       		.uleb128 0x18
+ 422 006a 00       		.byte	0
+ 423 006b 00       		.byte	0
+ 424 006c 08       		.uleb128 0x8
+ 425 006d 34       		.uleb128 0x34
+ 426 006e 00       		.byte	0
+ 427 006f 03       		.uleb128 0x3
+ 428 0070 0E       		.uleb128 0xe
+ 429 0071 3A       		.uleb128 0x3a
+ 430 0072 0B       		.uleb128 0xb
+ 431 0073 3B       		.uleb128 0x3b
+ 432 0074 05       		.uleb128 0x5
+ 433 0075 49       		.uleb128 0x49
+ 434 0076 13       		.uleb128 0x13
+ 435 0077 3F       		.uleb128 0x3f
+ 436 0078 19       		.uleb128 0x19
+ 437 0079 3C       		.uleb128 0x3c
+ 438 007a 19       		.uleb128 0x19
+ 439 007b 00       		.byte	0
+ 440 007c 00       		.byte	0
+ 441 007d 09       		.uleb128 0x9
+ 442 007e 35       		.uleb128 0x35
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 11
+
+
+ 443 007f 00       		.byte	0
+ 444 0080 49       		.uleb128 0x49
+ 445 0081 13       		.uleb128 0x13
+ 446 0082 00       		.byte	0
+ 447 0083 00       		.byte	0
+ 448 0084 0A       		.uleb128 0xa
+ 449 0085 34       		.uleb128 0x34
+ 450 0086 00       		.byte	0
+ 451 0087 03       		.uleb128 0x3
+ 452 0088 0E       		.uleb128 0xe
+ 453 0089 3A       		.uleb128 0x3a
+ 454 008a 0B       		.uleb128 0xb
+ 455 008b 3B       		.uleb128 0x3b
+ 456 008c 0B       		.uleb128 0xb
+ 457 008d 49       		.uleb128 0x49
+ 458 008e 13       		.uleb128 0x13
+ 459 008f 3F       		.uleb128 0x3f
+ 460 0090 19       		.uleb128 0x19
+ 461 0091 02       		.uleb128 0x2
+ 462 0092 18       		.uleb128 0x18
+ 463 0093 00       		.byte	0
+ 464 0094 00       		.byte	0
+ 465 0095 0B       		.uleb128 0xb
+ 466 0096 01       		.uleb128 0x1
+ 467 0097 01       		.byte	0x1
+ 468 0098 49       		.uleb128 0x49
+ 469 0099 13       		.uleb128 0x13
+ 470 009a 01       		.uleb128 0x1
+ 471 009b 13       		.uleb128 0x13
+ 472 009c 00       		.byte	0
+ 473 009d 00       		.byte	0
+ 474 009e 0C       		.uleb128 0xc
+ 475 009f 21       		.uleb128 0x21
+ 476 00a0 00       		.byte	0
+ 477 00a1 49       		.uleb128 0x49
+ 478 00a2 13       		.uleb128 0x13
+ 479 00a3 2F       		.uleb128 0x2f
+ 480 00a4 0B       		.uleb128 0xb
+ 481 00a5 00       		.byte	0
+ 482 00a6 00       		.byte	0
+ 483 00a7 00       		.byte	0
+ 484              		.section	.debug_aranges,"",%progbits
+ 485 0000 1C000000 		.4byte	0x1c
+ 486 0004 0200     		.2byte	0x2
+ 487 0006 00000000 		.4byte	.Ldebug_info0
+ 488 000a 04       		.byte	0x4
+ 489 000b 00       		.byte	0
+ 490 000c 0000     		.2byte	0
+ 491 000e 0000     		.2byte	0
+ 492 0010 00000000 		.4byte	.LFB64
+ 493 0014 78000000 		.4byte	.LFE64-.LFB64
+ 494 0018 00000000 		.4byte	0
+ 495 001c 00000000 		.4byte	0
+ 496              		.section	.debug_ranges,"",%progbits
+ 497              	.Ldebug_ranges0:
+ 498 0000 00000000 		.4byte	.LFB64
+ 499 0004 78000000 		.4byte	.LFE64
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 12
+
+
+ 500 0008 00000000 		.4byte	0
+ 501 000c 00000000 		.4byte	0
+ 502              		.section	.debug_line,"",%progbits
+ 503              	.Ldebug_line0:
+ 504 0000 8D010000 		.section	.debug_str,"MS",%progbits,1
+ 504      02005001 
+ 504      00000201 
+ 504      FB0E0D00 
+ 504      01010101 
+ 505              	.LASF6:
+ 506 0000 6C6F6E67 		.ascii	"long long int\000"
+ 506      206C6F6E 
+ 506      6720696E 
+ 506      7400
+ 507              	.LASF3:
+ 508 000e 73686F72 		.ascii	"short unsigned int\000"
+ 508      7420756E 
+ 508      7369676E 
+ 508      65642069 
+ 508      6E7400
+ 509              	.LASF19:
+ 510 0021 72784368 		.ascii	"rxChannel\000"
+ 510      616E6E65 
+ 510      6C00
+ 511              	.LASF8:
+ 512 002b 756E7369 		.ascii	"unsigned int\000"
+ 512      676E6564 
+ 512      20696E74 
+ 512      00
+ 513              	.LASF18:
+ 514 0038 74784368 		.ascii	"txChannel\000"
+ 514      616E6E65 
+ 514      6C00
+ 515              	.LASF21:
+ 516 0042 72785444 		.ascii	"rxTD\000"
+ 516      00
+ 517              	.LASF26:
+ 518 0047 433A5C55 		.ascii	"C:\\Users\\tomas.gecas\\Documents\\Dropbox\\Shared\\"
+ 518      73657273 
+ 518      5C746F6D 
+ 518      61732E67 
+ 518      65636173 
+ 519 0075 50534F43 		.ascii	"PSOC\\workspace 20171113\\workspace 20171004\\works"
+ 519      5C776F72 
+ 519      6B737061 
+ 519      63652032 
+ 519      30313731 
+ 520 00a5 70616365 		.ascii	"pace\\minunit_arch stendo 0927\\minunit_arch\\minun"
+ 520      5C6D696E 
+ 520      756E6974 
+ 520      5F617263 
+ 520      68207374 
+ 521 00d5 69745F61 		.ascii	"it_arch\\stendo_MIS.cydsn\000"
+ 521      7263685C 
+ 521      7374656E 
+ 521      646F5F4D 
+ 521      49532E63 
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 13
+
+
+ 522              	.LASF20:
+ 523 00ee 74785444 		.ascii	"txTD\000"
+ 523      00
+ 524              	.LASF27:
+ 525 00f3 6D61696E 		.ascii	"main_SPIS_DMA\000"
+ 525      5F535049 
+ 525      535F444D 
+ 525      4100
+ 526              	.LASF11:
+ 527 0101 75696E74 		.ascii	"uint8\000"
+ 527      3800
+ 528              	.LASF5:
+ 529 0107 6C6F6E67 		.ascii	"long unsigned int\000"
+ 529      20756E73 
+ 529      69676E65 
+ 529      6420696E 
+ 529      7400
+ 530              	.LASF23:
+ 531 0119 72784275 		.ascii	"rxBuffer\000"
+ 531      66666572 
+ 531      00
+ 532              	.LASF25:
+ 533 0122 53504953 		.ascii	"SPIS_DMA.c\000"
+ 533      5F444D41 
+ 533      2E6300
+ 534              	.LASF24:
+ 535 012d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 535      43313120 
+ 535      352E342E 
+ 535      31203230 
+ 535      31363036 
+ 536 0160 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 536      20726576 
+ 536      6973696F 
+ 536      6E203233 
+ 536      37373135 
+ 537 0193 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 537      66756E63 
+ 537      74696F6E 
+ 537      2D736563 
+ 537      74696F6E 
+ 538              	.LASF1:
+ 539 01bb 756E7369 		.ascii	"unsigned char\000"
+ 539      676E6564 
+ 539      20636861 
+ 539      7200
+ 540              	.LASF14:
+ 541 01c9 63686172 		.ascii	"char\000"
+ 541      00
+ 542              	.LASF4:
+ 543 01ce 6C6F6E67 		.ascii	"long int\000"
+ 543      20696E74 
+ 543      00
+ 544              	.LASF7:
+ 545 01d7 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 545      206C6F6E 
+ 545      6720756E 
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccSgUoEy.s 			page 14
+
+
+ 545      7369676E 
+ 545      65642069 
+ 546              	.LASF13:
+ 547 01ee 646F7562 		.ascii	"double\000"
+ 547      6C6500
+ 548              	.LASF22:
+ 549 01f5 74784275 		.ascii	"txBuffer\000"
+ 549      66666572 
+ 549      00
+ 550              	.LASF17:
+ 551 01fe 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 551      52784275 
+ 551      66666572 
+ 551      00
+ 552              	.LASF0:
+ 553 020b 7369676E 		.ascii	"signed char\000"
+ 553      65642063 
+ 553      68617200 
+ 554              	.LASF15:
+ 555 0217 6C6F6E67 		.ascii	"long double\000"
+ 555      20646F75 
+ 555      626C6500 
+ 556              	.LASF9:
+ 557 0223 5F5F696E 		.ascii	"__int32_t\000"
+ 557      7433325F 
+ 557      7400
+ 558              	.LASF12:
+ 559 022d 666C6F61 		.ascii	"float\000"
+ 559      7400
+ 560              	.LASF2:
+ 561 0233 73686F72 		.ascii	"short int\000"
+ 561      7420696E 
+ 561      7400
+ 562              	.LASF10:
+ 563 023d 696E7433 		.ascii	"int32_t\000"
+ 563      325F7400 
+ 564              	.LASF16:
+ 565 0245 73697A65 		.ascii	"sizetype\000"
+ 565      74797065 
+ 565      00
+ 566              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,0 +1,4867 @@
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"clock5.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.comm	rtc_typef,4,4
+  19              		.global	rtc_sec
+  20              		.data
+  21              		.align	2
+  22              		.type	rtc_sec, %object
+  23              		.size	rtc_sec, 4
+  24              	rtc_sec:
+  25 0000 07000000 		.word	7
+  26              		.section	.text.rtc_set_seconds,"ax",%progbits
+  27              		.align	2
+  28              		.global	rtc_set_seconds
+  29              		.thumb
+  30              		.thumb_func
+  31              		.type	rtc_set_seconds, %function
+  32              	rtc_set_seconds:
+  33              	.LFB0:
+  34              		.file 1 "clock5.c"
+   1:clock5.c      **** #include "stdio.h"
+   2:clock5.c      **** #include "minunit.h"
+   3:clock5.c      **** 
+   4:clock5.c      **** 
+   5:clock5.c      **** /*******************************************************************************/
+   6:clock5.c      **** // Reference:
+   7:clock5.c      **** // https://www.codingunit.com/how-to-make-a-calendar-in-c
+   8:clock5.c      **** // Type F = Compound CP32: Date and Time
+   9:clock5.c      **** // http://www.m-bus.com/files/MBDOC48.PDF
+  10:clock5.c      **** /*******************************************************************************/
+  11:clock5.c      **** char rtc_typef[4];
+  12:clock5.c      **** 
+  13:clock5.c      **** int rtc_sec = 7;
+  14:clock5.c      **** void rtc_set_seconds(int s)
+  15:clock5.c      **** {
+  35              		.loc 1 15 0
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 8
+  38              		@ frame_needed = 1, uses_anonymous_args = 0
+  39              		@ link register save eliminated.
+  40 0000 80B4     		push	{r7}
+  41              		.cfi_def_cfa_offset 4
+  42              		.cfi_offset 7, -4
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 2
+
+
+  43 0002 83B0     		sub	sp, sp, #12
+  44              		.cfi_def_cfa_offset 16
+  45 0004 00AF     		add	r7, sp, #0
+  46              		.cfi_def_cfa_register 7
+  47 0006 7860     		str	r0, [r7, #4]
+  16:clock5.c      ****     rtc_sec = s;
+  48              		.loc 1 16 0
+  49 0008 034A     		ldr	r2, .L2
+  50 000a 7B68     		ldr	r3, [r7, #4]
+  51 000c 1360     		str	r3, [r2]
+  17:clock5.c      **** }
+  52              		.loc 1 17 0
+  53 000e 0C37     		adds	r7, r7, #12
+  54              		.cfi_def_cfa_offset 4
+  55 0010 BD46     		mov	sp, r7
+  56              		.cfi_def_cfa_register 13
+  57              		@ sp needed
+  58 0012 5DF8047B 		ldr	r7, [sp], #4
+  59              		.cfi_restore 7
+  60              		.cfi_def_cfa_offset 0
+  61 0016 7047     		bx	lr
+  62              	.L3:
+  63              		.align	2
+  64              	.L2:
+  65 0018 00000000 		.word	rtc_sec
+  66              		.cfi_endproc
+  67              	.LFE0:
+  68              		.size	rtc_set_seconds, .-rtc_set_seconds
+  69              		.section	.text.rtc_get_seconds,"ax",%progbits
+  70              		.align	2
+  71              		.global	rtc_get_seconds
+  72              		.thumb
+  73              		.thumb_func
+  74              		.type	rtc_get_seconds, %function
+  75              	rtc_get_seconds:
+  76              	.LFB1:
+  18:clock5.c      **** 
+  19:clock5.c      **** int rtc_get_seconds(void)
+  20:clock5.c      **** {
+  77              		.loc 1 20 0
+  78              		.cfi_startproc
+  79              		@ args = 0, pretend = 0, frame = 0
+  80              		@ frame_needed = 1, uses_anonymous_args = 0
+  81              		@ link register save eliminated.
+  82 0000 80B4     		push	{r7}
+  83              		.cfi_def_cfa_offset 4
+  84              		.cfi_offset 7, -4
+  85 0002 00AF     		add	r7, sp, #0
+  86              		.cfi_def_cfa_register 7
+  21:clock5.c      ****     return rtc_sec;
+  87              		.loc 1 21 0
+  88 0004 034B     		ldr	r3, .L6
+  89 0006 1B68     		ldr	r3, [r3]
+  22:clock5.c      **** }
+  90              		.loc 1 22 0
+  91 0008 1846     		mov	r0, r3
+  92 000a BD46     		mov	sp, r7
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 3
+
+
+  93              		.cfi_def_cfa_register 13
+  94              		@ sp needed
+  95 000c 5DF8047B 		ldr	r7, [sp], #4
+  96              		.cfi_restore 7
+  97              		.cfi_def_cfa_offset 0
+  98 0010 7047     		bx	lr
+  99              	.L7:
+ 100 0012 00BF     		.align	2
+ 101              	.L6:
+ 102 0014 00000000 		.word	rtc_sec
+ 103              		.cfi_endproc
+ 104              	.LFE1:
+ 105              		.size	rtc_get_seconds, .-rtc_get_seconds
+ 106              		.section	.text.rtc_set_minutes,"ax",%progbits
+ 107              		.align	2
+ 108              		.global	rtc_set_minutes
+ 109              		.thumb
+ 110              		.thumb_func
+ 111              		.type	rtc_set_minutes, %function
+ 112              	rtc_set_minutes:
+ 113              	.LFB2:
+  23:clock5.c      **** 
+  24:clock5.c      **** void rtc_set_minutes(int m)
+  25:clock5.c      **** {
+ 114              		.loc 1 25 0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 8
+ 117              		@ frame_needed = 1, uses_anonymous_args = 0
+ 118              		@ link register save eliminated.
+ 119 0000 80B4     		push	{r7}
+ 120              		.cfi_def_cfa_offset 4
+ 121              		.cfi_offset 7, -4
+ 122 0002 83B0     		sub	sp, sp, #12
+ 123              		.cfi_def_cfa_offset 16
+ 124 0004 00AF     		add	r7, sp, #0
+ 125              		.cfi_def_cfa_register 7
+ 126 0006 7860     		str	r0, [r7, #4]
+  26:clock5.c      ****     rtc_typef[0] = (rtc_typef[0] & (~0x3F)) | (m & 0x3F);
+ 127              		.loc 1 26 0
+ 128 0008 0A4B     		ldr	r3, .L9
+ 129 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 130 000c DBB2     		uxtb	r3, r3
+ 131 000e 23F03F03 		bic	r3, r3, #63
+ 132 0012 DAB2     		uxtb	r2, r3
+ 133 0014 7B68     		ldr	r3, [r7, #4]
+ 134 0016 DBB2     		uxtb	r3, r3
+ 135 0018 03F03F03 		and	r3, r3, #63
+ 136 001c DBB2     		uxtb	r3, r3
+ 137 001e 1343     		orrs	r3, r3, r2
+ 138 0020 DBB2     		uxtb	r3, r3
+ 139 0022 DAB2     		uxtb	r2, r3
+ 140 0024 034B     		ldr	r3, .L9
+ 141 0026 1A70     		strb	r2, [r3]
+  27:clock5.c      **** }
+ 142              		.loc 1 27 0
+ 143 0028 0C37     		adds	r7, r7, #12
+ 144              		.cfi_def_cfa_offset 4
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 4
+
+
+ 145 002a BD46     		mov	sp, r7
+ 146              		.cfi_def_cfa_register 13
+ 147              		@ sp needed
+ 148 002c 5DF8047B 		ldr	r7, [sp], #4
+ 149              		.cfi_restore 7
+ 150              		.cfi_def_cfa_offset 0
+ 151 0030 7047     		bx	lr
+ 152              	.L10:
+ 153 0032 00BF     		.align	2
+ 154              	.L9:
+ 155 0034 00000000 		.word	rtc_typef
+ 156              		.cfi_endproc
+ 157              	.LFE2:
+ 158              		.size	rtc_set_minutes, .-rtc_set_minutes
+ 159              		.section	.text.rtc_get_minutes,"ax",%progbits
+ 160              		.align	2
+ 161              		.global	rtc_get_minutes
+ 162              		.thumb
+ 163              		.thumb_func
+ 164              		.type	rtc_get_minutes, %function
+ 165              	rtc_get_minutes:
+ 166              	.LFB3:
+  28:clock5.c      **** 
+  29:clock5.c      **** int rtc_get_minutes(void)
+  30:clock5.c      **** {
+ 167              		.loc 1 30 0
+ 168              		.cfi_startproc
+ 169              		@ args = 0, pretend = 0, frame = 0
+ 170              		@ frame_needed = 1, uses_anonymous_args = 0
+ 171              		@ link register save eliminated.
+ 172 0000 80B4     		push	{r7}
+ 173              		.cfi_def_cfa_offset 4
+ 174              		.cfi_offset 7, -4
+ 175 0002 00AF     		add	r7, sp, #0
+ 176              		.cfi_def_cfa_register 7
+  31:clock5.c      ****     return (rtc_typef[0] & 0x3F);
+ 177              		.loc 1 31 0
+ 178 0004 044B     		ldr	r3, .L13
+ 179 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 180 0008 03F03F03 		and	r3, r3, #63
+  32:clock5.c      **** }
+ 181              		.loc 1 32 0
+ 182 000c 1846     		mov	r0, r3
+ 183 000e BD46     		mov	sp, r7
+ 184              		.cfi_def_cfa_register 13
+ 185              		@ sp needed
+ 186 0010 5DF8047B 		ldr	r7, [sp], #4
+ 187              		.cfi_restore 7
+ 188              		.cfi_def_cfa_offset 0
+ 189 0014 7047     		bx	lr
+ 190              	.L14:
+ 191 0016 00BF     		.align	2
+ 192              	.L13:
+ 193 0018 00000000 		.word	rtc_typef
+ 194              		.cfi_endproc
+ 195              	.LFE3:
+ 196              		.size	rtc_get_minutes, .-rtc_get_minutes
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 5
+
+
+ 197              		.section	.text.rtc_set_hour,"ax",%progbits
+ 198              		.align	2
+ 199              		.global	rtc_set_hour
+ 200              		.thumb
+ 201              		.thumb_func
+ 202              		.type	rtc_set_hour, %function
+ 203              	rtc_set_hour:
+ 204              	.LFB4:
+  33:clock5.c      **** 
+  34:clock5.c      **** void rtc_set_hour(int h)
+  35:clock5.c      **** {
+ 205              		.loc 1 35 0
+ 206              		.cfi_startproc
+ 207              		@ args = 0, pretend = 0, frame = 8
+ 208              		@ frame_needed = 1, uses_anonymous_args = 0
+ 209              		@ link register save eliminated.
+ 210 0000 80B4     		push	{r7}
+ 211              		.cfi_def_cfa_offset 4
+ 212              		.cfi_offset 7, -4
+ 213 0002 83B0     		sub	sp, sp, #12
+ 214              		.cfi_def_cfa_offset 16
+ 215 0004 00AF     		add	r7, sp, #0
+ 216              		.cfi_def_cfa_register 7
+ 217 0006 7860     		str	r0, [r7, #4]
+  36:clock5.c      ****     rtc_typef[1] = (rtc_typef[1] & (~0x1F)) | (h & 0x1F);
+ 218              		.loc 1 36 0
+ 219 0008 0A4B     		ldr	r3, .L16
+ 220 000a 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 221 000c DBB2     		uxtb	r3, r3
+ 222 000e 23F01F03 		bic	r3, r3, #31
+ 223 0012 DAB2     		uxtb	r2, r3
+ 224 0014 7B68     		ldr	r3, [r7, #4]
+ 225 0016 DBB2     		uxtb	r3, r3
+ 226 0018 03F01F03 		and	r3, r3, #31
+ 227 001c DBB2     		uxtb	r3, r3
+ 228 001e 1343     		orrs	r3, r3, r2
+ 229 0020 DBB2     		uxtb	r3, r3
+ 230 0022 DAB2     		uxtb	r2, r3
+ 231 0024 034B     		ldr	r3, .L16
+ 232 0026 5A70     		strb	r2, [r3, #1]
+  37:clock5.c      **** }
+ 233              		.loc 1 37 0
+ 234 0028 0C37     		adds	r7, r7, #12
+ 235              		.cfi_def_cfa_offset 4
+ 236 002a BD46     		mov	sp, r7
+ 237              		.cfi_def_cfa_register 13
+ 238              		@ sp needed
+ 239 002c 5DF8047B 		ldr	r7, [sp], #4
+ 240              		.cfi_restore 7
+ 241              		.cfi_def_cfa_offset 0
+ 242 0030 7047     		bx	lr
+ 243              	.L17:
+ 244 0032 00BF     		.align	2
+ 245              	.L16:
+ 246 0034 00000000 		.word	rtc_typef
+ 247              		.cfi_endproc
+ 248              	.LFE4:
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 6
+
+
+ 249              		.size	rtc_set_hour, .-rtc_set_hour
+ 250              		.section	.text.rtc_get_hour,"ax",%progbits
+ 251              		.align	2
+ 252              		.global	rtc_get_hour
+ 253              		.thumb
+ 254              		.thumb_func
+ 255              		.type	rtc_get_hour, %function
+ 256              	rtc_get_hour:
+ 257              	.LFB5:
+  38:clock5.c      **** 
+  39:clock5.c      **** int rtc_get_hour(void)
+  40:clock5.c      **** {
+ 258              		.loc 1 40 0
+ 259              		.cfi_startproc
+ 260              		@ args = 0, pretend = 0, frame = 0
+ 261              		@ frame_needed = 1, uses_anonymous_args = 0
+ 262              		@ link register save eliminated.
+ 263 0000 80B4     		push	{r7}
+ 264              		.cfi_def_cfa_offset 4
+ 265              		.cfi_offset 7, -4
+ 266 0002 00AF     		add	r7, sp, #0
+ 267              		.cfi_def_cfa_register 7
+  41:clock5.c      ****     return (rtc_typef[1] & 0x1F);
+ 268              		.loc 1 41 0
+ 269 0004 044B     		ldr	r3, .L20
+ 270 0006 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 271 0008 03F01F03 		and	r3, r3, #31
+  42:clock5.c      **** }
+ 272              		.loc 1 42 0
+ 273 000c 1846     		mov	r0, r3
+ 274 000e BD46     		mov	sp, r7
+ 275              		.cfi_def_cfa_register 13
+ 276              		@ sp needed
+ 277 0010 5DF8047B 		ldr	r7, [sp], #4
+ 278              		.cfi_restore 7
+ 279              		.cfi_def_cfa_offset 0
+ 280 0014 7047     		bx	lr
+ 281              	.L21:
+ 282 0016 00BF     		.align	2
+ 283              	.L20:
+ 284 0018 00000000 		.word	rtc_typef
+ 285              		.cfi_endproc
+ 286              	.LFE5:
+ 287              		.size	rtc_get_hour, .-rtc_get_hour
+ 288              		.section	.text.rtc_set_day,"ax",%progbits
+ 289              		.align	2
+ 290              		.global	rtc_set_day
+ 291              		.thumb
+ 292              		.thumb_func
+ 293              		.type	rtc_set_day, %function
+ 294              	rtc_set_day:
+ 295              	.LFB6:
+  43:clock5.c      **** 
+  44:clock5.c      **** void rtc_set_day(int d)
+  45:clock5.c      **** {
+ 296              		.loc 1 45 0
+ 297              		.cfi_startproc
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 7
+
+
+ 298              		@ args = 0, pretend = 0, frame = 8
+ 299              		@ frame_needed = 1, uses_anonymous_args = 0
+ 300              		@ link register save eliminated.
+ 301 0000 80B4     		push	{r7}
+ 302              		.cfi_def_cfa_offset 4
+ 303              		.cfi_offset 7, -4
+ 304 0002 83B0     		sub	sp, sp, #12
+ 305              		.cfi_def_cfa_offset 16
+ 306 0004 00AF     		add	r7, sp, #0
+ 307              		.cfi_def_cfa_register 7
+ 308 0006 7860     		str	r0, [r7, #4]
+  46:clock5.c      ****     rtc_typef[2] = (rtc_typef[2] & (~0x1F)) | (d & 0x1F);
+ 309              		.loc 1 46 0
+ 310 0008 0A4B     		ldr	r3, .L23
+ 311 000a 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 312 000c DBB2     		uxtb	r3, r3
+ 313 000e 23F01F03 		bic	r3, r3, #31
+ 314 0012 DAB2     		uxtb	r2, r3
+ 315 0014 7B68     		ldr	r3, [r7, #4]
+ 316 0016 DBB2     		uxtb	r3, r3
+ 317 0018 03F01F03 		and	r3, r3, #31
+ 318 001c DBB2     		uxtb	r3, r3
+ 319 001e 1343     		orrs	r3, r3, r2
+ 320 0020 DBB2     		uxtb	r3, r3
+ 321 0022 DAB2     		uxtb	r2, r3
+ 322 0024 034B     		ldr	r3, .L23
+ 323 0026 9A70     		strb	r2, [r3, #2]
+  47:clock5.c      **** }
+ 324              		.loc 1 47 0
+ 325 0028 0C37     		adds	r7, r7, #12
+ 326              		.cfi_def_cfa_offset 4
+ 327 002a BD46     		mov	sp, r7
+ 328              		.cfi_def_cfa_register 13
+ 329              		@ sp needed
+ 330 002c 5DF8047B 		ldr	r7, [sp], #4
+ 331              		.cfi_restore 7
+ 332              		.cfi_def_cfa_offset 0
+ 333 0030 7047     		bx	lr
+ 334              	.L24:
+ 335 0032 00BF     		.align	2
+ 336              	.L23:
+ 337 0034 00000000 		.word	rtc_typef
+ 338              		.cfi_endproc
+ 339              	.LFE6:
+ 340              		.size	rtc_set_day, .-rtc_set_day
+ 341              		.section	.text.rtc_get_day,"ax",%progbits
+ 342              		.align	2
+ 343              		.global	rtc_get_day
+ 344              		.thumb
+ 345              		.thumb_func
+ 346              		.type	rtc_get_day, %function
+ 347              	rtc_get_day:
+ 348              	.LFB7:
+  48:clock5.c      **** 
+  49:clock5.c      **** int rtc_get_day(void)
+  50:clock5.c      **** {
+ 349              		.loc 1 50 0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 8
+
+
+ 350              		.cfi_startproc
+ 351              		@ args = 0, pretend = 0, frame = 0
+ 352              		@ frame_needed = 1, uses_anonymous_args = 0
+ 353              		@ link register save eliminated.
+ 354 0000 80B4     		push	{r7}
+ 355              		.cfi_def_cfa_offset 4
+ 356              		.cfi_offset 7, -4
+ 357 0002 00AF     		add	r7, sp, #0
+ 358              		.cfi_def_cfa_register 7
+  51:clock5.c      ****     return (rtc_typef[2] & 0x1F);
+ 359              		.loc 1 51 0
+ 360 0004 044B     		ldr	r3, .L27
+ 361 0006 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 362 0008 03F01F03 		and	r3, r3, #31
+  52:clock5.c      **** }
+ 363              		.loc 1 52 0
+ 364 000c 1846     		mov	r0, r3
+ 365 000e BD46     		mov	sp, r7
+ 366              		.cfi_def_cfa_register 13
+ 367              		@ sp needed
+ 368 0010 5DF8047B 		ldr	r7, [sp], #4
+ 369              		.cfi_restore 7
+ 370              		.cfi_def_cfa_offset 0
+ 371 0014 7047     		bx	lr
+ 372              	.L28:
+ 373 0016 00BF     		.align	2
+ 374              	.L27:
+ 375 0018 00000000 		.word	rtc_typef
+ 376              		.cfi_endproc
+ 377              	.LFE7:
+ 378              		.size	rtc_get_day, .-rtc_get_day
+ 379              		.section	.text.rtc_set_month,"ax",%progbits
+ 380              		.align	2
+ 381              		.global	rtc_set_month
+ 382              		.thumb
+ 383              		.thumb_func
+ 384              		.type	rtc_set_month, %function
+ 385              	rtc_set_month:
+ 386              	.LFB8:
+  53:clock5.c      **** 
+  54:clock5.c      **** void rtc_set_month(int m)
+  55:clock5.c      **** {
+ 387              		.loc 1 55 0
+ 388              		.cfi_startproc
+ 389              		@ args = 0, pretend = 0, frame = 8
+ 390              		@ frame_needed = 1, uses_anonymous_args = 0
+ 391              		@ link register save eliminated.
+ 392 0000 80B4     		push	{r7}
+ 393              		.cfi_def_cfa_offset 4
+ 394              		.cfi_offset 7, -4
+ 395 0002 83B0     		sub	sp, sp, #12
+ 396              		.cfi_def_cfa_offset 16
+ 397 0004 00AF     		add	r7, sp, #0
+ 398              		.cfi_def_cfa_register 7
+ 399 0006 7860     		str	r0, [r7, #4]
+  56:clock5.c      ****     rtc_typef[3] = (rtc_typef[3] & (~0x0F)) | (m & 0x0F);
+ 400              		.loc 1 56 0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 9
+
+
+ 401 0008 0A4B     		ldr	r3, .L30
+ 402 000a DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ 403 000c DBB2     		uxtb	r3, r3
+ 404 000e 23F00F03 		bic	r3, r3, #15
+ 405 0012 DAB2     		uxtb	r2, r3
+ 406 0014 7B68     		ldr	r3, [r7, #4]
+ 407 0016 DBB2     		uxtb	r3, r3
+ 408 0018 03F00F03 		and	r3, r3, #15
+ 409 001c DBB2     		uxtb	r3, r3
+ 410 001e 1343     		orrs	r3, r3, r2
+ 411 0020 DBB2     		uxtb	r3, r3
+ 412 0022 DAB2     		uxtb	r2, r3
+ 413 0024 034B     		ldr	r3, .L30
+ 414 0026 DA70     		strb	r2, [r3, #3]
+  57:clock5.c      **** }
+ 415              		.loc 1 57 0
+ 416 0028 0C37     		adds	r7, r7, #12
+ 417              		.cfi_def_cfa_offset 4
+ 418 002a BD46     		mov	sp, r7
+ 419              		.cfi_def_cfa_register 13
+ 420              		@ sp needed
+ 421 002c 5DF8047B 		ldr	r7, [sp], #4
+ 422              		.cfi_restore 7
+ 423              		.cfi_def_cfa_offset 0
+ 424 0030 7047     		bx	lr
+ 425              	.L31:
+ 426 0032 00BF     		.align	2
+ 427              	.L30:
+ 428 0034 00000000 		.word	rtc_typef
+ 429              		.cfi_endproc
+ 430              	.LFE8:
+ 431              		.size	rtc_set_month, .-rtc_set_month
+ 432              		.section	.text.rtc_get_month,"ax",%progbits
+ 433              		.align	2
+ 434              		.global	rtc_get_month
+ 435              		.thumb
+ 436              		.thumb_func
+ 437              		.type	rtc_get_month, %function
+ 438              	rtc_get_month:
+ 439              	.LFB9:
+  58:clock5.c      **** 
+  59:clock5.c      **** int rtc_get_month(void)
+  60:clock5.c      **** {
+ 440              		.loc 1 60 0
+ 441              		.cfi_startproc
+ 442              		@ args = 0, pretend = 0, frame = 0
+ 443              		@ frame_needed = 1, uses_anonymous_args = 0
+ 444              		@ link register save eliminated.
+ 445 0000 80B4     		push	{r7}
+ 446              		.cfi_def_cfa_offset 4
+ 447              		.cfi_offset 7, -4
+ 448 0002 00AF     		add	r7, sp, #0
+ 449              		.cfi_def_cfa_register 7
+  61:clock5.c      ****     return (rtc_typef[3] & 0x0F);
+ 450              		.loc 1 61 0
+ 451 0004 044B     		ldr	r3, .L34
+ 452 0006 DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 10
+
+
+ 453 0008 03F00F03 		and	r3, r3, #15
+  62:clock5.c      **** }
+ 454              		.loc 1 62 0
+ 455 000c 1846     		mov	r0, r3
+ 456 000e BD46     		mov	sp, r7
+ 457              		.cfi_def_cfa_register 13
+ 458              		@ sp needed
+ 459 0010 5DF8047B 		ldr	r7, [sp], #4
+ 460              		.cfi_restore 7
+ 461              		.cfi_def_cfa_offset 0
+ 462 0014 7047     		bx	lr
+ 463              	.L35:
+ 464 0016 00BF     		.align	2
+ 465              	.L34:
+ 466 0018 00000000 		.word	rtc_typef
+ 467              		.cfi_endproc
+ 468              	.LFE9:
+ 469              		.size	rtc_get_month, .-rtc_get_month
+ 470              		.section	.text.rtc_set_years,"ax",%progbits
+ 471              		.align	2
+ 472              		.global	rtc_set_years
+ 473              		.thumb
+ 474              		.thumb_func
+ 475              		.type	rtc_set_years, %function
+ 476              	rtc_set_years:
+ 477              	.LFB10:
+  63:clock5.c      **** 
+  64:clock5.c      **** void rtc_set_years(int y)
+  65:clock5.c      **** {
+ 478              		.loc 1 65 0
+ 479              		.cfi_startproc
+ 480              		@ args = 0, pretend = 0, frame = 8
+ 481              		@ frame_needed = 1, uses_anonymous_args = 0
+ 482              		@ link register save eliminated.
+ 483 0000 80B4     		push	{r7}
+ 484              		.cfi_def_cfa_offset 4
+ 485              		.cfi_offset 7, -4
+ 486 0002 83B0     		sub	sp, sp, #12
+ 487              		.cfi_def_cfa_offset 16
+ 488 0004 00AF     		add	r7, sp, #0
+ 489              		.cfi_def_cfa_register 7
+ 490 0006 7860     		str	r0, [r7, #4]
+  66:clock5.c      ****     y %= 100;
+ 491              		.loc 1 66 0
+ 492 0008 7B68     		ldr	r3, [r7, #4]
+ 493 000a 174A     		ldr	r2, .L37
+ 494 000c 82FB0312 		smull	r1, r2, r2, r3
+ 495 0010 5111     		asrs	r1, r2, #5
+ 496 0012 DA17     		asrs	r2, r3, #31
+ 497 0014 8A1A     		subs	r2, r1, r2
+ 498 0016 6421     		movs	r1, #100
+ 499 0018 01FB02F2 		mul	r2, r1, r2
+ 500 001c 9B1A     		subs	r3, r3, r2
+ 501 001e 7B60     		str	r3, [r7, #4]
+  67:clock5.c      ****     rtc_typef[2] = (rtc_typef[2] & (0x1F)) | ((y << 5)  & (~0x1F));
+ 502              		.loc 1 67 0
+ 503 0020 124B     		ldr	r3, .L37+4
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 11
+
+
+ 504 0022 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 505 0024 DBB2     		uxtb	r3, r3
+ 506 0026 03F01F03 		and	r3, r3, #31
+ 507 002a DAB2     		uxtb	r2, r3
+ 508 002c 7B68     		ldr	r3, [r7, #4]
+ 509 002e 5B01     		lsls	r3, r3, #5
+ 510 0030 DBB2     		uxtb	r3, r3
+ 511 0032 1343     		orrs	r3, r3, r2
+ 512 0034 DBB2     		uxtb	r3, r3
+ 513 0036 DAB2     		uxtb	r2, r3
+ 514 0038 0C4B     		ldr	r3, .L37+4
+ 515 003a 9A70     		strb	r2, [r3, #2]
+  68:clock5.c      ****     rtc_typef[3] = (rtc_typef[3] & (0x0F)) | ((y << (4-3))  & (~0x0F));
+ 516              		.loc 1 68 0
+ 517 003c 0B4B     		ldr	r3, .L37+4
+ 518 003e DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ 519 0040 DBB2     		uxtb	r3, r3
+ 520 0042 03F00F03 		and	r3, r3, #15
+ 521 0046 DAB2     		uxtb	r2, r3
+ 522 0048 7B68     		ldr	r3, [r7, #4]
+ 523 004a 5B00     		lsls	r3, r3, #1
+ 524 004c DBB2     		uxtb	r3, r3
+ 525 004e 23F00F03 		bic	r3, r3, #15
+ 526 0052 DBB2     		uxtb	r3, r3
+ 527 0054 1343     		orrs	r3, r3, r2
+ 528 0056 DBB2     		uxtb	r3, r3
+ 529 0058 DAB2     		uxtb	r2, r3
+ 530 005a 044B     		ldr	r3, .L37+4
+ 531 005c DA70     		strb	r2, [r3, #3]
+  69:clock5.c      **** }
+ 532              		.loc 1 69 0
+ 533 005e 0C37     		adds	r7, r7, #12
+ 534              		.cfi_def_cfa_offset 4
+ 535 0060 BD46     		mov	sp, r7
+ 536              		.cfi_def_cfa_register 13
+ 537              		@ sp needed
+ 538 0062 5DF8047B 		ldr	r7, [sp], #4
+ 539              		.cfi_restore 7
+ 540              		.cfi_def_cfa_offset 0
+ 541 0066 7047     		bx	lr
+ 542              	.L38:
+ 543              		.align	2
+ 544              	.L37:
+ 545 0068 1F85EB51 		.word	1374389535
+ 546 006c 00000000 		.word	rtc_typef
+ 547              		.cfi_endproc
+ 548              	.LFE10:
+ 549              		.size	rtc_set_years, .-rtc_set_years
+ 550              		.section	.text.rtc_get_years,"ax",%progbits
+ 551              		.align	2
+ 552              		.global	rtc_get_years
+ 553              		.thumb
+ 554              		.thumb_func
+ 555              		.type	rtc_get_years, %function
+ 556              	rtc_get_years:
+ 557              	.LFB11:
+  70:clock5.c      **** 
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 12
+
+
+  71:clock5.c      **** int rtc_get_years(void)
+  72:clock5.c      **** {
+ 558              		.loc 1 72 0
+ 559              		.cfi_startproc
+ 560              		@ args = 0, pretend = 0, frame = 0
+ 561              		@ frame_needed = 1, uses_anonymous_args = 0
+ 562              		@ link register save eliminated.
+ 563 0000 80B4     		push	{r7}
+ 564              		.cfi_def_cfa_offset 4
+ 565              		.cfi_offset 7, -4
+ 566 0002 00AF     		add	r7, sp, #0
+ 567              		.cfi_def_cfa_register 7
+  73:clock5.c      ****     return ((2000 + (((rtc_typef[3]>>1) & 0x78) | ((rtc_typef[2] >> 5) & 0x07))));
+ 568              		.loc 1 73 0
+ 569 0004 094B     		ldr	r3, .L41
+ 570 0006 DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ 571 0008 5B08     		lsrs	r3, r3, #1
+ 572 000a DBB2     		uxtb	r3, r3
+ 573 000c 03F07802 		and	r2, r3, #120
+ 574 0010 064B     		ldr	r3, .L41
+ 575 0012 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 576 0014 5B09     		lsrs	r3, r3, #5
+ 577 0016 DBB2     		uxtb	r3, r3
+ 578 0018 03F00703 		and	r3, r3, #7
+ 579 001c 1343     		orrs	r3, r3, r2
+ 580 001e 03F5FA63 		add	r3, r3, #2000
+  74:clock5.c      **** }
+ 581              		.loc 1 74 0
+ 582 0022 1846     		mov	r0, r3
+ 583 0024 BD46     		mov	sp, r7
+ 584              		.cfi_def_cfa_register 13
+ 585              		@ sp needed
+ 586 0026 5DF8047B 		ldr	r7, [sp], #4
+ 587              		.cfi_restore 7
+ 588              		.cfi_def_cfa_offset 0
+ 589 002a 7047     		bx	lr
+ 590              	.L42:
+ 591              		.align	2
+ 592              	.L41:
+ 593 002c 00000000 		.word	rtc_typef
+ 594              		.cfi_endproc
+ 595              	.LFE11:
+ 596              		.size	rtc_get_years, .-rtc_get_years
+ 597              		.section	.text.rtc_is_leap_year,"ax",%progbits
+ 598              		.align	2
+ 599              		.global	rtc_is_leap_year
+ 600              		.thumb
+ 601              		.thumb_func
+ 602              		.type	rtc_is_leap_year, %function
+ 603              	rtc_is_leap_year:
+ 604              	.LFB12:
+  75:clock5.c      **** 
+  76:clock5.c      **** int rtc_is_leap_year(void)
+  77:clock5.c      **** {
+ 605              		.loc 1 77 0
+ 606              		.cfi_startproc
+ 607              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 13
+
+
+ 608              		@ frame_needed = 1, uses_anonymous_args = 0
+ 609 0000 80B5     		push	{r7, lr}
+ 610              		.cfi_def_cfa_offset 8
+ 611              		.cfi_offset 7, -8
+ 612              		.cfi_offset 14, -4
+ 613 0002 00AF     		add	r7, sp, #0
+ 614              		.cfi_def_cfa_register 7
+  78:clock5.c      ****     return ((rtc_get_years() % 4 == 0) && (rtc_get_years() % 100 != 0)) || (rtc_get_years() % 400 =
+ 615              		.loc 1 78 0
+ 616 0004 FFF7FEFF 		bl	rtc_get_years
+ 617 0008 0346     		mov	r3, r0
+ 618 000a 03F00303 		and	r3, r3, #3
+ 619 000e 002B     		cmp	r3, #0
+ 620 0010 0ED1     		bne	.L44
+ 621              		.loc 1 78 0 is_stmt 0 discriminator 1
+ 622 0012 FFF7FEFF 		bl	rtc_get_years
+ 623 0016 0246     		mov	r2, r0
+ 624 0018 104B     		ldr	r3, .L49
+ 625 001a 83FB0213 		smull	r1, r3, r3, r2
+ 626 001e 5911     		asrs	r1, r3, #5
+ 627 0020 D317     		asrs	r3, r2, #31
+ 628 0022 CB1A     		subs	r3, r1, r3
+ 629 0024 6421     		movs	r1, #100
+ 630 0026 01FB03F3 		mul	r3, r1, r3
+ 631 002a D31A     		subs	r3, r2, r3
+ 632 002c 002B     		cmp	r3, #0
+ 633 002e 0FD1     		bne	.L45
+ 634              	.L44:
+ 635              		.loc 1 78 0 discriminator 4
+ 636 0030 FFF7FEFF 		bl	rtc_get_years
+ 637 0034 0246     		mov	r2, r0
+ 638 0036 094B     		ldr	r3, .L49
+ 639 0038 83FB0213 		smull	r1, r3, r3, r2
+ 640 003c D911     		asrs	r1, r3, #7
+ 641 003e D317     		asrs	r3, r2, #31
+ 642 0040 CB1A     		subs	r3, r1, r3
+ 643 0042 4FF4C871 		mov	r1, #400
+ 644 0046 01FB03F3 		mul	r3, r1, r3
+ 645 004a D31A     		subs	r3, r2, r3
+ 646 004c 002B     		cmp	r3, #0
+ 647 004e 01D1     		bne	.L46
+ 648              	.L45:
+ 649              		.loc 1 78 0 discriminator 5
+ 650 0050 0123     		movs	r3, #1
+ 651 0052 00E0     		b	.L47
+ 652              	.L46:
+ 653              		.loc 1 78 0 discriminator 6
+ 654 0054 0023     		movs	r3, #0
+ 655              	.L47:
+  79:clock5.c      **** }
+ 656              		.loc 1 79 0 is_stmt 1 discriminator 8
+ 657 0056 1846     		mov	r0, r3
+ 658 0058 80BD     		pop	{r7, pc}
+ 659              	.L50:
+ 660 005a 00BF     		.align	2
+ 661              	.L49:
+ 662 005c 1F85EB51 		.word	1374389535
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 14
+
+
+ 663              		.cfi_endproc
+ 664              	.LFE12:
+ 665              		.size	rtc_is_leap_year, .-rtc_is_leap_year
+ 666              		.section	.rodata
+ 667              		.align	2
+ 668              	.LC0:
+ 669 0000 00000000 		.word	0
+ 670 0004 1F000000 		.word	31
+ 671 0008 1C000000 		.word	28
+ 672 000c 1F000000 		.word	31
+ 673 0010 1E000000 		.word	30
+ 674 0014 1F000000 		.word	31
+ 675 0018 1E000000 		.word	30
+ 676 001c 1F000000 		.word	31
+ 677 0020 1F000000 		.word	31
+ 678 0024 1E000000 		.word	30
+ 679 0028 1F000000 		.word	31
+ 680 002c 1E000000 		.word	30
+ 681 0030 1F000000 		.word	31
+ 682              		.section	.text.rtc_days_in_month,"ax",%progbits
+ 683              		.align	2
+ 684              		.global	rtc_days_in_month
+ 685              		.thumb
+ 686              		.thumb_func
+ 687              		.type	rtc_days_in_month, %function
+ 688              	rtc_days_in_month:
+ 689              	.LFB13:
+  80:clock5.c      **** 
+  81:clock5.c      **** int rtc_days_in_month(void)
+  82:clock5.c      **** {
+ 690              		.loc 1 82 0
+ 691              		.cfi_startproc
+ 692              		@ args = 0, pretend = 0, frame = 56
+ 693              		@ frame_needed = 1, uses_anonymous_args = 0
+ 694 0000 B0B5     		push	{r4, r5, r7, lr}
+ 695              		.cfi_def_cfa_offset 16
+ 696              		.cfi_offset 4, -16
+ 697              		.cfi_offset 5, -12
+ 698              		.cfi_offset 7, -8
+ 699              		.cfi_offset 14, -4
+ 700 0002 8EB0     		sub	sp, sp, #56
+ 701              		.cfi_def_cfa_offset 72
+ 702 0004 00AF     		add	r7, sp, #0
+ 703              		.cfi_def_cfa_register 7
+  83:clock5.c      ****     const int days_in_month[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+ 704              		.loc 1 83 0
+ 705 0006 164B     		ldr	r3, .L55
+ 706 0008 3C1D     		adds	r4, r7, #4
+ 707 000a 1D46     		mov	r5, r3
+ 708 000c 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 709 000e 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 710 0010 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 711 0012 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 712 0014 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 713 0016 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 714 0018 2B68     		ldr	r3, [r5]
+ 715 001a 2360     		str	r3, [r4]
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 15
+
+
+  84:clock5.c      ****     if ((rtc_get_month() == 2) && (rtc_is_leap_year()))
+ 716              		.loc 1 84 0
+ 717 001c FFF7FEFF 		bl	rtc_get_month
+ 718 0020 0346     		mov	r3, r0
+ 719 0022 022B     		cmp	r3, #2
+ 720 0024 0FD1     		bne	.L52
+ 721              		.loc 1 84 0 is_stmt 0 discriminator 1
+ 722 0026 FFF7FEFF 		bl	rtc_is_leap_year
+ 723 002a 0346     		mov	r3, r0
+ 724 002c 002B     		cmp	r3, #0
+ 725 002e 0AD0     		beq	.L52
+  85:clock5.c      ****         return days_in_month[rtc_get_month()] + 1;
+ 726              		.loc 1 85 0 is_stmt 1
+ 727 0030 FFF7FEFF 		bl	rtc_get_month
+ 728 0034 0346     		mov	r3, r0
+ 729 0036 9B00     		lsls	r3, r3, #2
+ 730 0038 07F13802 		add	r2, r7, #56
+ 731 003c 1344     		add	r3, r3, r2
+ 732 003e 53F8343C 		ldr	r3, [r3, #-52]
+ 733 0042 0133     		adds	r3, r3, #1
+ 734 0044 08E0     		b	.L54
+ 735              	.L52:
+  86:clock5.c      ****     else
+  87:clock5.c      ****         return days_in_month[rtc_get_month()];
+ 736              		.loc 1 87 0
+ 737 0046 FFF7FEFF 		bl	rtc_get_month
+ 738 004a 0346     		mov	r3, r0
+ 739 004c 9B00     		lsls	r3, r3, #2
+ 740 004e 07F13802 		add	r2, r7, #56
+ 741 0052 1344     		add	r3, r3, r2
+ 742 0054 53F8343C 		ldr	r3, [r3, #-52]
+ 743              	.L54:
+  88:clock5.c      **** }
+ 744              		.loc 1 88 0 discriminator 1
+ 745 0058 1846     		mov	r0, r3
+ 746 005a 3837     		adds	r7, r7, #56
+ 747              		.cfi_def_cfa_offset 16
+ 748 005c BD46     		mov	sp, r7
+ 749              		.cfi_def_cfa_register 13
+ 750              		@ sp needed
+ 751 005e B0BD     		pop	{r4, r5, r7, pc}
+ 752              	.L56:
+ 753              		.align	2
+ 754              	.L55:
+ 755 0060 00000000 		.word	.LC0
+ 756              		.cfi_endproc
+ 757              	.LFE13:
+ 758              		.size	rtc_days_in_month, .-rtc_days_in_month
+ 759              		.section	.text.rtc_tick,"ax",%progbits
+ 760              		.align	2
+ 761              		.global	rtc_tick
+ 762              		.thumb
+ 763              		.thumb_func
+ 764              		.type	rtc_tick, %function
+ 765              	rtc_tick:
+ 766              	.LFB14:
+  89:clock5.c      **** 
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 16
+
+
+  90:clock5.c      **** void rtc_tick(void)
+  91:clock5.c      **** {
+ 767              		.loc 1 91 0
+ 768              		.cfi_startproc
+ 769              		@ args = 0, pretend = 0, frame = 0
+ 770              		@ frame_needed = 1, uses_anonymous_args = 0
+ 771 0000 98B5     		push	{r3, r4, r7, lr}
+ 772              		.cfi_def_cfa_offset 16
+ 773              		.cfi_offset 3, -16
+ 774              		.cfi_offset 4, -12
+ 775              		.cfi_offset 7, -8
+ 776              		.cfi_offset 14, -4
+ 777 0002 00AF     		add	r7, sp, #0
+ 778              		.cfi_def_cfa_register 7
+  92:clock5.c      ****     rtc_set_seconds(rtc_get_seconds()+1);
+ 779              		.loc 1 92 0
+ 780 0004 FFF7FEFF 		bl	rtc_get_seconds
+ 781 0008 0346     		mov	r3, r0
+ 782 000a 0133     		adds	r3, r3, #1
+ 783 000c 1846     		mov	r0, r3
+ 784 000e FFF7FEFF 		bl	rtc_set_seconds
+  93:clock5.c      ****     if (rtc_get_seconds()>59)
+ 785              		.loc 1 93 0
+ 786 0012 FFF7FEFF 		bl	rtc_get_seconds
+ 787 0016 0346     		mov	r3, r0
+ 788 0018 3B2B     		cmp	r3, #59
+ 789 001a 48DD     		ble	.L57
+  94:clock5.c      ****     {
+  95:clock5.c      ****         rtc_set_seconds(0);
+ 790              		.loc 1 95 0
+ 791 001c 0020     		movs	r0, #0
+ 792 001e FFF7FEFF 		bl	rtc_set_seconds
+  96:clock5.c      ****         rtc_set_minutes(rtc_get_minutes()+1);
+ 793              		.loc 1 96 0
+ 794 0022 FFF7FEFF 		bl	rtc_get_minutes
+ 795 0026 0346     		mov	r3, r0
+ 796 0028 0133     		adds	r3, r3, #1
+ 797 002a 1846     		mov	r0, r3
+ 798 002c FFF7FEFF 		bl	rtc_set_minutes
+  97:clock5.c      ****         if (rtc_get_minutes()>59)
+ 799              		.loc 1 97 0
+ 800 0030 FFF7FEFF 		bl	rtc_get_minutes
+ 801 0034 0346     		mov	r3, r0
+ 802 0036 3B2B     		cmp	r3, #59
+ 803 0038 39DD     		ble	.L57
+  98:clock5.c      ****         {
+  99:clock5.c      ****             rtc_set_minutes(0);
+ 804              		.loc 1 99 0
+ 805 003a 0020     		movs	r0, #0
+ 806 003c FFF7FEFF 		bl	rtc_set_minutes
+ 100:clock5.c      ****             rtc_set_hour(rtc_get_hour()+1);
+ 807              		.loc 1 100 0
+ 808 0040 FFF7FEFF 		bl	rtc_get_hour
+ 809 0044 0346     		mov	r3, r0
+ 810 0046 0133     		adds	r3, r3, #1
+ 811 0048 1846     		mov	r0, r3
+ 812 004a FFF7FEFF 		bl	rtc_set_hour
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 17
+
+
+ 101:clock5.c      ****             if (rtc_get_hour()>23)
+ 813              		.loc 1 101 0
+ 814 004e FFF7FEFF 		bl	rtc_get_hour
+ 815 0052 0346     		mov	r3, r0
+ 816 0054 172B     		cmp	r3, #23
+ 817 0056 2ADD     		ble	.L57
+ 102:clock5.c      ****             {
+ 103:clock5.c      ****                 rtc_set_hour(0);
+ 818              		.loc 1 103 0
+ 819 0058 0020     		movs	r0, #0
+ 820 005a FFF7FEFF 		bl	rtc_set_hour
+ 104:clock5.c      ****                 rtc_set_day(rtc_get_day()+1);
+ 821              		.loc 1 104 0
+ 822 005e FFF7FEFF 		bl	rtc_get_day
+ 823 0062 0346     		mov	r3, r0
+ 824 0064 0133     		adds	r3, r3, #1
+ 825 0066 1846     		mov	r0, r3
+ 826 0068 FFF7FEFF 		bl	rtc_set_day
+ 105:clock5.c      ****                 //if ((rtc_get_day() == 0) || (rtc_get_day() > rtc_days_in_month()))
+ 106:clock5.c      ****                 if ((rtc_get_day() > rtc_days_in_month()))
+ 827              		.loc 1 106 0
+ 828 006c FFF7FEFF 		bl	rtc_get_day
+ 829 0070 0446     		mov	r4, r0
+ 830 0072 FFF7FEFF 		bl	rtc_days_in_month
+ 831 0076 0346     		mov	r3, r0
+ 832 0078 9C42     		cmp	r4, r3
+ 833 007a 18DD     		ble	.L57
+ 107:clock5.c      ****                 {
+ 108:clock5.c      ****                     rtc_set_day(1);
+ 834              		.loc 1 108 0
+ 835 007c 0120     		movs	r0, #1
+ 836 007e FFF7FEFF 		bl	rtc_set_day
+ 109:clock5.c      ****                     rtc_set_month (rtc_get_month()+1);
+ 837              		.loc 1 109 0
+ 838 0082 FFF7FEFF 		bl	rtc_get_month
+ 839 0086 0346     		mov	r3, r0
+ 840 0088 0133     		adds	r3, r3, #1
+ 841 008a 1846     		mov	r0, r3
+ 842 008c FFF7FEFF 		bl	rtc_set_month
+ 110:clock5.c      ****                     if (rtc_get_month()>12)
+ 843              		.loc 1 110 0
+ 844 0090 FFF7FEFF 		bl	rtc_get_month
+ 845 0094 0346     		mov	r3, r0
+ 846 0096 0C2B     		cmp	r3, #12
+ 847 0098 09DD     		ble	.L57
+ 111:clock5.c      ****                     {
+ 112:clock5.c      ****                         rtc_set_month (1);
+ 848              		.loc 1 112 0
+ 849 009a 0120     		movs	r0, #1
+ 850 009c FFF7FEFF 		bl	rtc_set_month
+ 113:clock5.c      ****                         rtc_set_years (rtc_get_years()+1);
+ 851              		.loc 1 113 0
+ 852 00a0 FFF7FEFF 		bl	rtc_get_years
+ 853 00a4 0346     		mov	r3, r0
+ 854 00a6 0133     		adds	r3, r3, #1
+ 855 00a8 1846     		mov	r0, r3
+ 856 00aa FFF7FEFF 		bl	rtc_set_years
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 18
+
+
+ 857              	.L57:
+ 114:clock5.c      ****                     }
+ 115:clock5.c      ****                 }
+ 116:clock5.c      ****             }
+ 117:clock5.c      ****         }
+ 118:clock5.c      ****     }
+ 119:clock5.c      **** }
+ 858              		.loc 1 119 0
+ 859 00ae 98BD     		pop	{r3, r4, r7, pc}
+ 860              		.cfi_endproc
+ 861              	.LFE14:
+ 862              		.size	rtc_tick, .-rtc_tick
+ 863              		.section	.rodata
+ 864              		.align	2
+ 865              	.LC1:
+ 866 0034 25730D0A 		.ascii	"%s\015\012 line %d in %s\000"
+ 866      206C696E 
+ 866      65202564 
+ 866      20696E20 
+ 866      257300
+ 867 0047 00       		.align	2
+ 868              	.LC2:
+ 869 0048 696E6974 		.ascii	"initialize RTC seconds to 0\000"
+ 869      69616C69 
+ 869      7A652052 
+ 869      54432073 
+ 869      65636F6E 
+ 870              		.align	2
+ 871              	.LC3:
+ 872 0064 636C6F63 		.ascii	"clock5.c\000"
+ 872      6B352E63 
+ 872      00
+ 873 006d 000000   		.align	2
+ 874              	.LC4:
+ 875 0070 696E6974 		.ascii	"initialize RTC seconds to 1\000"
+ 875      69616C69 
+ 875      7A652052 
+ 875      54432073 
+ 875      65636F6E 
+ 876              		.align	2
+ 877              	.LC5:
+ 878 008c 696E6372 		.ascii	"increment RTC seconds by 1 (1->2)\000"
+ 878      656D656E 
+ 878      74205254 
+ 878      43207365 
+ 878      636F6E64 
+ 879 00ae 0000     		.align	2
+ 880              	.LC6:
+ 881 00b0 68616E64 		.ascii	"handle RTC seconds overflow (59->0)\000"
+ 881      6C652052 
+ 881      54432073 
+ 881      65636F6E 
+ 881      6473206F 
+ 882              		.section	.text.test_rtc_seconds,"ax",%progbits
+ 883              		.align	2
+ 884              		.global	test_rtc_seconds
+ 885              		.thumb
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 19
+
+
+ 886              		.thumb_func
+ 887              		.type	test_rtc_seconds, %function
+ 888              	test_rtc_seconds:
+ 889              	.LFB15:
+ 120:clock5.c      **** 
+ 121:clock5.c      **** char * test_rtc_seconds() {
+ 890              		.loc 1 121 0
+ 891              		.cfi_startproc
+ 892              		@ args = 0, pretend = 0, frame = 0
+ 893              		@ frame_needed = 1, uses_anonymous_args = 0
+ 894 0000 80B5     		push	{r7, lr}
+ 895              		.cfi_def_cfa_offset 8
+ 896              		.cfi_offset 7, -8
+ 897              		.cfi_offset 14, -4
+ 898 0002 82B0     		sub	sp, sp, #8
+ 899              		.cfi_def_cfa_offset 16
+ 900 0004 02AF     		add	r7, sp, #8
+ 901              		.cfi_def_cfa 7, 8
+ 122:clock5.c      ****     rtc_set_seconds(0);
+ 902              		.loc 1 122 0
+ 903 0006 0020     		movs	r0, #0
+ 904 0008 FFF7FEFF 		bl	rtc_set_seconds
+ 123:clock5.c      ****     it("initialize RTC seconds to 0", rtc_get_seconds() == 0);
+ 905              		.loc 1 123 0
+ 906 000c 384B     		ldr	r3, .L66
+ 907 000e 1B68     		ldr	r3, [r3]
+ 908 0010 0133     		adds	r3, r3, #1
+ 909 0012 374A     		ldr	r2, .L66
+ 910 0014 1360     		str	r3, [r2]
+ 911 0016 FFF7FEFF 		bl	rtc_get_seconds
+ 912 001a 0346     		mov	r3, r0
+ 913 001c 002B     		cmp	r3, #0
+ 914 001e 09D0     		beq	.L60
+ 915              		.loc 1 123 0 is_stmt 0 discriminator 1
+ 916 0020 344B     		ldr	r3, .L66+4
+ 917 0022 0093     		str	r3, [sp]
+ 918 0024 3448     		ldr	r0, .L66+8
+ 919 0026 3549     		ldr	r1, .L66+12
+ 920 0028 354A     		ldr	r2, .L66+16
+ 921 002a 7B23     		movs	r3, #123
+ 922 002c FFF7FEFF 		bl	sprintf
+ 923 0030 314B     		ldr	r3, .L66+8
+ 924 0032 5AE0     		b	.L61
+ 925              	.L60:
+ 124:clock5.c      ****     rtc_set_seconds(1);
+ 926              		.loc 1 124 0 is_stmt 1
+ 927 0034 0120     		movs	r0, #1
+ 928 0036 FFF7FEFF 		bl	rtc_set_seconds
+ 125:clock5.c      ****     it("initialize RTC seconds to 1", rtc_get_seconds() == 1);
+ 929              		.loc 1 125 0
+ 930 003a 2D4B     		ldr	r3, .L66
+ 931 003c 1B68     		ldr	r3, [r3]
+ 932 003e 0133     		adds	r3, r3, #1
+ 933 0040 2B4A     		ldr	r2, .L66
+ 934 0042 1360     		str	r3, [r2]
+ 935 0044 FFF7FEFF 		bl	rtc_get_seconds
+ 936 0048 0346     		mov	r3, r0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 20
+
+
+ 937 004a 012B     		cmp	r3, #1
+ 938 004c 09D0     		beq	.L62
+ 939              		.loc 1 125 0 is_stmt 0 discriminator 1
+ 940 004e 294B     		ldr	r3, .L66+4
+ 941 0050 0093     		str	r3, [sp]
+ 942 0052 2948     		ldr	r0, .L66+8
+ 943 0054 2949     		ldr	r1, .L66+12
+ 944 0056 2B4A     		ldr	r2, .L66+20
+ 945 0058 7D23     		movs	r3, #125
+ 946 005a FFF7FEFF 		bl	sprintf
+ 947 005e 264B     		ldr	r3, .L66+8
+ 948 0060 43E0     		b	.L61
+ 949              	.L62:
+ 126:clock5.c      ****     rtc_tick();
+ 950              		.loc 1 126 0 is_stmt 1
+ 951 0062 FFF7FEFF 		bl	rtc_tick
+ 127:clock5.c      ****     it("increment RTC seconds by 1 (1->2)", rtc_get_seconds() == 2);
+ 952              		.loc 1 127 0
+ 953 0066 224B     		ldr	r3, .L66
+ 954 0068 1B68     		ldr	r3, [r3]
+ 955 006a 0133     		adds	r3, r3, #1
+ 956 006c 204A     		ldr	r2, .L66
+ 957 006e 1360     		str	r3, [r2]
+ 958 0070 FFF7FEFF 		bl	rtc_get_seconds
+ 959 0074 0346     		mov	r3, r0
+ 960 0076 022B     		cmp	r3, #2
+ 961 0078 09D0     		beq	.L63
+ 962              		.loc 1 127 0 is_stmt 0 discriminator 1
+ 963 007a 1E4B     		ldr	r3, .L66+4
+ 964 007c 0093     		str	r3, [sp]
+ 965 007e 1E48     		ldr	r0, .L66+8
+ 966 0080 1E49     		ldr	r1, .L66+12
+ 967 0082 214A     		ldr	r2, .L66+24
+ 968 0084 7F23     		movs	r3, #127
+ 969 0086 FFF7FEFF 		bl	sprintf
+ 970 008a 1B4B     		ldr	r3, .L66+8
+ 971 008c 2DE0     		b	.L61
+ 972              	.L63:
+ 128:clock5.c      ****     rtc_set_seconds(59);
+ 973              		.loc 1 128 0 is_stmt 1
+ 974 008e 3B20     		movs	r0, #59
+ 975 0090 FFF7FEFF 		bl	rtc_set_seconds
+ 129:clock5.c      ****     it("initialize RTC seconds to 0", rtc_get_seconds() == 59);
+ 976              		.loc 1 129 0
+ 977 0094 164B     		ldr	r3, .L66
+ 978 0096 1B68     		ldr	r3, [r3]
+ 979 0098 0133     		adds	r3, r3, #1
+ 980 009a 154A     		ldr	r2, .L66
+ 981 009c 1360     		str	r3, [r2]
+ 982 009e FFF7FEFF 		bl	rtc_get_seconds
+ 983 00a2 0346     		mov	r3, r0
+ 984 00a4 3B2B     		cmp	r3, #59
+ 985 00a6 09D0     		beq	.L64
+ 986              		.loc 1 129 0 is_stmt 0 discriminator 1
+ 987 00a8 124B     		ldr	r3, .L66+4
+ 988 00aa 0093     		str	r3, [sp]
+ 989 00ac 1248     		ldr	r0, .L66+8
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 21
+
+
+ 990 00ae 1349     		ldr	r1, .L66+12
+ 991 00b0 134A     		ldr	r2, .L66+16
+ 992 00b2 8123     		movs	r3, #129
+ 993 00b4 FFF7FEFF 		bl	sprintf
+ 994 00b8 0F4B     		ldr	r3, .L66+8
+ 995 00ba 16E0     		b	.L61
+ 996              	.L64:
+ 130:clock5.c      ****     rtc_tick();
+ 997              		.loc 1 130 0 is_stmt 1
+ 998 00bc FFF7FEFF 		bl	rtc_tick
+ 131:clock5.c      ****     it("handle RTC seconds overflow (59->0)", rtc_get_seconds() == 0);
+ 999              		.loc 1 131 0
+ 1000 00c0 0B4B     		ldr	r3, .L66
+ 1001 00c2 1B68     		ldr	r3, [r3]
+ 1002 00c4 0133     		adds	r3, r3, #1
+ 1003 00c6 0A4A     		ldr	r2, .L66
+ 1004 00c8 1360     		str	r3, [r2]
+ 1005 00ca FFF7FEFF 		bl	rtc_get_seconds
+ 1006 00ce 0346     		mov	r3, r0
+ 1007 00d0 002B     		cmp	r3, #0
+ 1008 00d2 09D0     		beq	.L65
+ 1009              		.loc 1 131 0 is_stmt 0 discriminator 1
+ 1010 00d4 074B     		ldr	r3, .L66+4
+ 1011 00d6 0093     		str	r3, [sp]
+ 1012 00d8 0748     		ldr	r0, .L66+8
+ 1013 00da 0849     		ldr	r1, .L66+12
+ 1014 00dc 0B4A     		ldr	r2, .L66+28
+ 1015 00de 8323     		movs	r3, #131
+ 1016 00e0 FFF7FEFF 		bl	sprintf
+ 1017 00e4 044B     		ldr	r3, .L66+8
+ 1018 00e6 00E0     		b	.L61
+ 1019              	.L65:
+ 132:clock5.c      ****     return 0;
+ 1020              		.loc 1 132 0 is_stmt 1
+ 1021 00e8 0023     		movs	r3, #0
+ 1022              	.L61:
+ 133:clock5.c      **** }
+ 1023              		.loc 1 133 0
+ 1024 00ea 1846     		mov	r0, r3
+ 1025 00ec BD46     		mov	sp, r7
+ 1026              		.cfi_def_cfa_register 13
+ 1027              		@ sp needed
+ 1028 00ee 80BD     		pop	{r7, pc}
+ 1029              	.L67:
+ 1030              		.align	2
+ 1031              	.L66:
+ 1032 00f0 00000000 		.word	assertion_count
+ 1033 00f4 64000000 		.word	.LC3
+ 1034 00f8 00000000 		.word	text
+ 1035 00fc 34000000 		.word	.LC1
+ 1036 0100 48000000 		.word	.LC2
+ 1037 0104 70000000 		.word	.LC4
+ 1038 0108 8C000000 		.word	.LC5
+ 1039 010c B0000000 		.word	.LC6
+ 1040              		.cfi_endproc
+ 1041              	.LFE15:
+ 1042              		.size	test_rtc_seconds, .-test_rtc_seconds
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 22
+
+
+ 1043              		.section	.rodata
+ 1044              		.align	2
+ 1045              	.LC7:
+ 1046 00d4 696E6974 		.ascii	"initialize RTC minutes to 0\000"
+ 1046      69616C69 
+ 1046      7A652052 
+ 1046      5443206D 
+ 1046      696E7574 
+ 1047              		.align	2
+ 1048              	.LC8:
+ 1049 00f0 696E6974 		.ascii	"initialize RTC minutes to 1\000"
+ 1049      69616C69 
+ 1049      7A652052 
+ 1049      5443206D 
+ 1049      696E7574 
+ 1050              		.align	2
+ 1051              	.LC9:
+ 1052 010c 696E6372 		.ascii	"increment RTC minutes by 1 (1->2)\000"
+ 1052      656D656E 
+ 1052      74205254 
+ 1052      43206D69 
+ 1052      6E757465 
+ 1053 012e 0000     		.align	2
+ 1054              	.LC10:
+ 1055 0130 68616E64 		.ascii	"handle RTC minutes overflow (59->0)\000"
+ 1055      6C652052 
+ 1055      5443206D 
+ 1055      696E7574 
+ 1055      6573206F 
+ 1056              		.section	.text.test_rtc_minutes,"ax",%progbits
+ 1057              		.align	2
+ 1058              		.global	test_rtc_minutes
+ 1059              		.thumb
+ 1060              		.thumb_func
+ 1061              		.type	test_rtc_minutes, %function
+ 1062              	test_rtc_minutes:
+ 1063              	.LFB16:
+ 134:clock5.c      **** 
+ 135:clock5.c      **** char * test_rtc_minutes() {
+ 1064              		.loc 1 135 0
+ 1065              		.cfi_startproc
+ 1066              		@ args = 0, pretend = 0, frame = 0
+ 1067              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1068 0000 80B5     		push	{r7, lr}
+ 1069              		.cfi_def_cfa_offset 8
+ 1070              		.cfi_offset 7, -8
+ 1071              		.cfi_offset 14, -4
+ 1072 0002 82B0     		sub	sp, sp, #8
+ 1073              		.cfi_def_cfa_offset 16
+ 1074 0004 02AF     		add	r7, sp, #8
+ 1075              		.cfi_def_cfa 7, 8
+ 136:clock5.c      ****     rtc_set_minutes(0);
+ 1076              		.loc 1 136 0
+ 1077 0006 0020     		movs	r0, #0
+ 1078 0008 FFF7FEFF 		bl	rtc_set_minutes
+ 137:clock5.c      ****     it("initialize RTC minutes to 0", rtc_get_minutes() == 0);
+ 1079              		.loc 1 137 0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 23
+
+
+ 1080 000c 314B     		ldr	r3, .L74
+ 1081 000e 1B68     		ldr	r3, [r3]
+ 1082 0010 0133     		adds	r3, r3, #1
+ 1083 0012 304A     		ldr	r2, .L74
+ 1084 0014 1360     		str	r3, [r2]
+ 1085 0016 FFF7FEFF 		bl	rtc_get_minutes
+ 1086 001a 0346     		mov	r3, r0
+ 1087 001c 002B     		cmp	r3, #0
+ 1088 001e 09D0     		beq	.L69
+ 1089              		.loc 1 137 0 is_stmt 0 discriminator 1
+ 1090 0020 2D4B     		ldr	r3, .L74+4
+ 1091 0022 0093     		str	r3, [sp]
+ 1092 0024 2D48     		ldr	r0, .L74+8
+ 1093 0026 2E49     		ldr	r1, .L74+12
+ 1094 0028 2E4A     		ldr	r2, .L74+16
+ 1095 002a 8923     		movs	r3, #137
+ 1096 002c FFF7FEFF 		bl	sprintf
+ 1097 0030 2A4B     		ldr	r3, .L74+8
+ 1098 0032 4CE0     		b	.L70
+ 1099              	.L69:
+ 138:clock5.c      ****     rtc_set_minutes(1);
+ 1100              		.loc 1 138 0 is_stmt 1
+ 1101 0034 0120     		movs	r0, #1
+ 1102 0036 FFF7FEFF 		bl	rtc_set_minutes
+ 139:clock5.c      ****     it("initialize RTC minutes to 1", rtc_get_minutes() == 1);
+ 1103              		.loc 1 139 0
+ 1104 003a 264B     		ldr	r3, .L74
+ 1105 003c 1B68     		ldr	r3, [r3]
+ 1106 003e 0133     		adds	r3, r3, #1
+ 1107 0040 244A     		ldr	r2, .L74
+ 1108 0042 1360     		str	r3, [r2]
+ 1109 0044 FFF7FEFF 		bl	rtc_get_minutes
+ 1110 0048 0346     		mov	r3, r0
+ 1111 004a 012B     		cmp	r3, #1
+ 1112 004c 09D0     		beq	.L71
+ 1113              		.loc 1 139 0 is_stmt 0 discriminator 1
+ 1114 004e 224B     		ldr	r3, .L74+4
+ 1115 0050 0093     		str	r3, [sp]
+ 1116 0052 2248     		ldr	r0, .L74+8
+ 1117 0054 2249     		ldr	r1, .L74+12
+ 1118 0056 244A     		ldr	r2, .L74+20
+ 1119 0058 8B23     		movs	r3, #139
+ 1120 005a FFF7FEFF 		bl	sprintf
+ 1121 005e 1F4B     		ldr	r3, .L74+8
+ 1122 0060 35E0     		b	.L70
+ 1123              	.L71:
+ 140:clock5.c      ****     rtc_set_seconds(59);
+ 1124              		.loc 1 140 0 is_stmt 1
+ 1125 0062 3B20     		movs	r0, #59
+ 1126 0064 FFF7FEFF 		bl	rtc_set_seconds
+ 141:clock5.c      ****     rtc_tick();
+ 1127              		.loc 1 141 0
+ 1128 0068 FFF7FEFF 		bl	rtc_tick
+ 142:clock5.c      ****     it("increment RTC minutes by 1 (1->2)", rtc_get_minutes() == 2);
+ 1129              		.loc 1 142 0
+ 1130 006c 194B     		ldr	r3, .L74
+ 1131 006e 1B68     		ldr	r3, [r3]
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 24
+
+
+ 1132 0070 0133     		adds	r3, r3, #1
+ 1133 0072 184A     		ldr	r2, .L74
+ 1134 0074 1360     		str	r3, [r2]
+ 1135 0076 FFF7FEFF 		bl	rtc_get_minutes
+ 1136 007a 0346     		mov	r3, r0
+ 1137 007c 022B     		cmp	r3, #2
+ 1138 007e 09D0     		beq	.L72
+ 1139              		.loc 1 142 0 is_stmt 0 discriminator 1
+ 1140 0080 154B     		ldr	r3, .L74+4
+ 1141 0082 0093     		str	r3, [sp]
+ 1142 0084 1548     		ldr	r0, .L74+8
+ 1143 0086 1649     		ldr	r1, .L74+12
+ 1144 0088 184A     		ldr	r2, .L74+24
+ 1145 008a 8E23     		movs	r3, #142
+ 1146 008c FFF7FEFF 		bl	sprintf
+ 1147 0090 124B     		ldr	r3, .L74+8
+ 1148 0092 1CE0     		b	.L70
+ 1149              	.L72:
+ 143:clock5.c      ****     rtc_set_minutes(59);
+ 1150              		.loc 1 143 0 is_stmt 1
+ 1151 0094 3B20     		movs	r0, #59
+ 1152 0096 FFF7FEFF 		bl	rtc_set_minutes
+ 144:clock5.c      ****     rtc_set_seconds(59);
+ 1153              		.loc 1 144 0
+ 1154 009a 3B20     		movs	r0, #59
+ 1155 009c FFF7FEFF 		bl	rtc_set_seconds
+ 145:clock5.c      ****     rtc_tick();
+ 1156              		.loc 1 145 0
+ 1157 00a0 FFF7FEFF 		bl	rtc_tick
+ 146:clock5.c      ****     it("handle RTC minutes overflow (59->0)", rtc_get_minutes() == 0);
+ 1158              		.loc 1 146 0
+ 1159 00a4 0B4B     		ldr	r3, .L74
+ 1160 00a6 1B68     		ldr	r3, [r3]
+ 1161 00a8 0133     		adds	r3, r3, #1
+ 1162 00aa 0A4A     		ldr	r2, .L74
+ 1163 00ac 1360     		str	r3, [r2]
+ 1164 00ae FFF7FEFF 		bl	rtc_get_minutes
+ 1165 00b2 0346     		mov	r3, r0
+ 1166 00b4 002B     		cmp	r3, #0
+ 1167 00b6 09D0     		beq	.L73
+ 1168              		.loc 1 146 0 is_stmt 0 discriminator 1
+ 1169 00b8 074B     		ldr	r3, .L74+4
+ 1170 00ba 0093     		str	r3, [sp]
+ 1171 00bc 0748     		ldr	r0, .L74+8
+ 1172 00be 0849     		ldr	r1, .L74+12
+ 1173 00c0 0B4A     		ldr	r2, .L74+28
+ 1174 00c2 9223     		movs	r3, #146
+ 1175 00c4 FFF7FEFF 		bl	sprintf
+ 1176 00c8 044B     		ldr	r3, .L74+8
+ 1177 00ca 00E0     		b	.L70
+ 1178              	.L73:
+ 147:clock5.c      ****     return 0;
+ 1179              		.loc 1 147 0 is_stmt 1
+ 1180 00cc 0023     		movs	r3, #0
+ 1181              	.L70:
+ 148:clock5.c      **** }
+ 1182              		.loc 1 148 0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 25
+
+
+ 1183 00ce 1846     		mov	r0, r3
+ 1184 00d0 BD46     		mov	sp, r7
+ 1185              		.cfi_def_cfa_register 13
+ 1186              		@ sp needed
+ 1187 00d2 80BD     		pop	{r7, pc}
+ 1188              	.L75:
+ 1189              		.align	2
+ 1190              	.L74:
+ 1191 00d4 00000000 		.word	assertion_count
+ 1192 00d8 64000000 		.word	.LC3
+ 1193 00dc 00000000 		.word	text
+ 1194 00e0 34000000 		.word	.LC1
+ 1195 00e4 D4000000 		.word	.LC7
+ 1196 00e8 F0000000 		.word	.LC8
+ 1197 00ec 0C010000 		.word	.LC9
+ 1198 00f0 30010000 		.word	.LC10
+ 1199              		.cfi_endproc
+ 1200              	.LFE16:
+ 1201              		.size	test_rtc_minutes, .-test_rtc_minutes
+ 1202              		.section	.rodata
+ 1203              		.align	2
+ 1204              	.LC11:
+ 1205 0154 696E6372 		.ascii	"increment RTC hours by 1 (1->2)\000"
+ 1205      656D656E 
+ 1205      74205254 
+ 1205      4320686F 
+ 1205      75727320 
+ 1206              		.align	2
+ 1207              	.LC12:
+ 1208 0174 696E6974 		.ascii	"initialize RTC hours to 23\000"
+ 1208      69616C69 
+ 1208      7A652052 
+ 1208      54432068 
+ 1208      6F757273 
+ 1209 018f 00       		.align	2
+ 1210              	.LC13:
+ 1211 0190 68616E64 		.ascii	"handle RTC hours overflow (23->0)\000"
+ 1211      6C652052 
+ 1211      54432068 
+ 1211      6F757273 
+ 1211      206F7665 
+ 1212              		.section	.text.test_rtc_hour,"ax",%progbits
+ 1213              		.align	2
+ 1214              		.global	test_rtc_hour
+ 1215              		.thumb
+ 1216              		.thumb_func
+ 1217              		.type	test_rtc_hour, %function
+ 1218              	test_rtc_hour:
+ 1219              	.LFB17:
+ 149:clock5.c      **** 
+ 150:clock5.c      **** char * test_rtc_hour() {
+ 1220              		.loc 1 150 0
+ 1221              		.cfi_startproc
+ 1222              		@ args = 0, pretend = 0, frame = 0
+ 1223              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1224 0000 80B5     		push	{r7, lr}
+ 1225              		.cfi_def_cfa_offset 8
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 26
+
+
+ 1226              		.cfi_offset 7, -8
+ 1227              		.cfi_offset 14, -4
+ 1228 0002 82B0     		sub	sp, sp, #8
+ 1229              		.cfi_def_cfa_offset 16
+ 1230 0004 02AF     		add	r7, sp, #8
+ 1231              		.cfi_def_cfa 7, 8
+ 151:clock5.c      ****     rtc_set_hour(0);
+ 1232              		.loc 1 151 0
+ 1233 0006 0020     		movs	r0, #0
+ 1234 0008 FFF7FEFF 		bl	rtc_set_hour
+ 152:clock5.c      ****     it("initialize RTC minutes to 0", rtc_get_hour() == 0);
+ 1235              		.loc 1 152 0
+ 1236 000c 3E4B     		ldr	r3, .L83
+ 1237 000e 1B68     		ldr	r3, [r3]
+ 1238 0010 0133     		adds	r3, r3, #1
+ 1239 0012 3D4A     		ldr	r2, .L83
+ 1240 0014 1360     		str	r3, [r2]
+ 1241 0016 FFF7FEFF 		bl	rtc_get_hour
+ 1242 001a 0346     		mov	r3, r0
+ 1243 001c 002B     		cmp	r3, #0
+ 1244 001e 09D0     		beq	.L77
+ 1245              		.loc 1 152 0 is_stmt 0 discriminator 1
+ 1246 0020 3A4B     		ldr	r3, .L83+4
+ 1247 0022 0093     		str	r3, [sp]
+ 1248 0024 3A48     		ldr	r0, .L83+8
+ 1249 0026 3B49     		ldr	r1, .L83+12
+ 1250 0028 3B4A     		ldr	r2, .L83+16
+ 1251 002a 9823     		movs	r3, #152
+ 1252 002c FFF7FEFF 		bl	sprintf
+ 1253 0030 374B     		ldr	r3, .L83+8
+ 1254 0032 66E0     		b	.L78
+ 1255              	.L77:
+ 153:clock5.c      ****     rtc_set_hour(1);
+ 1256              		.loc 1 153 0 is_stmt 1
+ 1257 0034 0120     		movs	r0, #1
+ 1258 0036 FFF7FEFF 		bl	rtc_set_hour
+ 154:clock5.c      ****     it("initialize RTC minutes to 1", rtc_get_hour() == 1);
+ 1259              		.loc 1 154 0
+ 1260 003a 334B     		ldr	r3, .L83
+ 1261 003c 1B68     		ldr	r3, [r3]
+ 1262 003e 0133     		adds	r3, r3, #1
+ 1263 0040 314A     		ldr	r2, .L83
+ 1264 0042 1360     		str	r3, [r2]
+ 1265 0044 FFF7FEFF 		bl	rtc_get_hour
+ 1266 0048 0346     		mov	r3, r0
+ 1267 004a 012B     		cmp	r3, #1
+ 1268 004c 09D0     		beq	.L79
+ 1269              		.loc 1 154 0 is_stmt 0 discriminator 1
+ 1270 004e 2F4B     		ldr	r3, .L83+4
+ 1271 0050 0093     		str	r3, [sp]
+ 1272 0052 2F48     		ldr	r0, .L83+8
+ 1273 0054 2F49     		ldr	r1, .L83+12
+ 1274 0056 314A     		ldr	r2, .L83+20
+ 1275 0058 9A23     		movs	r3, #154
+ 1276 005a FFF7FEFF 		bl	sprintf
+ 1277 005e 2C4B     		ldr	r3, .L83+8
+ 1278 0060 4FE0     		b	.L78
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 27
+
+
+ 1279              	.L79:
+ 155:clock5.c      ****     rtc_set_minutes(59);
+ 1280              		.loc 1 155 0 is_stmt 1
+ 1281 0062 3B20     		movs	r0, #59
+ 1282 0064 FFF7FEFF 		bl	rtc_set_minutes
+ 156:clock5.c      ****     rtc_set_seconds(59);
+ 1283              		.loc 1 156 0
+ 1284 0068 3B20     		movs	r0, #59
+ 1285 006a FFF7FEFF 		bl	rtc_set_seconds
+ 157:clock5.c      ****     rtc_tick();
+ 1286              		.loc 1 157 0
+ 1287 006e FFF7FEFF 		bl	rtc_tick
+ 158:clock5.c      ****     it("increment RTC hours by 1 (1->2)", rtc_get_hour() == 2);
+ 1288              		.loc 1 158 0
+ 1289 0072 254B     		ldr	r3, .L83
+ 1290 0074 1B68     		ldr	r3, [r3]
+ 1291 0076 0133     		adds	r3, r3, #1
+ 1292 0078 234A     		ldr	r2, .L83
+ 1293 007a 1360     		str	r3, [r2]
+ 1294 007c FFF7FEFF 		bl	rtc_get_hour
+ 1295 0080 0346     		mov	r3, r0
+ 1296 0082 022B     		cmp	r3, #2
+ 1297 0084 09D0     		beq	.L80
+ 1298              		.loc 1 158 0 is_stmt 0 discriminator 1
+ 1299 0086 214B     		ldr	r3, .L83+4
+ 1300 0088 0093     		str	r3, [sp]
+ 1301 008a 2148     		ldr	r0, .L83+8
+ 1302 008c 2149     		ldr	r1, .L83+12
+ 1303 008e 244A     		ldr	r2, .L83+24
+ 1304 0090 9E23     		movs	r3, #158
+ 1305 0092 FFF7FEFF 		bl	sprintf
+ 1306 0096 1E4B     		ldr	r3, .L83+8
+ 1307 0098 33E0     		b	.L78
+ 1308              	.L80:
+ 159:clock5.c      ****     rtc_set_minutes(59);
+ 1309              		.loc 1 159 0 is_stmt 1
+ 1310 009a 3B20     		movs	r0, #59
+ 1311 009c FFF7FEFF 		bl	rtc_set_minutes
+ 160:clock5.c      ****     rtc_set_seconds(59);
+ 1312              		.loc 1 160 0
+ 1313 00a0 3B20     		movs	r0, #59
+ 1314 00a2 FFF7FEFF 		bl	rtc_set_seconds
+ 161:clock5.c      ****     rtc_set_hour(23);
+ 1315              		.loc 1 161 0
+ 1316 00a6 1720     		movs	r0, #23
+ 1317 00a8 FFF7FEFF 		bl	rtc_set_hour
+ 162:clock5.c      ****     it("initialize RTC hours to 23", rtc_get_hour() == 23);
+ 1318              		.loc 1 162 0
+ 1319 00ac 164B     		ldr	r3, .L83
+ 1320 00ae 1B68     		ldr	r3, [r3]
+ 1321 00b0 0133     		adds	r3, r3, #1
+ 1322 00b2 154A     		ldr	r2, .L83
+ 1323 00b4 1360     		str	r3, [r2]
+ 1324 00b6 FFF7FEFF 		bl	rtc_get_hour
+ 1325 00ba 0346     		mov	r3, r0
+ 1326 00bc 172B     		cmp	r3, #23
+ 1327 00be 09D0     		beq	.L81
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 28
+
+
+ 1328              		.loc 1 162 0 is_stmt 0 discriminator 1
+ 1329 00c0 124B     		ldr	r3, .L83+4
+ 1330 00c2 0093     		str	r3, [sp]
+ 1331 00c4 1248     		ldr	r0, .L83+8
+ 1332 00c6 1349     		ldr	r1, .L83+12
+ 1333 00c8 164A     		ldr	r2, .L83+28
+ 1334 00ca A223     		movs	r3, #162
+ 1335 00cc FFF7FEFF 		bl	sprintf
+ 1336 00d0 0F4B     		ldr	r3, .L83+8
+ 1337 00d2 16E0     		b	.L78
+ 1338              	.L81:
+ 163:clock5.c      ****     rtc_tick();
+ 1339              		.loc 1 163 0 is_stmt 1
+ 1340 00d4 FFF7FEFF 		bl	rtc_tick
+ 164:clock5.c      ****     it("handle RTC hours overflow (23->0)", rtc_get_hour() == 0);
+ 1341              		.loc 1 164 0
+ 1342 00d8 0B4B     		ldr	r3, .L83
+ 1343 00da 1B68     		ldr	r3, [r3]
+ 1344 00dc 0133     		adds	r3, r3, #1
+ 1345 00de 0A4A     		ldr	r2, .L83
+ 1346 00e0 1360     		str	r3, [r2]
+ 1347 00e2 FFF7FEFF 		bl	rtc_get_hour
+ 1348 00e6 0346     		mov	r3, r0
+ 1349 00e8 002B     		cmp	r3, #0
+ 1350 00ea 09D0     		beq	.L82
+ 1351              		.loc 1 164 0 is_stmt 0 discriminator 1
+ 1352 00ec 074B     		ldr	r3, .L83+4
+ 1353 00ee 0093     		str	r3, [sp]
+ 1354 00f0 0748     		ldr	r0, .L83+8
+ 1355 00f2 0849     		ldr	r1, .L83+12
+ 1356 00f4 0C4A     		ldr	r2, .L83+32
+ 1357 00f6 A423     		movs	r3, #164
+ 1358 00f8 FFF7FEFF 		bl	sprintf
+ 1359 00fc 044B     		ldr	r3, .L83+8
+ 1360 00fe 00E0     		b	.L78
+ 1361              	.L82:
+ 165:clock5.c      ****     return 0;
+ 1362              		.loc 1 165 0 is_stmt 1
+ 1363 0100 0023     		movs	r3, #0
+ 1364              	.L78:
+ 166:clock5.c      **** }
+ 1365              		.loc 1 166 0
+ 1366 0102 1846     		mov	r0, r3
+ 1367 0104 BD46     		mov	sp, r7
+ 1368              		.cfi_def_cfa_register 13
+ 1369              		@ sp needed
+ 1370 0106 80BD     		pop	{r7, pc}
+ 1371              	.L84:
+ 1372              		.align	2
+ 1373              	.L83:
+ 1374 0108 00000000 		.word	assertion_count
+ 1375 010c 64000000 		.word	.LC3
+ 1376 0110 00000000 		.word	text
+ 1377 0114 34000000 		.word	.LC1
+ 1378 0118 D4000000 		.word	.LC7
+ 1379 011c F0000000 		.word	.LC8
+ 1380 0120 54010000 		.word	.LC11
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 29
+
+
+ 1381 0124 74010000 		.word	.LC12
+ 1382 0128 90010000 		.word	.LC13
+ 1383              		.cfi_endproc
+ 1384              	.LFE17:
+ 1385              		.size	test_rtc_hour, .-test_rtc_hour
+ 1386              		.section	.rodata
+ 1387 01b2 0000     		.align	2
+ 1388              	.LC14:
+ 1389 01b4 696E6372 		.ascii	"increment RTC days by 1 (1->2)\000"
+ 1389      656D656E 
+ 1389      74205254 
+ 1389      43206461 
+ 1389      79732062 
+ 1390 01d3 00       		.align	2
+ 1391              	.LC15:
+ 1392 01d4 696E6974 		.ascii	"initialize RTC days to 31\000"
+ 1392      69616C69 
+ 1392      7A652052 
+ 1392      54432064 
+ 1392      61797320 
+ 1393 01ee 0000     		.align	2
+ 1394              	.LC16:
+ 1395 01f0 696E6974 		.ascii	"initialize RTC month to 1\000"
+ 1395      69616C69 
+ 1395      7A652052 
+ 1395      5443206D 
+ 1395      6F6E7468 
+ 1396 020a 0000     		.align	2
+ 1397              	.LC17:
+ 1398 020c 68616E64 		.ascii	"handle RTC days overflow (31->1)\000"
+ 1398      6C652052 
+ 1398      54432064 
+ 1398      61797320 
+ 1398      6F766572 
+ 1399 022d 000000   		.align	2
+ 1400              	.LC18:
+ 1401 0230 696E6372 		.ascii	"increment RTC month (1->2)\000"
+ 1401      656D656E 
+ 1401      74205254 
+ 1401      43206D6F 
+ 1401      6E746820 
+ 1402              		.section	.text.test_rtc_days_months,"ax",%progbits
+ 1403              		.align	2
+ 1404              		.global	test_rtc_days_months
+ 1405              		.thumb
+ 1406              		.thumb_func
+ 1407              		.type	test_rtc_days_months, %function
+ 1408              	test_rtc_days_months:
+ 1409              	.LFB18:
+ 167:clock5.c      **** 
+ 168:clock5.c      **** char * test_rtc_days_months() {
+ 1410              		.loc 1 168 0
+ 1411              		.cfi_startproc
+ 1412              		@ args = 0, pretend = 0, frame = 0
+ 1413              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1414 0000 80B5     		push	{r7, lr}
+ 1415              		.cfi_def_cfa_offset 8
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 30
+
+
+ 1416              		.cfi_offset 7, -8
+ 1417              		.cfi_offset 14, -4
+ 1418 0002 82B0     		sub	sp, sp, #8
+ 1419              		.cfi_def_cfa_offset 16
+ 1420 0004 02AF     		add	r7, sp, #8
+ 1421              		.cfi_def_cfa 7, 8
+ 169:clock5.c      ****     rtc_set_day(0);
+ 1422              		.loc 1 169 0
+ 1423 0006 0020     		movs	r0, #0
+ 1424 0008 FFF7FEFF 		bl	rtc_set_day
+ 170:clock5.c      ****     it("initialize RTC minutes to 0", rtc_get_day() == 0);
+ 1425              		.loc 1 170 0
+ 1426 000c 7D4B     		ldr	r3, .L97
+ 1427 000e 1B68     		ldr	r3, [r3]
+ 1428 0010 0133     		adds	r3, r3, #1
+ 1429 0012 7C4A     		ldr	r2, .L97
+ 1430 0014 1360     		str	r3, [r2]
+ 1431 0016 FFF7FEFF 		bl	rtc_get_day
+ 1432 001a 0346     		mov	r3, r0
+ 1433 001c 002B     		cmp	r3, #0
+ 1434 001e 09D0     		beq	.L86
+ 1435              		.loc 1 170 0 is_stmt 0 discriminator 1
+ 1436 0020 794B     		ldr	r3, .L97+4
+ 1437 0022 0093     		str	r3, [sp]
+ 1438 0024 7948     		ldr	r0, .L97+8
+ 1439 0026 7A49     		ldr	r1, .L97+12
+ 1440 0028 7A4A     		ldr	r2, .L97+16
+ 1441 002a AA23     		movs	r3, #170
+ 1442 002c FFF7FEFF 		bl	sprintf
+ 1443 0030 764B     		ldr	r3, .L97+8
+ 1444 0032 E4E0     		b	.L87
+ 1445              	.L86:
+ 171:clock5.c      ****     rtc_set_day(1);
+ 1446              		.loc 1 171 0 is_stmt 1
+ 1447 0034 0120     		movs	r0, #1
+ 1448 0036 FFF7FEFF 		bl	rtc_set_day
+ 172:clock5.c      ****     it("initialize RTC minutes to 1", rtc_get_day() == 1);
+ 1449              		.loc 1 172 0
+ 1450 003a 724B     		ldr	r3, .L97
+ 1451 003c 1B68     		ldr	r3, [r3]
+ 1452 003e 0133     		adds	r3, r3, #1
+ 1453 0040 704A     		ldr	r2, .L97
+ 1454 0042 1360     		str	r3, [r2]
+ 1455 0044 FFF7FEFF 		bl	rtc_get_day
+ 1456 0048 0346     		mov	r3, r0
+ 1457 004a 012B     		cmp	r3, #1
+ 1458 004c 09D0     		beq	.L88
+ 1459              		.loc 1 172 0 is_stmt 0 discriminator 1
+ 1460 004e 6E4B     		ldr	r3, .L97+4
+ 1461 0050 0093     		str	r3, [sp]
+ 1462 0052 6E48     		ldr	r0, .L97+8
+ 1463 0054 6E49     		ldr	r1, .L97+12
+ 1464 0056 704A     		ldr	r2, .L97+20
+ 1465 0058 AC23     		movs	r3, #172
+ 1466 005a FFF7FEFF 		bl	sprintf
+ 1467 005e 6B4B     		ldr	r3, .L97+8
+ 1468 0060 CDE0     		b	.L87
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 31
+
+
+ 1469              	.L88:
+ 173:clock5.c      ****     rtc_set_minutes(59);
+ 1470              		.loc 1 173 0 is_stmt 1
+ 1471 0062 3B20     		movs	r0, #59
+ 1472 0064 FFF7FEFF 		bl	rtc_set_minutes
+ 174:clock5.c      ****     rtc_set_seconds(59);
+ 1473              		.loc 1 174 0
+ 1474 0068 3B20     		movs	r0, #59
+ 1475 006a FFF7FEFF 		bl	rtc_set_seconds
+ 175:clock5.c      ****     rtc_set_hour(23);
+ 1476              		.loc 1 175 0
+ 1477 006e 1720     		movs	r0, #23
+ 1478 0070 FFF7FEFF 		bl	rtc_set_hour
+ 176:clock5.c      ****     rtc_tick();
+ 1479              		.loc 1 176 0
+ 1480 0074 FFF7FEFF 		bl	rtc_tick
+ 177:clock5.c      ****     it("increment RTC days by 1 (1->2)", rtc_get_day() == 2);
+ 1481              		.loc 1 177 0
+ 1482 0078 624B     		ldr	r3, .L97
+ 1483 007a 1B68     		ldr	r3, [r3]
+ 1484 007c 0133     		adds	r3, r3, #1
+ 1485 007e 614A     		ldr	r2, .L97
+ 1486 0080 1360     		str	r3, [r2]
+ 1487 0082 FFF7FEFF 		bl	rtc_get_day
+ 1488 0086 0346     		mov	r3, r0
+ 1489 0088 022B     		cmp	r3, #2
+ 1490 008a 09D0     		beq	.L89
+ 1491              		.loc 1 177 0 is_stmt 0 discriminator 1
+ 1492 008c 5E4B     		ldr	r3, .L97+4
+ 1493 008e 0093     		str	r3, [sp]
+ 1494 0090 5E48     		ldr	r0, .L97+8
+ 1495 0092 5F49     		ldr	r1, .L97+12
+ 1496 0094 614A     		ldr	r2, .L97+24
+ 1497 0096 B123     		movs	r3, #177
+ 1498 0098 FFF7FEFF 		bl	sprintf
+ 1499 009c 5B4B     		ldr	r3, .L97+8
+ 1500 009e AEE0     		b	.L87
+ 1501              	.L89:
+ 178:clock5.c      ****     rtc_set_minutes(59);
+ 1502              		.loc 1 178 0 is_stmt 1
+ 1503 00a0 3B20     		movs	r0, #59
+ 1504 00a2 FFF7FEFF 		bl	rtc_set_minutes
+ 179:clock5.c      ****     rtc_set_seconds(59);
+ 1505              		.loc 1 179 0
+ 1506 00a6 3B20     		movs	r0, #59
+ 1507 00a8 FFF7FEFF 		bl	rtc_set_seconds
+ 180:clock5.c      ****     rtc_set_hour(23);
+ 1508              		.loc 1 180 0
+ 1509 00ac 1720     		movs	r0, #23
+ 1510 00ae FFF7FEFF 		bl	rtc_set_hour
+ 181:clock5.c      ****     rtc_set_day(31);
+ 1511              		.loc 1 181 0
+ 1512 00b2 1F20     		movs	r0, #31
+ 1513 00b4 FFF7FEFF 		bl	rtc_set_day
+ 182:clock5.c      ****     it("initialize RTC days to 31", rtc_get_day() == 31);
+ 1514              		.loc 1 182 0
+ 1515 00b8 524B     		ldr	r3, .L97
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 32
+
+
+ 1516 00ba 1B68     		ldr	r3, [r3]
+ 1517 00bc 0133     		adds	r3, r3, #1
+ 1518 00be 514A     		ldr	r2, .L97
+ 1519 00c0 1360     		str	r3, [r2]
+ 1520 00c2 FFF7FEFF 		bl	rtc_get_day
+ 1521 00c6 0346     		mov	r3, r0
+ 1522 00c8 1F2B     		cmp	r3, #31
+ 1523 00ca 09D0     		beq	.L90
+ 1524              		.loc 1 182 0 is_stmt 0 discriminator 1
+ 1525 00cc 4E4B     		ldr	r3, .L97+4
+ 1526 00ce 0093     		str	r3, [sp]
+ 1527 00d0 4E48     		ldr	r0, .L97+8
+ 1528 00d2 4F49     		ldr	r1, .L97+12
+ 1529 00d4 524A     		ldr	r2, .L97+28
+ 1530 00d6 B623     		movs	r3, #182
+ 1531 00d8 FFF7FEFF 		bl	sprintf
+ 1532 00dc 4B4B     		ldr	r3, .L97+8
+ 1533 00de 8EE0     		b	.L87
+ 1534              	.L90:
+ 183:clock5.c      ****     rtc_set_month(1);
+ 1535              		.loc 1 183 0 is_stmt 1
+ 1536 00e0 0120     		movs	r0, #1
+ 1537 00e2 FFF7FEFF 		bl	rtc_set_month
+ 184:clock5.c      ****     it("initialize RTC month to 1", rtc_get_month() == 1);
+ 1538              		.loc 1 184 0
+ 1539 00e6 474B     		ldr	r3, .L97
+ 1540 00e8 1B68     		ldr	r3, [r3]
+ 1541 00ea 0133     		adds	r3, r3, #1
+ 1542 00ec 454A     		ldr	r2, .L97
+ 1543 00ee 1360     		str	r3, [r2]
+ 1544 00f0 FFF7FEFF 		bl	rtc_get_month
+ 1545 00f4 0346     		mov	r3, r0
+ 1546 00f6 012B     		cmp	r3, #1
+ 1547 00f8 09D0     		beq	.L91
+ 1548              		.loc 1 184 0 is_stmt 0 discriminator 1
+ 1549 00fa 434B     		ldr	r3, .L97+4
+ 1550 00fc 0093     		str	r3, [sp]
+ 1551 00fe 4348     		ldr	r0, .L97+8
+ 1552 0100 4349     		ldr	r1, .L97+12
+ 1553 0102 484A     		ldr	r2, .L97+32
+ 1554 0104 B823     		movs	r3, #184
+ 1555 0106 FFF7FEFF 		bl	sprintf
+ 1556 010a 404B     		ldr	r3, .L97+8
+ 1557 010c 77E0     		b	.L87
+ 1558              	.L91:
+ 185:clock5.c      ****     rtc_tick();
+ 1559              		.loc 1 185 0 is_stmt 1
+ 1560 010e FFF7FEFF 		bl	rtc_tick
+ 186:clock5.c      ****     it("handle RTC days overflow (31->1)", rtc_get_day() == 1);
+ 1561              		.loc 1 186 0
+ 1562 0112 3C4B     		ldr	r3, .L97
+ 1563 0114 1B68     		ldr	r3, [r3]
+ 1564 0116 0133     		adds	r3, r3, #1
+ 1565 0118 3A4A     		ldr	r2, .L97
+ 1566 011a 1360     		str	r3, [r2]
+ 1567 011c FFF7FEFF 		bl	rtc_get_day
+ 1568 0120 0346     		mov	r3, r0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 33
+
+
+ 1569 0122 012B     		cmp	r3, #1
+ 1570 0124 09D0     		beq	.L92
+ 1571              		.loc 1 186 0 is_stmt 0 discriminator 1
+ 1572 0126 384B     		ldr	r3, .L97+4
+ 1573 0128 0093     		str	r3, [sp]
+ 1574 012a 3848     		ldr	r0, .L97+8
+ 1575 012c 3849     		ldr	r1, .L97+12
+ 1576 012e 3E4A     		ldr	r2, .L97+36
+ 1577 0130 BA23     		movs	r3, #186
+ 1578 0132 FFF7FEFF 		bl	sprintf
+ 1579 0136 354B     		ldr	r3, .L97+8
+ 1580 0138 61E0     		b	.L87
+ 1581              	.L92:
+ 187:clock5.c      ****     it("increment RTC month (1->2)", rtc_get_month() == 2);
+ 1582              		.loc 1 187 0 is_stmt 1
+ 1583 013a 324B     		ldr	r3, .L97
+ 1584 013c 1B68     		ldr	r3, [r3]
+ 1585 013e 0133     		adds	r3, r3, #1
+ 1586 0140 304A     		ldr	r2, .L97
+ 1587 0142 1360     		str	r3, [r2]
+ 1588 0144 FFF7FEFF 		bl	rtc_get_month
+ 1589 0148 0346     		mov	r3, r0
+ 1590 014a 022B     		cmp	r3, #2
+ 1591 014c 09D0     		beq	.L93
+ 1592              		.loc 1 187 0 is_stmt 0 discriminator 1
+ 1593 014e 2E4B     		ldr	r3, .L97+4
+ 1594 0150 0093     		str	r3, [sp]
+ 1595 0152 2E48     		ldr	r0, .L97+8
+ 1596 0154 2E49     		ldr	r1, .L97+12
+ 1597 0156 354A     		ldr	r2, .L97+40
+ 1598 0158 BB23     		movs	r3, #187
+ 1599 015a FFF7FEFF 		bl	sprintf
+ 1600 015e 2B4B     		ldr	r3, .L97+8
+ 1601 0160 4DE0     		b	.L87
+ 1602              	.L93:
+ 188:clock5.c      ****     rtc_set_minutes(59);
+ 1603              		.loc 1 188 0 is_stmt 1
+ 1604 0162 3B20     		movs	r0, #59
+ 1605 0164 FFF7FEFF 		bl	rtc_set_minutes
+ 189:clock5.c      ****     rtc_set_seconds(59);
+ 1606              		.loc 1 189 0
+ 1607 0168 3B20     		movs	r0, #59
+ 1608 016a FFF7FEFF 		bl	rtc_set_seconds
+ 190:clock5.c      ****     rtc_set_hour(23);
+ 1609              		.loc 1 190 0
+ 1610 016e 1720     		movs	r0, #23
+ 1611 0170 FFF7FEFF 		bl	rtc_set_hour
+ 191:clock5.c      ****     rtc_set_day(31);
+ 1612              		.loc 1 191 0
+ 1613 0174 1F20     		movs	r0, #31
+ 1614 0176 FFF7FEFF 		bl	rtc_set_day
+ 192:clock5.c      ****     rtc_set_month(12);
+ 1615              		.loc 1 192 0
+ 1616 017a 0C20     		movs	r0, #12
+ 1617 017c FFF7FEFF 		bl	rtc_set_month
+ 193:clock5.c      ****     it("initialize RTC month to 1", rtc_get_month() == 12);
+ 1618              		.loc 1 193 0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 34
+
+
+ 1619 0180 204B     		ldr	r3, .L97
+ 1620 0182 1B68     		ldr	r3, [r3]
+ 1621 0184 0133     		adds	r3, r3, #1
+ 1622 0186 1F4A     		ldr	r2, .L97
+ 1623 0188 1360     		str	r3, [r2]
+ 1624 018a FFF7FEFF 		bl	rtc_get_month
+ 1625 018e 0346     		mov	r3, r0
+ 1626 0190 0C2B     		cmp	r3, #12
+ 1627 0192 09D0     		beq	.L94
+ 1628              		.loc 1 193 0 is_stmt 0 discriminator 1
+ 1629 0194 1C4B     		ldr	r3, .L97+4
+ 1630 0196 0093     		str	r3, [sp]
+ 1631 0198 1C48     		ldr	r0, .L97+8
+ 1632 019a 1D49     		ldr	r1, .L97+12
+ 1633 019c 214A     		ldr	r2, .L97+32
+ 1634 019e C123     		movs	r3, #193
+ 1635 01a0 FFF7FEFF 		bl	sprintf
+ 1636 01a4 194B     		ldr	r3, .L97+8
+ 1637 01a6 2AE0     		b	.L87
+ 1638              	.L94:
+ 194:clock5.c      ****     rtc_tick();
+ 1639              		.loc 1 194 0 is_stmt 1
+ 1640 01a8 FFF7FEFF 		bl	rtc_tick
+ 195:clock5.c      ****     it("handle RTC days overflow (31->1)", rtc_get_day() == 1);
+ 1641              		.loc 1 195 0
+ 1642 01ac 154B     		ldr	r3, .L97
+ 1643 01ae 1B68     		ldr	r3, [r3]
+ 1644 01b0 0133     		adds	r3, r3, #1
+ 1645 01b2 144A     		ldr	r2, .L97
+ 1646 01b4 1360     		str	r3, [r2]
+ 1647 01b6 FFF7FEFF 		bl	rtc_get_day
+ 1648 01ba 0346     		mov	r3, r0
+ 1649 01bc 012B     		cmp	r3, #1
+ 1650 01be 09D0     		beq	.L95
+ 1651              		.loc 1 195 0 is_stmt 0 discriminator 1
+ 1652 01c0 114B     		ldr	r3, .L97+4
+ 1653 01c2 0093     		str	r3, [sp]
+ 1654 01c4 1148     		ldr	r0, .L97+8
+ 1655 01c6 1249     		ldr	r1, .L97+12
+ 1656 01c8 174A     		ldr	r2, .L97+36
+ 1657 01ca C323     		movs	r3, #195
+ 1658 01cc FFF7FEFF 		bl	sprintf
+ 1659 01d0 0E4B     		ldr	r3, .L97+8
+ 1660 01d2 14E0     		b	.L87
+ 1661              	.L95:
+ 196:clock5.c      ****     it("increment RTC month (1->2)", rtc_get_month() == 1);
+ 1662              		.loc 1 196 0 is_stmt 1
+ 1663 01d4 0B4B     		ldr	r3, .L97
+ 1664 01d6 1B68     		ldr	r3, [r3]
+ 1665 01d8 0133     		adds	r3, r3, #1
+ 1666 01da 0A4A     		ldr	r2, .L97
+ 1667 01dc 1360     		str	r3, [r2]
+ 1668 01de FFF7FEFF 		bl	rtc_get_month
+ 1669 01e2 0346     		mov	r3, r0
+ 1670 01e4 012B     		cmp	r3, #1
+ 1671 01e6 09D0     		beq	.L96
+ 1672              		.loc 1 196 0 is_stmt 0 discriminator 1
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 35
+
+
+ 1673 01e8 074B     		ldr	r3, .L97+4
+ 1674 01ea 0093     		str	r3, [sp]
+ 1675 01ec 0748     		ldr	r0, .L97+8
+ 1676 01ee 0849     		ldr	r1, .L97+12
+ 1677 01f0 0E4A     		ldr	r2, .L97+40
+ 1678 01f2 C423     		movs	r3, #196
+ 1679 01f4 FFF7FEFF 		bl	sprintf
+ 1680 01f8 044B     		ldr	r3, .L97+8
+ 1681 01fa 00E0     		b	.L87
+ 1682              	.L96:
+ 197:clock5.c      ****     return 0;
+ 1683              		.loc 1 197 0 is_stmt 1
+ 1684 01fc 0023     		movs	r3, #0
+ 1685              	.L87:
+ 198:clock5.c      **** }
+ 1686              		.loc 1 198 0
+ 1687 01fe 1846     		mov	r0, r3
+ 1688 0200 BD46     		mov	sp, r7
+ 1689              		.cfi_def_cfa_register 13
+ 1690              		@ sp needed
+ 1691 0202 80BD     		pop	{r7, pc}
+ 1692              	.L98:
+ 1693              		.align	2
+ 1694              	.L97:
+ 1695 0204 00000000 		.word	assertion_count
+ 1696 0208 64000000 		.word	.LC3
+ 1697 020c 00000000 		.word	text
+ 1698 0210 34000000 		.word	.LC1
+ 1699 0214 D4000000 		.word	.LC7
+ 1700 0218 F0000000 		.word	.LC8
+ 1701 021c B4010000 		.word	.LC14
+ 1702 0220 D4010000 		.word	.LC15
+ 1703 0224 F0010000 		.word	.LC16
+ 1704 0228 0C020000 		.word	.LC17
+ 1705 022c 30020000 		.word	.LC18
+ 1706              		.cfi_endproc
+ 1707              	.LFE18:
+ 1708              		.size	test_rtc_days_months, .-test_rtc_days_months
+ 1709              		.section	.rodata
+ 1710 024b 00       		.align	2
+ 1711              	.LC19:
+ 1712 024c 696E6974 		.ascii	"initialize years to %d (%d)\000"
+ 1712      69616C69 
+ 1712      7A652079 
+ 1712      65617273 
+ 1712      20746F20 
+ 1713              		.align	2
+ 1714              	.LC20:
+ 1715 0268 65737461 		.ascii	"establishe a leap year %d\000"
+ 1715      626C6973 
+ 1715      68652061 
+ 1715      206C6561 
+ 1715      70207965 
+ 1716 0282 0000     		.align	2
+ 1717              	.LC21:
+ 1718 0284 696E6974 		.ascii	"initialize year to %d and month to %d\000"
+ 1718      69616C69 
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 36
+
+
+ 1718      7A652079 
+ 1718      65617220 
+ 1718      746F2025 
+ 1719 02aa 0000     		.align	2
+ 1720              	.LC22:
+ 1721 02ac 65737461 		.ascii	"establishe days in month %d of leap year %d\000"
+ 1721      626C6973 
+ 1721      68652064 
+ 1721      61797320 
+ 1721      696E206D 
+ 1722              		.align	2
+ 1723              	.LC23:
+ 1724 02d8 68616E64 		.ascii	"handle end of month overflow, year %d, month %d, da"
+ 1724      6C652065 
+ 1724      6E64206F 
+ 1724      66206D6F 
+ 1724      6E746820 
+ 1725 030b 79202564 		.ascii	"y %d, hour %d, minutes %d, seconds %d\000"
+ 1725      2C20686F 
+ 1725      75722025 
+ 1725      642C206D 
+ 1725      696E7574 
+ 1726 0331 000000   		.align	2
+ 1727              	.LC24:
+ 1728 0334 65737461 		.ascii	"establishe a normal year %d\000"
+ 1728      626C6973 
+ 1728      68652061 
+ 1728      206E6F72 
+ 1728      6D616C20 
+ 1729              		.align	2
+ 1730              	.LC25:
+ 1731 0350 65737461 		.ascii	"establishe days in month %d of normal year %d\000"
+ 1731      626C6973 
+ 1731      68652064 
+ 1731      61797320 
+ 1731      696E206D 
+ 1732              		.section	.text.test_rtc_leap_years,"ax",%progbits
+ 1733              		.align	2
+ 1734              		.global	test_rtc_leap_years
+ 1735              		.thumb
+ 1736              		.thumb_func
+ 1737              		.type	test_rtc_leap_years, %function
+ 1738              	test_rtc_leap_years:
+ 1739              	.LFB19:
+ 199:clock5.c      **** 
+ 200:clock5.c      **** char * test_rtc_leap_years() {
+ 1740              		.loc 1 200 0
+ 1741              		.cfi_startproc
+ 1742              		@ args = 0, pretend = 0, frame = 80
+ 1743              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1744 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 1745              		.cfi_def_cfa_offset 28
+ 1746              		.cfi_offset 4, -28
+ 1747              		.cfi_offset 5, -24
+ 1748              		.cfi_offset 6, -20
+ 1749              		.cfi_offset 7, -16
+ 1750              		.cfi_offset 8, -12
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 37
+
+
+ 1751              		.cfi_offset 9, -8
+ 1752              		.cfi_offset 14, -4
+ 1753 0004 99B0     		sub	sp, sp, #100
+ 1754              		.cfi_def_cfa_offset 128
+ 1755 0006 04AF     		add	r7, sp, #16
+ 1756              		.cfi_def_cfa 7, 112
+ 201:clock5.c      ****     
+ 202:clock5.c      ****     const int days_in_month[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+ 1757              		.loc 1 202 0
+ 1758 0008 B44B     		ldr	r3, .L140
+ 1759 000a 3C1D     		adds	r4, r7, #4
+ 1760 000c 1D46     		mov	r5, r3
+ 1761 000e 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 1762 0010 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 1763 0012 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 1764 0014 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 1765 0016 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 1766 0018 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 1767 001a 2B68     		ldr	r3, [r5]
+ 1768 001c 2360     		str	r3, [r4]
+ 203:clock5.c      ****     
+ 204:clock5.c      ****     int y;
+ 205:clock5.c      ****     int m;
+ 206:clock5.c      ****     
+ 207:clock5.c      ****     int nmin = 1, lmin = 1;
+ 1769              		.loc 1 207 0
+ 1770 001e 0123     		movs	r3, #1
+ 1771 0020 7B64     		str	r3, [r7, #68]
+ 1772 0022 0123     		movs	r3, #1
+ 1773 0024 3B64     		str	r3, [r7, #64]
+ 208:clock5.c      ****     int nmax = 13, lmax = 13;
+ 1774              		.loc 1 208 0
+ 1775 0026 0D23     		movs	r3, #13
+ 1776 0028 FB63     		str	r3, [r7, #60]
+ 1777 002a 0D23     		movs	r3, #13
+ 1778 002c BB63     		str	r3, [r7, #56]
+ 209:clock5.c      **** 
+ 210:clock5.c      ****     for (y = 2000; y < 2100; y++)
+ 1779              		.loc 1 210 0
+ 1780 002e 4FF4FA63 		mov	r3, #2000
+ 1781 0032 FB64     		str	r3, [r7, #76]
+ 1782 0034 7CE3     		b	.L100
+ 1783              	.L138:
+ 211:clock5.c      ****     {
+ 212:clock5.c      ****         rtc_set_years(y);
+ 1784              		.loc 1 212 0
+ 1785 0036 F86C     		ldr	r0, [r7, #76]
+ 1786 0038 FFF7FEFF 		bl	rtc_set_years
+ 213:clock5.c      ****         //it("initialize years to i", rtc_get_years() == i);
+ 214:clock5.c      ****         sprintf(text, "initialize years to %d (%d)", y, rtc_get_years());
+ 1787              		.loc 1 214 0
+ 1788 003c FFF7FEFF 		bl	rtc_get_years
+ 1789 0040 0346     		mov	r3, r0
+ 1790 0042 A748     		ldr	r0, .L140+4
+ 1791 0044 A749     		ldr	r1, .L140+8
+ 1792 0046 FA6C     		ldr	r2, [r7, #76]
+ 1793 0048 FFF7FEFF 		bl	sprintf
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 38
+
+
+ 215:clock5.c      ****         it(text, rtc_get_years() == y);
+ 1794              		.loc 1 215 0
+ 1795 004c A64B     		ldr	r3, .L140+12
+ 1796 004e 1B68     		ldr	r3, [r3]
+ 1797 0050 0133     		adds	r3, r3, #1
+ 1798 0052 A54A     		ldr	r2, .L140+12
+ 1799 0054 1360     		str	r3, [r2]
+ 1800 0056 FFF7FEFF 		bl	rtc_get_years
+ 1801 005a 0246     		mov	r2, r0
+ 1802 005c FB6C     		ldr	r3, [r7, #76]
+ 1803 005e 9A42     		cmp	r2, r3
+ 1804 0060 09D0     		beq	.L101
+ 1805              		.loc 1 215 0 is_stmt 0 discriminator 1
+ 1806 0062 A24B     		ldr	r3, .L140+16
+ 1807 0064 0093     		str	r3, [sp]
+ 1808 0066 9E48     		ldr	r0, .L140+4
+ 1809 0068 A149     		ldr	r1, .L140+20
+ 1810 006a 9D4A     		ldr	r2, .L140+4
+ 1811 006c D723     		movs	r3, #215
+ 1812 006e FFF7FEFF 		bl	sprintf
+ 1813 0072 9B4B     		ldr	r3, .L140+4
+ 1814 0074 63E3     		b	.L139
+ 1815              	.L101:
+ 216:clock5.c      ****         
+ 217:clock5.c      ****         if( ((rtc_get_years() % 4 == 0) && (rtc_get_years() % 100 != 0)) || (rtc_get_years() % 400 
+ 1816              		.loc 1 217 0 is_stmt 1
+ 1817 0076 FFF7FEFF 		bl	rtc_get_years
+ 1818 007a 0346     		mov	r3, r0
+ 1819 007c 03F00303 		and	r3, r3, #3
+ 1820 0080 002B     		cmp	r3, #0
+ 1821 0082 0ED1     		bne	.L103
+ 1822              		.loc 1 217 0 is_stmt 0 discriminator 1
+ 1823 0084 FFF7FEFF 		bl	rtc_get_years
+ 1824 0088 0246     		mov	r2, r0
+ 1825 008a 9A4B     		ldr	r3, .L140+24
+ 1826 008c 83FB0213 		smull	r1, r3, r3, r2
+ 1827 0090 5911     		asrs	r1, r3, #5
+ 1828 0092 D317     		asrs	r3, r2, #31
+ 1829 0094 CB1A     		subs	r3, r1, r3
+ 1830 0096 6421     		movs	r1, #100
+ 1831 0098 01FB03F3 		mul	r3, r1, r3
+ 1832 009c D31A     		subs	r3, r2, r3
+ 1833 009e 002B     		cmp	r3, #0
+ 1834 00a0 10D1     		bne	.L104
+ 1835              	.L103:
+ 1836              		.loc 1 217 0 discriminator 3
+ 1837 00a2 FFF7FEFF 		bl	rtc_get_years
+ 1838 00a6 0246     		mov	r2, r0
+ 1839 00a8 924B     		ldr	r3, .L140+24
+ 1840 00aa 83FB0213 		smull	r1, r3, r3, r2
+ 1841 00ae D911     		asrs	r1, r3, #7
+ 1842 00b0 D317     		asrs	r3, r2, #31
+ 1843 00b2 CB1A     		subs	r3, r1, r3
+ 1844 00b4 4FF4C871 		mov	r1, #400
+ 1845 00b8 01FB03F3 		mul	r3, r1, r3
+ 1846 00bc D31A     		subs	r3, r2, r3
+ 1847 00be 002B     		cmp	r3, #0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 39
+
+
+ 1848 00c0 40F0B181 		bne	.L105
+ 1849              	.L104:
+ 218:clock5.c      ****         {
+ 219:clock5.c      ****             sprintf(text, "establishe a leap year %d", rtc_get_years());
+ 1850              		.loc 1 219 0 is_stmt 1
+ 1851 00c4 FFF7FEFF 		bl	rtc_get_years
+ 1852 00c8 0346     		mov	r3, r0
+ 1853 00ca 8548     		ldr	r0, .L140+4
+ 1854 00cc 8A49     		ldr	r1, .L140+28
+ 1855 00ce 1A46     		mov	r2, r3
+ 1856 00d0 FFF7FEFF 		bl	sprintf
+ 220:clock5.c      ****             it(text, rtc_is_leap_year() != 0);
+ 1857              		.loc 1 220 0
+ 1858 00d4 844B     		ldr	r3, .L140+12
+ 1859 00d6 1B68     		ldr	r3, [r3]
+ 1860 00d8 0133     		adds	r3, r3, #1
+ 1861 00da 834A     		ldr	r2, .L140+12
+ 1862 00dc 1360     		str	r3, [r2]
+ 1863 00de FFF7FEFF 		bl	rtc_is_leap_year
+ 1864 00e2 0346     		mov	r3, r0
+ 1865 00e4 002B     		cmp	r3, #0
+ 1866 00e6 09D1     		bne	.L106
+ 1867              		.loc 1 220 0 is_stmt 0 discriminator 1
+ 1868 00e8 804B     		ldr	r3, .L140+16
+ 1869 00ea 0093     		str	r3, [sp]
+ 1870 00ec 7C48     		ldr	r0, .L140+4
+ 1871 00ee 8049     		ldr	r1, .L140+20
+ 1872 00f0 7B4A     		ldr	r2, .L140+4
+ 1873 00f2 DC23     		movs	r3, #220
+ 1874 00f4 FFF7FEFF 		bl	sprintf
+ 1875 00f8 794B     		ldr	r3, .L140+4
+ 1876 00fa 20E3     		b	.L139
+ 1877              	.L106:
+ 221:clock5.c      ****             
+ 222:clock5.c      ****             for (m = lmin; m < lmax; m++)
+ 1878              		.loc 1 222 0 is_stmt 1
+ 1879 00fc 3B6C     		ldr	r3, [r7, #64]
+ 1880 00fe BB64     		str	r3, [r7, #72]
+ 1881 0100 87E1     		b	.L107
+ 1882              	.L122:
+ 223:clock5.c      ****             {
+ 224:clock5.c      ****                 rtc_set_month(m);
+ 1883              		.loc 1 224 0
+ 1884 0102 B86C     		ldr	r0, [r7, #72]
+ 1885 0104 FFF7FEFF 		bl	rtc_set_month
+ 225:clock5.c      ****                 sprintf(text, "initialize year to %d and month to %d", rtc_get_years(), rtc_get_mon
+ 1886              		.loc 1 225 0
+ 1887 0108 FFF7FEFF 		bl	rtc_get_years
+ 1888 010c 0446     		mov	r4, r0
+ 1889 010e FFF7FEFF 		bl	rtc_get_month
+ 1890 0112 0346     		mov	r3, r0
+ 1891 0114 7248     		ldr	r0, .L140+4
+ 1892 0116 7949     		ldr	r1, .L140+32
+ 1893 0118 2246     		mov	r2, r4
+ 1894 011a FFF7FEFF 		bl	sprintf
+ 226:clock5.c      ****                 it(text, rtc_get_years() == y);
+ 1895              		.loc 1 226 0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 40
+
+
+ 1896 011e 724B     		ldr	r3, .L140+12
+ 1897 0120 1B68     		ldr	r3, [r3]
+ 1898 0122 0133     		adds	r3, r3, #1
+ 1899 0124 704A     		ldr	r2, .L140+12
+ 1900 0126 1360     		str	r3, [r2]
+ 1901 0128 FFF7FEFF 		bl	rtc_get_years
+ 1902 012c 0246     		mov	r2, r0
+ 1903 012e FB6C     		ldr	r3, [r7, #76]
+ 1904 0130 9A42     		cmp	r2, r3
+ 1905 0132 09D0     		beq	.L108
+ 1906              		.loc 1 226 0 is_stmt 0 discriminator 1
+ 1907 0134 6D4B     		ldr	r3, .L140+16
+ 1908 0136 0093     		str	r3, [sp]
+ 1909 0138 6948     		ldr	r0, .L140+4
+ 1910 013a 6D49     		ldr	r1, .L140+20
+ 1911 013c 684A     		ldr	r2, .L140+4
+ 1912 013e E223     		movs	r3, #226
+ 1913 0140 FFF7FEFF 		bl	sprintf
+ 1914 0144 664B     		ldr	r3, .L140+4
+ 1915 0146 FAE2     		b	.L139
+ 1916              	.L108:
+ 227:clock5.c      ****                 it(text, rtc_get_month() == m);
+ 1917              		.loc 1 227 0 is_stmt 1
+ 1918 0148 674B     		ldr	r3, .L140+12
+ 1919 014a 1B68     		ldr	r3, [r3]
+ 1920 014c 0133     		adds	r3, r3, #1
+ 1921 014e 664A     		ldr	r2, .L140+12
+ 1922 0150 1360     		str	r3, [r2]
+ 1923 0152 FFF7FEFF 		bl	rtc_get_month
+ 1924 0156 0246     		mov	r2, r0
+ 1925 0158 BB6C     		ldr	r3, [r7, #72]
+ 1926 015a 9A42     		cmp	r2, r3
+ 1927 015c 09D0     		beq	.L109
+ 1928              		.loc 1 227 0 is_stmt 0 discriminator 1
+ 1929 015e 634B     		ldr	r3, .L140+16
+ 1930 0160 0093     		str	r3, [sp]
+ 1931 0162 5F48     		ldr	r0, .L140+4
+ 1932 0164 6249     		ldr	r1, .L140+20
+ 1933 0166 5E4A     		ldr	r2, .L140+4
+ 1934 0168 E323     		movs	r3, #227
+ 1935 016a FFF7FEFF 		bl	sprintf
+ 1936 016e 5C4B     		ldr	r3, .L140+4
+ 1937 0170 E5E2     		b	.L139
+ 1938              	.L109:
+ 228:clock5.c      ****                 sprintf(text, "establishe days in month %d of leap year %d", rtc_get_month(), rtc_g
+ 1939              		.loc 1 228 0 is_stmt 1
+ 1940 0172 FFF7FEFF 		bl	rtc_get_month
+ 1941 0176 0446     		mov	r4, r0
+ 1942 0178 FFF7FEFF 		bl	rtc_get_years
+ 1943 017c 0346     		mov	r3, r0
+ 1944 017e 5848     		ldr	r0, .L140+4
+ 1945 0180 5F49     		ldr	r1, .L140+36
+ 1946 0182 2246     		mov	r2, r4
+ 1947 0184 FFF7FEFF 		bl	sprintf
+ 229:clock5.c      ****                 if (rtc_get_month() == 2)
+ 1948              		.loc 1 229 0
+ 1949 0188 FFF7FEFF 		bl	rtc_get_month
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 41
+
+
+ 1950 018c 0346     		mov	r3, r0
+ 1951 018e 022B     		cmp	r3, #2
+ 1952 0190 2BD1     		bne	.L110
+ 230:clock5.c      ****                 {
+ 231:clock5.c      ****                    it(text, (days_in_month[rtc_get_month()]+1) == rtc_days_in_month());
+ 1953              		.loc 1 231 0
+ 1954 0192 554B     		ldr	r3, .L140+12
+ 1955 0194 1B68     		ldr	r3, [r3]
+ 1956 0196 0133     		adds	r3, r3, #1
+ 1957 0198 534A     		ldr	r2, .L140+12
+ 1958 019a 1360     		str	r3, [r2]
+ 1959 019c FFF7FEFF 		bl	rtc_get_month
+ 1960 01a0 0346     		mov	r3, r0
+ 1961 01a2 9B00     		lsls	r3, r3, #2
+ 1962 01a4 07F15002 		add	r2, r7, #80
+ 1963 01a8 1344     		add	r3, r3, r2
+ 1964 01aa 53F84C3C 		ldr	r3, [r3, #-76]
+ 1965 01ae 5C1C     		adds	r4, r3, #1
+ 1966 01b0 FFF7FEFF 		bl	rtc_days_in_month
+ 1967 01b4 0346     		mov	r3, r0
+ 1968 01b6 9C42     		cmp	r4, r3
+ 1969 01b8 09D0     		beq	.L111
+ 1970              		.loc 1 231 0 is_stmt 0 discriminator 1
+ 1971 01ba 4C4B     		ldr	r3, .L140+16
+ 1972 01bc 0093     		str	r3, [sp]
+ 1973 01be 4848     		ldr	r0, .L140+4
+ 1974 01c0 4B49     		ldr	r1, .L140+20
+ 1975 01c2 474A     		ldr	r2, .L140+4
+ 1976 01c4 E723     		movs	r3, #231
+ 1977 01c6 FFF7FEFF 		bl	sprintf
+ 1978 01ca 454B     		ldr	r3, .L140+4
+ 1979 01cc B7E2     		b	.L139
+ 1980              	.L111:
+ 232:clock5.c      ****                    rtc_set_day(days_in_month[rtc_get_month()]+1);
+ 1981              		.loc 1 232 0 is_stmt 1
+ 1982 01ce FFF7FEFF 		bl	rtc_get_month
+ 1983 01d2 0346     		mov	r3, r0
+ 1984 01d4 9B00     		lsls	r3, r3, #2
+ 1985 01d6 07F15002 		add	r2, r7, #80
+ 1986 01da 1344     		add	r3, r3, r2
+ 1987 01dc 53F84C3C 		ldr	r3, [r3, #-76]
+ 1988 01e0 0133     		adds	r3, r3, #1
+ 1989 01e2 1846     		mov	r0, r3
+ 1990 01e4 FFF7FEFF 		bl	rtc_set_day
+ 1991 01e8 28E0     		b	.L112
+ 1992              	.L110:
+ 233:clock5.c      ****                 }
+ 234:clock5.c      ****                 else
+ 235:clock5.c      ****                 {
+ 236:clock5.c      ****                    it(text, days_in_month[rtc_get_month()] == rtc_days_in_month());
+ 1993              		.loc 1 236 0
+ 1994 01ea 3F4B     		ldr	r3, .L140+12
+ 1995 01ec 1B68     		ldr	r3, [r3]
+ 1996 01ee 0133     		adds	r3, r3, #1
+ 1997 01f0 3D4A     		ldr	r2, .L140+12
+ 1998 01f2 1360     		str	r3, [r2]
+ 1999 01f4 FFF7FEFF 		bl	rtc_get_month
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 42
+
+
+ 2000 01f8 0346     		mov	r3, r0
+ 2001 01fa 9B00     		lsls	r3, r3, #2
+ 2002 01fc 07F15002 		add	r2, r7, #80
+ 2003 0200 1344     		add	r3, r3, r2
+ 2004 0202 53F84C4C 		ldr	r4, [r3, #-76]
+ 2005 0206 FFF7FEFF 		bl	rtc_days_in_month
+ 2006 020a 0346     		mov	r3, r0
+ 2007 020c 9C42     		cmp	r4, r3
+ 2008 020e 09D0     		beq	.L113
+ 2009              		.loc 1 236 0 is_stmt 0 discriminator 1
+ 2010 0210 364B     		ldr	r3, .L140+16
+ 2011 0212 0093     		str	r3, [sp]
+ 2012 0214 3248     		ldr	r0, .L140+4
+ 2013 0216 3649     		ldr	r1, .L140+20
+ 2014 0218 314A     		ldr	r2, .L140+4
+ 2015 021a EC23     		movs	r3, #236
+ 2016 021c FFF7FEFF 		bl	sprintf
+ 2017 0220 2F4B     		ldr	r3, .L140+4
+ 2018 0222 8CE2     		b	.L139
+ 2019              	.L113:
+ 237:clock5.c      ****                    rtc_set_day(days_in_month[rtc_get_month()]);
+ 2020              		.loc 1 237 0 is_stmt 1
+ 2021 0224 FFF7FEFF 		bl	rtc_get_month
+ 2022 0228 0346     		mov	r3, r0
+ 2023 022a 9B00     		lsls	r3, r3, #2
+ 2024 022c 07F15002 		add	r2, r7, #80
+ 2025 0230 1344     		add	r3, r3, r2
+ 2026 0232 53F84C3C 		ldr	r3, [r3, #-76]
+ 2027 0236 1846     		mov	r0, r3
+ 2028 0238 FFF7FEFF 		bl	rtc_set_day
+ 2029              	.L112:
+ 238:clock5.c      ****                 }
+ 239:clock5.c      ****                 rtc_set_seconds(59);
+ 2030              		.loc 1 239 0
+ 2031 023c 3B20     		movs	r0, #59
+ 2032 023e FFF7FEFF 		bl	rtc_set_seconds
+ 240:clock5.c      ****                 rtc_set_minutes(59);
+ 2033              		.loc 1 240 0
+ 2034 0242 3B20     		movs	r0, #59
+ 2035 0244 FFF7FEFF 		bl	rtc_set_minutes
+ 241:clock5.c      ****                 rtc_set_hour(23);
+ 2036              		.loc 1 241 0
+ 2037 0248 1720     		movs	r0, #23
+ 2038 024a FFF7FEFF 		bl	rtc_set_hour
+ 242:clock5.c      ****                 rtc_tick();
+ 2039              		.loc 1 242 0
+ 2040 024e FFF7FEFF 		bl	rtc_tick
+ 243:clock5.c      ****                 sprintf(text, "handle end of month overflow, year %d, month %d, day %d, hour %d, mi
+ 2041              		.loc 1 243 0
+ 2042 0252 FFF7FEFF 		bl	rtc_get_years
+ 2043 0256 8146     		mov	r9, r0
+ 2044 0258 FFF7FEFF 		bl	rtc_get_month
+ 2045 025c 8046     		mov	r8, r0
+ 2046 025e FFF7FEFF 		bl	rtc_get_day
+ 2047 0262 0646     		mov	r6, r0
+ 2048 0264 FFF7FEFF 		bl	rtc_get_hour
+ 2049 0268 0546     		mov	r5, r0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 43
+
+
+ 2050 026a FFF7FEFF 		bl	rtc_get_minutes
+ 2051 026e 0446     		mov	r4, r0
+ 2052 0270 FFF7FEFF 		bl	rtc_get_seconds
+ 2053 0274 0346     		mov	r3, r0
+ 2054 0276 0096     		str	r6, [sp]
+ 2055 0278 0195     		str	r5, [sp, #4]
+ 2056 027a 0294     		str	r4, [sp, #8]
+ 2057 027c 0393     		str	r3, [sp, #12]
+ 2058 027e 1848     		ldr	r0, .L140+4
+ 2059 0280 2049     		ldr	r1, .L140+40
+ 2060 0282 4A46     		mov	r2, r9
+ 2061 0284 4346     		mov	r3, r8
+ 2062 0286 FFF7FEFF 		bl	sprintf
+ 244:clock5.c      ****                 it(text, rtc_get_seconds() == 0);
+ 2063              		.loc 1 244 0
+ 2064 028a 174B     		ldr	r3, .L140+12
+ 2065 028c 1B68     		ldr	r3, [r3]
+ 2066 028e 0133     		adds	r3, r3, #1
+ 2067 0290 154A     		ldr	r2, .L140+12
+ 2068 0292 1360     		str	r3, [r2]
+ 2069 0294 FFF7FEFF 		bl	rtc_get_seconds
+ 2070 0298 0346     		mov	r3, r0
+ 2071 029a 002B     		cmp	r3, #0
+ 2072 029c 09D0     		beq	.L114
+ 2073              		.loc 1 244 0 is_stmt 0 discriminator 1
+ 2074 029e 134B     		ldr	r3, .L140+16
+ 2075 02a0 0093     		str	r3, [sp]
+ 2076 02a2 0F48     		ldr	r0, .L140+4
+ 2077 02a4 1249     		ldr	r1, .L140+20
+ 2078 02a6 0E4A     		ldr	r2, .L140+4
+ 2079 02a8 F423     		movs	r3, #244
+ 2080 02aa FFF7FEFF 		bl	sprintf
+ 2081 02ae 0C4B     		ldr	r3, .L140+4
+ 2082 02b0 45E2     		b	.L139
+ 2083              	.L114:
+ 245:clock5.c      ****                 it(text, rtc_get_minutes() == 0);
+ 2084              		.loc 1 245 0 is_stmt 1
+ 2085 02b2 0D4B     		ldr	r3, .L140+12
+ 2086 02b4 1B68     		ldr	r3, [r3]
+ 2087 02b6 0133     		adds	r3, r3, #1
+ 2088 02b8 0B4A     		ldr	r2, .L140+12
+ 2089 02ba 1360     		str	r3, [r2]
+ 2090 02bc FFF7FEFF 		bl	rtc_get_minutes
+ 2091 02c0 0346     		mov	r3, r0
+ 2092 02c2 002B     		cmp	r3, #0
+ 2093 02c4 20D0     		beq	.L115
+ 2094              		.loc 1 245 0 is_stmt 0 discriminator 1
+ 2095 02c6 094B     		ldr	r3, .L140+16
+ 2096 02c8 0093     		str	r3, [sp]
+ 2097 02ca 0548     		ldr	r0, .L140+4
+ 2098 02cc 0849     		ldr	r1, .L140+20
+ 2099 02ce 044A     		ldr	r2, .L140+4
+ 2100 02d0 F523     		movs	r3, #245
+ 2101 02d2 FFF7FEFF 		bl	sprintf
+ 2102 02d6 024B     		ldr	r3, .L140+4
+ 2103 02d8 31E2     		b	.L139
+ 2104              	.L141:
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 44
+
+
+ 2105 02da 00BF     		.align	2
+ 2106              	.L140:
+ 2107 02dc 00000000 		.word	.LC0
+ 2108 02e0 00000000 		.word	text
+ 2109 02e4 4C020000 		.word	.LC19
+ 2110 02e8 00000000 		.word	assertion_count
+ 2111 02ec 64000000 		.word	.LC3
+ 2112 02f0 34000000 		.word	.LC1
+ 2113 02f4 1F85EB51 		.word	1374389535
+ 2114 02f8 68020000 		.word	.LC20
+ 2115 02fc 84020000 		.word	.LC21
+ 2116 0300 AC020000 		.word	.LC22
+ 2117 0304 D8020000 		.word	.LC23
+ 2118              	.L115:
+ 246:clock5.c      ****                 it(text, rtc_get_hour() == 0);
+ 2119              		.loc 1 246 0 is_stmt 1
+ 2120 0308 AC4B     		ldr	r3, .L142
+ 2121 030a 1B68     		ldr	r3, [r3]
+ 2122 030c 0133     		adds	r3, r3, #1
+ 2123 030e AB4A     		ldr	r2, .L142
+ 2124 0310 1360     		str	r3, [r2]
+ 2125 0312 FFF7FEFF 		bl	rtc_get_hour
+ 2126 0316 0346     		mov	r3, r0
+ 2127 0318 002B     		cmp	r3, #0
+ 2128 031a 09D0     		beq	.L116
+ 2129              		.loc 1 246 0 is_stmt 0 discriminator 1
+ 2130 031c A84B     		ldr	r3, .L142+4
+ 2131 031e 0093     		str	r3, [sp]
+ 2132 0320 A848     		ldr	r0, .L142+8
+ 2133 0322 A949     		ldr	r1, .L142+12
+ 2134 0324 A74A     		ldr	r2, .L142+8
+ 2135 0326 F623     		movs	r3, #246
+ 2136 0328 FFF7FEFF 		bl	sprintf
+ 2137 032c A54B     		ldr	r3, .L142+8
+ 2138 032e 06E2     		b	.L139
+ 2139              	.L116:
+ 247:clock5.c      ****                 it(text, rtc_get_day() == 1);
+ 2140              		.loc 1 247 0 is_stmt 1
+ 2141 0330 A24B     		ldr	r3, .L142
+ 2142 0332 1B68     		ldr	r3, [r3]
+ 2143 0334 0133     		adds	r3, r3, #1
+ 2144 0336 A14A     		ldr	r2, .L142
+ 2145 0338 1360     		str	r3, [r2]
+ 2146 033a FFF7FEFF 		bl	rtc_get_day
+ 2147 033e 0346     		mov	r3, r0
+ 2148 0340 012B     		cmp	r3, #1
+ 2149 0342 09D0     		beq	.L117
+ 2150              		.loc 1 247 0 is_stmt 0 discriminator 1
+ 2151 0344 9E4B     		ldr	r3, .L142+4
+ 2152 0346 0093     		str	r3, [sp]
+ 2153 0348 9E48     		ldr	r0, .L142+8
+ 2154 034a 9F49     		ldr	r1, .L142+12
+ 2155 034c 9D4A     		ldr	r2, .L142+8
+ 2156 034e F723     		movs	r3, #247
+ 2157 0350 FFF7FEFF 		bl	sprintf
+ 2158 0354 9B4B     		ldr	r3, .L142+8
+ 2159 0356 F2E1     		b	.L139
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 45
+
+
+ 2160              	.L117:
+ 248:clock5.c      ****                 if (m < 12)
+ 2161              		.loc 1 248 0 is_stmt 1
+ 2162 0358 BB6C     		ldr	r3, [r7, #72]
+ 2163 035a 0B2B     		cmp	r3, #11
+ 2164 035c 2ADC     		bgt	.L118
+ 249:clock5.c      ****                 {
+ 250:clock5.c      ****                    it(text, rtc_get_month() == m+1);
+ 2165              		.loc 1 250 0
+ 2166 035e 974B     		ldr	r3, .L142
+ 2167 0360 1B68     		ldr	r3, [r3]
+ 2168 0362 0133     		adds	r3, r3, #1
+ 2169 0364 954A     		ldr	r2, .L142
+ 2170 0366 1360     		str	r3, [r2]
+ 2171 0368 FFF7FEFF 		bl	rtc_get_month
+ 2172 036c 0246     		mov	r2, r0
+ 2173 036e BB6C     		ldr	r3, [r7, #72]
+ 2174 0370 0133     		adds	r3, r3, #1
+ 2175 0372 9A42     		cmp	r2, r3
+ 2176 0374 09D0     		beq	.L119
+ 2177              		.loc 1 250 0 is_stmt 0 discriminator 1
+ 2178 0376 924B     		ldr	r3, .L142+4
+ 2179 0378 0093     		str	r3, [sp]
+ 2180 037a 9248     		ldr	r0, .L142+8
+ 2181 037c 9249     		ldr	r1, .L142+12
+ 2182 037e 914A     		ldr	r2, .L142+8
+ 2183 0380 FA23     		movs	r3, #250
+ 2184 0382 FFF7FEFF 		bl	sprintf
+ 2185 0386 8F4B     		ldr	r3, .L142+8
+ 2186 0388 D9E1     		b	.L139
+ 2187              	.L119:
+ 251:clock5.c      ****                    it(text, rtc_get_years() == y);
+ 2188              		.loc 1 251 0 is_stmt 1
+ 2189 038a 8C4B     		ldr	r3, .L142
+ 2190 038c 1B68     		ldr	r3, [r3]
+ 2191 038e 0133     		adds	r3, r3, #1
+ 2192 0390 8A4A     		ldr	r2, .L142
+ 2193 0392 1360     		str	r3, [r2]
+ 2194 0394 FFF7FEFF 		bl	rtc_get_years
+ 2195 0398 0246     		mov	r2, r0
+ 2196 039a FB6C     		ldr	r3, [r7, #76]
+ 2197 039c 9A42     		cmp	r2, r3
+ 2198 039e 35D0     		beq	.L120
+ 2199              		.loc 1 251 0 is_stmt 0 discriminator 1
+ 2200 03a0 874B     		ldr	r3, .L142+4
+ 2201 03a2 0093     		str	r3, [sp]
+ 2202 03a4 8748     		ldr	r0, .L142+8
+ 2203 03a6 8849     		ldr	r1, .L142+12
+ 2204 03a8 864A     		ldr	r2, .L142+8
+ 2205 03aa FB23     		movs	r3, #251
+ 2206 03ac FFF7FEFF 		bl	sprintf
+ 2207 03b0 844B     		ldr	r3, .L142+8
+ 2208 03b2 C4E1     		b	.L139
+ 2209              	.L118:
+ 252:clock5.c      ****                 }
+ 253:clock5.c      ****                 
+ 254:clock5.c      ****                 else
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 46
+
+
+ 255:clock5.c      ****                 {
+ 256:clock5.c      ****                    it(text, rtc_get_month() == 1);
+ 2210              		.loc 1 256 0 is_stmt 1
+ 2211 03b4 814B     		ldr	r3, .L142
+ 2212 03b6 1B68     		ldr	r3, [r3]
+ 2213 03b8 0133     		adds	r3, r3, #1
+ 2214 03ba 804A     		ldr	r2, .L142
+ 2215 03bc 1360     		str	r3, [r2]
+ 2216 03be FFF7FEFF 		bl	rtc_get_month
+ 2217 03c2 0346     		mov	r3, r0
+ 2218 03c4 012B     		cmp	r3, #1
+ 2219 03c6 0AD0     		beq	.L121
+ 2220              		.loc 1 256 0 is_stmt 0 discriminator 1
+ 2221 03c8 7D4B     		ldr	r3, .L142+4
+ 2222 03ca 0093     		str	r3, [sp]
+ 2223 03cc 7D48     		ldr	r0, .L142+8
+ 2224 03ce 7E49     		ldr	r1, .L142+12
+ 2225 03d0 7C4A     		ldr	r2, .L142+8
+ 2226 03d2 4FF48073 		mov	r3, #256
+ 2227 03d6 FFF7FEFF 		bl	sprintf
+ 2228 03da 7A4B     		ldr	r3, .L142+8
+ 2229 03dc AFE1     		b	.L139
+ 2230              	.L121:
+ 257:clock5.c      ****                    it(text, rtc_get_years() == (y+1));
+ 2231              		.loc 1 257 0 is_stmt 1
+ 2232 03de 774B     		ldr	r3, .L142
+ 2233 03e0 1B68     		ldr	r3, [r3]
+ 2234 03e2 0133     		adds	r3, r3, #1
+ 2235 03e4 754A     		ldr	r2, .L142
+ 2236 03e6 1360     		str	r3, [r2]
+ 2237 03e8 FFF7FEFF 		bl	rtc_get_years
+ 2238 03ec 0246     		mov	r2, r0
+ 2239 03ee FB6C     		ldr	r3, [r7, #76]
+ 2240 03f0 0133     		adds	r3, r3, #1
+ 2241 03f2 9A42     		cmp	r2, r3
+ 2242 03f4 0AD0     		beq	.L120
+ 2243              		.loc 1 257 0 is_stmt 0 discriminator 1
+ 2244 03f6 724B     		ldr	r3, .L142+4
+ 2245 03f8 0093     		str	r3, [sp]
+ 2246 03fa 7248     		ldr	r0, .L142+8
+ 2247 03fc 7249     		ldr	r1, .L142+12
+ 2248 03fe 714A     		ldr	r2, .L142+8
+ 2249 0400 40F20113 		movw	r3, #257
+ 2250 0404 FFF7FEFF 		bl	sprintf
+ 2251 0408 6E4B     		ldr	r3, .L142+8
+ 2252 040a 98E1     		b	.L139
+ 2253              	.L120:
+ 222:clock5.c      ****             {
+ 2254              		.loc 1 222 0 is_stmt 1 discriminator 2
+ 2255 040c BB6C     		ldr	r3, [r7, #72]
+ 2256 040e 0133     		adds	r3, r3, #1
+ 2257 0410 BB64     		str	r3, [r7, #72]
+ 2258              	.L107:
+ 222:clock5.c      ****             {
+ 2259              		.loc 1 222 0 is_stmt 0 discriminator 1
+ 2260 0412 BA6C     		ldr	r2, [r7, #72]
+ 2261 0414 BB6B     		ldr	r3, [r7, #56]
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 47
+
+
+ 2262 0416 9A42     		cmp	r2, r3
+ 2263 0418 FFF673AE 		blt	.L122
+ 258:clock5.c      ****                 }
+ 259:clock5.c      ****                                 
+ 260:clock5.c      ****             }
+ 261:clock5.c      ****             lmin = 2;
+ 2264              		.loc 1 261 0 is_stmt 1
+ 2265 041c 0223     		movs	r3, #2
+ 2266 041e 3B64     		str	r3, [r7, #64]
+ 262:clock5.c      ****             lmax = 5;
+ 2267              		.loc 1 262 0
+ 2268 0420 0523     		movs	r3, #5
+ 2269 0422 BB63     		str	r3, [r7, #56]
+ 2270 0424 81E1     		b	.L123
+ 2271              	.L105:
+ 263:clock5.c      ****         }
+ 264:clock5.c      ****         else
+ 265:clock5.c      ****         {
+ 266:clock5.c      ****             sprintf(text, "establishe a normal year %d", rtc_get_years());
+ 2272              		.loc 1 266 0
+ 2273 0426 FFF7FEFF 		bl	rtc_get_years
+ 2274 042a 0346     		mov	r3, r0
+ 2275 042c 6548     		ldr	r0, .L142+8
+ 2276 042e 6749     		ldr	r1, .L142+16
+ 2277 0430 1A46     		mov	r2, r3
+ 2278 0432 FFF7FEFF 		bl	sprintf
+ 267:clock5.c      ****             it(text, rtc_is_leap_year() == 0);
+ 2279              		.loc 1 267 0
+ 2280 0436 614B     		ldr	r3, .L142
+ 2281 0438 1B68     		ldr	r3, [r3]
+ 2282 043a 0133     		adds	r3, r3, #1
+ 2283 043c 5F4A     		ldr	r2, .L142
+ 2284 043e 1360     		str	r3, [r2]
+ 2285 0440 FFF7FEFF 		bl	rtc_is_leap_year
+ 2286 0444 0346     		mov	r3, r0
+ 2287 0446 002B     		cmp	r3, #0
+ 2288 0448 0AD0     		beq	.L124
+ 2289              		.loc 1 267 0 is_stmt 0 discriminator 1
+ 2290 044a 5D4B     		ldr	r3, .L142+4
+ 2291 044c 0093     		str	r3, [sp]
+ 2292 044e 5D48     		ldr	r0, .L142+8
+ 2293 0450 5D49     		ldr	r1, .L142+12
+ 2294 0452 5C4A     		ldr	r2, .L142+8
+ 2295 0454 40F20B13 		movw	r3, #267
+ 2296 0458 FFF7FEFF 		bl	sprintf
+ 2297 045c 594B     		ldr	r3, .L142+8
+ 2298 045e 6EE1     		b	.L139
+ 2299              	.L124:
+ 268:clock5.c      ****             for (m = nmin; m < nmax; m++)
+ 2300              		.loc 1 268 0 is_stmt 1
+ 2301 0460 7B6C     		ldr	r3, [r7, #68]
+ 2302 0462 BB64     		str	r3, [r7, #72]
+ 2303 0464 58E1     		b	.L125
+ 2304              	.L137:
+ 269:clock5.c      ****             {
+ 270:clock5.c      ****                 rtc_set_month(m);
+ 2305              		.loc 1 270 0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 48
+
+
+ 2306 0466 B86C     		ldr	r0, [r7, #72]
+ 2307 0468 FFF7FEFF 		bl	rtc_set_month
+ 271:clock5.c      ****                 sprintf(text, "initialize year to %d and month to %d", rtc_get_years(), rtc_get_mon
+ 2308              		.loc 1 271 0
+ 2309 046c FFF7FEFF 		bl	rtc_get_years
+ 2310 0470 0446     		mov	r4, r0
+ 2311 0472 FFF7FEFF 		bl	rtc_get_month
+ 2312 0476 0346     		mov	r3, r0
+ 2313 0478 5248     		ldr	r0, .L142+8
+ 2314 047a 5549     		ldr	r1, .L142+20
+ 2315 047c 2246     		mov	r2, r4
+ 2316 047e FFF7FEFF 		bl	sprintf
+ 272:clock5.c      ****                 it(text, rtc_get_years() == y);
+ 2317              		.loc 1 272 0
+ 2318 0482 4E4B     		ldr	r3, .L142
+ 2319 0484 1B68     		ldr	r3, [r3]
+ 2320 0486 0133     		adds	r3, r3, #1
+ 2321 0488 4C4A     		ldr	r2, .L142
+ 2322 048a 1360     		str	r3, [r2]
+ 2323 048c FFF7FEFF 		bl	rtc_get_years
+ 2324 0490 0246     		mov	r2, r0
+ 2325 0492 FB6C     		ldr	r3, [r7, #76]
+ 2326 0494 9A42     		cmp	r2, r3
+ 2327 0496 0AD0     		beq	.L126
+ 2328              		.loc 1 272 0 is_stmt 0 discriminator 1
+ 2329 0498 494B     		ldr	r3, .L142+4
+ 2330 049a 0093     		str	r3, [sp]
+ 2331 049c 4948     		ldr	r0, .L142+8
+ 2332 049e 4A49     		ldr	r1, .L142+12
+ 2333 04a0 484A     		ldr	r2, .L142+8
+ 2334 04a2 4FF48873 		mov	r3, #272
+ 2335 04a6 FFF7FEFF 		bl	sprintf
+ 2336 04aa 464B     		ldr	r3, .L142+8
+ 2337 04ac 47E1     		b	.L139
+ 2338              	.L126:
+ 273:clock5.c      ****                 it(text, rtc_get_month() == m);
+ 2339              		.loc 1 273 0 is_stmt 1
+ 2340 04ae 434B     		ldr	r3, .L142
+ 2341 04b0 1B68     		ldr	r3, [r3]
+ 2342 04b2 0133     		adds	r3, r3, #1
+ 2343 04b4 414A     		ldr	r2, .L142
+ 2344 04b6 1360     		str	r3, [r2]
+ 2345 04b8 FFF7FEFF 		bl	rtc_get_month
+ 2346 04bc 0246     		mov	r2, r0
+ 2347 04be BB6C     		ldr	r3, [r7, #72]
+ 2348 04c0 9A42     		cmp	r2, r3
+ 2349 04c2 0AD0     		beq	.L127
+ 2350              		.loc 1 273 0 is_stmt 0 discriminator 1
+ 2351 04c4 3E4B     		ldr	r3, .L142+4
+ 2352 04c6 0093     		str	r3, [sp]
+ 2353 04c8 3E48     		ldr	r0, .L142+8
+ 2354 04ca 3F49     		ldr	r1, .L142+12
+ 2355 04cc 3D4A     		ldr	r2, .L142+8
+ 2356 04ce 40F21113 		movw	r3, #273
+ 2357 04d2 FFF7FEFF 		bl	sprintf
+ 2358 04d6 3B4B     		ldr	r3, .L142+8
+ 2359 04d8 31E1     		b	.L139
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 49
+
+
+ 2360              	.L127:
+ 274:clock5.c      ****                 sprintf(text, "establishe days in month %d of normal year %d", rtc_get_month(), rtc
+ 2361              		.loc 1 274 0 is_stmt 1
+ 2362 04da FFF7FEFF 		bl	rtc_get_month
+ 2363 04de 0446     		mov	r4, r0
+ 2364 04e0 FFF7FEFF 		bl	rtc_get_years
+ 2365 04e4 0346     		mov	r3, r0
+ 2366 04e6 3748     		ldr	r0, .L142+8
+ 2367 04e8 3A49     		ldr	r1, .L142+24
+ 2368 04ea 2246     		mov	r2, r4
+ 2369 04ec FFF7FEFF 		bl	sprintf
+ 275:clock5.c      ****                 it(text, days_in_month[rtc_get_month()] == rtc_days_in_month());
+ 2370              		.loc 1 275 0
+ 2371 04f0 324B     		ldr	r3, .L142
+ 2372 04f2 1B68     		ldr	r3, [r3]
+ 2373 04f4 0133     		adds	r3, r3, #1
+ 2374 04f6 314A     		ldr	r2, .L142
+ 2375 04f8 1360     		str	r3, [r2]
+ 2376 04fa FFF7FEFF 		bl	rtc_get_month
+ 2377 04fe 0346     		mov	r3, r0
+ 2378 0500 9B00     		lsls	r3, r3, #2
+ 2379 0502 07F15002 		add	r2, r7, #80
+ 2380 0506 1344     		add	r3, r3, r2
+ 2381 0508 53F84C4C 		ldr	r4, [r3, #-76]
+ 2382 050c FFF7FEFF 		bl	rtc_days_in_month
+ 2383 0510 0346     		mov	r3, r0
+ 2384 0512 9C42     		cmp	r4, r3
+ 2385 0514 0AD0     		beq	.L128
+ 2386              		.loc 1 275 0 is_stmt 0 discriminator 1
+ 2387 0516 2A4B     		ldr	r3, .L142+4
+ 2388 0518 0093     		str	r3, [sp]
+ 2389 051a 2A48     		ldr	r0, .L142+8
+ 2390 051c 2A49     		ldr	r1, .L142+12
+ 2391 051e 294A     		ldr	r2, .L142+8
+ 2392 0520 40F21313 		movw	r3, #275
+ 2393 0524 FFF7FEFF 		bl	sprintf
+ 2394 0528 264B     		ldr	r3, .L142+8
+ 2395 052a 08E1     		b	.L139
+ 2396              	.L128:
+ 276:clock5.c      ****                 
+ 277:clock5.c      ****                 rtc_set_day(days_in_month[rtc_get_month()]);
+ 2397              		.loc 1 277 0 is_stmt 1
+ 2398 052c FFF7FEFF 		bl	rtc_get_month
+ 2399 0530 0346     		mov	r3, r0
+ 2400 0532 9B00     		lsls	r3, r3, #2
+ 2401 0534 07F15002 		add	r2, r7, #80
+ 2402 0538 1344     		add	r3, r3, r2
+ 2403 053a 53F84C3C 		ldr	r3, [r3, #-76]
+ 2404 053e 1846     		mov	r0, r3
+ 2405 0540 FFF7FEFF 		bl	rtc_set_day
+ 278:clock5.c      ****                 rtc_set_seconds(59);
+ 2406              		.loc 1 278 0
+ 2407 0544 3B20     		movs	r0, #59
+ 2408 0546 FFF7FEFF 		bl	rtc_set_seconds
+ 279:clock5.c      ****                 rtc_set_minutes(59);
+ 2409              		.loc 1 279 0
+ 2410 054a 3B20     		movs	r0, #59
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 50
+
+
+ 2411 054c FFF7FEFF 		bl	rtc_set_minutes
+ 280:clock5.c      ****                 rtc_set_hour(23);
+ 2412              		.loc 1 280 0
+ 2413 0550 1720     		movs	r0, #23
+ 2414 0552 FFF7FEFF 		bl	rtc_set_hour
+ 281:clock5.c      ****                 rtc_tick();
+ 2415              		.loc 1 281 0
+ 2416 0556 FFF7FEFF 		bl	rtc_tick
+ 282:clock5.c      ****                 sprintf(text, "handle end of month overflow, year %d, month %d, day %d, hour %d, mi
+ 2417              		.loc 1 282 0
+ 2418 055a FFF7FEFF 		bl	rtc_get_years
+ 2419 055e 8146     		mov	r9, r0
+ 2420 0560 FFF7FEFF 		bl	rtc_get_month
+ 2421 0564 8046     		mov	r8, r0
+ 2422 0566 FFF7FEFF 		bl	rtc_get_day
+ 2423 056a 0646     		mov	r6, r0
+ 2424 056c FFF7FEFF 		bl	rtc_get_hour
+ 2425 0570 0546     		mov	r5, r0
+ 2426 0572 FFF7FEFF 		bl	rtc_get_minutes
+ 2427 0576 0446     		mov	r4, r0
+ 2428 0578 FFF7FEFF 		bl	rtc_get_seconds
+ 2429 057c 0346     		mov	r3, r0
+ 2430 057e 0096     		str	r6, [sp]
+ 2431 0580 0195     		str	r5, [sp, #4]
+ 2432 0582 0294     		str	r4, [sp, #8]
+ 2433 0584 0393     		str	r3, [sp, #12]
+ 2434 0586 0F48     		ldr	r0, .L142+8
+ 2435 0588 1349     		ldr	r1, .L142+28
+ 2436 058a 4A46     		mov	r2, r9
+ 2437 058c 4346     		mov	r3, r8
+ 2438 058e FFF7FEFF 		bl	sprintf
+ 283:clock5.c      ****                 it(text, rtc_get_seconds() == 0);
+ 2439              		.loc 1 283 0
+ 2440 0592 0A4B     		ldr	r3, .L142
+ 2441 0594 1B68     		ldr	r3, [r3]
+ 2442 0596 0133     		adds	r3, r3, #1
+ 2443 0598 084A     		ldr	r2, .L142
+ 2444 059a 1360     		str	r3, [r2]
+ 2445 059c FFF7FEFF 		bl	rtc_get_seconds
+ 2446 05a0 0346     		mov	r3, r0
+ 2447 05a2 002B     		cmp	r3, #0
+ 2448 05a4 1AD0     		beq	.L129
+ 2449              		.loc 1 283 0 is_stmt 0 discriminator 1
+ 2450 05a6 064B     		ldr	r3, .L142+4
+ 2451 05a8 0093     		str	r3, [sp]
+ 2452 05aa 0648     		ldr	r0, .L142+8
+ 2453 05ac 0649     		ldr	r1, .L142+12
+ 2454 05ae 054A     		ldr	r2, .L142+8
+ 2455 05b0 40F21B13 		movw	r3, #283
+ 2456 05b4 FFF7FEFF 		bl	sprintf
+ 2457 05b8 024B     		ldr	r3, .L142+8
+ 2458 05ba C0E0     		b	.L139
+ 2459              	.L143:
+ 2460              		.align	2
+ 2461              	.L142:
+ 2462 05bc 00000000 		.word	assertion_count
+ 2463 05c0 64000000 		.word	.LC3
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 51
+
+
+ 2464 05c4 00000000 		.word	text
+ 2465 05c8 34000000 		.word	.LC1
+ 2466 05cc 34030000 		.word	.LC24
+ 2467 05d0 84020000 		.word	.LC21
+ 2468 05d4 50030000 		.word	.LC25
+ 2469 05d8 D8020000 		.word	.LC23
+ 2470              	.L129:
+ 284:clock5.c      ****                 it(text, rtc_get_minutes() == 0);
+ 2471              		.loc 1 284 0 is_stmt 1
+ 2472 05dc 5A4B     		ldr	r3, .L144
+ 2473 05de 1B68     		ldr	r3, [r3]
+ 2474 05e0 0133     		adds	r3, r3, #1
+ 2475 05e2 594A     		ldr	r2, .L144
+ 2476 05e4 1360     		str	r3, [r2]
+ 2477 05e6 FFF7FEFF 		bl	rtc_get_minutes
+ 2478 05ea 0346     		mov	r3, r0
+ 2479 05ec 002B     		cmp	r3, #0
+ 2480 05ee 0AD0     		beq	.L130
+ 2481              		.loc 1 284 0 is_stmt 0 discriminator 1
+ 2482 05f0 564B     		ldr	r3, .L144+4
+ 2483 05f2 0093     		str	r3, [sp]
+ 2484 05f4 5648     		ldr	r0, .L144+8
+ 2485 05f6 5749     		ldr	r1, .L144+12
+ 2486 05f8 554A     		ldr	r2, .L144+8
+ 2487 05fa 4FF48E73 		mov	r3, #284
+ 2488 05fe FFF7FEFF 		bl	sprintf
+ 2489 0602 534B     		ldr	r3, .L144+8
+ 2490 0604 9BE0     		b	.L139
+ 2491              	.L130:
+ 285:clock5.c      ****                 it(text, rtc_get_hour() == 0);
+ 2492              		.loc 1 285 0 is_stmt 1
+ 2493 0606 504B     		ldr	r3, .L144
+ 2494 0608 1B68     		ldr	r3, [r3]
+ 2495 060a 0133     		adds	r3, r3, #1
+ 2496 060c 4E4A     		ldr	r2, .L144
+ 2497 060e 1360     		str	r3, [r2]
+ 2498 0610 FFF7FEFF 		bl	rtc_get_hour
+ 2499 0614 0346     		mov	r3, r0
+ 2500 0616 002B     		cmp	r3, #0
+ 2501 0618 0AD0     		beq	.L131
+ 2502              		.loc 1 285 0 is_stmt 0 discriminator 1
+ 2503 061a 4C4B     		ldr	r3, .L144+4
+ 2504 061c 0093     		str	r3, [sp]
+ 2505 061e 4C48     		ldr	r0, .L144+8
+ 2506 0620 4C49     		ldr	r1, .L144+12
+ 2507 0622 4B4A     		ldr	r2, .L144+8
+ 2508 0624 40F21D13 		movw	r3, #285
+ 2509 0628 FFF7FEFF 		bl	sprintf
+ 2510 062c 484B     		ldr	r3, .L144+8
+ 2511 062e 86E0     		b	.L139
+ 2512              	.L131:
+ 286:clock5.c      ****                 it(text, rtc_get_day() == 1);
+ 2513              		.loc 1 286 0 is_stmt 1
+ 2514 0630 454B     		ldr	r3, .L144
+ 2515 0632 1B68     		ldr	r3, [r3]
+ 2516 0634 0133     		adds	r3, r3, #1
+ 2517 0636 444A     		ldr	r2, .L144
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 52
+
+
+ 2518 0638 1360     		str	r3, [r2]
+ 2519 063a FFF7FEFF 		bl	rtc_get_day
+ 2520 063e 0346     		mov	r3, r0
+ 2521 0640 012B     		cmp	r3, #1
+ 2522 0642 0AD0     		beq	.L132
+ 2523              		.loc 1 286 0 is_stmt 0 discriminator 1
+ 2524 0644 414B     		ldr	r3, .L144+4
+ 2525 0646 0093     		str	r3, [sp]
+ 2526 0648 4148     		ldr	r0, .L144+8
+ 2527 064a 4249     		ldr	r1, .L144+12
+ 2528 064c 404A     		ldr	r2, .L144+8
+ 2529 064e 4FF48F73 		mov	r3, #286
+ 2530 0652 FFF7FEFF 		bl	sprintf
+ 2531 0656 3E4B     		ldr	r3, .L144+8
+ 2532 0658 71E0     		b	.L139
+ 2533              	.L132:
+ 287:clock5.c      ****                 if (m < 12)
+ 2534              		.loc 1 287 0 is_stmt 1
+ 2535 065a BB6C     		ldr	r3, [r7, #72]
+ 2536 065c 0B2B     		cmp	r3, #11
+ 2537 065e 2CDC     		bgt	.L133
+ 288:clock5.c      ****                 {
+ 289:clock5.c      ****                    it(text, rtc_get_month() == m+1);
+ 2538              		.loc 1 289 0
+ 2539 0660 394B     		ldr	r3, .L144
+ 2540 0662 1B68     		ldr	r3, [r3]
+ 2541 0664 0133     		adds	r3, r3, #1
+ 2542 0666 384A     		ldr	r2, .L144
+ 2543 0668 1360     		str	r3, [r2]
+ 2544 066a FFF7FEFF 		bl	rtc_get_month
+ 2545 066e 0246     		mov	r2, r0
+ 2546 0670 BB6C     		ldr	r3, [r7, #72]
+ 2547 0672 0133     		adds	r3, r3, #1
+ 2548 0674 9A42     		cmp	r2, r3
+ 2549 0676 0AD0     		beq	.L134
+ 2550              		.loc 1 289 0 is_stmt 0 discriminator 1
+ 2551 0678 344B     		ldr	r3, .L144+4
+ 2552 067a 0093     		str	r3, [sp]
+ 2553 067c 3448     		ldr	r0, .L144+8
+ 2554 067e 3549     		ldr	r1, .L144+12
+ 2555 0680 334A     		ldr	r2, .L144+8
+ 2556 0682 40F22113 		movw	r3, #289
+ 2557 0686 FFF7FEFF 		bl	sprintf
+ 2558 068a 314B     		ldr	r3, .L144+8
+ 2559 068c 57E0     		b	.L139
+ 2560              	.L134:
+ 290:clock5.c      ****                    it(text, rtc_get_years() == y);
+ 2561              		.loc 1 290 0 is_stmt 1
+ 2562 068e 2E4B     		ldr	r3, .L144
+ 2563 0690 1B68     		ldr	r3, [r3]
+ 2564 0692 0133     		adds	r3, r3, #1
+ 2565 0694 2C4A     		ldr	r2, .L144
+ 2566 0696 1360     		str	r3, [r2]
+ 2567 0698 FFF7FEFF 		bl	rtc_get_years
+ 2568 069c 0246     		mov	r2, r0
+ 2569 069e FB6C     		ldr	r3, [r7, #76]
+ 2570 06a0 9A42     		cmp	r2, r3
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 53
+
+
+ 2571 06a2 36D0     		beq	.L135
+ 2572              		.loc 1 290 0 is_stmt 0 discriminator 1
+ 2573 06a4 294B     		ldr	r3, .L144+4
+ 2574 06a6 0093     		str	r3, [sp]
+ 2575 06a8 2948     		ldr	r0, .L144+8
+ 2576 06aa 2A49     		ldr	r1, .L144+12
+ 2577 06ac 284A     		ldr	r2, .L144+8
+ 2578 06ae 4FF49173 		mov	r3, #290
+ 2579 06b2 FFF7FEFF 		bl	sprintf
+ 2580 06b6 264B     		ldr	r3, .L144+8
+ 2581 06b8 41E0     		b	.L139
+ 2582              	.L133:
+ 291:clock5.c      ****                 }
+ 292:clock5.c      ****                 
+ 293:clock5.c      ****                 else
+ 294:clock5.c      ****                 {
+ 295:clock5.c      ****                    it(text, rtc_get_month() == 1);
+ 2583              		.loc 1 295 0 is_stmt 1
+ 2584 06ba 234B     		ldr	r3, .L144
+ 2585 06bc 1B68     		ldr	r3, [r3]
+ 2586 06be 0133     		adds	r3, r3, #1
+ 2587 06c0 214A     		ldr	r2, .L144
+ 2588 06c2 1360     		str	r3, [r2]
+ 2589 06c4 FFF7FEFF 		bl	rtc_get_month
+ 2590 06c8 0346     		mov	r3, r0
+ 2591 06ca 012B     		cmp	r3, #1
+ 2592 06cc 0AD0     		beq	.L136
+ 2593              		.loc 1 295 0 is_stmt 0 discriminator 1
+ 2594 06ce 1F4B     		ldr	r3, .L144+4
+ 2595 06d0 0093     		str	r3, [sp]
+ 2596 06d2 1F48     		ldr	r0, .L144+8
+ 2597 06d4 1F49     		ldr	r1, .L144+12
+ 2598 06d6 1E4A     		ldr	r2, .L144+8
+ 2599 06d8 40F22713 		movw	r3, #295
+ 2600 06dc FFF7FEFF 		bl	sprintf
+ 2601 06e0 1B4B     		ldr	r3, .L144+8
+ 2602 06e2 2CE0     		b	.L139
+ 2603              	.L136:
+ 296:clock5.c      ****                    it(text, rtc_get_years() == (y+1));
+ 2604              		.loc 1 296 0 is_stmt 1
+ 2605 06e4 184B     		ldr	r3, .L144
+ 2606 06e6 1B68     		ldr	r3, [r3]
+ 2607 06e8 0133     		adds	r3, r3, #1
+ 2608 06ea 174A     		ldr	r2, .L144
+ 2609 06ec 1360     		str	r3, [r2]
+ 2610 06ee FFF7FEFF 		bl	rtc_get_years
+ 2611 06f2 0246     		mov	r2, r0
+ 2612 06f4 FB6C     		ldr	r3, [r7, #76]
+ 2613 06f6 0133     		adds	r3, r3, #1
+ 2614 06f8 9A42     		cmp	r2, r3
+ 2615 06fa 0AD0     		beq	.L135
+ 2616              		.loc 1 296 0 is_stmt 0 discriminator 1
+ 2617 06fc 134B     		ldr	r3, .L144+4
+ 2618 06fe 0093     		str	r3, [sp]
+ 2619 0700 1348     		ldr	r0, .L144+8
+ 2620 0702 1449     		ldr	r1, .L144+12
+ 2621 0704 124A     		ldr	r2, .L144+8
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 54
+
+
+ 2622 0706 4FF49473 		mov	r3, #296
+ 2623 070a FFF7FEFF 		bl	sprintf
+ 2624 070e 104B     		ldr	r3, .L144+8
+ 2625 0710 15E0     		b	.L139
+ 2626              	.L135:
+ 268:clock5.c      ****             {
+ 2627              		.loc 1 268 0 is_stmt 1 discriminator 2
+ 2628 0712 BB6C     		ldr	r3, [r7, #72]
+ 2629 0714 0133     		adds	r3, r3, #1
+ 2630 0716 BB64     		str	r3, [r7, #72]
+ 2631              	.L125:
+ 268:clock5.c      ****             {
+ 2632              		.loc 1 268 0 is_stmt 0 discriminator 1
+ 2633 0718 BA6C     		ldr	r2, [r7, #72]
+ 2634 071a FB6B     		ldr	r3, [r7, #60]
+ 2635 071c 9A42     		cmp	r2, r3
+ 2636 071e FFF6A2AE 		blt	.L137
+ 297:clock5.c      ****                 }
+ 298:clock5.c      ****             }
+ 299:clock5.c      ****             nmin = 2;
+ 2637              		.loc 1 299 0 is_stmt 1
+ 2638 0722 0223     		movs	r3, #2
+ 2639 0724 7B64     		str	r3, [r7, #68]
+ 300:clock5.c      ****             nmax = 5;
+ 2640              		.loc 1 300 0
+ 2641 0726 0523     		movs	r3, #5
+ 2642 0728 FB63     		str	r3, [r7, #60]
+ 2643              	.L123:
+ 210:clock5.c      ****     {
+ 2644              		.loc 1 210 0 discriminator 2
+ 2645 072a FB6C     		ldr	r3, [r7, #76]
+ 2646 072c 0133     		adds	r3, r3, #1
+ 2647 072e FB64     		str	r3, [r7, #76]
+ 2648              	.L100:
+ 210:clock5.c      ****     {
+ 2649              		.loc 1 210 0 is_stmt 0 discriminator 1
+ 2650 0730 FB6C     		ldr	r3, [r7, #76]
+ 2651 0732 40F63302 		movw	r2, #2099
+ 2652 0736 9342     		cmp	r3, r2
+ 2653 0738 7FF77DAC 		ble	.L138
+ 301:clock5.c      ****         }
+ 302:clock5.c      ****     }
+ 303:clock5.c      ****     return 0;
+ 2654              		.loc 1 303 0 is_stmt 1
+ 2655 073c 0023     		movs	r3, #0
+ 2656              	.L139:
+ 304:clock5.c      **** }
+ 2657              		.loc 1 304 0 discriminator 1
+ 2658 073e 1846     		mov	r0, r3
+ 2659 0740 5437     		adds	r7, r7, #84
+ 2660              		.cfi_def_cfa_offset 28
+ 2661 0742 BD46     		mov	sp, r7
+ 2662              		.cfi_def_cfa_register 13
+ 2663              		@ sp needed
+ 2664 0744 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 2665              	.L145:
+ 2666              		.align	2
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 55
+
+
+ 2667              	.L144:
+ 2668 0748 00000000 		.word	assertion_count
+ 2669 074c 64000000 		.word	.LC3
+ 2670 0750 00000000 		.word	text
+ 2671 0754 34000000 		.word	.LC1
+ 2672              		.cfi_endproc
+ 2673              	.LFE19:
+ 2674              		.size	test_rtc_leap_years, .-test_rtc_leap_years
+ 2675              		.section	.rodata
+ 2676 037e 0000     		.align	2
+ 2677              	.LC26:
+ 2678 0380 696E6974 		.ascii	"initialize RTC minutes to 10\000"
+ 2678      69616C69 
+ 2678      7A652052 
+ 2678      5443206D 
+ 2678      696E7574 
+ 2679 039d 000000   		.align	2
+ 2680              	.LC27:
+ 2681 03a0 696E6974 		.ascii	"initialize RTC hour to 13\000"
+ 2681      69616C69 
+ 2681      7A652052 
+ 2681      54432068 
+ 2681      6F757220 
+ 2682 03ba 0000     		.align	2
+ 2683              	.LC28:
+ 2684 03bc 696E6974 		.ascii	"initialize RTC day to 2\000"
+ 2684      69616C69 
+ 2684      7A652052 
+ 2684      54432064 
+ 2684      61792074 
+ 2685              		.align	2
+ 2686              	.LC29:
+ 2687 03d4 696E6974 		.ascii	"initialize RTC month to 9\000"
+ 2687      69616C69 
+ 2687      7A652052 
+ 2687      5443206D 
+ 2687      6F6E7468 
+ 2688 03ee 0000     		.align	2
+ 2689              	.LC30:
+ 2690 03f0 696E6974 		.ascii	"initialize RTC year to 2004\000"
+ 2690      69616C69 
+ 2690      7A652052 
+ 2690      54432079 
+ 2690      65617220 
+ 2691              		.section	.text.test_rtc_typef,"ax",%progbits
+ 2692              		.align	2
+ 2693              		.global	test_rtc_typef
+ 2694              		.thumb
+ 2695              		.thumb_func
+ 2696              		.type	test_rtc_typef, %function
+ 2697              	test_rtc_typef:
+ 2698              	.LFB20:
+ 305:clock5.c      **** 
+ 306:clock5.c      **** char * test_rtc_typef() {
+ 2699              		.loc 1 306 0
+ 2700              		.cfi_startproc
+ 2701              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 56
+
+
+ 2702              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2703 0000 80B5     		push	{r7, lr}
+ 2704              		.cfi_def_cfa_offset 8
+ 2705              		.cfi_offset 7, -8
+ 2706              		.cfi_offset 14, -4
+ 2707 0002 82B0     		sub	sp, sp, #8
+ 2708              		.cfi_def_cfa_offset 16
+ 2709 0004 02AF     		add	r7, sp, #8
+ 2710              		.cfi_def_cfa 7, 8
+ 307:clock5.c      ****     //http://www.multical.hu/WiredMBus-water.pdf
+ 308:clock5.c      ****     rtc_typef[0]=0x0A;
+ 2711              		.loc 1 308 0
+ 2712 0006 3D4B     		ldr	r3, .L153
+ 2713 0008 0A22     		movs	r2, #10
+ 2714 000a 1A70     		strb	r2, [r3]
+ 309:clock5.c      ****     rtc_typef[1]=0x2D;
+ 2715              		.loc 1 309 0
+ 2716 000c 3B4B     		ldr	r3, .L153
+ 2717 000e 2D22     		movs	r2, #45
+ 2718 0010 5A70     		strb	r2, [r3, #1]
+ 310:clock5.c      ****     rtc_typef[2]=0x82;
+ 2719              		.loc 1 310 0
+ 2720 0012 3A4B     		ldr	r3, .L153
+ 2721 0014 8222     		movs	r2, #130
+ 2722 0016 9A70     		strb	r2, [r3, #2]
+ 311:clock5.c      ****     rtc_typef[3]=0x09;
+ 2723              		.loc 1 311 0
+ 2724 0018 384B     		ldr	r3, .L153
+ 2725 001a 0922     		movs	r2, #9
+ 2726 001c DA70     		strb	r2, [r3, #3]
+ 312:clock5.c      ****     it("initialize RTC minutes to 10", rtc_get_minutes() == 10);
+ 2727              		.loc 1 312 0
+ 2728 001e 384B     		ldr	r3, .L153+4
+ 2729 0020 1B68     		ldr	r3, [r3]
+ 2730 0022 0133     		adds	r3, r3, #1
+ 2731 0024 364A     		ldr	r2, .L153+4
+ 2732 0026 1360     		str	r3, [r2]
+ 2733 0028 FFF7FEFF 		bl	rtc_get_minutes
+ 2734 002c 0346     		mov	r3, r0
+ 2735 002e 0A2B     		cmp	r3, #10
+ 2736 0030 0AD0     		beq	.L147
+ 2737              		.loc 1 312 0 is_stmt 0 discriminator 1
+ 2738 0032 344B     		ldr	r3, .L153+8
+ 2739 0034 0093     		str	r3, [sp]
+ 2740 0036 3448     		ldr	r0, .L153+12
+ 2741 0038 3449     		ldr	r1, .L153+16
+ 2742 003a 354A     		ldr	r2, .L153+20
+ 2743 003c 4FF49C73 		mov	r3, #312
+ 2744 0040 FFF7FEFF 		bl	sprintf
+ 2745 0044 304B     		ldr	r3, .L153+12
+ 2746 0046 56E0     		b	.L148
+ 2747              	.L147:
+ 313:clock5.c      ****     it("initialize RTC hour to 13", rtc_get_hour() == 13);
+ 2748              		.loc 1 313 0 is_stmt 1
+ 2749 0048 2D4B     		ldr	r3, .L153+4
+ 2750 004a 1B68     		ldr	r3, [r3]
+ 2751 004c 0133     		adds	r3, r3, #1
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 57
+
+
+ 2752 004e 2C4A     		ldr	r2, .L153+4
+ 2753 0050 1360     		str	r3, [r2]
+ 2754 0052 FFF7FEFF 		bl	rtc_get_hour
+ 2755 0056 0346     		mov	r3, r0
+ 2756 0058 0D2B     		cmp	r3, #13
+ 2757 005a 0AD0     		beq	.L149
+ 2758              		.loc 1 313 0 is_stmt 0 discriminator 1
+ 2759 005c 294B     		ldr	r3, .L153+8
+ 2760 005e 0093     		str	r3, [sp]
+ 2761 0060 2948     		ldr	r0, .L153+12
+ 2762 0062 2A49     		ldr	r1, .L153+16
+ 2763 0064 2B4A     		ldr	r2, .L153+24
+ 2764 0066 40F23913 		movw	r3, #313
+ 2765 006a FFF7FEFF 		bl	sprintf
+ 2766 006e 264B     		ldr	r3, .L153+12
+ 2767 0070 41E0     		b	.L148
+ 2768              	.L149:
+ 314:clock5.c      ****     it("initialize RTC day to 2", rtc_get_day() == 2);
+ 2769              		.loc 1 314 0 is_stmt 1
+ 2770 0072 234B     		ldr	r3, .L153+4
+ 2771 0074 1B68     		ldr	r3, [r3]
+ 2772 0076 0133     		adds	r3, r3, #1
+ 2773 0078 214A     		ldr	r2, .L153+4
+ 2774 007a 1360     		str	r3, [r2]
+ 2775 007c FFF7FEFF 		bl	rtc_get_day
+ 2776 0080 0346     		mov	r3, r0
+ 2777 0082 022B     		cmp	r3, #2
+ 2778 0084 0AD0     		beq	.L150
+ 2779              		.loc 1 314 0 is_stmt 0 discriminator 1
+ 2780 0086 1F4B     		ldr	r3, .L153+8
+ 2781 0088 0093     		str	r3, [sp]
+ 2782 008a 1F48     		ldr	r0, .L153+12
+ 2783 008c 1F49     		ldr	r1, .L153+16
+ 2784 008e 224A     		ldr	r2, .L153+28
+ 2785 0090 4FF49D73 		mov	r3, #314
+ 2786 0094 FFF7FEFF 		bl	sprintf
+ 2787 0098 1B4B     		ldr	r3, .L153+12
+ 2788 009a 2CE0     		b	.L148
+ 2789              	.L150:
+ 315:clock5.c      ****     it("initialize RTC month to 9", rtc_get_month() == 9);
+ 2790              		.loc 1 315 0 is_stmt 1
+ 2791 009c 184B     		ldr	r3, .L153+4
+ 2792 009e 1B68     		ldr	r3, [r3]
+ 2793 00a0 0133     		adds	r3, r3, #1
+ 2794 00a2 174A     		ldr	r2, .L153+4
+ 2795 00a4 1360     		str	r3, [r2]
+ 2796 00a6 FFF7FEFF 		bl	rtc_get_month
+ 2797 00aa 0346     		mov	r3, r0
+ 2798 00ac 092B     		cmp	r3, #9
+ 2799 00ae 0AD0     		beq	.L151
+ 2800              		.loc 1 315 0 is_stmt 0 discriminator 1
+ 2801 00b0 144B     		ldr	r3, .L153+8
+ 2802 00b2 0093     		str	r3, [sp]
+ 2803 00b4 1448     		ldr	r0, .L153+12
+ 2804 00b6 1549     		ldr	r1, .L153+16
+ 2805 00b8 184A     		ldr	r2, .L153+32
+ 2806 00ba 40F23B13 		movw	r3, #315
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 58
+
+
+ 2807 00be FFF7FEFF 		bl	sprintf
+ 2808 00c2 114B     		ldr	r3, .L153+12
+ 2809 00c4 17E0     		b	.L148
+ 2810              	.L151:
+ 316:clock5.c      ****     it("initialize RTC year to 2004", rtc_get_years() == 2004);
+ 2811              		.loc 1 316 0 is_stmt 1
+ 2812 00c6 0E4B     		ldr	r3, .L153+4
+ 2813 00c8 1B68     		ldr	r3, [r3]
+ 2814 00ca 0133     		adds	r3, r3, #1
+ 2815 00cc 0C4A     		ldr	r2, .L153+4
+ 2816 00ce 1360     		str	r3, [r2]
+ 2817 00d0 FFF7FEFF 		bl	rtc_get_years
+ 2818 00d4 0246     		mov	r2, r0
+ 2819 00d6 40F2D473 		movw	r3, #2004
+ 2820 00da 9A42     		cmp	r2, r3
+ 2821 00dc 0AD0     		beq	.L152
+ 2822              		.loc 1 316 0 is_stmt 0 discriminator 1
+ 2823 00de 094B     		ldr	r3, .L153+8
+ 2824 00e0 0093     		str	r3, [sp]
+ 2825 00e2 0948     		ldr	r0, .L153+12
+ 2826 00e4 0949     		ldr	r1, .L153+16
+ 2827 00e6 0E4A     		ldr	r2, .L153+36
+ 2828 00e8 4FF49E73 		mov	r3, #316
+ 2829 00ec FFF7FEFF 		bl	sprintf
+ 2830 00f0 054B     		ldr	r3, .L153+12
+ 2831 00f2 00E0     		b	.L148
+ 2832              	.L152:
+ 317:clock5.c      ****     return 0;
+ 2833              		.loc 1 317 0 is_stmt 1
+ 2834 00f4 0023     		movs	r3, #0
+ 2835              	.L148:
+ 318:clock5.c      **** }
+ 2836              		.loc 1 318 0
+ 2837 00f6 1846     		mov	r0, r3
+ 2838 00f8 BD46     		mov	sp, r7
+ 2839              		.cfi_def_cfa_register 13
+ 2840              		@ sp needed
+ 2841 00fa 80BD     		pop	{r7, pc}
+ 2842              	.L154:
+ 2843              		.align	2
+ 2844              	.L153:
+ 2845 00fc 00000000 		.word	rtc_typef
+ 2846 0100 00000000 		.word	assertion_count
+ 2847 0104 64000000 		.word	.LC3
+ 2848 0108 00000000 		.word	text
+ 2849 010c 34000000 		.word	.LC1
+ 2850 0110 80030000 		.word	.LC26
+ 2851 0114 A0030000 		.word	.LC27
+ 2852 0118 BC030000 		.word	.LC28
+ 2853 011c D4030000 		.word	.LC29
+ 2854 0120 F0030000 		.word	.LC30
+ 2855              		.cfi_endproc
+ 2856              	.LFE20:
+ 2857              		.size	test_rtc_typef, .-test_rtc_typef
+ 2858              		.global	TestCollection
+ 2859              		.section	.rodata
+ 2860              		.align	2
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 59
+
+
+ 2861              	.LC31:
+ 2862 040c 5265616C 		.ascii	"Real Time Clock Seconds\000"
+ 2862      2054696D 
+ 2862      6520436C 
+ 2862      6F636B20 
+ 2862      5365636F 
+ 2863              		.align	2
+ 2864              	.LC32:
+ 2865 0424 5265616C 		.ascii	"Real Time Clock Minutes\000"
+ 2865      2054696D 
+ 2865      6520436C 
+ 2865      6F636B20 
+ 2865      4D696E75 
+ 2866              		.align	2
+ 2867              	.LC33:
+ 2868 043c 5265616C 		.ascii	"Real Time Clock Hours\000"
+ 2868      2054696D 
+ 2868      6520436C 
+ 2868      6F636B20 
+ 2868      486F7572 
+ 2869 0452 0000     		.align	2
+ 2870              	.LC34:
+ 2871 0454 5265616C 		.ascii	"Real Time Clock Days & Months\000"
+ 2871      2054696D 
+ 2871      6520436C 
+ 2871      6F636B20 
+ 2871      44617973 
+ 2872 0472 0000     		.align	2
+ 2873              	.LC35:
+ 2874 0474 5265616C 		.ascii	"Real Time Clock Leap Years\000"
+ 2874      2054696D 
+ 2874      6520436C 
+ 2874      6F636B20 
+ 2874      4C656170 
+ 2875 048f 00       		.align	2
+ 2876              	.LC36:
+ 2877 0490 5265616C 		.ascii	"Real Time Clock TypeF\000"
+ 2877      2054696D 
+ 2877      6520436C 
+ 2877      6F636B20 
+ 2877      54797065 
+ 2878              		.data
+ 2879              		.align	2
+ 2880              		.type	TestCollection, %object
+ 2881              		.size	TestCollection, 48
+ 2882              	TestCollection:
+ 2883 0004 0C040000 		.word	.LC31
+ 2884 0008 00000000 		.word	test_rtc_seconds
+ 2885 000c 24040000 		.word	.LC32
+ 2886 0010 00000000 		.word	test_rtc_minutes
+ 2887 0014 3C040000 		.word	.LC33
+ 2888 0018 00000000 		.word	test_rtc_hour
+ 2889 001c 54040000 		.word	.LC34
+ 2890 0020 00000000 		.word	test_rtc_days_months
+ 2891 0024 74040000 		.word	.LC35
+ 2892 0028 00000000 		.word	test_rtc_leap_years
+ 2893 002c 90040000 		.word	.LC36
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 60
+
+
+ 2894 0030 00000000 		.word	test_rtc_typef
+ 2895              		.global	testsCount
+ 2896              		.section	.rodata
+ 2897 04a6 0000     		.align	2
+ 2898              		.type	testsCount, %object
+ 2899              		.size	testsCount, 4
+ 2900              	testsCount:
+ 2901 04a8 06000000 		.word	6
+ 2902              		.text
+ 2903              	.Letext0:
+ 2904              		.file 2 "minunit.h"
+ 2905              		.section	.debug_info,"",%progbits
+ 2906              	.Ldebug_info0:
+ 2907 0000 CE030000 		.4byte	0x3ce
+ 2908 0004 0400     		.2byte	0x4
+ 2909 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 2910 000a 04       		.byte	0x4
+ 2911 000b 01       		.uleb128 0x1
+ 2912 000c 70000000 		.4byte	.LASF43
+ 2913 0010 01       		.byte	0x1
+ 2914 0011 3D020000 		.4byte	.LASF44
+ 2915 0015 18000000 		.4byte	.LASF45
+ 2916 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 2917 001d 00000000 		.4byte	0
+ 2918 0021 00000000 		.4byte	.Ldebug_line0
+ 2919 0025 02       		.uleb128 0x2
+ 2920 0026 01       		.byte	0x1
+ 2921 0027 06       		.byte	0x6
+ 2922 0028 04030000 		.4byte	.LASF0
+ 2923 002c 02       		.uleb128 0x2
+ 2924 002d 01       		.byte	0x1
+ 2925 002e 08       		.byte	0x8
+ 2926 002f 5C010000 		.4byte	.LASF1
+ 2927 0033 02       		.uleb128 0x2
+ 2928 0034 02       		.byte	0x2
+ 2929 0035 05       		.byte	0x5
+ 2930 0036 AB020000 		.4byte	.LASF2
+ 2931 003a 02       		.uleb128 0x2
+ 2932 003b 02       		.byte	0x2
+ 2933 003c 07       		.byte	0x7
+ 2934 003d 86010000 		.4byte	.LASF3
+ 2935 0041 02       		.uleb128 0x2
+ 2936 0042 04       		.byte	0x4
+ 2937 0043 05       		.byte	0x5
+ 2938 0044 F6020000 		.4byte	.LASF4
+ 2939 0048 02       		.uleb128 0x2
+ 2940 0049 04       		.byte	0x4
+ 2941 004a 07       		.byte	0x7
+ 2942 004b 74010000 		.4byte	.LASF5
+ 2943 004f 02       		.uleb128 0x2
+ 2944 0050 08       		.byte	0x8
+ 2945 0051 05       		.byte	0x5
+ 2946 0052 6D020000 		.4byte	.LASF6
+ 2947 0056 02       		.uleb128 0x2
+ 2948 0057 08       		.byte	0x8
+ 2949 0058 07       		.byte	0x7
+ 2950 0059 EC010000 		.4byte	.LASF7
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 61
+
+
+ 2951 005d 03       		.uleb128 0x3
+ 2952 005e 04       		.byte	0x4
+ 2953 005f 05       		.byte	0x5
+ 2954 0060 696E7400 		.ascii	"int\000"
+ 2955 0064 02       		.uleb128 0x2
+ 2956 0065 04       		.byte	0x4
+ 2957 0066 07       		.byte	0x7
+ 2958 0067 DF010000 		.4byte	.LASF8
+ 2959 006b 02       		.uleb128 0x2
+ 2960 006c 04       		.byte	0x4
+ 2961 006d 07       		.byte	0x7
+ 2962 006e 46020000 		.4byte	.LASF9
+ 2963 0072 04       		.uleb128 0x4
+ 2964 0073 04       		.byte	0x4
+ 2965 0074 78000000 		.4byte	0x78
+ 2966 0078 02       		.uleb128 0x2
+ 2967 0079 01       		.byte	0x1
+ 2968 007a 08       		.byte	0x8
+ 2969 007b FF020000 		.4byte	.LASF10
+ 2970 007f 05       		.uleb128 0x5
+ 2971 0080 51010000 		.4byte	.LASF46
+ 2972 0084 08       		.byte	0x8
+ 2973 0085 02       		.byte	0x2
+ 2974 0086 28       		.byte	0x28
+ 2975 0087 A4000000 		.4byte	0xa4
+ 2976 008b 06       		.uleb128 0x6
+ 2977 008c 6D736700 		.ascii	"msg\000"
+ 2978 0090 02       		.byte	0x2
+ 2979 0091 29       		.byte	0x29
+ 2980 0092 72000000 		.4byte	0x72
+ 2981 0096 00       		.byte	0
+ 2982 0097 07       		.uleb128 0x7
+ 2983 0098 DA010000 		.4byte	.LASF11
+ 2984 009c 02       		.byte	0x2
+ 2985 009d 2A       		.byte	0x2a
+ 2986 009e A9000000 		.4byte	0xa9
+ 2987 00a2 04       		.byte	0x4
+ 2988 00a3 00       		.byte	0
+ 2989 00a4 08       		.uleb128 0x8
+ 2990 00a5 72000000 		.4byte	0x72
+ 2991 00a9 04       		.uleb128 0x4
+ 2992 00aa 04       		.byte	0x4
+ 2993 00ab A4000000 		.4byte	0xa4
+ 2994 00af 09       		.uleb128 0x9
+ 2995 00b0 99010000 		.4byte	.LASF12
+ 2996 00b4 01       		.byte	0x1
+ 2997 00b5 0E       		.byte	0xe
+ 2998 00b6 00000000 		.4byte	.LFB0
+ 2999 00ba 1C000000 		.4byte	.LFE0-.LFB0
+ 3000 00be 01       		.uleb128 0x1
+ 3001 00bf 9C       		.byte	0x9c
+ 3002 00c0 D1000000 		.4byte	0xd1
+ 3003 00c4 0A       		.uleb128 0xa
+ 3004 00c5 7300     		.ascii	"s\000"
+ 3005 00c7 01       		.byte	0x1
+ 3006 00c8 0E       		.byte	0xe
+ 3007 00c9 5D000000 		.4byte	0x5d
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 62
+
+
+ 3008 00cd 02       		.uleb128 0x2
+ 3009 00ce 91       		.byte	0x91
+ 3010 00cf 74       		.sleb128 -12
+ 3011 00d0 00       		.byte	0
+ 3012 00d1 0B       		.uleb128 0xb
+ 3013 00d2 13020000 		.4byte	.LASF14
+ 3014 00d6 01       		.byte	0x1
+ 3015 00d7 13       		.byte	0x13
+ 3016 00d8 5D000000 		.4byte	0x5d
+ 3017 00dc 00000000 		.4byte	.LFB1
+ 3018 00e0 18000000 		.4byte	.LFE1-.LFB1
+ 3019 00e4 01       		.uleb128 0x1
+ 3020 00e5 9C       		.byte	0x9c
+ 3021 00e6 09       		.uleb128 0x9
+ 3022 00e7 7B020000 		.4byte	.LASF13
+ 3023 00eb 01       		.byte	0x1
+ 3024 00ec 18       		.byte	0x18
+ 3025 00ed 00000000 		.4byte	.LFB2
+ 3026 00f1 38000000 		.4byte	.LFE2-.LFB2
+ 3027 00f5 01       		.uleb128 0x1
+ 3028 00f6 9C       		.byte	0x9c
+ 3029 00f7 08010000 		.4byte	0x108
+ 3030 00fb 0A       		.uleb128 0xa
+ 3031 00fc 6D00     		.ascii	"m\000"
+ 3032 00fe 01       		.byte	0x1
+ 3033 00ff 18       		.byte	0x18
+ 3034 0100 5D000000 		.4byte	0x5d
+ 3035 0104 02       		.uleb128 0x2
+ 3036 0105 91       		.byte	0x91
+ 3037 0106 74       		.sleb128 -12
+ 3038 0107 00       		.byte	0
+ 3039 0108 0B       		.uleb128 0xb
+ 3040 0109 A9010000 		.4byte	.LASF15
+ 3041 010d 01       		.byte	0x1
+ 3042 010e 1D       		.byte	0x1d
+ 3043 010f 5D000000 		.4byte	0x5d
+ 3044 0113 00000000 		.4byte	.LFB3
+ 3045 0117 1C000000 		.4byte	.LFE3-.LFB3
+ 3046 011b 01       		.uleb128 0x1
+ 3047 011c 9C       		.byte	0x9c
+ 3048 011d 09       		.uleb128 0x9
+ 3049 011e 44010000 		.4byte	.LASF16
+ 3050 0122 01       		.byte	0x1
+ 3051 0123 22       		.byte	0x22
+ 3052 0124 00000000 		.4byte	.LFB4
+ 3053 0128 38000000 		.4byte	.LFE4-.LFB4
+ 3054 012c 01       		.uleb128 0x1
+ 3055 012d 9C       		.byte	0x9c
+ 3056 012e 3F010000 		.4byte	0x13f
+ 3057 0132 0A       		.uleb128 0xa
+ 3058 0133 6800     		.ascii	"h\000"
+ 3059 0135 01       		.byte	0x1
+ 3060 0136 22       		.byte	0x22
+ 3061 0137 5D000000 		.4byte	0x5d
+ 3062 013b 02       		.uleb128 0x2
+ 3063 013c 91       		.byte	0x91
+ 3064 013d 74       		.sleb128 -12
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 63
+
+
+ 3065 013e 00       		.byte	0
+ 3066 013f 0B       		.uleb128 0xb
+ 3067 0140 CD010000 		.4byte	.LASF17
+ 3068 0144 01       		.byte	0x1
+ 3069 0145 27       		.byte	0x27
+ 3070 0146 5D000000 		.4byte	0x5d
+ 3071 014a 00000000 		.4byte	.LFB5
+ 3072 014e 1C000000 		.4byte	.LFE5-.LFB5
+ 3073 0152 01       		.uleb128 0x1
+ 3074 0153 9C       		.byte	0x9c
+ 3075 0154 09       		.uleb128 0x9
+ 3076 0155 31020000 		.4byte	.LASF18
+ 3077 0159 01       		.byte	0x1
+ 3078 015a 2C       		.byte	0x2c
+ 3079 015b 00000000 		.4byte	.LFB6
+ 3080 015f 38000000 		.4byte	.LFE6-.LFB6
+ 3081 0163 01       		.uleb128 0x1
+ 3082 0164 9C       		.byte	0x9c
+ 3083 0165 76010000 		.4byte	0x176
+ 3084 0169 0A       		.uleb128 0xa
+ 3085 016a 6400     		.ascii	"d\000"
+ 3086 016c 01       		.byte	0x1
+ 3087 016d 2C       		.byte	0x2c
+ 3088 016e 5D000000 		.4byte	0x5d
+ 3089 0172 02       		.uleb128 0x2
+ 3090 0173 91       		.byte	0x91
+ 3091 0174 74       		.sleb128 -12
+ 3092 0175 00       		.byte	0
+ 3093 0176 0B       		.uleb128 0xb
+ 3094 0177 61020000 		.4byte	.LASF19
+ 3095 017b 01       		.byte	0x1
+ 3096 017c 31       		.byte	0x31
+ 3097 017d 5D000000 		.4byte	0x5d
+ 3098 0181 00000000 		.4byte	.LFB7
+ 3099 0185 1C000000 		.4byte	.LFE7-.LFB7
+ 3100 0189 01       		.uleb128 0x1
+ 3101 018a 9C       		.byte	0x9c
+ 3102 018b 09       		.uleb128 0x9
+ 3103 018c 62000000 		.4byte	.LASF20
+ 3104 0190 01       		.byte	0x1
+ 3105 0191 36       		.byte	0x36
+ 3106 0192 00000000 		.4byte	.LFB8
+ 3107 0196 38000000 		.4byte	.LFE8-.LFB8
+ 3108 019a 01       		.uleb128 0x1
+ 3109 019b 9C       		.byte	0x9c
+ 3110 019c AD010000 		.4byte	0x1ad
+ 3111 01a0 0A       		.uleb128 0xa
+ 3112 01a1 6D00     		.ascii	"m\000"
+ 3113 01a3 01       		.byte	0x1
+ 3114 01a4 36       		.byte	0x36
+ 3115 01a5 5D000000 		.4byte	0x5d
+ 3116 01a9 02       		.uleb128 0x2
+ 3117 01aa 91       		.byte	0x91
+ 3118 01ab 74       		.sleb128 -12
+ 3119 01ac 00       		.byte	0
+ 3120 01ad 0B       		.uleb128 0xb
+ 3121 01ae 17010000 		.4byte	.LASF21
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 64
+
+
+ 3122 01b2 01       		.byte	0x1
+ 3123 01b3 3B       		.byte	0x3b
+ 3124 01b4 5D000000 		.4byte	0x5d
+ 3125 01b8 00000000 		.4byte	.LFB9
+ 3126 01bc 1C000000 		.4byte	.LFE9-.LFB9
+ 3127 01c0 01       		.uleb128 0x1
+ 3128 01c1 9C       		.byte	0x9c
+ 3129 01c2 09       		.uleb128 0x9
+ 3130 01c3 BE020000 		.4byte	.LASF22
+ 3131 01c7 01       		.byte	0x1
+ 3132 01c8 40       		.byte	0x40
+ 3133 01c9 00000000 		.4byte	.LFB10
+ 3134 01cd 70000000 		.4byte	.LFE10-.LFB10
+ 3135 01d1 01       		.uleb128 0x1
+ 3136 01d2 9C       		.byte	0x9c
+ 3137 01d3 E4010000 		.4byte	0x1e4
+ 3138 01d7 0A       		.uleb128 0xa
+ 3139 01d8 7900     		.ascii	"y\000"
+ 3140 01da 01       		.byte	0x1
+ 3141 01db 40       		.byte	0x40
+ 3142 01dc 5D000000 		.4byte	0x5d
+ 3143 01e0 02       		.uleb128 0x2
+ 3144 01e1 91       		.byte	0x91
+ 3145 01e2 74       		.sleb128 -12
+ 3146 01e3 00       		.byte	0
+ 3147 01e4 0B       		.uleb128 0xb
+ 3148 01e5 36010000 		.4byte	.LASF23
+ 3149 01e9 01       		.byte	0x1
+ 3150 01ea 47       		.byte	0x47
+ 3151 01eb 5D000000 		.4byte	0x5d
+ 3152 01ef 00000000 		.4byte	.LFB11
+ 3153 01f3 30000000 		.4byte	.LFE11-.LFB11
+ 3154 01f7 01       		.uleb128 0x1
+ 3155 01f8 9C       		.byte	0x9c
+ 3156 01f9 0C       		.uleb128 0xc
+ 3157 01fa 25010000 		.4byte	.LASF24
+ 3158 01fe 01       		.byte	0x1
+ 3159 01ff 4C       		.byte	0x4c
+ 3160 0200 5D000000 		.4byte	0x5d
+ 3161 0204 00000000 		.4byte	.LFB12
+ 3162 0208 60000000 		.4byte	.LFE12-.LFB12
+ 3163 020c 01       		.uleb128 0x1
+ 3164 020d 9C       		.byte	0x9c
+ 3165 020e 0D       		.uleb128 0xd
+ 3166 020f 4F020000 		.4byte	.LASF47
+ 3167 0213 01       		.byte	0x1
+ 3168 0214 51       		.byte	0x51
+ 3169 0215 5D000000 		.4byte	0x5d
+ 3170 0219 00000000 		.4byte	.LFB13
+ 3171 021d 64000000 		.4byte	.LFE13-.LFB13
+ 3172 0221 01       		.uleb128 0x1
+ 3173 0222 9C       		.byte	0x9c
+ 3174 0223 37020000 		.4byte	0x237
+ 3175 0227 0E       		.uleb128 0xe
+ 3176 0228 0A000000 		.4byte	.LASF31
+ 3177 022c 01       		.byte	0x1
+ 3178 022d 53       		.byte	0x53
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 65
+
+
+ 3179 022e 47020000 		.4byte	0x247
+ 3180 0232 03       		.uleb128 0x3
+ 3181 0233 91       		.byte	0x91
+ 3182 0234 BC7F     		.sleb128 -68
+ 3183 0236 00       		.byte	0
+ 3184 0237 0F       		.uleb128 0xf
+ 3185 0238 5D000000 		.4byte	0x5d
+ 3186 023c 47020000 		.4byte	0x247
+ 3187 0240 10       		.uleb128 0x10
+ 3188 0241 6B000000 		.4byte	0x6b
+ 3189 0245 0C       		.byte	0xc
+ 3190 0246 00       		.byte	0
+ 3191 0247 11       		.uleb128 0x11
+ 3192 0248 37020000 		.4byte	0x237
+ 3193 024c 12       		.uleb128 0x12
+ 3194 024d B5020000 		.4byte	.LASF25
+ 3195 0251 01       		.byte	0x1
+ 3196 0252 5A       		.byte	0x5a
+ 3197 0253 00000000 		.4byte	.LFB14
+ 3198 0257 B0000000 		.4byte	.LFE14-.LFB14
+ 3199 025b 01       		.uleb128 0x1
+ 3200 025c 9C       		.byte	0x9c
+ 3201 025d 13       		.uleb128 0x13
+ 3202 025e E5020000 		.4byte	.LASF26
+ 3203 0262 01       		.byte	0x1
+ 3204 0263 79       		.byte	0x79
+ 3205 0264 72000000 		.4byte	0x72
+ 3206 0268 00000000 		.4byte	.LFB15
+ 3207 026c 10010000 		.4byte	.LFE15-.LFB15
+ 3208 0270 01       		.uleb128 0x1
+ 3209 0271 9C       		.byte	0x9c
+ 3210 0272 13       		.uleb128 0x13
+ 3211 0273 FE000000 		.4byte	.LASF27
+ 3212 0277 01       		.byte	0x1
+ 3213 0278 87       		.byte	0x87
+ 3214 0279 72000000 		.4byte	0x72
+ 3215 027d 00000000 		.4byte	.LFB16
+ 3216 0281 F4000000 		.4byte	.LFE16-.LFB16
+ 3217 0285 01       		.uleb128 0x1
+ 3218 0286 9C       		.byte	0x9c
+ 3219 0287 13       		.uleb128 0x13
+ 3220 0288 23020000 		.4byte	.LASF28
+ 3221 028c 01       		.byte	0x1
+ 3222 028d 96       		.byte	0x96
+ 3223 028e 72000000 		.4byte	0x72
+ 3224 0292 00000000 		.4byte	.LFB17
+ 3225 0296 2C010000 		.4byte	.LFE17-.LFB17
+ 3226 029a 01       		.uleb128 0x1
+ 3227 029b 9C       		.byte	0x9c
+ 3228 029c 13       		.uleb128 0x13
+ 3229 029d 96020000 		.4byte	.LASF29
+ 3230 02a1 01       		.byte	0x1
+ 3231 02a2 A8       		.byte	0xa8
+ 3232 02a3 72000000 		.4byte	0x72
+ 3233 02a7 00000000 		.4byte	.LFB18
+ 3234 02ab 30020000 		.4byte	.LFE18-.LFB18
+ 3235 02af 01       		.uleb128 0x1
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 66
+
+
+ 3236 02b0 9C       		.byte	0x9c
+ 3237 02b1 14       		.uleb128 0x14
+ 3238 02b2 CC020000 		.4byte	.LASF30
+ 3239 02b6 01       		.byte	0x1
+ 3240 02b7 C8       		.byte	0xc8
+ 3241 02b8 72000000 		.4byte	0x72
+ 3242 02bc 00000000 		.4byte	.LFB19
+ 3243 02c0 58070000 		.4byte	.LFE19-.LFB19
+ 3244 02c4 01       		.uleb128 0x1
+ 3245 02c5 9C       		.byte	0x9c
+ 3246 02c6 2A030000 		.4byte	0x32a
+ 3247 02ca 0E       		.uleb128 0xe
+ 3248 02cb 0A000000 		.4byte	.LASF31
+ 3249 02cf 01       		.byte	0x1
+ 3250 02d0 CA       		.byte	0xca
+ 3251 02d1 2A030000 		.4byte	0x32a
+ 3252 02d5 03       		.uleb128 0x3
+ 3253 02d6 91       		.byte	0x91
+ 3254 02d7 947F     		.sleb128 -108
+ 3255 02d9 15       		.uleb128 0x15
+ 3256 02da 7900     		.ascii	"y\000"
+ 3257 02dc 01       		.byte	0x1
+ 3258 02dd CC       		.byte	0xcc
+ 3259 02de 5D000000 		.4byte	0x5d
+ 3260 02e2 02       		.uleb128 0x2
+ 3261 02e3 91       		.byte	0x91
+ 3262 02e4 5C       		.sleb128 -36
+ 3263 02e5 15       		.uleb128 0x15
+ 3264 02e6 6D00     		.ascii	"m\000"
+ 3265 02e8 01       		.byte	0x1
+ 3266 02e9 CD       		.byte	0xcd
+ 3267 02ea 5D000000 		.4byte	0x5d
+ 3268 02ee 02       		.uleb128 0x2
+ 3269 02ef 91       		.byte	0x91
+ 3270 02f0 58       		.sleb128 -40
+ 3271 02f1 0E       		.uleb128 0xe
+ 3272 02f2 E0020000 		.4byte	.LASF32
+ 3273 02f6 01       		.byte	0x1
+ 3274 02f7 CF       		.byte	0xcf
+ 3275 02f8 5D000000 		.4byte	0x5d
+ 3276 02fc 02       		.uleb128 0x2
+ 3277 02fd 91       		.byte	0x91
+ 3278 02fe 54       		.sleb128 -44
+ 3279 02ff 0E       		.uleb128 0xe
+ 3280 0300 6A010000 		.4byte	.LASF33
+ 3281 0304 01       		.byte	0x1
+ 3282 0305 CF       		.byte	0xcf
+ 3283 0306 5D000000 		.4byte	0x5d
+ 3284 030a 02       		.uleb128 0x2
+ 3285 030b 91       		.byte	0x91
+ 3286 030c 50       		.sleb128 -48
+ 3287 030d 0E       		.uleb128 0xe
+ 3288 030e B9010000 		.4byte	.LASF34
+ 3289 0312 01       		.byte	0x1
+ 3290 0313 D0       		.byte	0xd0
+ 3291 0314 5D000000 		.4byte	0x5d
+ 3292 0318 02       		.uleb128 0x2
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 67
+
+
+ 3293 0319 91       		.byte	0x91
+ 3294 031a 4C       		.sleb128 -52
+ 3295 031b 0E       		.uleb128 0xe
+ 3296 031c 57010000 		.4byte	.LASF35
+ 3297 0320 01       		.byte	0x1
+ 3298 0321 D0       		.byte	0xd0
+ 3299 0322 5D000000 		.4byte	0x5d
+ 3300 0326 02       		.uleb128 0x2
+ 3301 0327 91       		.byte	0x91
+ 3302 0328 48       		.sleb128 -56
+ 3303 0329 00       		.byte	0
+ 3304 032a 11       		.uleb128 0x11
+ 3305 032b 37020000 		.4byte	0x237
+ 3306 032f 16       		.uleb128 0x16
+ 3307 0330 BE010000 		.4byte	.LASF36
+ 3308 0334 01       		.byte	0x1
+ 3309 0335 3201     		.2byte	0x132
+ 3310 0337 72000000 		.4byte	0x72
+ 3311 033b 00000000 		.4byte	.LFB20
+ 3312 033f 24010000 		.4byte	.LFE20-.LFB20
+ 3313 0343 01       		.uleb128 0x1
+ 3314 0344 9C       		.byte	0x9c
+ 3315 0345 17       		.uleb128 0x17
+ 3316 0346 03020000 		.4byte	.LASF37
+ 3317 034a 02       		.byte	0x2
+ 3318 034b 2D       		.byte	0x2d
+ 3319 034c 5D000000 		.4byte	0x5d
+ 3320 0350 0F       		.uleb128 0xf
+ 3321 0351 78000000 		.4byte	0x78
+ 3322 0355 5B030000 		.4byte	0x35b
+ 3323 0359 18       		.uleb128 0x18
+ 3324 035a 00       		.byte	0
+ 3325 035b 17       		.uleb128 0x17
+ 3326 035c 6F010000 		.4byte	.LASF38
+ 3327 0360 02       		.byte	0x2
+ 3328 0361 2E       		.byte	0x2e
+ 3329 0362 50030000 		.4byte	0x350
+ 3330 0366 0F       		.uleb128 0xf
+ 3331 0367 78000000 		.4byte	0x78
+ 3332 036b 76030000 		.4byte	0x376
+ 3333 036f 10       		.uleb128 0x10
+ 3334 0370 6B000000 		.4byte	0x6b
+ 3335 0374 03       		.byte	0x3
+ 3336 0375 00       		.byte	0
+ 3337 0376 19       		.uleb128 0x19
+ 3338 0377 00000000 		.4byte	.LASF39
+ 3339 037b 01       		.byte	0x1
+ 3340 037c 0B       		.byte	0xb
+ 3341 037d 66030000 		.4byte	0x366
+ 3342 0381 05       		.uleb128 0x5
+ 3343 0382 03       		.byte	0x3
+ 3344 0383 00000000 		.4byte	rtc_typef
+ 3345 0387 19       		.uleb128 0x19
+ 3346 0388 0F010000 		.4byte	.LASF40
+ 3347 038c 01       		.byte	0x1
+ 3348 038d 0D       		.byte	0xd
+ 3349 038e 5D000000 		.4byte	0x5d
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 68
+
+
+ 3350 0392 05       		.uleb128 0x5
+ 3351 0393 03       		.byte	0x3
+ 3352 0394 00000000 		.4byte	rtc_sec
+ 3353 0398 0F       		.uleb128 0xf
+ 3354 0399 7F000000 		.4byte	0x7f
+ 3355 039d A8030000 		.4byte	0x3a8
+ 3356 03a1 10       		.uleb128 0x10
+ 3357 03a2 6B000000 		.4byte	0x6b
+ 3358 03a6 05       		.byte	0x5
+ 3359 03a7 00       		.byte	0
+ 3360 03a8 1A       		.uleb128 0x1a
+ 3361 03a9 10030000 		.4byte	.LASF41
+ 3362 03ad 01       		.byte	0x1
+ 3363 03ae 4001     		.2byte	0x140
+ 3364 03b0 98030000 		.4byte	0x398
+ 3365 03b4 05       		.uleb128 0x5
+ 3366 03b5 03       		.byte	0x3
+ 3367 03b6 00000000 		.4byte	TestCollection
+ 3368 03ba 1A       		.uleb128 0x1a
+ 3369 03bb 8B020000 		.4byte	.LASF42
+ 3370 03bf 01       		.byte	0x1
+ 3371 03c0 4A01     		.2byte	0x14a
+ 3372 03c2 CC030000 		.4byte	0x3cc
+ 3373 03c6 05       		.uleb128 0x5
+ 3374 03c7 03       		.byte	0x3
+ 3375 03c8 00000000 		.4byte	testsCount
+ 3376 03cc 11       		.uleb128 0x11
+ 3377 03cd 5D000000 		.4byte	0x5d
+ 3378 03d1 00       		.byte	0
+ 3379              		.section	.debug_abbrev,"",%progbits
+ 3380              	.Ldebug_abbrev0:
+ 3381 0000 01       		.uleb128 0x1
+ 3382 0001 11       		.uleb128 0x11
+ 3383 0002 01       		.byte	0x1
+ 3384 0003 25       		.uleb128 0x25
+ 3385 0004 0E       		.uleb128 0xe
+ 3386 0005 13       		.uleb128 0x13
+ 3387 0006 0B       		.uleb128 0xb
+ 3388 0007 03       		.uleb128 0x3
+ 3389 0008 0E       		.uleb128 0xe
+ 3390 0009 1B       		.uleb128 0x1b
+ 3391 000a 0E       		.uleb128 0xe
+ 3392 000b 55       		.uleb128 0x55
+ 3393 000c 17       		.uleb128 0x17
+ 3394 000d 11       		.uleb128 0x11
+ 3395 000e 01       		.uleb128 0x1
+ 3396 000f 10       		.uleb128 0x10
+ 3397 0010 17       		.uleb128 0x17
+ 3398 0011 00       		.byte	0
+ 3399 0012 00       		.byte	0
+ 3400 0013 02       		.uleb128 0x2
+ 3401 0014 24       		.uleb128 0x24
+ 3402 0015 00       		.byte	0
+ 3403 0016 0B       		.uleb128 0xb
+ 3404 0017 0B       		.uleb128 0xb
+ 3405 0018 3E       		.uleb128 0x3e
+ 3406 0019 0B       		.uleb128 0xb
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 69
+
+
+ 3407 001a 03       		.uleb128 0x3
+ 3408 001b 0E       		.uleb128 0xe
+ 3409 001c 00       		.byte	0
+ 3410 001d 00       		.byte	0
+ 3411 001e 03       		.uleb128 0x3
+ 3412 001f 24       		.uleb128 0x24
+ 3413 0020 00       		.byte	0
+ 3414 0021 0B       		.uleb128 0xb
+ 3415 0022 0B       		.uleb128 0xb
+ 3416 0023 3E       		.uleb128 0x3e
+ 3417 0024 0B       		.uleb128 0xb
+ 3418 0025 03       		.uleb128 0x3
+ 3419 0026 08       		.uleb128 0x8
+ 3420 0027 00       		.byte	0
+ 3421 0028 00       		.byte	0
+ 3422 0029 04       		.uleb128 0x4
+ 3423 002a 0F       		.uleb128 0xf
+ 3424 002b 00       		.byte	0
+ 3425 002c 0B       		.uleb128 0xb
+ 3426 002d 0B       		.uleb128 0xb
+ 3427 002e 49       		.uleb128 0x49
+ 3428 002f 13       		.uleb128 0x13
+ 3429 0030 00       		.byte	0
+ 3430 0031 00       		.byte	0
+ 3431 0032 05       		.uleb128 0x5
+ 3432 0033 13       		.uleb128 0x13
+ 3433 0034 01       		.byte	0x1
+ 3434 0035 03       		.uleb128 0x3
+ 3435 0036 0E       		.uleb128 0xe
+ 3436 0037 0B       		.uleb128 0xb
+ 3437 0038 0B       		.uleb128 0xb
+ 3438 0039 3A       		.uleb128 0x3a
+ 3439 003a 0B       		.uleb128 0xb
+ 3440 003b 3B       		.uleb128 0x3b
+ 3441 003c 0B       		.uleb128 0xb
+ 3442 003d 01       		.uleb128 0x1
+ 3443 003e 13       		.uleb128 0x13
+ 3444 003f 00       		.byte	0
+ 3445 0040 00       		.byte	0
+ 3446 0041 06       		.uleb128 0x6
+ 3447 0042 0D       		.uleb128 0xd
+ 3448 0043 00       		.byte	0
+ 3449 0044 03       		.uleb128 0x3
+ 3450 0045 08       		.uleb128 0x8
+ 3451 0046 3A       		.uleb128 0x3a
+ 3452 0047 0B       		.uleb128 0xb
+ 3453 0048 3B       		.uleb128 0x3b
+ 3454 0049 0B       		.uleb128 0xb
+ 3455 004a 49       		.uleb128 0x49
+ 3456 004b 13       		.uleb128 0x13
+ 3457 004c 38       		.uleb128 0x38
+ 3458 004d 0B       		.uleb128 0xb
+ 3459 004e 00       		.byte	0
+ 3460 004f 00       		.byte	0
+ 3461 0050 07       		.uleb128 0x7
+ 3462 0051 0D       		.uleb128 0xd
+ 3463 0052 00       		.byte	0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 70
+
+
+ 3464 0053 03       		.uleb128 0x3
+ 3465 0054 0E       		.uleb128 0xe
+ 3466 0055 3A       		.uleb128 0x3a
+ 3467 0056 0B       		.uleb128 0xb
+ 3468 0057 3B       		.uleb128 0x3b
+ 3469 0058 0B       		.uleb128 0xb
+ 3470 0059 49       		.uleb128 0x49
+ 3471 005a 13       		.uleb128 0x13
+ 3472 005b 38       		.uleb128 0x38
+ 3473 005c 0B       		.uleb128 0xb
+ 3474 005d 00       		.byte	0
+ 3475 005e 00       		.byte	0
+ 3476 005f 08       		.uleb128 0x8
+ 3477 0060 15       		.uleb128 0x15
+ 3478 0061 00       		.byte	0
+ 3479 0062 27       		.uleb128 0x27
+ 3480 0063 19       		.uleb128 0x19
+ 3481 0064 49       		.uleb128 0x49
+ 3482 0065 13       		.uleb128 0x13
+ 3483 0066 00       		.byte	0
+ 3484 0067 00       		.byte	0
+ 3485 0068 09       		.uleb128 0x9
+ 3486 0069 2E       		.uleb128 0x2e
+ 3487 006a 01       		.byte	0x1
+ 3488 006b 3F       		.uleb128 0x3f
+ 3489 006c 19       		.uleb128 0x19
+ 3490 006d 03       		.uleb128 0x3
+ 3491 006e 0E       		.uleb128 0xe
+ 3492 006f 3A       		.uleb128 0x3a
+ 3493 0070 0B       		.uleb128 0xb
+ 3494 0071 3B       		.uleb128 0x3b
+ 3495 0072 0B       		.uleb128 0xb
+ 3496 0073 27       		.uleb128 0x27
+ 3497 0074 19       		.uleb128 0x19
+ 3498 0075 11       		.uleb128 0x11
+ 3499 0076 01       		.uleb128 0x1
+ 3500 0077 12       		.uleb128 0x12
+ 3501 0078 06       		.uleb128 0x6
+ 3502 0079 40       		.uleb128 0x40
+ 3503 007a 18       		.uleb128 0x18
+ 3504 007b 9742     		.uleb128 0x2117
+ 3505 007d 19       		.uleb128 0x19
+ 3506 007e 01       		.uleb128 0x1
+ 3507 007f 13       		.uleb128 0x13
+ 3508 0080 00       		.byte	0
+ 3509 0081 00       		.byte	0
+ 3510 0082 0A       		.uleb128 0xa
+ 3511 0083 05       		.uleb128 0x5
+ 3512 0084 00       		.byte	0
+ 3513 0085 03       		.uleb128 0x3
+ 3514 0086 08       		.uleb128 0x8
+ 3515 0087 3A       		.uleb128 0x3a
+ 3516 0088 0B       		.uleb128 0xb
+ 3517 0089 3B       		.uleb128 0x3b
+ 3518 008a 0B       		.uleb128 0xb
+ 3519 008b 49       		.uleb128 0x49
+ 3520 008c 13       		.uleb128 0x13
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 71
+
+
+ 3521 008d 02       		.uleb128 0x2
+ 3522 008e 18       		.uleb128 0x18
+ 3523 008f 00       		.byte	0
+ 3524 0090 00       		.byte	0
+ 3525 0091 0B       		.uleb128 0xb
+ 3526 0092 2E       		.uleb128 0x2e
+ 3527 0093 00       		.byte	0
+ 3528 0094 3F       		.uleb128 0x3f
+ 3529 0095 19       		.uleb128 0x19
+ 3530 0096 03       		.uleb128 0x3
+ 3531 0097 0E       		.uleb128 0xe
+ 3532 0098 3A       		.uleb128 0x3a
+ 3533 0099 0B       		.uleb128 0xb
+ 3534 009a 3B       		.uleb128 0x3b
+ 3535 009b 0B       		.uleb128 0xb
+ 3536 009c 27       		.uleb128 0x27
+ 3537 009d 19       		.uleb128 0x19
+ 3538 009e 49       		.uleb128 0x49
+ 3539 009f 13       		.uleb128 0x13
+ 3540 00a0 11       		.uleb128 0x11
+ 3541 00a1 01       		.uleb128 0x1
+ 3542 00a2 12       		.uleb128 0x12
+ 3543 00a3 06       		.uleb128 0x6
+ 3544 00a4 40       		.uleb128 0x40
+ 3545 00a5 18       		.uleb128 0x18
+ 3546 00a6 9742     		.uleb128 0x2117
+ 3547 00a8 19       		.uleb128 0x19
+ 3548 00a9 00       		.byte	0
+ 3549 00aa 00       		.byte	0
+ 3550 00ab 0C       		.uleb128 0xc
+ 3551 00ac 2E       		.uleb128 0x2e
+ 3552 00ad 00       		.byte	0
+ 3553 00ae 3F       		.uleb128 0x3f
+ 3554 00af 19       		.uleb128 0x19
+ 3555 00b0 03       		.uleb128 0x3
+ 3556 00b1 0E       		.uleb128 0xe
+ 3557 00b2 3A       		.uleb128 0x3a
+ 3558 00b3 0B       		.uleb128 0xb
+ 3559 00b4 3B       		.uleb128 0x3b
+ 3560 00b5 0B       		.uleb128 0xb
+ 3561 00b6 27       		.uleb128 0x27
+ 3562 00b7 19       		.uleb128 0x19
+ 3563 00b8 49       		.uleb128 0x49
+ 3564 00b9 13       		.uleb128 0x13
+ 3565 00ba 11       		.uleb128 0x11
+ 3566 00bb 01       		.uleb128 0x1
+ 3567 00bc 12       		.uleb128 0x12
+ 3568 00bd 06       		.uleb128 0x6
+ 3569 00be 40       		.uleb128 0x40
+ 3570 00bf 18       		.uleb128 0x18
+ 3571 00c0 9642     		.uleb128 0x2116
+ 3572 00c2 19       		.uleb128 0x19
+ 3573 00c3 00       		.byte	0
+ 3574 00c4 00       		.byte	0
+ 3575 00c5 0D       		.uleb128 0xd
+ 3576 00c6 2E       		.uleb128 0x2e
+ 3577 00c7 01       		.byte	0x1
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 72
+
+
+ 3578 00c8 3F       		.uleb128 0x3f
+ 3579 00c9 19       		.uleb128 0x19
+ 3580 00ca 03       		.uleb128 0x3
+ 3581 00cb 0E       		.uleb128 0xe
+ 3582 00cc 3A       		.uleb128 0x3a
+ 3583 00cd 0B       		.uleb128 0xb
+ 3584 00ce 3B       		.uleb128 0x3b
+ 3585 00cf 0B       		.uleb128 0xb
+ 3586 00d0 27       		.uleb128 0x27
+ 3587 00d1 19       		.uleb128 0x19
+ 3588 00d2 49       		.uleb128 0x49
+ 3589 00d3 13       		.uleb128 0x13
+ 3590 00d4 11       		.uleb128 0x11
+ 3591 00d5 01       		.uleb128 0x1
+ 3592 00d6 12       		.uleb128 0x12
+ 3593 00d7 06       		.uleb128 0x6
+ 3594 00d8 40       		.uleb128 0x40
+ 3595 00d9 18       		.uleb128 0x18
+ 3596 00da 9642     		.uleb128 0x2116
+ 3597 00dc 19       		.uleb128 0x19
+ 3598 00dd 01       		.uleb128 0x1
+ 3599 00de 13       		.uleb128 0x13
+ 3600 00df 00       		.byte	0
+ 3601 00e0 00       		.byte	0
+ 3602 00e1 0E       		.uleb128 0xe
+ 3603 00e2 34       		.uleb128 0x34
+ 3604 00e3 00       		.byte	0
+ 3605 00e4 03       		.uleb128 0x3
+ 3606 00e5 0E       		.uleb128 0xe
+ 3607 00e6 3A       		.uleb128 0x3a
+ 3608 00e7 0B       		.uleb128 0xb
+ 3609 00e8 3B       		.uleb128 0x3b
+ 3610 00e9 0B       		.uleb128 0xb
+ 3611 00ea 49       		.uleb128 0x49
+ 3612 00eb 13       		.uleb128 0x13
+ 3613 00ec 02       		.uleb128 0x2
+ 3614 00ed 18       		.uleb128 0x18
+ 3615 00ee 00       		.byte	0
+ 3616 00ef 00       		.byte	0
+ 3617 00f0 0F       		.uleb128 0xf
+ 3618 00f1 01       		.uleb128 0x1
+ 3619 00f2 01       		.byte	0x1
+ 3620 00f3 49       		.uleb128 0x49
+ 3621 00f4 13       		.uleb128 0x13
+ 3622 00f5 01       		.uleb128 0x1
+ 3623 00f6 13       		.uleb128 0x13
+ 3624 00f7 00       		.byte	0
+ 3625 00f8 00       		.byte	0
+ 3626 00f9 10       		.uleb128 0x10
+ 3627 00fa 21       		.uleb128 0x21
+ 3628 00fb 00       		.byte	0
+ 3629 00fc 49       		.uleb128 0x49
+ 3630 00fd 13       		.uleb128 0x13
+ 3631 00fe 2F       		.uleb128 0x2f
+ 3632 00ff 0B       		.uleb128 0xb
+ 3633 0100 00       		.byte	0
+ 3634 0101 00       		.byte	0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 73
+
+
+ 3635 0102 11       		.uleb128 0x11
+ 3636 0103 26       		.uleb128 0x26
+ 3637 0104 00       		.byte	0
+ 3638 0105 49       		.uleb128 0x49
+ 3639 0106 13       		.uleb128 0x13
+ 3640 0107 00       		.byte	0
+ 3641 0108 00       		.byte	0
+ 3642 0109 12       		.uleb128 0x12
+ 3643 010a 2E       		.uleb128 0x2e
+ 3644 010b 00       		.byte	0
+ 3645 010c 3F       		.uleb128 0x3f
+ 3646 010d 19       		.uleb128 0x19
+ 3647 010e 03       		.uleb128 0x3
+ 3648 010f 0E       		.uleb128 0xe
+ 3649 0110 3A       		.uleb128 0x3a
+ 3650 0111 0B       		.uleb128 0xb
+ 3651 0112 3B       		.uleb128 0x3b
+ 3652 0113 0B       		.uleb128 0xb
+ 3653 0114 27       		.uleb128 0x27
+ 3654 0115 19       		.uleb128 0x19
+ 3655 0116 11       		.uleb128 0x11
+ 3656 0117 01       		.uleb128 0x1
+ 3657 0118 12       		.uleb128 0x12
+ 3658 0119 06       		.uleb128 0x6
+ 3659 011a 40       		.uleb128 0x40
+ 3660 011b 18       		.uleb128 0x18
+ 3661 011c 9642     		.uleb128 0x2116
+ 3662 011e 19       		.uleb128 0x19
+ 3663 011f 00       		.byte	0
+ 3664 0120 00       		.byte	0
+ 3665 0121 13       		.uleb128 0x13
+ 3666 0122 2E       		.uleb128 0x2e
+ 3667 0123 00       		.byte	0
+ 3668 0124 3F       		.uleb128 0x3f
+ 3669 0125 19       		.uleb128 0x19
+ 3670 0126 03       		.uleb128 0x3
+ 3671 0127 0E       		.uleb128 0xe
+ 3672 0128 3A       		.uleb128 0x3a
+ 3673 0129 0B       		.uleb128 0xb
+ 3674 012a 3B       		.uleb128 0x3b
+ 3675 012b 0B       		.uleb128 0xb
+ 3676 012c 49       		.uleb128 0x49
+ 3677 012d 13       		.uleb128 0x13
+ 3678 012e 11       		.uleb128 0x11
+ 3679 012f 01       		.uleb128 0x1
+ 3680 0130 12       		.uleb128 0x12
+ 3681 0131 06       		.uleb128 0x6
+ 3682 0132 40       		.uleb128 0x40
+ 3683 0133 18       		.uleb128 0x18
+ 3684 0134 9642     		.uleb128 0x2116
+ 3685 0136 19       		.uleb128 0x19
+ 3686 0137 00       		.byte	0
+ 3687 0138 00       		.byte	0
+ 3688 0139 14       		.uleb128 0x14
+ 3689 013a 2E       		.uleb128 0x2e
+ 3690 013b 01       		.byte	0x1
+ 3691 013c 3F       		.uleb128 0x3f
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 74
+
+
+ 3692 013d 19       		.uleb128 0x19
+ 3693 013e 03       		.uleb128 0x3
+ 3694 013f 0E       		.uleb128 0xe
+ 3695 0140 3A       		.uleb128 0x3a
+ 3696 0141 0B       		.uleb128 0xb
+ 3697 0142 3B       		.uleb128 0x3b
+ 3698 0143 0B       		.uleb128 0xb
+ 3699 0144 49       		.uleb128 0x49
+ 3700 0145 13       		.uleb128 0x13
+ 3701 0146 11       		.uleb128 0x11
+ 3702 0147 01       		.uleb128 0x1
+ 3703 0148 12       		.uleb128 0x12
+ 3704 0149 06       		.uleb128 0x6
+ 3705 014a 40       		.uleb128 0x40
+ 3706 014b 18       		.uleb128 0x18
+ 3707 014c 9642     		.uleb128 0x2116
+ 3708 014e 19       		.uleb128 0x19
+ 3709 014f 01       		.uleb128 0x1
+ 3710 0150 13       		.uleb128 0x13
+ 3711 0151 00       		.byte	0
+ 3712 0152 00       		.byte	0
+ 3713 0153 15       		.uleb128 0x15
+ 3714 0154 34       		.uleb128 0x34
+ 3715 0155 00       		.byte	0
+ 3716 0156 03       		.uleb128 0x3
+ 3717 0157 08       		.uleb128 0x8
+ 3718 0158 3A       		.uleb128 0x3a
+ 3719 0159 0B       		.uleb128 0xb
+ 3720 015a 3B       		.uleb128 0x3b
+ 3721 015b 0B       		.uleb128 0xb
+ 3722 015c 49       		.uleb128 0x49
+ 3723 015d 13       		.uleb128 0x13
+ 3724 015e 02       		.uleb128 0x2
+ 3725 015f 18       		.uleb128 0x18
+ 3726 0160 00       		.byte	0
+ 3727 0161 00       		.byte	0
+ 3728 0162 16       		.uleb128 0x16
+ 3729 0163 2E       		.uleb128 0x2e
+ 3730 0164 00       		.byte	0
+ 3731 0165 3F       		.uleb128 0x3f
+ 3732 0166 19       		.uleb128 0x19
+ 3733 0167 03       		.uleb128 0x3
+ 3734 0168 0E       		.uleb128 0xe
+ 3735 0169 3A       		.uleb128 0x3a
+ 3736 016a 0B       		.uleb128 0xb
+ 3737 016b 3B       		.uleb128 0x3b
+ 3738 016c 05       		.uleb128 0x5
+ 3739 016d 49       		.uleb128 0x49
+ 3740 016e 13       		.uleb128 0x13
+ 3741 016f 11       		.uleb128 0x11
+ 3742 0170 01       		.uleb128 0x1
+ 3743 0171 12       		.uleb128 0x12
+ 3744 0172 06       		.uleb128 0x6
+ 3745 0173 40       		.uleb128 0x40
+ 3746 0174 18       		.uleb128 0x18
+ 3747 0175 9642     		.uleb128 0x2116
+ 3748 0177 19       		.uleb128 0x19
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 75
+
+
+ 3749 0178 00       		.byte	0
+ 3750 0179 00       		.byte	0
+ 3751 017a 17       		.uleb128 0x17
+ 3752 017b 34       		.uleb128 0x34
+ 3753 017c 00       		.byte	0
+ 3754 017d 03       		.uleb128 0x3
+ 3755 017e 0E       		.uleb128 0xe
+ 3756 017f 3A       		.uleb128 0x3a
+ 3757 0180 0B       		.uleb128 0xb
+ 3758 0181 3B       		.uleb128 0x3b
+ 3759 0182 0B       		.uleb128 0xb
+ 3760 0183 49       		.uleb128 0x49
+ 3761 0184 13       		.uleb128 0x13
+ 3762 0185 3F       		.uleb128 0x3f
+ 3763 0186 19       		.uleb128 0x19
+ 3764 0187 3C       		.uleb128 0x3c
+ 3765 0188 19       		.uleb128 0x19
+ 3766 0189 00       		.byte	0
+ 3767 018a 00       		.byte	0
+ 3768 018b 18       		.uleb128 0x18
+ 3769 018c 21       		.uleb128 0x21
+ 3770 018d 00       		.byte	0
+ 3771 018e 00       		.byte	0
+ 3772 018f 00       		.byte	0
+ 3773 0190 19       		.uleb128 0x19
+ 3774 0191 34       		.uleb128 0x34
+ 3775 0192 00       		.byte	0
+ 3776 0193 03       		.uleb128 0x3
+ 3777 0194 0E       		.uleb128 0xe
+ 3778 0195 3A       		.uleb128 0x3a
+ 3779 0196 0B       		.uleb128 0xb
+ 3780 0197 3B       		.uleb128 0x3b
+ 3781 0198 0B       		.uleb128 0xb
+ 3782 0199 49       		.uleb128 0x49
+ 3783 019a 13       		.uleb128 0x13
+ 3784 019b 3F       		.uleb128 0x3f
+ 3785 019c 19       		.uleb128 0x19
+ 3786 019d 02       		.uleb128 0x2
+ 3787 019e 18       		.uleb128 0x18
+ 3788 019f 00       		.byte	0
+ 3789 01a0 00       		.byte	0
+ 3790 01a1 1A       		.uleb128 0x1a
+ 3791 01a2 34       		.uleb128 0x34
+ 3792 01a3 00       		.byte	0
+ 3793 01a4 03       		.uleb128 0x3
+ 3794 01a5 0E       		.uleb128 0xe
+ 3795 01a6 3A       		.uleb128 0x3a
+ 3796 01a7 0B       		.uleb128 0xb
+ 3797 01a8 3B       		.uleb128 0x3b
+ 3798 01a9 05       		.uleb128 0x5
+ 3799 01aa 49       		.uleb128 0x49
+ 3800 01ab 13       		.uleb128 0x13
+ 3801 01ac 3F       		.uleb128 0x3f
+ 3802 01ad 19       		.uleb128 0x19
+ 3803 01ae 02       		.uleb128 0x2
+ 3804 01af 18       		.uleb128 0x18
+ 3805 01b0 00       		.byte	0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 76
+
+
+ 3806 01b1 00       		.byte	0
+ 3807 01b2 00       		.byte	0
+ 3808              		.section	.debug_aranges,"",%progbits
+ 3809 0000 BC000000 		.4byte	0xbc
+ 3810 0004 0200     		.2byte	0x2
+ 3811 0006 00000000 		.4byte	.Ldebug_info0
+ 3812 000a 04       		.byte	0x4
+ 3813 000b 00       		.byte	0
+ 3814 000c 0000     		.2byte	0
+ 3815 000e 0000     		.2byte	0
+ 3816 0010 00000000 		.4byte	.LFB0
+ 3817 0014 1C000000 		.4byte	.LFE0-.LFB0
+ 3818 0018 00000000 		.4byte	.LFB1
+ 3819 001c 18000000 		.4byte	.LFE1-.LFB1
+ 3820 0020 00000000 		.4byte	.LFB2
+ 3821 0024 38000000 		.4byte	.LFE2-.LFB2
+ 3822 0028 00000000 		.4byte	.LFB3
+ 3823 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 3824 0030 00000000 		.4byte	.LFB4
+ 3825 0034 38000000 		.4byte	.LFE4-.LFB4
+ 3826 0038 00000000 		.4byte	.LFB5
+ 3827 003c 1C000000 		.4byte	.LFE5-.LFB5
+ 3828 0040 00000000 		.4byte	.LFB6
+ 3829 0044 38000000 		.4byte	.LFE6-.LFB6
+ 3830 0048 00000000 		.4byte	.LFB7
+ 3831 004c 1C000000 		.4byte	.LFE7-.LFB7
+ 3832 0050 00000000 		.4byte	.LFB8
+ 3833 0054 38000000 		.4byte	.LFE8-.LFB8
+ 3834 0058 00000000 		.4byte	.LFB9
+ 3835 005c 1C000000 		.4byte	.LFE9-.LFB9
+ 3836 0060 00000000 		.4byte	.LFB10
+ 3837 0064 70000000 		.4byte	.LFE10-.LFB10
+ 3838 0068 00000000 		.4byte	.LFB11
+ 3839 006c 30000000 		.4byte	.LFE11-.LFB11
+ 3840 0070 00000000 		.4byte	.LFB12
+ 3841 0074 60000000 		.4byte	.LFE12-.LFB12
+ 3842 0078 00000000 		.4byte	.LFB13
+ 3843 007c 64000000 		.4byte	.LFE13-.LFB13
+ 3844 0080 00000000 		.4byte	.LFB14
+ 3845 0084 B0000000 		.4byte	.LFE14-.LFB14
+ 3846 0088 00000000 		.4byte	.LFB15
+ 3847 008c 10010000 		.4byte	.LFE15-.LFB15
+ 3848 0090 00000000 		.4byte	.LFB16
+ 3849 0094 F4000000 		.4byte	.LFE16-.LFB16
+ 3850 0098 00000000 		.4byte	.LFB17
+ 3851 009c 2C010000 		.4byte	.LFE17-.LFB17
+ 3852 00a0 00000000 		.4byte	.LFB18
+ 3853 00a4 30020000 		.4byte	.LFE18-.LFB18
+ 3854 00a8 00000000 		.4byte	.LFB19
+ 3855 00ac 58070000 		.4byte	.LFE19-.LFB19
+ 3856 00b0 00000000 		.4byte	.LFB20
+ 3857 00b4 24010000 		.4byte	.LFE20-.LFB20
+ 3858 00b8 00000000 		.4byte	0
+ 3859 00bc 00000000 		.4byte	0
+ 3860              		.section	.debug_ranges,"",%progbits
+ 3861              	.Ldebug_ranges0:
+ 3862 0000 00000000 		.4byte	.LFB0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 77
+
+
+ 3863 0004 1C000000 		.4byte	.LFE0
+ 3864 0008 00000000 		.4byte	.LFB1
+ 3865 000c 18000000 		.4byte	.LFE1
+ 3866 0010 00000000 		.4byte	.LFB2
+ 3867 0014 38000000 		.4byte	.LFE2
+ 3868 0018 00000000 		.4byte	.LFB3
+ 3869 001c 1C000000 		.4byte	.LFE3
+ 3870 0020 00000000 		.4byte	.LFB4
+ 3871 0024 38000000 		.4byte	.LFE4
+ 3872 0028 00000000 		.4byte	.LFB5
+ 3873 002c 1C000000 		.4byte	.LFE5
+ 3874 0030 00000000 		.4byte	.LFB6
+ 3875 0034 38000000 		.4byte	.LFE6
+ 3876 0038 00000000 		.4byte	.LFB7
+ 3877 003c 1C000000 		.4byte	.LFE7
+ 3878 0040 00000000 		.4byte	.LFB8
+ 3879 0044 38000000 		.4byte	.LFE8
+ 3880 0048 00000000 		.4byte	.LFB9
+ 3881 004c 1C000000 		.4byte	.LFE9
+ 3882 0050 00000000 		.4byte	.LFB10
+ 3883 0054 70000000 		.4byte	.LFE10
+ 3884 0058 00000000 		.4byte	.LFB11
+ 3885 005c 30000000 		.4byte	.LFE11
+ 3886 0060 00000000 		.4byte	.LFB12
+ 3887 0064 60000000 		.4byte	.LFE12
+ 3888 0068 00000000 		.4byte	.LFB13
+ 3889 006c 64000000 		.4byte	.LFE13
+ 3890 0070 00000000 		.4byte	.LFB14
+ 3891 0074 B0000000 		.4byte	.LFE14
+ 3892 0078 00000000 		.4byte	.LFB15
+ 3893 007c 10010000 		.4byte	.LFE15
+ 3894 0080 00000000 		.4byte	.LFB16
+ 3895 0084 F4000000 		.4byte	.LFE16
+ 3896 0088 00000000 		.4byte	.LFB17
+ 3897 008c 2C010000 		.4byte	.LFE17
+ 3898 0090 00000000 		.4byte	.LFB18
+ 3899 0094 30020000 		.4byte	.LFE18
+ 3900 0098 00000000 		.4byte	.LFB19
+ 3901 009c 58070000 		.4byte	.LFE19
+ 3902 00a0 00000000 		.4byte	.LFB20
+ 3903 00a4 24010000 		.4byte	.LFE20
+ 3904 00a8 00000000 		.4byte	0
+ 3905 00ac 00000000 		.4byte	0
+ 3906              		.section	.debug_line,"",%progbits
+ 3907              	.Ldebug_line0:
+ 3908 0000 2E040000 		.section	.debug_str,"MS",%progbits,1
+ 3908      02002C00 
+ 3908      00000201 
+ 3908      FB0E0D00 
+ 3908      01010101 
+ 3909              	.LASF39:
+ 3910 0000 7274635F 		.ascii	"rtc_typef\000"
+ 3910      74797065 
+ 3910      6600
+ 3911              	.LASF31:
+ 3912 000a 64617973 		.ascii	"days_in_month\000"
+ 3912      5F696E5F 
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 78
+
+
+ 3912      6D6F6E74 
+ 3912      6800
+ 3913              	.LASF45:
+ 3914 0018 433A5C44 		.ascii	"C:\\Documents and Settings\\name\\Desktop\\minunit\\"
+ 3914      6F63756D 
+ 3914      656E7473 
+ 3914      20616E64 
+ 3914      20536574 
+ 3915 0047 6D696E75 		.ascii	"minunit_arch\\minunit.cydsn\000"
+ 3915      6E69745F 
+ 3915      61726368 
+ 3915      5C6D696E 
+ 3915      756E6974 
+ 3916              	.LASF20:
+ 3917 0062 7274635F 		.ascii	"rtc_set_month\000"
+ 3917      7365745F 
+ 3917      6D6F6E74 
+ 3917      6800
+ 3918              	.LASF43:
+ 3919 0070 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 3919      4320342E 
+ 3919      392E3320 
+ 3919      32303135 
+ 3919      30333033 
+ 3920 00a3 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 3920      20726576 
+ 3920      6973696F 
+ 3920      6E203232 
+ 3920      31323230 
+ 3921 00d6 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 3921      66756E63 
+ 3921      74696F6E 
+ 3921      2D736563 
+ 3921      74696F6E 
+ 3922              	.LASF27:
+ 3923 00fe 74657374 		.ascii	"test_rtc_minutes\000"
+ 3923      5F727463 
+ 3923      5F6D696E 
+ 3923      75746573 
+ 3923      00
+ 3924              	.LASF40:
+ 3925 010f 7274635F 		.ascii	"rtc_sec\000"
+ 3925      73656300 
+ 3926              	.LASF21:
+ 3927 0117 7274635F 		.ascii	"rtc_get_month\000"
+ 3927      6765745F 
+ 3927      6D6F6E74 
+ 3927      6800
+ 3928              	.LASF24:
+ 3929 0125 7274635F 		.ascii	"rtc_is_leap_year\000"
+ 3929      69735F6C 
+ 3929      6561705F 
+ 3929      79656172 
+ 3929      00
+ 3930              	.LASF23:
+ 3931 0136 7274635F 		.ascii	"rtc_get_years\000"
+ 3931      6765745F 
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 79
+
+
+ 3931      79656172 
+ 3931      7300
+ 3932              	.LASF16:
+ 3933 0144 7274635F 		.ascii	"rtc_set_hour\000"
+ 3933      7365745F 
+ 3933      686F7572 
+ 3933      00
+ 3934              	.LASF46:
+ 3935 0151 54657374 		.ascii	"Tests\000"
+ 3935      7300
+ 3936              	.LASF35:
+ 3937 0157 6C6D6178 		.ascii	"lmax\000"
+ 3937      00
+ 3938              	.LASF1:
+ 3939 015c 756E7369 		.ascii	"unsigned char\000"
+ 3939      676E6564 
+ 3939      20636861 
+ 3939      7200
+ 3940              	.LASF33:
+ 3941 016a 6C6D696E 		.ascii	"lmin\000"
+ 3941      00
+ 3942              	.LASF38:
+ 3943 016f 74657874 		.ascii	"text\000"
+ 3943      00
+ 3944              	.LASF5:
+ 3945 0174 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3945      20756E73 
+ 3945      69676E65 
+ 3945      6420696E 
+ 3945      7400
+ 3946              	.LASF3:
+ 3947 0186 73686F72 		.ascii	"short unsigned int\000"
+ 3947      7420756E 
+ 3947      7369676E 
+ 3947      65642069 
+ 3947      6E7400
+ 3948              	.LASF12:
+ 3949 0199 7274635F 		.ascii	"rtc_set_seconds\000"
+ 3949      7365745F 
+ 3949      7365636F 
+ 3949      6E647300 
+ 3950              	.LASF15:
+ 3951 01a9 7274635F 		.ascii	"rtc_get_minutes\000"
+ 3951      6765745F 
+ 3951      6D696E75 
+ 3951      74657300 
+ 3952              	.LASF34:
+ 3953 01b9 6E6D6178 		.ascii	"nmax\000"
+ 3953      00
+ 3954              	.LASF36:
+ 3955 01be 74657374 		.ascii	"test_rtc_typef\000"
+ 3955      5F727463 
+ 3955      5F747970 
+ 3955      656600
+ 3956              	.LASF17:
+ 3957 01cd 7274635F 		.ascii	"rtc_get_hour\000"
+ 3957      6765745F 
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 80
+
+
+ 3957      686F7572 
+ 3957      00
+ 3958              	.LASF11:
+ 3959 01da 74657374 		.ascii	"test\000"
+ 3959      00
+ 3960              	.LASF8:
+ 3961 01df 756E7369 		.ascii	"unsigned int\000"
+ 3961      676E6564 
+ 3961      20696E74 
+ 3961      00
+ 3962              	.LASF7:
+ 3963 01ec 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3963      206C6F6E 
+ 3963      6720756E 
+ 3963      7369676E 
+ 3963      65642069 
+ 3964              	.LASF37:
+ 3965 0203 61737365 		.ascii	"assertion_count\000"
+ 3965      7274696F 
+ 3965      6E5F636F 
+ 3965      756E7400 
+ 3966              	.LASF14:
+ 3967 0213 7274635F 		.ascii	"rtc_get_seconds\000"
+ 3967      6765745F 
+ 3967      7365636F 
+ 3967      6E647300 
+ 3968              	.LASF28:
+ 3969 0223 74657374 		.ascii	"test_rtc_hour\000"
+ 3969      5F727463 
+ 3969      5F686F75 
+ 3969      7200
+ 3970              	.LASF18:
+ 3971 0231 7274635F 		.ascii	"rtc_set_day\000"
+ 3971      7365745F 
+ 3971      64617900 
+ 3972              	.LASF44:
+ 3973 023d 636C6F63 		.ascii	"clock5.c\000"
+ 3973      6B352E63 
+ 3973      00
+ 3974              	.LASF9:
+ 3975 0246 73697A65 		.ascii	"sizetype\000"
+ 3975      74797065 
+ 3975      00
+ 3976              	.LASF47:
+ 3977 024f 7274635F 		.ascii	"rtc_days_in_month\000"
+ 3977      64617973 
+ 3977      5F696E5F 
+ 3977      6D6F6E74 
+ 3977      6800
+ 3978              	.LASF19:
+ 3979 0261 7274635F 		.ascii	"rtc_get_day\000"
+ 3979      6765745F 
+ 3979      64617900 
+ 3980              	.LASF6:
+ 3981 026d 6C6F6E67 		.ascii	"long long int\000"
+ 3981      206C6F6E 
+ 3981      6720696E 
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 81
+
+
+ 3981      7400
+ 3982              	.LASF13:
+ 3983 027b 7274635F 		.ascii	"rtc_set_minutes\000"
+ 3983      7365745F 
+ 3983      6D696E75 
+ 3983      74657300 
+ 3984              	.LASF42:
+ 3985 028b 74657374 		.ascii	"testsCount\000"
+ 3985      73436F75 
+ 3985      6E7400
+ 3986              	.LASF29:
+ 3987 0296 74657374 		.ascii	"test_rtc_days_months\000"
+ 3987      5F727463 
+ 3987      5F646179 
+ 3987      735F6D6F 
+ 3987      6E746873 
+ 3988              	.LASF2:
+ 3989 02ab 73686F72 		.ascii	"short int\000"
+ 3989      7420696E 
+ 3989      7400
+ 3990              	.LASF25:
+ 3991 02b5 7274635F 		.ascii	"rtc_tick\000"
+ 3991      7469636B 
+ 3991      00
+ 3992              	.LASF22:
+ 3993 02be 7274635F 		.ascii	"rtc_set_years\000"
+ 3993      7365745F 
+ 3993      79656172 
+ 3993      7300
+ 3994              	.LASF30:
+ 3995 02cc 74657374 		.ascii	"test_rtc_leap_years\000"
+ 3995      5F727463 
+ 3995      5F6C6561 
+ 3995      705F7965 
+ 3995      61727300 
+ 3996              	.LASF32:
+ 3997 02e0 6E6D696E 		.ascii	"nmin\000"
+ 3997      00
+ 3998              	.LASF26:
+ 3999 02e5 74657374 		.ascii	"test_rtc_seconds\000"
+ 3999      5F727463 
+ 3999      5F736563 
+ 3999      6F6E6473 
+ 3999      00
+ 4000              	.LASF4:
+ 4001 02f6 6C6F6E67 		.ascii	"long int\000"
+ 4001      20696E74 
+ 4001      00
+ 4002              	.LASF10:
+ 4003 02ff 63686172 		.ascii	"char\000"
+ 4003      00
+ 4004              	.LASF0:
+ 4005 0304 7369676E 		.ascii	"signed char\000"
+ 4005      65642063 
+ 4005      68617200 
+ 4006              	.LASF41:
+ 4007 0310 54657374 		.ascii	"TestCollection\000"
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\ccPskTgp.s 			page 82
+
+
+ 4007      436F6C6C 
+ 4007      65637469 
+ 4007      6F6E00
+ 4008              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

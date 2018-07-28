@@ -1,0 +1,10 @@
+E:/_Axis\ projektai/workspace180601/workspace/minunit_arch\ stendo\ 0927/minunit_arch/minunit_arch/stendo_MIS.cydsn/ARM_GCC_541/Debug/CyBootAsmGnu.o : E:/_Axis\ projektai/workspace180601/workspace/minunit_arch\ stendo\ 0927/minunit_arch/minunit_arch/stendo_MIS.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s E:/_Axis\ projektai/workspace180601/workspace/minunit_arch\ stendo\ 0927/minunit_arch/minunit_arch/stendo_MIS.cydsn/Generated_Source/PSoC5/cydevicegnu.inc E:/_Axis\ projektai/workspace180601/workspace/minunit_arch\ stendo\ 0927/minunit_arch/minunit_arch/stendo_MIS.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc E:/_Axis\ projektai/workspace180601/workspace/minunit_arch\ stendo\ 0927/minunit_arch/minunit_arch/stendo_MIS.cydsn/Generated_Source/PSoC5/cyfittergnu.inc 
+
+E:/_Axis\ projektai/workspace180601/workspace/minunit_arch\ stendo\ 0927/minunit_arch/minunit_arch/stendo_MIS.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s : 
+
+E:/_Axis\ projektai/workspace180601/workspace/minunit_arch\ stendo\ 0927/minunit_arch/minunit_arch/stendo_MIS.cydsn/Generated_Source/PSoC5/cydevicegnu.inc : 
+
+E:/_Axis\ projektai/workspace180601/workspace/minunit_arch\ stendo\ 0927/minunit_arch/minunit_arch/stendo_MIS.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc : 
+
+E:/_Axis\ projektai/workspace180601/workspace/minunit_arch\ stendo\ 0927/minunit_arch/minunit_arch/stendo_MIS.cydsn/Generated_Source/PSoC5/cyfittergnu.inc : 
+

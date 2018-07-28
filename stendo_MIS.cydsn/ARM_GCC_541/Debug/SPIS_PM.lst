@@ -1,0 +1,993 @@
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"SPIS_PM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.data
+  20              		.align	2
+  21              		.type	SPIS_backup, %object
+  22              		.size	SPIS_backup, 2
+  23              	SPIS_backup:
+  24 0000 00       		.byte	0
+  25 0001 07       		.byte	7
+  26              		.section	.text.SPIS_SaveConfig,"ax",%progbits
+  27              		.align	2
+  28              		.global	SPIS_SaveConfig
+  29              		.thumb
+  30              		.thumb_func
+  31              		.type	SPIS_SaveConfig, %function
+  32              	SPIS_SaveConfig:
+  33              	.LFB0:
+  34              		.file 1 "Generated_Source\\PSoC5\\SPIS_PM.c"
+   1:Generated_Source\PSoC5/SPIS_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/SPIS_PM.c **** * File Name: SPIS_PM.c
+   3:Generated_Source\PSoC5/SPIS_PM.c **** * Version 2.70
+   4:Generated_Source\PSoC5/SPIS_PM.c **** *
+   5:Generated_Source\PSoC5/SPIS_PM.c **** * Description:
+   6:Generated_Source\PSoC5/SPIS_PM.c **** *  This file contains the setup, control and status commands to support
+   7:Generated_Source\PSoC5/SPIS_PM.c **** *  component operations in low power mode.
+   8:Generated_Source\PSoC5/SPIS_PM.c **** *
+   9:Generated_Source\PSoC5/SPIS_PM.c **** * Note:
+  10:Generated_Source\PSoC5/SPIS_PM.c **** *
+  11:Generated_Source\PSoC5/SPIS_PM.c **** ********************************************************************************
+  12:Generated_Source\PSoC5/SPIS_PM.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC5/SPIS_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:Generated_Source\PSoC5/SPIS_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:Generated_Source\PSoC5/SPIS_PM.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC5/SPIS_PM.c **** *******************************************************************************/
+  17:Generated_Source\PSoC5/SPIS_PM.c **** 
+  18:Generated_Source\PSoC5/SPIS_PM.c **** #include "SPIS_PVT.h"
+  19:Generated_Source\PSoC5/SPIS_PM.c **** 
+  20:Generated_Source\PSoC5/SPIS_PM.c **** static SPIS_BACKUP_STRUCT SPIS_backup = 
+  21:Generated_Source\PSoC5/SPIS_PM.c **** {
+  22:Generated_Source\PSoC5/SPIS_PM.c ****     SPIS_DISABLED,
+  23:Generated_Source\PSoC5/SPIS_PM.c ****     SPIS_BITCTR_INIT,
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 2
+
+
+  24:Generated_Source\PSoC5/SPIS_PM.c **** };
+  25:Generated_Source\PSoC5/SPIS_PM.c **** 
+  26:Generated_Source\PSoC5/SPIS_PM.c **** 
+  27:Generated_Source\PSoC5/SPIS_PM.c **** /*******************************************************************************
+  28:Generated_Source\PSoC5/SPIS_PM.c **** * Function Name: SPIS_SaveConfig
+  29:Generated_Source\PSoC5/SPIS_PM.c **** ********************************************************************************
+  30:Generated_Source\PSoC5/SPIS_PM.c **** *
+  31:Generated_Source\PSoC5/SPIS_PM.c **** * Summary:
+  32:Generated_Source\PSoC5/SPIS_PM.c **** *  Empty function. Included for consistency with other components.
+  33:Generated_Source\PSoC5/SPIS_PM.c **** *
+  34:Generated_Source\PSoC5/SPIS_PM.c **** * Parameters:
+  35:Generated_Source\PSoC5/SPIS_PM.c **** *  None.
+  36:Generated_Source\PSoC5/SPIS_PM.c **** *
+  37:Generated_Source\PSoC5/SPIS_PM.c **** * Return:
+  38:Generated_Source\PSoC5/SPIS_PM.c **** *  None.
+  39:Generated_Source\PSoC5/SPIS_PM.c **** *
+  40:Generated_Source\PSoC5/SPIS_PM.c **** *******************************************************************************/
+  41:Generated_Source\PSoC5/SPIS_PM.c **** void SPIS_SaveConfig(void) 
+  42:Generated_Source\PSoC5/SPIS_PM.c **** {
+  35              		.loc 1 42 0
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 1, uses_anonymous_args = 0
+  39              		@ link register save eliminated.
+  40 0000 80B4     		push	{r7}
+  41              		.cfi_def_cfa_offset 4
+  42              		.cfi_offset 7, -4
+  43 0002 00AF     		add	r7, sp, #0
+  44              		.cfi_def_cfa_register 7
+  43:Generated_Source\PSoC5/SPIS_PM.c **** 
+  44:Generated_Source\PSoC5/SPIS_PM.c **** }
+  45              		.loc 1 44 0
+  46 0004 00BF     		nop
+  47 0006 BD46     		mov	sp, r7
+  48              		.cfi_def_cfa_register 13
+  49              		@ sp needed
+  50 0008 80BC     		pop	{r7}
+  51              		.cfi_restore 7
+  52              		.cfi_def_cfa_offset 0
+  53 000a 7047     		bx	lr
+  54              		.cfi_endproc
+  55              	.LFE0:
+  56              		.size	SPIS_SaveConfig, .-SPIS_SaveConfig
+  57              		.section	.text.SPIS_RestoreConfig,"ax",%progbits
+  58              		.align	2
+  59              		.global	SPIS_RestoreConfig
+  60              		.thumb
+  61              		.thumb_func
+  62              		.type	SPIS_RestoreConfig, %function
+  63              	SPIS_RestoreConfig:
+  64              	.LFB1:
+  45:Generated_Source\PSoC5/SPIS_PM.c **** 
+  46:Generated_Source\PSoC5/SPIS_PM.c **** 
+  47:Generated_Source\PSoC5/SPIS_PM.c **** /*******************************************************************************
+  48:Generated_Source\PSoC5/SPIS_PM.c **** * Function Name: SPIS_RestoreConfig
+  49:Generated_Source\PSoC5/SPIS_PM.c **** ********************************************************************************
+  50:Generated_Source\PSoC5/SPIS_PM.c **** *
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 3
+
+
+  51:Generated_Source\PSoC5/SPIS_PM.c **** * Summary:
+  52:Generated_Source\PSoC5/SPIS_PM.c **** *  Empty function. Included for consistency with other components.
+  53:Generated_Source\PSoC5/SPIS_PM.c **** *
+  54:Generated_Source\PSoC5/SPIS_PM.c **** * Parameters:
+  55:Generated_Source\PSoC5/SPIS_PM.c **** *  None.
+  56:Generated_Source\PSoC5/SPIS_PM.c **** *
+  57:Generated_Source\PSoC5/SPIS_PM.c **** * Return:
+  58:Generated_Source\PSoC5/SPIS_PM.c **** *  None.
+  59:Generated_Source\PSoC5/SPIS_PM.c **** *
+  60:Generated_Source\PSoC5/SPIS_PM.c **** *******************************************************************************/
+  61:Generated_Source\PSoC5/SPIS_PM.c **** void SPIS_RestoreConfig(void) 
+  62:Generated_Source\PSoC5/SPIS_PM.c **** {
+  65              		.loc 1 62 0
+  66              		.cfi_startproc
+  67              		@ args = 0, pretend = 0, frame = 0
+  68              		@ frame_needed = 1, uses_anonymous_args = 0
+  69              		@ link register save eliminated.
+  70 0000 80B4     		push	{r7}
+  71              		.cfi_def_cfa_offset 4
+  72              		.cfi_offset 7, -4
+  73 0002 00AF     		add	r7, sp, #0
+  74              		.cfi_def_cfa_register 7
+  63:Generated_Source\PSoC5/SPIS_PM.c **** 
+  64:Generated_Source\PSoC5/SPIS_PM.c **** }
+  75              		.loc 1 64 0
+  76 0004 00BF     		nop
+  77 0006 BD46     		mov	sp, r7
+  78              		.cfi_def_cfa_register 13
+  79              		@ sp needed
+  80 0008 80BC     		pop	{r7}
+  81              		.cfi_restore 7
+  82              		.cfi_def_cfa_offset 0
+  83 000a 7047     		bx	lr
+  84              		.cfi_endproc
+  85              	.LFE1:
+  86              		.size	SPIS_RestoreConfig, .-SPIS_RestoreConfig
+  87              		.section	.text.SPIS_Sleep,"ax",%progbits
+  88              		.align	2
+  89              		.global	SPIS_Sleep
+  90              		.thumb
+  91              		.thumb_func
+  92              		.type	SPIS_Sleep, %function
+  93              	SPIS_Sleep:
+  94              	.LFB2:
+  65:Generated_Source\PSoC5/SPIS_PM.c **** 
+  66:Generated_Source\PSoC5/SPIS_PM.c **** 
+  67:Generated_Source\PSoC5/SPIS_PM.c **** /*******************************************************************************
+  68:Generated_Source\PSoC5/SPIS_PM.c **** * Function Name: SPIS_Sleep
+  69:Generated_Source\PSoC5/SPIS_PM.c **** ********************************************************************************
+  70:Generated_Source\PSoC5/SPIS_PM.c **** *
+  71:Generated_Source\PSoC5/SPIS_PM.c **** * Summary:
+  72:Generated_Source\PSoC5/SPIS_PM.c **** *  Prepare SPI Slave Component goes to sleep.
+  73:Generated_Source\PSoC5/SPIS_PM.c **** *
+  74:Generated_Source\PSoC5/SPIS_PM.c **** * Parameters:
+  75:Generated_Source\PSoC5/SPIS_PM.c **** *  None.
+  76:Generated_Source\PSoC5/SPIS_PM.c **** *
+  77:Generated_Source\PSoC5/SPIS_PM.c **** * Return:
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 4
+
+
+  78:Generated_Source\PSoC5/SPIS_PM.c **** *  None.
+  79:Generated_Source\PSoC5/SPIS_PM.c **** *
+  80:Generated_Source\PSoC5/SPIS_PM.c **** * Global Variables:
+  81:Generated_Source\PSoC5/SPIS_PM.c **** *  SPIS_backup - modified when non-retention registers are saved.
+  82:Generated_Source\PSoC5/SPIS_PM.c **** *
+  83:Generated_Source\PSoC5/SPIS_PM.c **** * Reentrant:
+  84:Generated_Source\PSoC5/SPIS_PM.c **** *  No.
+  85:Generated_Source\PSoC5/SPIS_PM.c **** *
+  86:Generated_Source\PSoC5/SPIS_PM.c **** *******************************************************************************/
+  87:Generated_Source\PSoC5/SPIS_PM.c **** void SPIS_Sleep(void) 
+  88:Generated_Source\PSoC5/SPIS_PM.c **** {
+  95              		.loc 1 88 0
+  96              		.cfi_startproc
+  97              		@ args = 0, pretend = 0, frame = 0
+  98              		@ frame_needed = 1, uses_anonymous_args = 0
+  99 0000 80B5     		push	{r7, lr}
+ 100              		.cfi_def_cfa_offset 8
+ 101              		.cfi_offset 7, -8
+ 102              		.cfi_offset 14, -4
+ 103 0002 00AF     		add	r7, sp, #0
+ 104              		.cfi_def_cfa_register 7
+  89:Generated_Source\PSoC5/SPIS_PM.c ****     /* Save components enable state */
+  90:Generated_Source\PSoC5/SPIS_PM.c ****     if ((SPIS_TX_STATUS_ACTL_REG & SPIS_INT_ENABLE) != 0u)
+ 105              		.loc 1 90 0
+ 106 0004 084B     		ldr	r3, .L6
+ 107 0006 1B78     		ldrb	r3, [r3]
+ 108 0008 DBB2     		uxtb	r3, r3
+ 109 000a 03F01003 		and	r3, r3, #16
+ 110 000e 002B     		cmp	r3, #0
+ 111 0010 03D0     		beq	.L4
+  91:Generated_Source\PSoC5/SPIS_PM.c ****     {
+  92:Generated_Source\PSoC5/SPIS_PM.c ****         SPIS_backup.enableState = 1u;
+ 112              		.loc 1 92 0
+ 113 0012 064B     		ldr	r3, .L6+4
+ 114 0014 0122     		movs	r2, #1
+ 115 0016 1A70     		strb	r2, [r3]
+ 116 0018 02E0     		b	.L5
+ 117              	.L4:
+  93:Generated_Source\PSoC5/SPIS_PM.c ****     }
+  94:Generated_Source\PSoC5/SPIS_PM.c ****     else /* Components block is disabled */
+  95:Generated_Source\PSoC5/SPIS_PM.c ****     {
+  96:Generated_Source\PSoC5/SPIS_PM.c ****         SPIS_backup.enableState = 0u;
+ 118              		.loc 1 96 0
+ 119 001a 044B     		ldr	r3, .L6+4
+ 120 001c 0022     		movs	r2, #0
+ 121 001e 1A70     		strb	r2, [r3]
+ 122              	.L5:
+  97:Generated_Source\PSoC5/SPIS_PM.c ****     }
+  98:Generated_Source\PSoC5/SPIS_PM.c **** 
+  99:Generated_Source\PSoC5/SPIS_PM.c ****     SPIS_Stop();
+ 123              		.loc 1 99 0
+ 124 0020 FFF7FEFF 		bl	SPIS_Stop
+ 100:Generated_Source\PSoC5/SPIS_PM.c **** 
+ 101:Generated_Source\PSoC5/SPIS_PM.c **** }
+ 125              		.loc 1 101 0
+ 126 0024 00BF     		nop
+ 127 0026 80BD     		pop	{r7, pc}
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 5
+
+
+ 128              	.L7:
+ 129              		.align	2
+ 130              	.L6:
+ 131 0028 92640040 		.word	1073767570
+ 132 002c 00000000 		.word	SPIS_backup
+ 133              		.cfi_endproc
+ 134              	.LFE2:
+ 135              		.size	SPIS_Sleep, .-SPIS_Sleep
+ 136              		.section	.text.SPIS_Wakeup,"ax",%progbits
+ 137              		.align	2
+ 138              		.global	SPIS_Wakeup
+ 139              		.thumb
+ 140              		.thumb_func
+ 141              		.type	SPIS_Wakeup, %function
+ 142              	SPIS_Wakeup:
+ 143              	.LFB3:
+ 102:Generated_Source\PSoC5/SPIS_PM.c **** 
+ 103:Generated_Source\PSoC5/SPIS_PM.c **** 
+ 104:Generated_Source\PSoC5/SPIS_PM.c **** /*******************************************************************************
+ 105:Generated_Source\PSoC5/SPIS_PM.c **** * Function Name: SPIS_Wakeup
+ 106:Generated_Source\PSoC5/SPIS_PM.c **** ********************************************************************************
+ 107:Generated_Source\PSoC5/SPIS_PM.c **** *
+ 108:Generated_Source\PSoC5/SPIS_PM.c **** * Summary:
+ 109:Generated_Source\PSoC5/SPIS_PM.c **** *  Prepare SPIM Component to wake up.
+ 110:Generated_Source\PSoC5/SPIS_PM.c **** *
+ 111:Generated_Source\PSoC5/SPIS_PM.c **** * Parameters:
+ 112:Generated_Source\PSoC5/SPIS_PM.c **** *  None.
+ 113:Generated_Source\PSoC5/SPIS_PM.c **** *
+ 114:Generated_Source\PSoC5/SPIS_PM.c **** * Return:
+ 115:Generated_Source\PSoC5/SPIS_PM.c **** *  None.
+ 116:Generated_Source\PSoC5/SPIS_PM.c **** *
+ 117:Generated_Source\PSoC5/SPIS_PM.c **** * Global Variables:
+ 118:Generated_Source\PSoC5/SPIS_PM.c **** *  SPIS_backup - used when non-retention registers are restored.
+ 119:Generated_Source\PSoC5/SPIS_PM.c **** *  SPIS_txBufferWrite - modified every function call - resets to
+ 120:Generated_Source\PSoC5/SPIS_PM.c **** *  zero.
+ 121:Generated_Source\PSoC5/SPIS_PM.c **** *  SPIS_txBufferRead - modified every function call - resets to
+ 122:Generated_Source\PSoC5/SPIS_PM.c **** *  zero.
+ 123:Generated_Source\PSoC5/SPIS_PM.c **** *  SPIS_rxBufferWrite - modified every function call - resets to
+ 124:Generated_Source\PSoC5/SPIS_PM.c **** *  zero.
+ 125:Generated_Source\PSoC5/SPIS_PM.c **** *  SPIS_rxBufferRead - modified every function call - resets to
+ 126:Generated_Source\PSoC5/SPIS_PM.c **** *  zero.
+ 127:Generated_Source\PSoC5/SPIS_PM.c **** *
+ 128:Generated_Source\PSoC5/SPIS_PM.c **** * Reentrant:
+ 129:Generated_Source\PSoC5/SPIS_PM.c **** *  No.
+ 130:Generated_Source\PSoC5/SPIS_PM.c **** *
+ 131:Generated_Source\PSoC5/SPIS_PM.c **** *******************************************************************************/
+ 132:Generated_Source\PSoC5/SPIS_PM.c **** void SPIS_Wakeup(void) 
+ 133:Generated_Source\PSoC5/SPIS_PM.c **** {
+ 144              		.loc 1 133 0
+ 145              		.cfi_startproc
+ 146              		@ args = 0, pretend = 0, frame = 0
+ 147              		@ frame_needed = 1, uses_anonymous_args = 0
+ 148 0000 80B5     		push	{r7, lr}
+ 149              		.cfi_def_cfa_offset 8
+ 150              		.cfi_offset 7, -8
+ 151              		.cfi_offset 14, -4
+ 152 0002 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 6
+
+
+ 153              		.cfi_def_cfa_register 7
+ 134:Generated_Source\PSoC5/SPIS_PM.c ****     #if (SPIS_TX_SOFTWARE_BUF_ENABLED)
+ 135:Generated_Source\PSoC5/SPIS_PM.c ****         SPIS_txBufferFull = 0u;
+ 154              		.loc 1 135 0
+ 155 0004 0D4B     		ldr	r3, .L11
+ 156 0006 0022     		movs	r2, #0
+ 157 0008 1A70     		strb	r2, [r3]
+ 136:Generated_Source\PSoC5/SPIS_PM.c ****         SPIS_txBufferRead = 0u;
+ 158              		.loc 1 136 0
+ 159 000a 0D4B     		ldr	r3, .L11+4
+ 160 000c 0022     		movs	r2, #0
+ 161 000e 1A70     		strb	r2, [r3]
+ 137:Generated_Source\PSoC5/SPIS_PM.c ****         SPIS_txBufferWrite = 0u;
+ 162              		.loc 1 137 0
+ 163 0010 0C4B     		ldr	r3, .L11+8
+ 164 0012 0022     		movs	r2, #0
+ 165 0014 1A70     		strb	r2, [r3]
+ 138:Generated_Source\PSoC5/SPIS_PM.c ****     #endif /* SPIS_TX_SOFTWARE_BUF_ENABLED */
+ 139:Generated_Source\PSoC5/SPIS_PM.c **** 
+ 140:Generated_Source\PSoC5/SPIS_PM.c ****     #if (SPIS_RX_SOFTWARE_BUF_ENABLED)
+ 141:Generated_Source\PSoC5/SPIS_PM.c ****         SPIS_rxBufferFull = 0u;
+ 166              		.loc 1 141 0
+ 167 0016 0C4B     		ldr	r3, .L11+12
+ 168 0018 0022     		movs	r2, #0
+ 169 001a 1A70     		strb	r2, [r3]
+ 142:Generated_Source\PSoC5/SPIS_PM.c ****         SPIS_rxBufferRead = 0u;
+ 170              		.loc 1 142 0
+ 171 001c 0B4B     		ldr	r3, .L11+16
+ 172 001e 0022     		movs	r2, #0
+ 173 0020 1A70     		strb	r2, [r3]
+ 143:Generated_Source\PSoC5/SPIS_PM.c ****         SPIS_rxBufferWrite = 0u;
+ 174              		.loc 1 143 0
+ 175 0022 0B4B     		ldr	r3, .L11+20
+ 176 0024 0022     		movs	r2, #0
+ 177 0026 1A70     		strb	r2, [r3]
+ 144:Generated_Source\PSoC5/SPIS_PM.c ****     #endif /* SPIS_RX_SOFTWARE_BUF_ENABLED */
+ 145:Generated_Source\PSoC5/SPIS_PM.c **** 
+ 146:Generated_Source\PSoC5/SPIS_PM.c ****     SPIS_ClearFIFO();
+ 178              		.loc 1 146 0
+ 179 0028 FFF7FEFF 		bl	SPIS_ClearFIFO
+ 147:Generated_Source\PSoC5/SPIS_PM.c **** 
+ 148:Generated_Source\PSoC5/SPIS_PM.c ****     /* Restore components block enable state */
+ 149:Generated_Source\PSoC5/SPIS_PM.c ****     if (SPIS_backup.enableState != 0u)
+ 180              		.loc 1 149 0
+ 181 002c 094B     		ldr	r3, .L11+24
+ 182 002e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 183 0030 002B     		cmp	r3, #0
+ 184 0032 01D0     		beq	.L10
+ 150:Generated_Source\PSoC5/SPIS_PM.c ****     {
+ 151:Generated_Source\PSoC5/SPIS_PM.c ****          /* Components block was enabled */
+ 152:Generated_Source\PSoC5/SPIS_PM.c ****          SPIS_Enable();
+ 185              		.loc 1 152 0
+ 186 0034 FFF7FEFF 		bl	SPIS_Enable
+ 187              	.L10:
+ 153:Generated_Source\PSoC5/SPIS_PM.c ****     } /* Do nothing if components block was disabled */
+ 154:Generated_Source\PSoC5/SPIS_PM.c **** }
+ 188              		.loc 1 154 0
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 7
+
+
+ 189 0038 00BF     		nop
+ 190 003a 80BD     		pop	{r7, pc}
+ 191              	.L12:
+ 192              		.align	2
+ 193              	.L11:
+ 194 003c 00000000 		.word	SPIS_txBufferFull
+ 195 0040 00000000 		.word	SPIS_txBufferRead
+ 196 0044 00000000 		.word	SPIS_txBufferWrite
+ 197 0048 00000000 		.word	SPIS_rxBufferFull
+ 198 004c 00000000 		.word	SPIS_rxBufferRead
+ 199 0050 00000000 		.word	SPIS_rxBufferWrite
+ 200 0054 00000000 		.word	SPIS_backup
+ 201              		.cfi_endproc
+ 202              	.LFE3:
+ 203              		.size	SPIS_Wakeup, .-SPIS_Wakeup
+ 204              		.text
+ 205              	.Letext0:
+ 206              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 207              		.file 3 "Generated_Source\\PSoC5\\SPIS.h"
+ 208              		.file 4 "Generated_Source\\PSoC5\\SPIS_PVT.h"
+ 209              		.section	.debug_info,"",%progbits
+ 210              	.Ldebug_info0:
+ 211 0000 6B010000 		.4byte	0x16b
+ 212 0004 0400     		.2byte	0x4
+ 213 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 214 000a 04       		.byte	0x4
+ 215 000b 01       		.uleb128 0x1
+ 216 000c 26000000 		.4byte	.LASF29
+ 217 0010 0C       		.byte	0xc
+ 218 0011 E6000000 		.4byte	.LASF30
+ 219 0015 51010000 		.4byte	.LASF31
+ 220 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 221 001d 00000000 		.4byte	0
+ 222 0021 00000000 		.4byte	.Ldebug_line0
+ 223 0025 02       		.uleb128 0x2
+ 224 0026 01       		.byte	0x1
+ 225 0027 06       		.byte	0x6
+ 226 0028 89020000 		.4byte	.LASF0
+ 227 002c 02       		.uleb128 0x2
+ 228 002d 01       		.byte	0x1
+ 229 002e 08       		.byte	0x8
+ 230 002f 0D010000 		.4byte	.LASF1
+ 231 0033 02       		.uleb128 0x2
+ 232 0034 02       		.byte	0x2
+ 233 0035 05       		.byte	0x5
+ 234 0036 53020000 		.4byte	.LASF2
+ 235 003a 02       		.uleb128 0x2
+ 236 003b 02       		.byte	0x2
+ 237 003c 07       		.byte	0x7
+ 238 003d C0000000 		.4byte	.LASF3
+ 239 0041 02       		.uleb128 0x2
+ 240 0042 04       		.byte	0x4
+ 241 0043 05       		.byte	0x5
+ 242 0044 68020000 		.4byte	.LASF4
+ 243 0048 02       		.uleb128 0x2
+ 244 0049 04       		.byte	0x4
+ 245 004a 07       		.byte	0x7
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 8
+
+
+ 246 004b 20010000 		.4byte	.LASF5
+ 247 004f 02       		.uleb128 0x2
+ 248 0050 08       		.byte	0x8
+ 249 0051 05       		.byte	0x5
+ 250 0052 40020000 		.4byte	.LASF6
+ 251 0056 02       		.uleb128 0x2
+ 252 0057 08       		.byte	0x8
+ 253 0058 07       		.byte	0x7
+ 254 0059 0E020000 		.4byte	.LASF7
+ 255 005d 03       		.uleb128 0x3
+ 256 005e 04       		.byte	0x4
+ 257 005f 05       		.byte	0x5
+ 258 0060 696E7400 		.ascii	"int\000"
+ 259 0064 02       		.uleb128 0x2
+ 260 0065 04       		.byte	0x4
+ 261 0066 07       		.byte	0x7
+ 262 0067 F1010000 		.4byte	.LASF8
+ 263 006b 04       		.uleb128 0x4
+ 264 006c 32010000 		.4byte	.LASF12
+ 265 0070 02       		.byte	0x2
+ 266 0071 9201     		.2byte	0x192
+ 267 0073 2C000000 		.4byte	0x2c
+ 268 0077 02       		.uleb128 0x2
+ 269 0078 04       		.byte	0x4
+ 270 0079 04       		.byte	0x4
+ 271 007a 07010000 		.4byte	.LASF9
+ 272 007e 02       		.uleb128 0x2
+ 273 007f 08       		.byte	0x8
+ 274 0080 04       		.byte	0x4
+ 275 0081 4A010000 		.4byte	.LASF10
+ 276 0085 02       		.uleb128 0x2
+ 277 0086 01       		.byte	0x1
+ 278 0087 08       		.byte	0x8
+ 279 0088 4E020000 		.4byte	.LASF11
+ 280 008c 04       		.uleb128 0x4
+ 281 008d 1B010000 		.4byte	.LASF13
+ 282 0091 02       		.byte	0x2
+ 283 0092 3C02     		.2byte	0x23c
+ 284 0094 98000000 		.4byte	0x98
+ 285 0098 05       		.uleb128 0x5
+ 286 0099 6B000000 		.4byte	0x6b
+ 287 009d 02       		.uleb128 0x2
+ 288 009e 08       		.byte	0x8
+ 289 009f 04       		.byte	0x4
+ 290 00a0 7D020000 		.4byte	.LASF14
+ 291 00a4 02       		.uleb128 0x2
+ 292 00a5 04       		.byte	0x4
+ 293 00a6 07       		.byte	0x7
+ 294 00a7 37020000 		.4byte	.LASF15
+ 295 00ab 06       		.uleb128 0x6
+ 296 00ac 02       		.byte	0x2
+ 297 00ad 03       		.byte	0x3
+ 298 00ae 39       		.byte	0x39
+ 299 00af CC000000 		.4byte	0xcc
+ 300 00b3 07       		.uleb128 0x7
+ 301 00b4 71020000 		.4byte	.LASF16
+ 302 00b8 03       		.byte	0x3
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 9
+
+
+ 303 00b9 3B       		.byte	0x3b
+ 304 00ba 6B000000 		.4byte	0x6b
+ 305 00be 00       		.byte	0
+ 306 00bf 07       		.uleb128 0x7
+ 307 00c0 D4010000 		.4byte	.LASF17
+ 308 00c4 03       		.byte	0x3
+ 309 00c5 3C       		.byte	0x3c
+ 310 00c6 6B000000 		.4byte	0x6b
+ 311 00ca 01       		.byte	0x1
+ 312 00cb 00       		.byte	0
+ 313 00cc 08       		.uleb128 0x8
+ 314 00cd 13000000 		.4byte	.LASF18
+ 315 00d1 03       		.byte	0x3
+ 316 00d2 3D       		.byte	0x3d
+ 317 00d3 AB000000 		.4byte	0xab
+ 318 00d7 09       		.uleb128 0x9
+ 319 00d8 FE010000 		.4byte	.LASF19
+ 320 00dc 01       		.byte	0x1
+ 321 00dd 29       		.byte	0x29
+ 322 00de 00000000 		.4byte	.LFB0
+ 323 00e2 0C000000 		.4byte	.LFE0-.LFB0
+ 324 00e6 01       		.uleb128 0x1
+ 325 00e7 9C       		.byte	0x9c
+ 326 00e8 09       		.uleb128 0x9
+ 327 00e9 D3000000 		.4byte	.LASF20
+ 328 00ed 01       		.byte	0x1
+ 329 00ee 3D       		.byte	0x3d
+ 330 00ef 00000000 		.4byte	.LFB1
+ 331 00f3 0C000000 		.4byte	.LFE1-.LFB1
+ 332 00f7 01       		.uleb128 0x1
+ 333 00f8 9C       		.byte	0x9c
+ 334 00f9 0A       		.uleb128 0xa
+ 335 00fa 5D020000 		.4byte	.LASF21
+ 336 00fe 01       		.byte	0x1
+ 337 00ff 57       		.byte	0x57
+ 338 0100 00000000 		.4byte	.LFB2
+ 339 0104 30000000 		.4byte	.LFE2-.LFB2
+ 340 0108 01       		.uleb128 0x1
+ 341 0109 9C       		.byte	0x9c
+ 342 010a 0A       		.uleb128 0xa
+ 343 010b B4000000 		.4byte	.LASF22
+ 344 010f 01       		.byte	0x1
+ 345 0110 84       		.byte	0x84
+ 346 0111 00000000 		.4byte	.LFB3
+ 347 0115 58000000 		.4byte	.LFE3-.LFB3
+ 348 0119 01       		.uleb128 0x1
+ 349 011a 9C       		.byte	0x9c
+ 350 011b 0B       		.uleb128 0xb
+ 351 011c A8020000 		.4byte	.LASF32
+ 352 0120 01       		.byte	0x1
+ 353 0121 14       		.byte	0x14
+ 354 0122 CC000000 		.4byte	0xcc
+ 355 0126 05       		.uleb128 0x5
+ 356 0127 03       		.byte	0x3
+ 357 0128 00000000 		.4byte	SPIS_backup
+ 358 012c 0C       		.uleb128 0xc
+ 359 012d 25020000 		.4byte	.LASF23
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 10
+
+
+ 360 0131 04       		.byte	0x4
+ 361 0132 26       		.byte	0x26
+ 362 0133 98000000 		.4byte	0x98
+ 363 0137 0C       		.uleb128 0xc
+ 364 0138 95020000 		.4byte	.LASF24
+ 365 013c 04       		.byte	0x4
+ 366 013d 27       		.byte	0x27
+ 367 013e 98000000 		.4byte	0x98
+ 368 0142 0C       		.uleb128 0xc
+ 369 0143 DF010000 		.4byte	.LASF25
+ 370 0147 04       		.byte	0x4
+ 371 0148 28       		.byte	0x28
+ 372 0149 98000000 		.4byte	0x98
+ 373 014d 0C       		.uleb128 0xc
+ 374 014e C2010000 		.4byte	.LASF26
+ 375 0152 04       		.byte	0x4
+ 376 0153 2F       		.byte	0x2f
+ 377 0154 98000000 		.4byte	0x98
+ 378 0158 0C       		.uleb128 0xc
+ 379 0159 00000000 		.4byte	.LASF27
+ 380 015d 04       		.byte	0x4
+ 381 015e 30       		.byte	0x30
+ 382 015f 98000000 		.4byte	0x98
+ 383 0163 0C       		.uleb128 0xc
+ 384 0164 38010000 		.4byte	.LASF28
+ 385 0168 04       		.byte	0x4
+ 386 0169 31       		.byte	0x31
+ 387 016a 98000000 		.4byte	0x98
+ 388 016e 00       		.byte	0
+ 389              		.section	.debug_abbrev,"",%progbits
+ 390              	.Ldebug_abbrev0:
+ 391 0000 01       		.uleb128 0x1
+ 392 0001 11       		.uleb128 0x11
+ 393 0002 01       		.byte	0x1
+ 394 0003 25       		.uleb128 0x25
+ 395 0004 0E       		.uleb128 0xe
+ 396 0005 13       		.uleb128 0x13
+ 397 0006 0B       		.uleb128 0xb
+ 398 0007 03       		.uleb128 0x3
+ 399 0008 0E       		.uleb128 0xe
+ 400 0009 1B       		.uleb128 0x1b
+ 401 000a 0E       		.uleb128 0xe
+ 402 000b 55       		.uleb128 0x55
+ 403 000c 17       		.uleb128 0x17
+ 404 000d 11       		.uleb128 0x11
+ 405 000e 01       		.uleb128 0x1
+ 406 000f 10       		.uleb128 0x10
+ 407 0010 17       		.uleb128 0x17
+ 408 0011 00       		.byte	0
+ 409 0012 00       		.byte	0
+ 410 0013 02       		.uleb128 0x2
+ 411 0014 24       		.uleb128 0x24
+ 412 0015 00       		.byte	0
+ 413 0016 0B       		.uleb128 0xb
+ 414 0017 0B       		.uleb128 0xb
+ 415 0018 3E       		.uleb128 0x3e
+ 416 0019 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 11
+
+
+ 417 001a 03       		.uleb128 0x3
+ 418 001b 0E       		.uleb128 0xe
+ 419 001c 00       		.byte	0
+ 420 001d 00       		.byte	0
+ 421 001e 03       		.uleb128 0x3
+ 422 001f 24       		.uleb128 0x24
+ 423 0020 00       		.byte	0
+ 424 0021 0B       		.uleb128 0xb
+ 425 0022 0B       		.uleb128 0xb
+ 426 0023 3E       		.uleb128 0x3e
+ 427 0024 0B       		.uleb128 0xb
+ 428 0025 03       		.uleb128 0x3
+ 429 0026 08       		.uleb128 0x8
+ 430 0027 00       		.byte	0
+ 431 0028 00       		.byte	0
+ 432 0029 04       		.uleb128 0x4
+ 433 002a 16       		.uleb128 0x16
+ 434 002b 00       		.byte	0
+ 435 002c 03       		.uleb128 0x3
+ 436 002d 0E       		.uleb128 0xe
+ 437 002e 3A       		.uleb128 0x3a
+ 438 002f 0B       		.uleb128 0xb
+ 439 0030 3B       		.uleb128 0x3b
+ 440 0031 05       		.uleb128 0x5
+ 441 0032 49       		.uleb128 0x49
+ 442 0033 13       		.uleb128 0x13
+ 443 0034 00       		.byte	0
+ 444 0035 00       		.byte	0
+ 445 0036 05       		.uleb128 0x5
+ 446 0037 35       		.uleb128 0x35
+ 447 0038 00       		.byte	0
+ 448 0039 49       		.uleb128 0x49
+ 449 003a 13       		.uleb128 0x13
+ 450 003b 00       		.byte	0
+ 451 003c 00       		.byte	0
+ 452 003d 06       		.uleb128 0x6
+ 453 003e 13       		.uleb128 0x13
+ 454 003f 01       		.byte	0x1
+ 455 0040 0B       		.uleb128 0xb
+ 456 0041 0B       		.uleb128 0xb
+ 457 0042 3A       		.uleb128 0x3a
+ 458 0043 0B       		.uleb128 0xb
+ 459 0044 3B       		.uleb128 0x3b
+ 460 0045 0B       		.uleb128 0xb
+ 461 0046 01       		.uleb128 0x1
+ 462 0047 13       		.uleb128 0x13
+ 463 0048 00       		.byte	0
+ 464 0049 00       		.byte	0
+ 465 004a 07       		.uleb128 0x7
+ 466 004b 0D       		.uleb128 0xd
+ 467 004c 00       		.byte	0
+ 468 004d 03       		.uleb128 0x3
+ 469 004e 0E       		.uleb128 0xe
+ 470 004f 3A       		.uleb128 0x3a
+ 471 0050 0B       		.uleb128 0xb
+ 472 0051 3B       		.uleb128 0x3b
+ 473 0052 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 12
+
+
+ 474 0053 49       		.uleb128 0x49
+ 475 0054 13       		.uleb128 0x13
+ 476 0055 38       		.uleb128 0x38
+ 477 0056 0B       		.uleb128 0xb
+ 478 0057 00       		.byte	0
+ 479 0058 00       		.byte	0
+ 480 0059 08       		.uleb128 0x8
+ 481 005a 16       		.uleb128 0x16
+ 482 005b 00       		.byte	0
+ 483 005c 03       		.uleb128 0x3
+ 484 005d 0E       		.uleb128 0xe
+ 485 005e 3A       		.uleb128 0x3a
+ 486 005f 0B       		.uleb128 0xb
+ 487 0060 3B       		.uleb128 0x3b
+ 488 0061 0B       		.uleb128 0xb
+ 489 0062 49       		.uleb128 0x49
+ 490 0063 13       		.uleb128 0x13
+ 491 0064 00       		.byte	0
+ 492 0065 00       		.byte	0
+ 493 0066 09       		.uleb128 0x9
+ 494 0067 2E       		.uleb128 0x2e
+ 495 0068 00       		.byte	0
+ 496 0069 3F       		.uleb128 0x3f
+ 497 006a 19       		.uleb128 0x19
+ 498 006b 03       		.uleb128 0x3
+ 499 006c 0E       		.uleb128 0xe
+ 500 006d 3A       		.uleb128 0x3a
+ 501 006e 0B       		.uleb128 0xb
+ 502 006f 3B       		.uleb128 0x3b
+ 503 0070 0B       		.uleb128 0xb
+ 504 0071 27       		.uleb128 0x27
+ 505 0072 19       		.uleb128 0x19
+ 506 0073 11       		.uleb128 0x11
+ 507 0074 01       		.uleb128 0x1
+ 508 0075 12       		.uleb128 0x12
+ 509 0076 06       		.uleb128 0x6
+ 510 0077 40       		.uleb128 0x40
+ 511 0078 18       		.uleb128 0x18
+ 512 0079 9742     		.uleb128 0x2117
+ 513 007b 19       		.uleb128 0x19
+ 514 007c 00       		.byte	0
+ 515 007d 00       		.byte	0
+ 516 007e 0A       		.uleb128 0xa
+ 517 007f 2E       		.uleb128 0x2e
+ 518 0080 00       		.byte	0
+ 519 0081 3F       		.uleb128 0x3f
+ 520 0082 19       		.uleb128 0x19
+ 521 0083 03       		.uleb128 0x3
+ 522 0084 0E       		.uleb128 0xe
+ 523 0085 3A       		.uleb128 0x3a
+ 524 0086 0B       		.uleb128 0xb
+ 525 0087 3B       		.uleb128 0x3b
+ 526 0088 0B       		.uleb128 0xb
+ 527 0089 27       		.uleb128 0x27
+ 528 008a 19       		.uleb128 0x19
+ 529 008b 11       		.uleb128 0x11
+ 530 008c 01       		.uleb128 0x1
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 13
+
+
+ 531 008d 12       		.uleb128 0x12
+ 532 008e 06       		.uleb128 0x6
+ 533 008f 40       		.uleb128 0x40
+ 534 0090 18       		.uleb128 0x18
+ 535 0091 9642     		.uleb128 0x2116
+ 536 0093 19       		.uleb128 0x19
+ 537 0094 00       		.byte	0
+ 538 0095 00       		.byte	0
+ 539 0096 0B       		.uleb128 0xb
+ 540 0097 34       		.uleb128 0x34
+ 541 0098 00       		.byte	0
+ 542 0099 03       		.uleb128 0x3
+ 543 009a 0E       		.uleb128 0xe
+ 544 009b 3A       		.uleb128 0x3a
+ 545 009c 0B       		.uleb128 0xb
+ 546 009d 3B       		.uleb128 0x3b
+ 547 009e 0B       		.uleb128 0xb
+ 548 009f 49       		.uleb128 0x49
+ 549 00a0 13       		.uleb128 0x13
+ 550 00a1 02       		.uleb128 0x2
+ 551 00a2 18       		.uleb128 0x18
+ 552 00a3 00       		.byte	0
+ 553 00a4 00       		.byte	0
+ 554 00a5 0C       		.uleb128 0xc
+ 555 00a6 34       		.uleb128 0x34
+ 556 00a7 00       		.byte	0
+ 557 00a8 03       		.uleb128 0x3
+ 558 00a9 0E       		.uleb128 0xe
+ 559 00aa 3A       		.uleb128 0x3a
+ 560 00ab 0B       		.uleb128 0xb
+ 561 00ac 3B       		.uleb128 0x3b
+ 562 00ad 0B       		.uleb128 0xb
+ 563 00ae 49       		.uleb128 0x49
+ 564 00af 13       		.uleb128 0x13
+ 565 00b0 3F       		.uleb128 0x3f
+ 566 00b1 19       		.uleb128 0x19
+ 567 00b2 3C       		.uleb128 0x3c
+ 568 00b3 19       		.uleb128 0x19
+ 569 00b4 00       		.byte	0
+ 570 00b5 00       		.byte	0
+ 571 00b6 00       		.byte	0
+ 572              		.section	.debug_aranges,"",%progbits
+ 573 0000 34000000 		.4byte	0x34
+ 574 0004 0200     		.2byte	0x2
+ 575 0006 00000000 		.4byte	.Ldebug_info0
+ 576 000a 04       		.byte	0x4
+ 577 000b 00       		.byte	0
+ 578 000c 0000     		.2byte	0
+ 579 000e 0000     		.2byte	0
+ 580 0010 00000000 		.4byte	.LFB0
+ 581 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 582 0018 00000000 		.4byte	.LFB1
+ 583 001c 0C000000 		.4byte	.LFE1-.LFB1
+ 584 0020 00000000 		.4byte	.LFB2
+ 585 0024 30000000 		.4byte	.LFE2-.LFB2
+ 586 0028 00000000 		.4byte	.LFB3
+ 587 002c 58000000 		.4byte	.LFE3-.LFB3
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 14
+
+
+ 588 0030 00000000 		.4byte	0
+ 589 0034 00000000 		.4byte	0
+ 590              		.section	.debug_ranges,"",%progbits
+ 591              	.Ldebug_ranges0:
+ 592 0000 00000000 		.4byte	.LFB0
+ 593 0004 0C000000 		.4byte	.LFE0
+ 594 0008 00000000 		.4byte	.LFB1
+ 595 000c 0C000000 		.4byte	.LFE1
+ 596 0010 00000000 		.4byte	.LFB2
+ 597 0014 30000000 		.4byte	.LFE2
+ 598 0018 00000000 		.4byte	.LFB3
+ 599 001c 58000000 		.4byte	.LFE3
+ 600 0020 00000000 		.4byte	0
+ 601 0024 00000000 		.4byte	0
+ 602              		.section	.debug_line,"",%progbits
+ 603              	.Ldebug_line0:
+ 604 0000 B1000000 		.section	.debug_str,"MS",%progbits,1
+ 604      02005C00 
+ 604      00000201 
+ 604      FB0E0D00 
+ 604      01010101 
+ 605              	.LASF27:
+ 606 0000 53504953 		.ascii	"SPIS_txBufferWrite\000"
+ 606      5F747842 
+ 606      75666665 
+ 606      72577269 
+ 606      746500
+ 607              	.LASF18:
+ 608 0013 53504953 		.ascii	"SPIS_BACKUP_STRUCT\000"
+ 608      5F424143 
+ 608      4B55505F 
+ 608      53545255 
+ 608      435400
+ 609              	.LASF29:
+ 610 0026 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 610      43313120 
+ 610      352E342E 
+ 610      31203230 
+ 610      31363036 
+ 611 0059 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 611      20726576 
+ 611      6973696F 
+ 611      6E203233 
+ 611      37373135 
+ 612 008c 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 612      66756E63 
+ 612      74696F6E 
+ 612      2D736563 
+ 612      74696F6E 
+ 613              	.LASF22:
+ 614 00b4 53504953 		.ascii	"SPIS_Wakeup\000"
+ 614      5F57616B 
+ 614      65757000 
+ 615              	.LASF3:
+ 616 00c0 73686F72 		.ascii	"short unsigned int\000"
+ 616      7420756E 
+ 616      7369676E 
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 15
+
+
+ 616      65642069 
+ 616      6E7400
+ 617              	.LASF20:
+ 618 00d3 53504953 		.ascii	"SPIS_RestoreConfig\000"
+ 618      5F526573 
+ 618      746F7265 
+ 618      436F6E66 
+ 618      696700
+ 619              	.LASF30:
+ 620 00e6 47656E65 		.ascii	"Generated_Source\\PSoC5\\SPIS_PM.c\000"
+ 620      72617465 
+ 620      645F536F 
+ 620      75726365 
+ 620      5C50536F 
+ 621              	.LASF9:
+ 622 0107 666C6F61 		.ascii	"float\000"
+ 622      7400
+ 623              	.LASF1:
+ 624 010d 756E7369 		.ascii	"unsigned char\000"
+ 624      676E6564 
+ 624      20636861 
+ 624      7200
+ 625              	.LASF13:
+ 626 011b 72656738 		.ascii	"reg8\000"
+ 626      00
+ 627              	.LASF5:
+ 628 0120 6C6F6E67 		.ascii	"long unsigned int\000"
+ 628      20756E73 
+ 628      69676E65 
+ 628      6420696E 
+ 628      7400
+ 629              	.LASF12:
+ 630 0132 75696E74 		.ascii	"uint8\000"
+ 630      3800
+ 631              	.LASF28:
+ 632 0138 53504953 		.ascii	"SPIS_txBufferFull\000"
+ 632      5F747842 
+ 632      75666665 
+ 632      7246756C 
+ 632      6C00
+ 633              	.LASF10:
+ 634 014a 646F7562 		.ascii	"double\000"
+ 634      6C6500
+ 635              	.LASF31:
+ 636 0151 453A5C5F 		.ascii	"E:\\_Axis projektai\\workspace180601\\workspace\\mi"
+ 636      41786973 
+ 636      2070726F 
+ 636      6A656B74 
+ 636      61695C77 
+ 637 0180 6E756E69 		.ascii	"nunit_arch stendo 0927\\minunit_arch\\minunit_arch\\"
+ 637      745F6172 
+ 637      63682073 
+ 637      74656E64 
+ 637      6F203039 
+ 638 01b1 7374656E 		.ascii	"stendo_MIS.cydsn\000"
+ 638      646F5F4D 
+ 638      49532E63 
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 16
+
+
+ 638      7964736E 
+ 638      00
+ 639              	.LASF26:
+ 640 01c2 53504953 		.ascii	"SPIS_txBufferRead\000"
+ 640      5F747842 
+ 640      75666665 
+ 640      72526561 
+ 640      6400
+ 641              	.LASF17:
+ 642 01d4 636E7472 		.ascii	"cntrPeriod\000"
+ 642      50657269 
+ 642      6F6400
+ 643              	.LASF25:
+ 644 01df 53504953 		.ascii	"SPIS_rxBufferFull\000"
+ 644      5F727842 
+ 644      75666665 
+ 644      7246756C 
+ 644      6C00
+ 645              	.LASF8:
+ 646 01f1 756E7369 		.ascii	"unsigned int\000"
+ 646      676E6564 
+ 646      20696E74 
+ 646      00
+ 647              	.LASF19:
+ 648 01fe 53504953 		.ascii	"SPIS_SaveConfig\000"
+ 648      5F536176 
+ 648      65436F6E 
+ 648      66696700 
+ 649              	.LASF7:
+ 650 020e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 650      206C6F6E 
+ 650      6720756E 
+ 650      7369676E 
+ 650      65642069 
+ 651              	.LASF23:
+ 652 0225 53504953 		.ascii	"SPIS_rxBufferRead\000"
+ 652      5F727842 
+ 652      75666665 
+ 652      72526561 
+ 652      6400
+ 653              	.LASF15:
+ 654 0237 73697A65 		.ascii	"sizetype\000"
+ 654      74797065 
+ 654      00
+ 655              	.LASF6:
+ 656 0240 6C6F6E67 		.ascii	"long long int\000"
+ 656      206C6F6E 
+ 656      6720696E 
+ 656      7400
+ 657              	.LASF11:
+ 658 024e 63686172 		.ascii	"char\000"
+ 658      00
+ 659              	.LASF2:
+ 660 0253 73686F72 		.ascii	"short int\000"
+ 660      7420696E 
+ 660      7400
+ 661              	.LASF21:
+ARM GAS  C:\Users\Tomas\AppData\Local\Temp\cckfh7Ha.s 			page 17
+
+
+ 662 025d 53504953 		.ascii	"SPIS_Sleep\000"
+ 662      5F536C65 
+ 662      657000
+ 663              	.LASF4:
+ 664 0268 6C6F6E67 		.ascii	"long int\000"
+ 664      20696E74 
+ 664      00
+ 665              	.LASF16:
+ 666 0271 656E6162 		.ascii	"enableState\000"
+ 666      6C655374 
+ 666      61746500 
+ 667              	.LASF14:
+ 668 027d 6C6F6E67 		.ascii	"long double\000"
+ 668      20646F75 
+ 668      626C6500 
+ 669              	.LASF0:
+ 670 0289 7369676E 		.ascii	"signed char\000"
+ 670      65642063 
+ 670      68617200 
+ 671              	.LASF24:
+ 672 0295 53504953 		.ascii	"SPIS_rxBufferWrite\000"
+ 672      5F727842 
+ 672      75666665 
+ 672      72577269 
+ 672      746500
+ 673              	.LASF32:
+ 674 02a8 53504953 		.ascii	"SPIS_backup\000"
+ 674      5F626163 
+ 674      6B757000 
+ 675              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

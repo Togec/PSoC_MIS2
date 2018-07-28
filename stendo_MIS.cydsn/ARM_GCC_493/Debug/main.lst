@@ -1,0 +1,2159 @@
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.comm	txt,500,4
+  19              		.section	.rodata
+  20              		.align	2
+  21              	.LC0:
+  22 0000 534E445F 		.ascii	"SND_NKE mbus_repeat_count = %d, expected 1\000"
+  22      4E4B4520 
+  22      6D627573 
+  22      5F726570 
+  22      6561745F 
+  23 002b 00       		.align	2
+  24              	.LC1:
+  25 002c 6D61696E 		.ascii	"main.c\000"
+  25      2E6300
+  26 0033 00       		.align	2
+  27              	.LC2:
+  28 0034 534E445F 		.ascii	"SND_NKE mbus_rx_count = %d, expected 1\000"
+  28      4E4B4520 
+  28      6D627573 
+  28      5F72785F 
+  28      636F756E 
+  29 005b 00       		.align	2
+  30              	.LC3:
+  31 005c 534E445F 		.ascii	"SND_NKE uart2_tx_buffer[0] = %%.2X, expected E5\000"
+  31      4E4B4520 
+  31      75617274 
+  31      325F7478 
+  31      5F627566 
+  32              		.align	2
+  33              	.LC4:
+  34 008c 534E445F 		.ascii	"SND_NKE slave wait time = %ld us, expected between "
+  34      4E4B4520 
+  34      736C6176 
+  34      65207761 
+  34      69742074 
+  35 00bf 31312062 		.ascii	"11 bit times and (330 bit times + 50ms) \000"
+  35      69742074 
+  35      696D6573 
+  35      20616E64 
+  35      20283333 
+  36              		.align	2
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 2
+
+
+  37              	.LC5:
+  38 00e8 5245515F 		.ascii	"REQ_RSP \000"
+  38      52535020 
+  38      00
+  39 00f1 000000   		.align	2
+  40              	.LC6:
+  41 00f4 252E3258 		.ascii	"%.2X \000"
+  41      2000
+  42 00fa 0000     		.align	2
+  43              	.LC7:
+  44 00fc 5245515F 		.ascii	"REQ_RSP (mbus_rx_count > 9)\000"
+  44      52535020 
+  44      286D6275 
+  44      735F7278 
+  44      5F636F75 
+  45              		.align	2
+  46              	.LC8:
+  47 0118 5245515F 		.ascii	"REQ_RSP (0x68 == uart2_rx_buffer[0])\000"
+  47      52535020 
+  47      28307836 
+  47      38203D3D 
+  47      20756172 
+  48 013d 000000   		.align	2
+  49              	.LC9:
+  50 0140 5245515F 		.ascii	"REQ_RSP (uart2_rx_buffer[1] == uart2_rx_buffer[2])\000"
+  50      52535020 
+  50      28756172 
+  50      74325F72 
+  50      785F6275 
+  51 0173 00       		.align	2
+  52              	.LC10:
+  53 0174 5245515F 		.ascii	"REQ_RSP (0x68 == uart2_rx_buffer[3])\000"
+  53      52535020 
+  53      28307836 
+  53      38203D3D 
+  53      20756172 
+  54 0199 000000   		.align	2
+  55              	.LC11:
+  56 019c 5245515F 		.ascii	"REQ_RSP (mbus_rx_count == uart2_rx_buffer[1]+6)\000"
+  56      52535020 
+  56      286D6275 
+  56      735F7278 
+  56      5F636F75 
+  57              		.align	2
+  58              	.LC12:
+  59 01cc 5245515F 		.ascii	"REQ_RSP (mbus_cs((uint8 *)&uart2_rx_buffer[4], uart"
+  59      52535020 
+  59      286D6275 
+  59      735F6373 
+  59      28287569 
+  60 01ff 325F7278 		.ascii	"2_rx_buffer[1]) == uart2_rx_buffer[4+uart2_rx_buffe"
+  60      5F627566 
+  60      6665725B 
+  60      315D2920 
+  60      3D3D2075 
+  61 0232 725B315D 		.ascii	"r[1]]) => %.2X  == %.2X\000"
+  61      5D29203D 
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 3
+
+
+  61      3E20252E 
+  61      32582020 
+  61      3D3D2025 
+  62 024a 0000     		.align	2
+  63              	.LC13:
+  64 024c 5245515F 		.ascii	"REQ_RSP (0x16 == uart2_rx_buffer[5+uart2_rx_buffer["
+  64      52535020 
+  64      28307831 
+  64      36203D3D 
+  64      20756172 
+  65 027f 315D5D29 		.ascii	"1]])\000"
+  65      00
+  66              		.align	2
+  67              	.LC14:
+  68 0284 5245515F 		.ascii	"REQ_RSP mbus_repeat_count = %d, expected 1\000"
+  68      52535020 
+  68      6D627573 
+  68      5F726570 
+  68      6561745F 
+  69 02af 00       		.align	2
+  70              	.LC15:
+  71 02b0 5245515F 		.ascii	"REQ_RSP slave wait time = %ld us, expected between "
+  71      52535020 
+  71      736C6176 
+  71      65207761 
+  71      69742074 
+  72 02e3 31312062 		.ascii	"11 bit times and (330 bit times + 50ms) \000"
+  72      69742074 
+  72      696D6573 
+  72      20616E64 
+  72      20283333 
+  73              		.align	2
+  74              	.LC16:
+  75 030c 5245515F 		.ascii	"REQ_RSP mbus_bit_max = %ld us, expected < 4583*1.2 "
+  75      52535020 
+  75      6D627573 
+  75      5F626974 
+  75      5F6D6178 
+  76 033f 28323430 		.ascii	"(2400bps)\000"
+  76      30627073 
+  76      2900
+  77 0349 000000   		.align	2
+  78              	.LC17:
+  79 034c 5245515F 		.ascii	"REQ_RSP mbus_bit_min = %ld us, expected  > 4583*0.8"
+  79      52535020 
+  79      6D627573 
+  79      5F626974 
+  79      5F6D696E 
+  80 037f 20283234 		.ascii	" (2400bps)\000"
+  80      30306270 
+  80      732900
+  81              		.section	.text.test_X10,"ax",%progbits
+  82              		.align	2
+  83              		.global	test_X10
+  84              		.thumb
+  85              		.thumb_func
+  86              		.type	test_X10, %function
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 4
+
+
+  87              	test_X10:
+  88              	.LFB63:
+  89              		.file 1 "main.c"
+   1:main.c        **** /******************************************************************************
+   2:main.c        **** * Project Name		: MinUnit -- a minimal unit testing framework for C
+   3:main.c        **** * File Name			: main.c
+   4:main.c        **** * Version 			: **
+   5:main.c        **** * Device Used		: CY8C5888LTI-LP097
+   6:main.c        **** * Software Used		: PSoC Creator 3.1 SP2
+   7:main.c        **** * Compiler    		: ARM GCC 4.8.4, ARM RVDS Generic, ARM MDK Generic
+   8:main.c        **** * Related Hardware	: CY8CKIT059 PSoC 5 LP Prototyping Kit 
+   9:main.c        **** *******************************************************************************/
+  10:main.c        **** 
+  11:main.c        **** #include <device.h>
+  12:main.c        **** #include "stdio.h"
+  13:main.c        **** #include "assert.h"
+  14:main.c        **** #include "mbus.h"
+  15:main.c        **** 
+  16:main.c        **** char txt[500];
+  17:main.c        **** 
+  18:main.c        **** void test_X10(void)
+  19:main.c        **** {
+  90              		.loc 1 19 0
+  91              		.cfi_startproc
+  92              		@ args = 0, pretend = 0, frame = 16
+  93              		@ frame_needed = 1, uses_anonymous_args = 0
+  94 0000 90B5     		push	{r4, r7, lr}
+  95              		.cfi_def_cfa_offset 12
+  96              		.cfi_offset 4, -12
+  97              		.cfi_offset 7, -8
+  98              		.cfi_offset 14, -4
+  99 0002 85B0     		sub	sp, sp, #20
+ 100              		.cfi_def_cfa_offset 32
+ 101 0004 00AF     		add	r7, sp, #0
+ 102              		.cfi_def_cfa_register 7
+ 103              	.L9:
+  20:main.c        ****  do
+  21:main.c        ****     {
+  22:main.c        ****         if (SW1_Read() == 0)
+ 104              		.loc 1 22 0
+ 105 0006 FFF7FEFF 		bl	SW1_Read
+ 106 000a 0346     		mov	r3, r0
+ 107 000c 002B     		cmp	r3, #0
+ 108 000e 40F0BF81 		bne	.L2
+ 109              	.LBB2:
+  23:main.c        ****         {
+  24:main.c        **** 
+  25:main.c        ****             
+  26:main.c        ****             LED1_Write(1);
+ 110              		.loc 1 26 0
+ 111 0012 0120     		movs	r0, #1
+ 112 0014 FFF7FEFF 		bl	LED1_Write
+  27:main.c        ****             
+  28:main.c        ****             //ext_mode_Connect(0);
+  29:main.c        ****            //ext_sw_Connect(0);
+  30:main.c        **** 
+  31:main.c        ****             if (0 == mbus_snd_nke(0xFE))
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 5
+
+
+ 113              		.loc 1 31 0
+ 114 0018 FE20     		movs	r0, #254
+ 115 001a FFF7FEFF 		bl	mbus_snd_nke
+ 116 001e 0346     		mov	r3, r0
+ 117 0020 002B     		cmp	r3, #0
+ 118 0022 0CD1     		bne	.L3
+  32:main.c        ****             {
+  33:main.c        ****                 LED1_Write(0);
+ 119              		.loc 1 33 0
+ 120 0024 0020     		movs	r0, #0
+ 121 0026 FFF7FEFF 		bl	LED1_Write
+  34:main.c        ****                 CyDelay(500);
+ 122              		.loc 1 34 0
+ 123 002a 4FF4FA70 		mov	r0, #500
+ 124 002e FFF7FEFF 		bl	CyDelay
+  35:main.c        ****                 LED1_Write(1);
+ 125              		.loc 1 35 0
+ 126 0032 0120     		movs	r0, #1
+ 127 0034 FFF7FEFF 		bl	LED1_Write
+  36:main.c        ****                 CyDelay(100);
+ 128              		.loc 1 36 0
+ 129 0038 6420     		movs	r0, #100
+ 130 003a FFF7FEFF 		bl	CyDelay
+ 131              	.L3:
+  37:main.c        ****             }
+  38:main.c        ****             LED1_Write(0);
+ 132              		.loc 1 38 0
+ 133 003e 0020     		movs	r0, #0
+ 134 0040 FFF7FEFF 		bl	LED1_Write
+  39:main.c        ****             
+  40:main.c        **** 
+  41:main.c        ****             sprintf(txt, "SND_NKE mbus_repeat_count = %d, expected 1", mbus_repeat_count);
+ 135              		.loc 1 41 0
+ 136 0044 404B     		ldr	r3, .L10
+ 137 0046 1B88     		ldrh	r3, [r3]
+ 138 0048 4048     		ldr	r0, .L10+4
+ 139 004a 4149     		ldr	r1, .L10+8
+ 140 004c 1A46     		mov	r2, r3
+ 141 004e FFF7FEFF 		bl	sprintf
+  42:main.c        ****             assert(1 == mbus_repeat_count, txt);
+ 142              		.loc 1 42 0
+ 143 0052 3D4B     		ldr	r3, .L10
+ 144 0054 1B88     		ldrh	r3, [r3]
+ 145 0056 012B     		cmp	r3, #1
+ 146 0058 0CBF     		ite	eq
+ 147 005a 0123     		moveq	r3, #1
+ 148 005c 0023     		movne	r3, #0
+ 149 005e DBB2     		uxtb	r3, r3
+ 150 0060 1846     		mov	r0, r3
+ 151 0062 3A49     		ldr	r1, .L10+4
+ 152 0064 3B4A     		ldr	r2, .L10+12
+ 153 0066 2A23     		movs	r3, #42
+ 154 0068 FFF7FEFF 		bl	__assert__
+  43:main.c        ****             sprintf(txt, "SND_NKE mbus_rx_count = %d, expected 1", mbus_rx_count);
+ 155              		.loc 1 43 0
+ 156 006c 3A4B     		ldr	r3, .L10+16
+ 157 006e 1B88     		ldrh	r3, [r3]
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 6
+
+
+ 158 0070 3648     		ldr	r0, .L10+4
+ 159 0072 3A49     		ldr	r1, .L10+20
+ 160 0074 1A46     		mov	r2, r3
+ 161 0076 FFF7FEFF 		bl	sprintf
+  44:main.c        ****             assert(1 == mbus_rx_count, txt);
+ 162              		.loc 1 44 0
+ 163 007a 374B     		ldr	r3, .L10+16
+ 164 007c 1B88     		ldrh	r3, [r3]
+ 165 007e 012B     		cmp	r3, #1
+ 166 0080 0CBF     		ite	eq
+ 167 0082 0123     		moveq	r3, #1
+ 168 0084 0023     		movne	r3, #0
+ 169 0086 DBB2     		uxtb	r3, r3
+ 170 0088 1846     		mov	r0, r3
+ 171 008a 3049     		ldr	r1, .L10+4
+ 172 008c 314A     		ldr	r2, .L10+12
+ 173 008e 2C23     		movs	r3, #44
+ 174 0090 FFF7FEFF 		bl	__assert__
+  45:main.c        ****             sprintf(txt, "SND_NKE uart2_tx_buffer[0] = %%.2X, expected E5", mbus_rx_count);
+ 175              		.loc 1 45 0
+ 176 0094 304B     		ldr	r3, .L10+16
+ 177 0096 1B88     		ldrh	r3, [r3]
+ 178 0098 2C48     		ldr	r0, .L10+4
+ 179 009a 3149     		ldr	r1, .L10+24
+ 180 009c 1A46     		mov	r2, r3
+ 181 009e FFF7FEFF 		bl	sprintf
+  46:main.c        ****             assert(0xE5 == uart2_rx_buffer[0], txt);
+ 182              		.loc 1 46 0
+ 183 00a2 304B     		ldr	r3, .L10+28
+ 184 00a4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 185 00a6 E52B     		cmp	r3, #229
+ 186 00a8 0CBF     		ite	eq
+ 187 00aa 0123     		moveq	r3, #1
+ 188 00ac 0023     		movne	r3, #0
+ 189 00ae DBB2     		uxtb	r3, r3
+ 190 00b0 1846     		mov	r0, r3
+ 191 00b2 2649     		ldr	r1, .L10+4
+ 192 00b4 274A     		ldr	r2, .L10+12
+ 193 00b6 2E23     		movs	r3, #46
+ 194 00b8 FFF7FEFF 		bl	__assert__
+  47:main.c        ****             //(float)(mbus_tmr_start/1000.0 - mbus_tmr_stop/1000.0)
+  48:main.c        ****             sprintf(txt, "SND_NKE slave wait time = %ld us, expected between 11 bit times and (330 
+ 195              		.loc 1 48 0
+ 196 00bc 2A4B     		ldr	r3, .L10+32
+ 197 00be 1A68     		ldr	r2, [r3]
+ 198 00c0 2A4B     		ldr	r3, .L10+36
+ 199 00c2 1B68     		ldr	r3, [r3]
+ 200 00c4 D31A     		subs	r3, r2, r3
+ 201 00c6 2148     		ldr	r0, .L10+4
+ 202 00c8 2949     		ldr	r1, .L10+40
+ 203 00ca 1A46     		mov	r2, r3
+ 204 00cc FFF7FEFF 		bl	sprintf
+  49:main.c        ****             assert(MAX_WAIT_TIME > (mbus_tmr_start - mbus_tmr_stop), txt);
+ 205              		.loc 1 49 0
+ 206 00d0 254B     		ldr	r3, .L10+32
+ 207 00d2 1A68     		ldr	r2, [r3]
+ 208 00d4 254B     		ldr	r3, .L10+36
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 7
+
+
+ 209 00d6 1B68     		ldr	r3, [r3]
+ 210 00d8 D31A     		subs	r3, r2, r3
+ 211 00da 264A     		ldr	r2, .L10+44
+ 212 00dc 9342     		cmp	r3, r2
+ 213 00de 94BF     		ite	ls
+ 214 00e0 0123     		movls	r3, #1
+ 215 00e2 0023     		movhi	r3, #0
+ 216 00e4 DBB2     		uxtb	r3, r3
+ 217 00e6 1846     		mov	r0, r3
+ 218 00e8 1849     		ldr	r1, .L10+4
+ 219 00ea 1A4A     		ldr	r2, .L10+12
+ 220 00ec 3123     		movs	r3, #49
+ 221 00ee FFF7FEFF 		bl	__assert__
+  50:main.c        ****             
+  51:main.c        ****             int rez = mbus_request_respond(0xFE);
+ 222              		.loc 1 51 0
+ 223 00f2 FE20     		movs	r0, #254
+ 224 00f4 FFF7FEFF 		bl	mbus_request_respond
+ 225 00f8 7860     		str	r0, [r7, #4]
+  52:main.c        ****             if (0 != rez)
+ 226              		.loc 1 52 0
+ 227 00fa 7B68     		ldr	r3, [r7, #4]
+ 228 00fc 002B     		cmp	r3, #0
+ 229 00fe 0CD0     		beq	.L4
+  53:main.c        ****             {
+  54:main.c        ****                 LED1_Write(0);
+ 230              		.loc 1 54 0
+ 231 0100 0020     		movs	r0, #0
+ 232 0102 FFF7FEFF 		bl	LED1_Write
+  55:main.c        ****                 CyDelay(500);
+ 233              		.loc 1 55 0
+ 234 0106 4FF4FA70 		mov	r0, #500
+ 235 010a FFF7FEFF 		bl	CyDelay
+  56:main.c        ****                 LED1_Write(1);
+ 236              		.loc 1 56 0
+ 237 010e 0120     		movs	r0, #1
+ 238 0110 FFF7FEFF 		bl	LED1_Write
+  57:main.c        ****                 CyDelay(100);
+ 239              		.loc 1 57 0
+ 240 0114 6420     		movs	r0, #100
+ 241 0116 FFF7FEFF 		bl	CyDelay
+ 242              	.L4:
+  58:main.c        ****             }
+  59:main.c        ****             LED1_Write(0);
+ 243              		.loc 1 59 0
+ 244 011a 0020     		movs	r0, #0
+ 245 011c FFF7FEFF 		bl	LED1_Write
+  60:main.c        ****             int txt_lenght = 0;
+ 246              		.loc 1 60 0
+ 247 0120 0023     		movs	r3, #0
+ 248 0122 FB60     		str	r3, [r7, #12]
+  61:main.c        ****             txt_lenght += sprintf((char *)&txt[txt_lenght], "REQ_RSP ");
+ 249              		.loc 1 61 0
+ 250 0124 FB68     		ldr	r3, [r7, #12]
+ 251 0126 094A     		ldr	r2, .L10+4
+ 252 0128 1344     		add	r3, r3, r2
+ 253 012a 1349     		ldr	r1, .L10+48
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 8
+
+
+ 254 012c 1A46     		mov	r2, r3
+ 255 012e 0B46     		mov	r3, r1
+ 256 0130 03CB     		ldmia	r3!, {r0, r1}
+ 257 0132 1060     		str	r0, [r2]	@ unaligned
+ 258 0134 5160     		str	r1, [r2, #4]	@ unaligned
+ 259 0136 1B78     		ldrb	r3, [r3]
+ 260 0138 1372     		strb	r3, [r2, #8]
+ 261 013a 0822     		movs	r2, #8
+ 262 013c FB68     		ldr	r3, [r7, #12]
+ 263 013e 1344     		add	r3, r3, r2
+ 264 0140 FB60     		str	r3, [r7, #12]
+  62:main.c        ****             int i;
+  63:main.c        ****             for (i = 0; i < mbus_rx_count; i++)
+ 265              		.loc 1 63 0
+ 266 0142 0023     		movs	r3, #0
+ 267 0144 BB60     		str	r3, [r7, #8]
+ 268 0146 2CE0     		b	.L5
+ 269              	.L11:
+ 270              		.align	2
+ 271              	.L10:
+ 272 0148 00000000 		.word	mbus_repeat_count
+ 273 014c 00000000 		.word	txt
+ 274 0150 00000000 		.word	.LC0
+ 275 0154 2C000000 		.word	.LC1
+ 276 0158 00000000 		.word	mbus_rx_count
+ 277 015c 34000000 		.word	.LC2
+ 278 0160 5C000000 		.word	.LC3
+ 279 0164 00000000 		.word	uart2_rx_buffer
+ 280 0168 00000000 		.word	mbus_tmr_start
+ 281 016c 00000000 		.word	mbus_tmr_stop
+ 282 0170 8C000000 		.word	.LC4
+ 283 0174 3F0D0300 		.word	199999
+ 284 0178 E8000000 		.word	.LC5
+ 285              	.L6:
+  64:main.c        ****             {
+  65:main.c        ****                 txt_lenght += sprintf((char *)&txt[txt_lenght], "%.2X ", uart2_rx_buffer[i]);
+ 286              		.loc 1 65 0 discriminator 3
+ 287 017c FB68     		ldr	r3, [r7, #12]
+ 288 017e 864A     		ldr	r2, .L12
+ 289 0180 9918     		adds	r1, r3, r2
+ 290 0182 864A     		ldr	r2, .L12+4
+ 291 0184 BB68     		ldr	r3, [r7, #8]
+ 292 0186 1344     		add	r3, r3, r2
+ 293 0188 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 294 018a 0846     		mov	r0, r1
+ 295 018c 8449     		ldr	r1, .L12+8
+ 296 018e 1A46     		mov	r2, r3
+ 297 0190 FFF7FEFF 		bl	sprintf
+ 298 0194 0246     		mov	r2, r0
+ 299 0196 FB68     		ldr	r3, [r7, #12]
+ 300 0198 1344     		add	r3, r3, r2
+ 301 019a FB60     		str	r3, [r7, #12]
+  63:main.c        ****             {
+ 302              		.loc 1 63 0 discriminator 3
+ 303 019c BB68     		ldr	r3, [r7, #8]
+ 304 019e 0133     		adds	r3, r3, #1
+ 305 01a0 BB60     		str	r3, [r7, #8]
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 9
+
+
+ 306              	.L5:
+  63:main.c        ****             {
+ 307              		.loc 1 63 0 is_stmt 0 discriminator 1
+ 308 01a2 804B     		ldr	r3, .L12+12
+ 309 01a4 1B88     		ldrh	r3, [r3]
+ 310 01a6 1A46     		mov	r2, r3
+ 311 01a8 BB68     		ldr	r3, [r7, #8]
+ 312 01aa 9A42     		cmp	r2, r3
+ 313 01ac E6DC     		bgt	.L6
+  66:main.c        ****             }
+  67:main.c        ****             assert(0 != rez, txt);
+ 314              		.loc 1 67 0 is_stmt 1
+ 315 01ae 7B68     		ldr	r3, [r7, #4]
+ 316 01b0 002B     		cmp	r3, #0
+ 317 01b2 14BF     		ite	ne
+ 318 01b4 0123     		movne	r3, #1
+ 319 01b6 0023     		moveq	r3, #0
+ 320 01b8 DBB2     		uxtb	r3, r3
+ 321 01ba 1846     		mov	r0, r3
+ 322 01bc 7649     		ldr	r1, .L12
+ 323 01be 7A4A     		ldr	r2, .L12+16
+ 324 01c0 4323     		movs	r3, #67
+ 325 01c2 FFF7FEFF 		bl	__assert__
+  68:main.c        ****             if (0 == rez)
+ 326              		.loc 1 68 0
+ 327 01c6 7B68     		ldr	r3, [r7, #4]
+ 328 01c8 002B     		cmp	r3, #0
+ 329 01ca 40F08580 		bne	.L7
+  69:main.c        ****             {
+  70:main.c        ****                assert((mbus_rx_count > 9), "REQ_RSP (mbus_rx_count > 9)");
+ 330              		.loc 1 70 0
+ 331 01ce 754B     		ldr	r3, .L12+12
+ 332 01d0 1B88     		ldrh	r3, [r3]
+ 333 01d2 092B     		cmp	r3, #9
+ 334 01d4 8CBF     		ite	hi
+ 335 01d6 0123     		movhi	r3, #1
+ 336 01d8 0023     		movls	r3, #0
+ 337 01da DBB2     		uxtb	r3, r3
+ 338 01dc 1846     		mov	r0, r3
+ 339 01de 7349     		ldr	r1, .L12+20
+ 340 01e0 714A     		ldr	r2, .L12+16
+ 341 01e2 4623     		movs	r3, #70
+ 342 01e4 FFF7FEFF 		bl	__assert__
+  71:main.c        ****                assert((0x68 == uart2_rx_buffer[0]), "REQ_RSP (0x68 == uart2_rx_buffer[0])");
+ 343              		.loc 1 71 0
+ 344 01e8 6C4B     		ldr	r3, .L12+4
+ 345 01ea 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 346 01ec 682B     		cmp	r3, #104
+ 347 01ee 0CBF     		ite	eq
+ 348 01f0 0123     		moveq	r3, #1
+ 349 01f2 0023     		movne	r3, #0
+ 350 01f4 DBB2     		uxtb	r3, r3
+ 351 01f6 1846     		mov	r0, r3
+ 352 01f8 6D49     		ldr	r1, .L12+24
+ 353 01fa 6B4A     		ldr	r2, .L12+16
+ 354 01fc 4723     		movs	r3, #71
+ 355 01fe FFF7FEFF 		bl	__assert__
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 10
+
+
+  72:main.c        ****                assert((uart2_rx_buffer[1] == uart2_rx_buffer[2]), "REQ_RSP (uart2_rx_buffer[1] == u
+ 356              		.loc 1 72 0
+ 357 0202 664B     		ldr	r3, .L12+4
+ 358 0204 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 359 0206 654B     		ldr	r3, .L12+4
+ 360 0208 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 361 020a 9A42     		cmp	r2, r3
+ 362 020c 0CBF     		ite	eq
+ 363 020e 0123     		moveq	r3, #1
+ 364 0210 0023     		movne	r3, #0
+ 365 0212 DBB2     		uxtb	r3, r3
+ 366 0214 1846     		mov	r0, r3
+ 367 0216 6749     		ldr	r1, .L12+28
+ 368 0218 634A     		ldr	r2, .L12+16
+ 369 021a 4823     		movs	r3, #72
+ 370 021c FFF7FEFF 		bl	__assert__
+  73:main.c        ****                assert((0x68 == uart2_rx_buffer[3]), "REQ_RSP (0x68 == uart2_rx_buffer[3])");
+ 371              		.loc 1 73 0
+ 372 0220 5E4B     		ldr	r3, .L12+4
+ 373 0222 DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ 374 0224 682B     		cmp	r3, #104
+ 375 0226 0CBF     		ite	eq
+ 376 0228 0123     		moveq	r3, #1
+ 377 022a 0023     		movne	r3, #0
+ 378 022c DBB2     		uxtb	r3, r3
+ 379 022e 1846     		mov	r0, r3
+ 380 0230 6149     		ldr	r1, .L12+32
+ 381 0232 5D4A     		ldr	r2, .L12+16
+ 382 0234 4923     		movs	r3, #73
+ 383 0236 FFF7FEFF 		bl	__assert__
+  74:main.c        ****                assert((mbus_rx_count == uart2_rx_buffer[1]+6), "REQ_RSP (mbus_rx_count == uart2_rx_
+ 384              		.loc 1 74 0
+ 385 023a 5A4B     		ldr	r3, .L12+12
+ 386 023c 1B88     		ldrh	r3, [r3]
+ 387 023e 1A46     		mov	r2, r3
+ 388 0240 564B     		ldr	r3, .L12+4
+ 389 0242 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 390 0244 0633     		adds	r3, r3, #6
+ 391 0246 9A42     		cmp	r2, r3
+ 392 0248 0CBF     		ite	eq
+ 393 024a 0123     		moveq	r3, #1
+ 394 024c 0023     		movne	r3, #0
+ 395 024e DBB2     		uxtb	r3, r3
+ 396 0250 1846     		mov	r0, r3
+ 397 0252 5A49     		ldr	r1, .L12+36
+ 398 0254 544A     		ldr	r2, .L12+16
+ 399 0256 4A23     		movs	r3, #74
+ 400 0258 FFF7FEFF 		bl	__assert__
+  75:main.c        ****             
+  76:main.c        ****                sprintf(txt, "REQ_RSP (mbus_cs((uint8 *)&uart2_rx_buffer[4], uart2_rx_buffer[1]) == 
+ 401              		.loc 1 76 0
+ 402 025c 4F4B     		ldr	r3, .L12+4
+ 403 025e 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 404 0260 013B     		subs	r3, r3, #1
+ 405 0262 5748     		ldr	r0, .L12+40
+ 406 0264 1946     		mov	r1, r3
+ 407 0266 FFF7FEFF 		bl	mbus_cs
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 11
+
+
+ 408 026a 0346     		mov	r3, r0
+ 409 026c 1C46     		mov	r4, r3
+ 410 026e 4B4B     		ldr	r3, .L12+4
+ 411 0270 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 412 0272 0433     		adds	r3, r3, #4
+ 413 0274 494A     		ldr	r2, .L12+4
+ 414 0276 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 415 0278 4748     		ldr	r0, .L12
+ 416 027a 5249     		ldr	r1, .L12+44
+ 417 027c 2246     		mov	r2, r4
+ 418 027e FFF7FEFF 		bl	sprintf
+  77:main.c        ****                assert((mbus_cs((uint8 *)uart2_rx_buffer[4], uart2_rx_buffer[1]) == uart2_rx_buffer[
+ 419              		.loc 1 77 0
+ 420 0282 464B     		ldr	r3, .L12+4
+ 421 0284 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 422 0286 1A46     		mov	r2, r3
+ 423 0288 444B     		ldr	r3, .L12+4
+ 424 028a 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 425 028c 1046     		mov	r0, r2
+ 426 028e 1946     		mov	r1, r3
+ 427 0290 FFF7FEFF 		bl	mbus_cs
+ 428 0294 0346     		mov	r3, r0
+ 429 0296 1946     		mov	r1, r3
+ 430 0298 404B     		ldr	r3, .L12+4
+ 431 029a 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 432 029c 0533     		adds	r3, r3, #5
+ 433 029e 3F4A     		ldr	r2, .L12+4
+ 434 02a0 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 435 02a2 9942     		cmp	r1, r3
+ 436 02a4 0CBF     		ite	eq
+ 437 02a6 0123     		moveq	r3, #1
+ 438 02a8 0023     		movne	r3, #0
+ 439 02aa DBB2     		uxtb	r3, r3
+ 440 02ac 1846     		mov	r0, r3
+ 441 02ae 3A49     		ldr	r1, .L12
+ 442 02b0 3D4A     		ldr	r2, .L12+16
+ 443 02b2 4D23     		movs	r3, #77
+ 444 02b4 FFF7FEFF 		bl	__assert__
+  78:main.c        ****                assert((0x16 == uart2_rx_buffer[5+uart2_rx_buffer[1]]), "REQ_RSP (0x16 == uart2_rx_b
+ 445              		.loc 1 78 0
+ 446 02b8 384B     		ldr	r3, .L12+4
+ 447 02ba 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 448 02bc 0533     		adds	r3, r3, #5
+ 449 02be 374A     		ldr	r2, .L12+4
+ 450 02c0 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 451 02c2 162B     		cmp	r3, #22
+ 452 02c4 0CBF     		ite	eq
+ 453 02c6 0123     		moveq	r3, #1
+ 454 02c8 0023     		movne	r3, #0
+ 455 02ca DBB2     		uxtb	r3, r3
+ 456 02cc 1846     		mov	r0, r3
+ 457 02ce 3E49     		ldr	r1, .L12+48
+ 458 02d0 354A     		ldr	r2, .L12+16
+ 459 02d2 4E23     		movs	r3, #78
+ 460 02d4 FFF7FEFF 		bl	__assert__
+ 461              	.L7:
+  79:main.c        ****             }
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 12
+
+
+  80:main.c        ****             
+  81:main.c        ****             sprintf(txt, "REQ_RSP mbus_repeat_count = %d, expected 1", mbus_repeat_count);
+ 462              		.loc 1 81 0
+ 463 02d8 3C4B     		ldr	r3, .L12+52
+ 464 02da 1B88     		ldrh	r3, [r3]
+ 465 02dc 2E48     		ldr	r0, .L12
+ 466 02de 3C49     		ldr	r1, .L12+56
+ 467 02e0 1A46     		mov	r2, r3
+ 468 02e2 FFF7FEFF 		bl	sprintf
+  82:main.c        ****             assert(1 == mbus_repeat_count, txt);
+ 469              		.loc 1 82 0
+ 470 02e6 394B     		ldr	r3, .L12+52
+ 471 02e8 1B88     		ldrh	r3, [r3]
+ 472 02ea 012B     		cmp	r3, #1
+ 473 02ec 0CBF     		ite	eq
+ 474 02ee 0123     		moveq	r3, #1
+ 475 02f0 0023     		movne	r3, #0
+ 476 02f2 DBB2     		uxtb	r3, r3
+ 477 02f4 1846     		mov	r0, r3
+ 478 02f6 2849     		ldr	r1, .L12
+ 479 02f8 2B4A     		ldr	r2, .L12+16
+ 480 02fa 5223     		movs	r3, #82
+ 481 02fc FFF7FEFF 		bl	__assert__
+  83:main.c        ****             
+  84:main.c        ****             //(float)(mbus_tmr_start/1000.0 - mbus_tmr_stop/1000.0)
+  85:main.c        ****             sprintf(txt, "REQ_RSP slave wait time = %ld us, expected between 11 bit times and (330 
+ 482              		.loc 1 85 0
+ 483 0300 344B     		ldr	r3, .L12+60
+ 484 0302 1A68     		ldr	r2, [r3]
+ 485 0304 344B     		ldr	r3, .L12+64
+ 486 0306 1B68     		ldr	r3, [r3]
+ 487 0308 D31A     		subs	r3, r2, r3
+ 488 030a 2348     		ldr	r0, .L12
+ 489 030c 3349     		ldr	r1, .L12+68
+ 490 030e 1A46     		mov	r2, r3
+ 491 0310 FFF7FEFF 		bl	sprintf
+  86:main.c        ****             assert(MAX_WAIT_TIME > (mbus_tmr_start - mbus_tmr_stop), txt);
+ 492              		.loc 1 86 0
+ 493 0314 2F4B     		ldr	r3, .L12+60
+ 494 0316 1A68     		ldr	r2, [r3]
+ 495 0318 2F4B     		ldr	r3, .L12+64
+ 496 031a 1B68     		ldr	r3, [r3]
+ 497 031c D31A     		subs	r3, r2, r3
+ 498 031e 304A     		ldr	r2, .L12+72
+ 499 0320 9342     		cmp	r3, r2
+ 500 0322 94BF     		ite	ls
+ 501 0324 0123     		movls	r3, #1
+ 502 0326 0023     		movhi	r3, #0
+ 503 0328 DBB2     		uxtb	r3, r3
+ 504 032a 1846     		mov	r0, r3
+ 505 032c 1A49     		ldr	r1, .L12
+ 506 032e 1E4A     		ldr	r2, .L12+16
+ 507 0330 5623     		movs	r3, #86
+ 508 0332 FFF7FEFF 		bl	__assert__
+  87:main.c        ****             
+  88:main.c        ****             sprintf(txt, "REQ_RSP mbus_bit_max = %ld us, expected < 4583*1.2 (2400bps)", mbus_bit_m
+ 509              		.loc 1 88 0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 13
+
+
+ 510 0336 2B4B     		ldr	r3, .L12+76
+ 511 0338 1B68     		ldr	r3, [r3]
+ 512 033a 1748     		ldr	r0, .L12
+ 513 033c 2A49     		ldr	r1, .L12+80
+ 514 033e 1A46     		mov	r2, r3
+ 515 0340 FFF7FEFF 		bl	sprintf
+  89:main.c        ****             assert(MAX_BIT_TIME >= mbus_bit_max, txt);
+ 516              		.loc 1 89 0
+ 517 0344 274B     		ldr	r3, .L12+76
+ 518 0346 1B68     		ldr	r3, [r3]
+ 519 0348 41F27B52 		movw	r2, #5499
+ 520 034c 9342     		cmp	r3, r2
+ 521 034e 94BF     		ite	ls
+ 522 0350 0123     		movls	r3, #1
+ 523 0352 0023     		movhi	r3, #0
+ 524 0354 DBB2     		uxtb	r3, r3
+ 525 0356 1846     		mov	r0, r3
+ 526 0358 0F49     		ldr	r1, .L12
+ 527 035a 134A     		ldr	r2, .L12+16
+ 528 035c 5923     		movs	r3, #89
+ 529 035e FFF7FEFF 		bl	__assert__
+  90:main.c        ****             
+  91:main.c        ****             sprintf(txt, "REQ_RSP mbus_bit_min = %ld us, expected  > 4583*0.8 (2400bps)", mbus_bit_
+ 530              		.loc 1 91 0
+ 531 0362 224B     		ldr	r3, .L12+84
+ 532 0364 1B68     		ldr	r3, [r3]
+ 533 0366 0C48     		ldr	r0, .L12
+ 534 0368 2149     		ldr	r1, .L12+88
+ 535 036a 1A46     		mov	r2, r3
+ 536 036c FFF7FEFF 		bl	sprintf
+  92:main.c        ****             assert(MIN_BIT_TIME <= mbus_bit_min, txt);
+ 537              		.loc 1 92 0
+ 538 0370 1E4B     		ldr	r3, .L12+84
+ 539 0372 1B68     		ldr	r3, [r3]
+ 540 0374 40F65162 		movw	r2, #3665
+ 541 0378 9342     		cmp	r3, r2
+ 542 037a 8CBF     		ite	hi
+ 543 037c 0123     		movhi	r3, #1
+ 544 037e 0023     		movls	r3, #0
+ 545 0380 DBB2     		uxtb	r3, r3
+ 546 0382 1846     		mov	r0, r3
+ 547 0384 0449     		ldr	r1, .L12
+ 548 0386 084A     		ldr	r2, .L12+16
+ 549 0388 5C23     		movs	r3, #92
+ 550 038a FFF7FEFF 		bl	__assert__
+ 551              	.LBE2:
+ 552 038e 02E0     		b	.L8
+ 553              	.L2:
+  93:main.c        **** 
+  94:main.c        ****         }
+  95:main.c        ****         else
+  96:main.c        ****         {
+  97:main.c        ****             //ext_mode_Disconnect(0);
+  98:main.c        ****             //ext_sw_Disconnect(0);
+  99:main.c        ****             LED1_Write(0);
+ 554              		.loc 1 99 0
+ 555 0390 0020     		movs	r0, #0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 14
+
+
+ 556 0392 FFF7FEFF 		bl	LED1_Write
+ 557              	.L8:
+ 100:main.c        ****         }
+ 101:main.c        ****       
+ 102:main.c        ****     }
+ 103:main.c        ****     while (1);
+ 558              		.loc 1 103 0
+ 559 0396 36E6     		b	.L9
+ 560              	.L13:
+ 561              		.align	2
+ 562              	.L12:
+ 563 0398 00000000 		.word	txt
+ 564 039c 00000000 		.word	uart2_rx_buffer
+ 565 03a0 F4000000 		.word	.LC6
+ 566 03a4 00000000 		.word	mbus_rx_count
+ 567 03a8 2C000000 		.word	.LC1
+ 568 03ac FC000000 		.word	.LC7
+ 569 03b0 18010000 		.word	.LC8
+ 570 03b4 40010000 		.word	.LC9
+ 571 03b8 74010000 		.word	.LC10
+ 572 03bc 9C010000 		.word	.LC11
+ 573 03c0 04000000 		.word	uart2_rx_buffer+4
+ 574 03c4 CC010000 		.word	.LC12
+ 575 03c8 4C020000 		.word	.LC13
+ 576 03cc 00000000 		.word	mbus_repeat_count
+ 577 03d0 84020000 		.word	.LC14
+ 578 03d4 00000000 		.word	mbus_tmr_start
+ 579 03d8 00000000 		.word	mbus_tmr_stop
+ 580 03dc B0020000 		.word	.LC15
+ 581 03e0 3F0D0300 		.word	199999
+ 582 03e4 00000000 		.word	mbus_bit_max
+ 583 03e8 0C030000 		.word	.LC16
+ 584 03ec 00000000 		.word	mbus_bit_min
+ 585 03f0 4C030000 		.word	.LC17
+ 586              		.cfi_endproc
+ 587              	.LFE63:
+ 588              		.size	test_X10, .-test_X10
+ 589              		.section	.text.mist_start,"ax",%progbits
+ 590              		.align	2
+ 591              		.global	mist_start
+ 592              		.thumb
+ 593              		.thumb_func
+ 594              		.type	mist_start, %function
+ 595              	mist_start:
+ 596              	.LFB64:
+ 104:main.c        **** }
+ 105:main.c        **** 
+ 106:main.c        **** #define MIS_RST0 (1)
+ 107:main.c        **** #define MIS_RST  (2)
+ 108:main.c        **** #define MIS_CTRL (4)
+ 109:main.c        **** 
+ 110:main.c        **** void mist_start(void)
+ 111:main.c        **** {
+ 597              		.loc 1 111 0
+ 598              		.cfi_startproc
+ 599              		@ args = 0, pretend = 0, frame = 0
+ 600              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 15
+
+
+ 601 0000 80B5     		push	{r7, lr}
+ 602              		.cfi_def_cfa_offset 8
+ 603              		.cfi_offset 7, -8
+ 604              		.cfi_offset 14, -4
+ 605 0002 00AF     		add	r7, sp, #0
+ 606              		.cfi_def_cfa_register 7
+ 112:main.c        ****     MIS_Reg_Write(MIS_RST0 + MIS_RST);
+ 607              		.loc 1 112 0
+ 608 0004 0320     		movs	r0, #3
+ 609 0006 FFF7FEFF 		bl	MIS_Reg_Write
+ 113:main.c        ****     CyDelay(1);
+ 610              		.loc 1 113 0
+ 611 000a 0120     		movs	r0, #1
+ 612 000c FFF7FEFF 		bl	CyDelay
+ 114:main.c        ****     PacketTimer_ClearFIFO();
+ 613              		.loc 1 114 0
+ 614 0010 FFF7FEFF 		bl	PacketTimer_ClearFIFO
+ 115:main.c        ****     PulseCounter_WriteCounter(0);
+ 615              		.loc 1 115 0
+ 616 0014 0020     		movs	r0, #0
+ 617 0016 FFF7FEFF 		bl	PulseCounter_WriteCounter
+ 116:main.c        ****     MIS_Reg_Write(0);
+ 618              		.loc 1 116 0
+ 619 001a 0020     		movs	r0, #0
+ 620 001c FFF7FEFF 		bl	MIS_Reg_Write
+ 117:main.c        **** }
+ 621              		.loc 1 117 0
+ 622 0020 80BD     		pop	{r7, pc}
+ 623              		.cfi_endproc
+ 624              	.LFE64:
+ 625              		.size	mist_start, .-mist_start
+ 626 0022 00BF     		.section	.text.mis_stop,"ax",%progbits
+ 627              		.align	2
+ 628              		.global	mis_stop
+ 629              		.thumb
+ 630              		.thumb_func
+ 631              		.type	mis_stop, %function
+ 632              	mis_stop:
+ 633              	.LFB65:
+ 118:main.c        **** 
+ 119:main.c        **** void mis_stop(void)
+ 120:main.c        **** {
+ 634              		.loc 1 120 0
+ 635              		.cfi_startproc
+ 636              		@ args = 0, pretend = 0, frame = 0
+ 637              		@ frame_needed = 1, uses_anonymous_args = 0
+ 638 0000 80B5     		push	{r7, lr}
+ 639              		.cfi_def_cfa_offset 8
+ 640              		.cfi_offset 7, -8
+ 641              		.cfi_offset 14, -4
+ 642 0002 00AF     		add	r7, sp, #0
+ 643              		.cfi_def_cfa_register 7
+ 121:main.c        ****     MIS_Reg_Write(MIS_RST);
+ 644              		.loc 1 121 0
+ 645 0004 0220     		movs	r0, #2
+ 646 0006 FFF7FEFF 		bl	MIS_Reg_Write
+ 122:main.c        ****     CyDelay(1);
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 16
+
+
+ 647              		.loc 1 122 0
+ 648 000a 0120     		movs	r0, #1
+ 649 000c FFF7FEFF 		bl	CyDelay
+ 123:main.c        ****     MIS_Reg_Write(MIS_RST + MIS_CTRL);
+ 650              		.loc 1 123 0
+ 651 0010 0620     		movs	r0, #6
+ 652 0012 FFF7FEFF 		bl	MIS_Reg_Write
+ 124:main.c        ****     CyDelay(1);
+ 653              		.loc 1 124 0
+ 654 0016 0120     		movs	r0, #1
+ 655 0018 FFF7FEFF 		bl	CyDelay
+ 125:main.c        ****     MIS_Reg_Write(MIS_CTRL);
+ 656              		.loc 1 125 0
+ 657 001c 0420     		movs	r0, #4
+ 658 001e FFF7FEFF 		bl	MIS_Reg_Write
+ 126:main.c        **** }
+ 659              		.loc 1 126 0
+ 660 0022 80BD     		pop	{r7, pc}
+ 661              		.cfi_endproc
+ 662              	.LFE65:
+ 663              		.size	mis_stop, .-mis_stop
+ 664              		.comm	PacketTimerStart,4,4
+ 665              		.comm	PacketTimerStop,4,4
+ 666              		.comm	PulseCounterTotTime,4,4
+ 667              		.section	.text.mis_measure,"ax",%progbits
+ 668              		.align	2
+ 669              		.global	mis_measure
+ 670              		.thumb
+ 671              		.thumb_func
+ 672              		.type	mis_measure, %function
+ 673              	mis_measure:
+ 674              	.LFB66:
+ 127:main.c        **** 
+ 128:main.c        **** uint32 PacketTimerStart;
+ 129:main.c        **** uint32 PacketTimerStop;
+ 130:main.c        **** uint32 PulseCounterTotTime;
+ 131:main.c        **** 
+ 132:main.c        **** void mis_measure(uint32 time_ms)
+ 133:main.c        **** {
+ 675              		.loc 1 133 0
+ 676              		.cfi_startproc
+ 677              		@ args = 0, pretend = 0, frame = 8
+ 678              		@ frame_needed = 1, uses_anonymous_args = 0
+ 679 0000 80B5     		push	{r7, lr}
+ 680              		.cfi_def_cfa_offset 8
+ 681              		.cfi_offset 7, -8
+ 682              		.cfi_offset 14, -4
+ 683 0002 82B0     		sub	sp, sp, #8
+ 684              		.cfi_def_cfa_offset 16
+ 685 0004 00AF     		add	r7, sp, #0
+ 686              		.cfi_def_cfa_register 7
+ 687 0006 7860     		str	r0, [r7, #4]
+ 134:main.c        ****     mist_start();
+ 688              		.loc 1 134 0
+ 689 0008 FFF7FEFF 		bl	mist_start
+ 135:main.c        ****     while (0 == MIS_Stat_Read());
+ 690              		.loc 1 135 0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 17
+
+
+ 691 000c 00BF     		nop
+ 692              	.L17:
+ 693              		.loc 1 135 0 is_stmt 0 discriminator 1
+ 694 000e FFF7FEFF 		bl	MIS_Stat_Read
+ 695 0012 0346     		mov	r3, r0
+ 696 0014 002B     		cmp	r3, #0
+ 697 0016 FAD0     		beq	.L17
+ 136:main.c        ****     
+ 137:main.c        ****     CyDelay(time_ms);
+ 698              		.loc 1 137 0 is_stmt 1
+ 699 0018 7868     		ldr	r0, [r7, #4]
+ 700 001a FFF7FEFF 		bl	CyDelay
+ 138:main.c        ****     
+ 139:main.c        ****     mis_stop();
+ 701              		.loc 1 139 0
+ 702 001e FFF7FEFF 		bl	mis_stop
+ 140:main.c        ****     while (0 == MIS_Stat_Read());
+ 703              		.loc 1 140 0
+ 704 0022 00BF     		nop
+ 705              	.L18:
+ 706              		.loc 1 140 0 is_stmt 0 discriminator 1
+ 707 0024 FFF7FEFF 		bl	MIS_Stat_Read
+ 708 0028 0346     		mov	r3, r0
+ 709 002a 002B     		cmp	r3, #0
+ 710 002c FAD0     		beq	.L18
+ 141:main.c        ****     
+ 142:main.c        ****     //ar fifo 2 reiksmes? - klaidos pozymis
+ 143:main.c        ****     
+ 144:main.c        ****     PacketTimerStart = PacketTimer_ReadCapture();
+ 711              		.loc 1 144 0 is_stmt 1
+ 712 002e FFF7FEFF 		bl	PacketTimer_ReadCapture
+ 713 0032 0246     		mov	r2, r0
+ 714 0034 084B     		ldr	r3, .L19
+ 715 0036 1A60     		str	r2, [r3]
+ 145:main.c        ****     PacketTimerStop = PacketTimer_ReadCapture();
+ 716              		.loc 1 145 0
+ 717 0038 FFF7FEFF 		bl	PacketTimer_ReadCapture
+ 718 003c 0246     		mov	r2, r0
+ 719 003e 074B     		ldr	r3, .L19+4
+ 720 0040 1A60     		str	r2, [r3]
+ 146:main.c        ****     PulseCounterTotTime = PacketTimerStart - PacketTimerStop;
+ 721              		.loc 1 146 0
+ 722 0042 054B     		ldr	r3, .L19
+ 723 0044 1A68     		ldr	r2, [r3]
+ 724 0046 054B     		ldr	r3, .L19+4
+ 725 0048 1B68     		ldr	r3, [r3]
+ 726 004a D31A     		subs	r3, r2, r3
+ 727 004c 044A     		ldr	r2, .L19+8
+ 728 004e 1360     		str	r3, [r2]
+ 147:main.c        **** }
+ 729              		.loc 1 147 0
+ 730 0050 0837     		adds	r7, r7, #8
+ 731              		.cfi_def_cfa_offset 8
+ 732 0052 BD46     		mov	sp, r7
+ 733              		.cfi_def_cfa_register 13
+ 734              		@ sp needed
+ 735 0054 80BD     		pop	{r7, pc}
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 18
+
+
+ 736              	.L20:
+ 737 0056 00BF     		.align	2
+ 738              	.L19:
+ 739 0058 00000000 		.word	PacketTimerStart
+ 740 005c 00000000 		.word	PacketTimerStop
+ 741 0060 00000000 		.word	PulseCounterTotTime
+ 742              		.cfi_endproc
+ 743              	.LFE66:
+ 744              		.size	mis_measure, .-mis_measure
+ 745              		.section	.rodata
+ 746 038a 0000     		.align	2
+ 747              	.LC18:
+ 748 038c 4D495320 		.ascii	"MIS PulseCounter = %ld TotTime = %ld\000"
+ 748      50756C73 
+ 748      65436F75 
+ 748      6E746572 
+ 748      203D2025 
+ 749              		.section	.text.test_X4,"ax",%progbits
+ 750              		.align	2
+ 751              		.global	test_X4
+ 752              		.thumb
+ 753              		.thumb_func
+ 754              		.type	test_X4, %function
+ 755              	test_X4:
+ 756              	.LFB67:
+ 148:main.c        **** 
+ 149:main.c        **** void test_X4(void)
+ 150:main.c        **** {
+ 757              		.loc 1 150 0
+ 758              		.cfi_startproc
+ 759              		@ args = 0, pretend = 0, frame = 504
+ 760              		@ frame_needed = 1, uses_anonymous_args = 0
+ 761 0000 80B5     		push	{r7, lr}
+ 762              		.cfi_def_cfa_offset 8
+ 763              		.cfi_offset 7, -8
+ 764              		.cfi_offset 14, -4
+ 765 0002 FEB0     		sub	sp, sp, #504
+ 766              		.cfi_def_cfa_offset 512
+ 767 0004 00AF     		add	r7, sp, #0
+ 768              		.cfi_def_cfa_register 7
+ 151:main.c        ****     //test jumper ON
+ 152:main.c        ****     CyDelay(2000);
+ 769              		.loc 1 152 0
+ 770 0006 4FF4FA60 		mov	r0, #2000
+ 771 000a FFF7FEFF 		bl	CyDelay
+ 153:main.c        ****     mode1_Write(0);
+ 772              		.loc 1 153 0
+ 773 000e 0020     		movs	r0, #0
+ 774 0010 FFF7FEFF 		bl	mode1_Write
+ 154:main.c        ****     CyDelay(5000);
+ 775              		.loc 1 154 0
+ 776 0014 41F28830 		movw	r0, #5000
+ 777 0018 FFF7FEFF 		bl	CyDelay
+ 155:main.c        ****     LED1_Write(1);
+ 778              		.loc 1 155 0
+ 779 001c 0120     		movs	r0, #1
+ 780 001e FFF7FEFF 		bl	LED1_Write
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 19
+
+
+ 156:main.c        ****     CyDelay(100);
+ 781              		.loc 1 156 0
+ 782 0022 6420     		movs	r0, #100
+ 783 0024 FFF7FEFF 		bl	CyDelay
+ 157:main.c        ****     LED1_Write(0);
+ 784              		.loc 1 157 0
+ 785 0028 0020     		movs	r0, #0
+ 786 002a FFF7FEFF 		bl	LED1_Write
+ 787              	.L22:
+ 158:main.c        ****     uint8 uart2_tx_buffer[500];
+ 159:main.c        ****     do
+ 160:main.c        ****     {
+ 161:main.c        ****         mis_measure(10000);
+ 788              		.loc 1 161 0 discriminator 1
+ 789 002e 42F21070 		movw	r0, #10000
+ 790 0032 FFF7FEFF 		bl	mis_measure
+ 162:main.c        ****         sprintf(txt, "MIS PulseCounter = %ld TotTime = %ld", PulseCounter_ReadCounter(), PulseCount
+ 791              		.loc 1 162 0 discriminator 1
+ 792 0036 FFF7FEFF 		bl	PulseCounter_ReadCounter
+ 793 003a 0246     		mov	r2, r0
+ 794 003c 064B     		ldr	r3, .L23
+ 795 003e 1B68     		ldr	r3, [r3]
+ 796 0040 0648     		ldr	r0, .L23+4
+ 797 0042 0749     		ldr	r1, .L23+8
+ 798 0044 FFF7FEFF 		bl	sprintf
+ 163:main.c        ****         assert(0 == 0, txt);
+ 799              		.loc 1 163 0 discriminator 1
+ 800 0048 0120     		movs	r0, #1
+ 801 004a 0449     		ldr	r1, .L23+4
+ 802 004c 054A     		ldr	r2, .L23+12
+ 803 004e A323     		movs	r3, #163
+ 804 0050 FFF7FEFF 		bl	__assert__
+ 164:main.c        ****     }
+ 165:main.c        ****     while (1);
+ 805              		.loc 1 165 0 discriminator 1
+ 806 0054 EBE7     		b	.L22
+ 807              	.L24:
+ 808 0056 00BF     		.align	2
+ 809              	.L23:
+ 810 0058 00000000 		.word	PulseCounterTotTime
+ 811 005c 00000000 		.word	txt
+ 812 0060 8C030000 		.word	.LC18
+ 813 0064 2C000000 		.word	.LC1
+ 814              		.cfi_endproc
+ 815              	.LFE67:
+ 816              		.size	test_X4, .-test_X4
+ 817              		.section	.rodata
+ 818 03b1 000000   		.align	2
+ 819              	.LC19:
+ 820 03b4 1B5B324A 		.ascii	"\033[2J\033[H\000"
+ 820      1B5B4800 
+ 821              		.align	2
+ 822              	.LC20:
+ 823 03bc 41206D69 		.ascii	"A minimal unit testing framework for C\015\012\015\012"
+ 823      6E696D61 
+ 823      6C20756E 
+ 823      69742074 
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 20
+
+
+ 823      65737469 
+ 824 03e6 00       		.ascii	"\000"
+ 825 03e7 00       		.section	.text.main,"ax",%progbits
+ 826              		.align	2
+ 827              		.global	main
+ 828              		.thumb
+ 829              		.thumb_func
+ 830              		.type	main, %function
+ 831              	main:
+ 832              	.LFB68:
+ 166:main.c        **** }
+ 167:main.c        **** 
+ 168:main.c        **** 
+ 169:main.c        **** int main()
+ 170:main.c        **** {    
+ 833              		.loc 1 170 0
+ 834              		.cfi_startproc
+ 835              		@ args = 0, pretend = 0, frame = 0
+ 836              		@ frame_needed = 1, uses_anonymous_args = 0
+ 837 0000 80B5     		push	{r7, lr}
+ 838              		.cfi_def_cfa_offset 8
+ 839              		.cfi_offset 7, -8
+ 840              		.cfi_offset 14, -4
+ 841 0002 00AF     		add	r7, sp, #0
+ 842              		.cfi_def_cfa_register 7
+ 171:main.c        ****     /* Start the components */
+ 172:main.c        ****     UART_1_Start();
+ 843              		.loc 1 172 0
+ 844 0004 FFF7FEFF 		bl	UART_1_Start
+ 173:main.c        ****     UART_2_Start();
+ 845              		.loc 1 173 0
+ 846 0008 FFF7FEFF 		bl	UART_2_Start
+ 174:main.c        ****     
+ 175:main.c        ****     PulseTimeout_Start();
+ 847              		.loc 1 175 0
+ 848 000c FFF7FEFF 		bl	PulseTimeout_Start
+ 176:main.c        ****     PacketTimer_Start();
+ 849              		.loc 1 176 0
+ 850 0010 FFF7FEFF 		bl	PacketTimer_Start
+ 177:main.c        ****     PulseCounter_Start();
+ 851              		.loc 1 177 0
+ 852 0014 FFF7FEFF 		bl	PulseCounter_Start
+ 178:main.c        ****     
+ 179:main.c        ****     //Stop_Packet_Timer_Stop();
+ 180:main.c        ****     
+ 181:main.c        ****     
+ 182:main.c        **** 
+ 183:main.c        ****     
+ 184:main.c        ****     ext_sw_Start();
+ 853              		.loc 1 184 0
+ 854 0018 FFF7FEFF 		bl	ext_sw_Start
+ 185:main.c        ****     //ext_mode_Start();
+ 186:main.c        ****     
+ 187:main.c        ****     /* Turn OFF batteries*/
+ 188:main.c        ****     Vbat_r_Write(1);
+ 855              		.loc 1 188 0
+ 856 001c 0120     		movs	r0, #1
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 21
+
+
+ 857 001e FFF7FEFF 		bl	Vbat_r_Write
+ 189:main.c        ****     Vbat_Write(1);
+ 858              		.loc 1 189 0
+ 859 0022 0120     		movs	r0, #1
+ 860 0024 FFF7FEFF 		bl	Vbat_Write
+ 190:main.c        ****       
+ 191:main.c        ****     /* Send message to verify COM port is connected properly */
+ 192:main.c        ****     //http://wiki.bash-hackers.org/scripting/terminalcodes
+ 193:main.c        ****     
+ 194:main.c        ****     UART_1_PutString("\x1b[2J\x1b[H"); //erase screen and go home
+ 861              		.loc 1 194 0
+ 862 0028 0748     		ldr	r0, .L26
+ 863 002a FFF7FEFF 		bl	UART_1_PutString
+ 195:main.c        ****     UART_1_PutString("A minimal unit testing framework for C\r\n\r\n");
+ 864              		.loc 1 195 0
+ 865 002e 0748     		ldr	r0, .L26+4
+ 866 0030 FFF7FEFF 		bl	UART_1_PutString
+ 196:main.c        ****     /* Turn ON batteries*/
+ 197:main.c        ****     Vbat_r_Write(0);
+ 867              		.loc 1 197 0
+ 868 0034 0020     		movs	r0, #0
+ 869 0036 FFF7FEFF 		bl	Vbat_r_Write
+ 198:main.c        ****     Vbat_Write(0);
+ 870              		.loc 1 198 0
+ 871 003a 0020     		movs	r0, #0
+ 872 003c FFF7FEFF 		bl	Vbat_Write
+ 199:main.c        ****     //Build Stteing/Linker/General and : Use newlib-nano = FALSE
+ 200:main.c        ****     //test_X10();
+ 201:main.c        ****     test_X4();
+ 873              		.loc 1 201 0
+ 874 0040 FFF7FEFF 		bl	test_X4
+ 202:main.c        **** }
+ 875              		.loc 1 202 0
+ 876 0044 1846     		mov	r0, r3
+ 877 0046 80BD     		pop	{r7, pc}
+ 878              	.L27:
+ 879              		.align	2
+ 880              	.L26:
+ 881 0048 B4030000 		.word	.LC19
+ 882 004c BC030000 		.word	.LC20
+ 883              		.cfi_endproc
+ 884              	.LFE68:
+ 885              		.size	main, .-main
+ 886              		.text
+ 887              	.Letext0:
+ 888              		.file 2 "c:\\program files\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.3\\arm
+ 889              		.file 3 "c:\\program files\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.3\\arm
+ 890              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 891              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 892              		.file 6 "mbus.h"
+ 893              		.section	.debug_info,"",%progbits
+ 894              	.Ldebug_info0:
+ 895 0000 66020000 		.4byte	0x266
+ 896 0004 0400     		.2byte	0x4
+ 897 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 898 000a 04       		.byte	0x4
+ 899 000b 01       		.uleb128 0x1
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 22
+
+
+ 900 000c 74000000 		.4byte	.LASF37
+ 901 0010 01       		.byte	0x1
+ 902 0011 21020000 		.4byte	.LASF38
+ 903 0015 17000000 		.4byte	.LASF39
+ 904 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 905 001d 00000000 		.4byte	0
+ 906 0021 00000000 		.4byte	.Ldebug_line0
+ 907 0025 02       		.uleb128 0x2
+ 908 0026 01       		.byte	0x1
+ 909 0027 06       		.byte	0x6
+ 910 0028 87020000 		.4byte	.LASF0
+ 911 002c 02       		.uleb128 0x2
+ 912 002d 01       		.byte	0x1
+ 913 002e 08       		.byte	0x8
+ 914 002f 31010000 		.4byte	.LASF1
+ 915 0033 02       		.uleb128 0x2
+ 916 0034 02       		.byte	0x2
+ 917 0035 05       		.byte	0x5
+ 918 0036 41020000 		.4byte	.LASF2
+ 919 003a 02       		.uleb128 0x2
+ 920 003b 02       		.byte	0x2
+ 921 003c 07       		.byte	0x7
+ 922 003d 51010000 		.4byte	.LASF3
+ 923 0041 03       		.uleb128 0x3
+ 924 0042 61000000 		.4byte	.LASF9
+ 925 0046 02       		.byte	0x2
+ 926 0047 3F       		.byte	0x3f
+ 927 0048 4C000000 		.4byte	0x4c
+ 928 004c 02       		.uleb128 0x2
+ 929 004d 04       		.byte	0x4
+ 930 004e 05       		.byte	0x5
+ 931 004f 6B000000 		.4byte	.LASF4
+ 932 0053 02       		.uleb128 0x2
+ 933 0054 04       		.byte	0x4
+ 934 0055 07       		.byte	0x7
+ 935 0056 3F010000 		.4byte	.LASF5
+ 936 005a 02       		.uleb128 0x2
+ 937 005b 08       		.byte	0x8
+ 938 005c 05       		.byte	0x5
+ 939 005d 13020000 		.4byte	.LASF6
+ 940 0061 02       		.uleb128 0x2
+ 941 0062 08       		.byte	0x8
+ 942 0063 07       		.byte	0x7
+ 943 0064 C0010000 		.4byte	.LASF7
+ 944 0068 04       		.uleb128 0x4
+ 945 0069 04       		.byte	0x4
+ 946 006a 05       		.byte	0x5
+ 947 006b 696E7400 		.ascii	"int\000"
+ 948 006f 02       		.uleb128 0x2
+ 949 0070 04       		.byte	0x4
+ 950 0071 07       		.byte	0x7
+ 951 0072 B3010000 		.4byte	.LASF8
+ 952 0076 03       		.uleb128 0x3
+ 953 0077 02020000 		.4byte	.LASF10
+ 954 007b 03       		.byte	0x3
+ 955 007c 2C       		.byte	0x2c
+ 956 007d 41000000 		.4byte	0x41
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 23
+
+
+ 957 0081 05       		.uleb128 0x5
+ 958 0082 5C020000 		.4byte	.LASF11
+ 959 0086 04       		.byte	0x4
+ 960 0087 9201     		.2byte	0x192
+ 961 0089 2C000000 		.4byte	0x2c
+ 962 008d 05       		.uleb128 0x5
+ 963 008e A5010000 		.4byte	.LASF12
+ 964 0092 04       		.byte	0x4
+ 965 0093 9301     		.2byte	0x193
+ 966 0095 3A000000 		.4byte	0x3a
+ 967 0099 05       		.uleb128 0x5
+ 968 009a AC010000 		.4byte	.LASF13
+ 969 009e 04       		.byte	0x4
+ 970 009f 9401     		.2byte	0x194
+ 971 00a1 53000000 		.4byte	0x53
+ 972 00a5 02       		.uleb128 0x2
+ 973 00a6 04       		.byte	0x4
+ 974 00a7 04       		.byte	0x4
+ 975 00a8 2B010000 		.4byte	.LASF14
+ 976 00ac 02       		.uleb128 0x2
+ 977 00ad 08       		.byte	0x8
+ 978 00ae 04       		.byte	0x4
+ 979 00af 99010000 		.4byte	.LASF15
+ 980 00b3 02       		.uleb128 0x2
+ 981 00b4 01       		.byte	0x1
+ 982 00b5 08       		.byte	0x8
+ 983 00b6 28020000 		.4byte	.LASF16
+ 984 00ba 02       		.uleb128 0x2
+ 985 00bb 04       		.byte	0x4
+ 986 00bc 07       		.byte	0x7
+ 987 00bd 0A020000 		.4byte	.LASF17
+ 988 00c1 06       		.uleb128 0x6
+ 989 00c2 0E000000 		.4byte	.LASF21
+ 990 00c6 01       		.byte	0x1
+ 991 00c7 12       		.byte	0x12
+ 992 00c8 00000000 		.4byte	.LFB63
+ 993 00cc F4030000 		.4byte	.LFE63-.LFB63
+ 994 00d0 01       		.uleb128 0x1
+ 995 00d1 9C       		.byte	0x9c
+ 996 00d2 1A010000 		.4byte	0x11a
+ 997 00d6 07       		.uleb128 0x7
+ 998 00d7 12000000 		.4byte	.LBB2
+ 999 00db 7C030000 		.4byte	.LBE2-.LBB2
+ 1000 00df 08       		.uleb128 0x8
+ 1001 00e0 72657A00 		.ascii	"rez\000"
+ 1002 00e4 01       		.byte	0x1
+ 1003 00e5 33       		.byte	0x33
+ 1004 00e6 68000000 		.4byte	0x68
+ 1005 00ea 02       		.uleb128 0x2
+ 1006 00eb 91       		.byte	0x91
+ 1007 00ec 64       		.sleb128 -28
+ 1008 00ed 09       		.uleb128 0x9
+ 1009 00ee 02010000 		.4byte	.LASF40
+ 1010 00f2 01       		.byte	0x1
+ 1011 00f3 33       		.byte	0x33
+ 1012 00f4 68000000 		.4byte	0x68
+ 1013 00f8 FE000000 		.4byte	0xfe
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 24
+
+
+ 1014 00fc 0A       		.uleb128 0xa
+ 1015 00fd 00       		.byte	0
+ 1016 00fe 0B       		.uleb128 0xb
+ 1017 00ff 7C020000 		.4byte	.LASF18
+ 1018 0103 01       		.byte	0x1
+ 1019 0104 3C       		.byte	0x3c
+ 1020 0105 68000000 		.4byte	0x68
+ 1021 0109 02       		.uleb128 0x2
+ 1022 010a 91       		.byte	0x91
+ 1023 010b 6C       		.sleb128 -20
+ 1024 010c 08       		.uleb128 0x8
+ 1025 010d 6900     		.ascii	"i\000"
+ 1026 010f 01       		.byte	0x1
+ 1027 0110 3E       		.byte	0x3e
+ 1028 0111 68000000 		.4byte	0x68
+ 1029 0115 02       		.uleb128 0x2
+ 1030 0116 91       		.byte	0x91
+ 1031 0117 68       		.sleb128 -24
+ 1032 0118 00       		.byte	0
+ 1033 0119 00       		.byte	0
+ 1034 011a 0C       		.uleb128 0xc
+ 1035 011b 62020000 		.4byte	.LASF19
+ 1036 011f 01       		.byte	0x1
+ 1037 0120 6E       		.byte	0x6e
+ 1038 0121 00000000 		.4byte	.LFB64
+ 1039 0125 22000000 		.4byte	.LFE64-.LFB64
+ 1040 0129 01       		.uleb128 0x1
+ 1041 012a 9C       		.byte	0x9c
+ 1042 012b 0C       		.uleb128 0xc
+ 1043 012c B2020000 		.4byte	.LASF20
+ 1044 0130 01       		.byte	0x1
+ 1045 0131 77       		.byte	0x77
+ 1046 0132 00000000 		.4byte	.LFB65
+ 1047 0136 24000000 		.4byte	.LFE65-.LFB65
+ 1048 013a 01       		.uleb128 0x1
+ 1049 013b 9C       		.byte	0x9c
+ 1050 013c 06       		.uleb128 0x6
+ 1051 013d 2D020000 		.4byte	.LASF22
+ 1052 0141 01       		.byte	0x1
+ 1053 0142 84       		.byte	0x84
+ 1054 0143 00000000 		.4byte	.LFB66
+ 1055 0147 64000000 		.4byte	.LFE66-.LFB66
+ 1056 014b 01       		.uleb128 0x1
+ 1057 014c 9C       		.byte	0x9c
+ 1058 014d 60010000 		.4byte	0x160
+ 1059 0151 0D       		.uleb128 0xd
+ 1060 0152 91010000 		.4byte	.LASF41
+ 1061 0156 01       		.byte	0x1
+ 1062 0157 84       		.byte	0x84
+ 1063 0158 99000000 		.4byte	0x99
+ 1064 015c 02       		.uleb128 0x2
+ 1065 015d 91       		.byte	0x91
+ 1066 015e 74       		.sleb128 -12
+ 1067 015f 00       		.byte	0
+ 1068 0160 06       		.uleb128 0x6
+ 1069 0161 39020000 		.4byte	.LASF23
+ 1070 0165 01       		.byte	0x1
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 25
+
+
+ 1071 0166 95       		.byte	0x95
+ 1072 0167 00000000 		.4byte	.LFB67
+ 1073 016b 68000000 		.4byte	.LFE67-.LFB67
+ 1074 016f 01       		.uleb128 0x1
+ 1075 0170 9C       		.byte	0x9c
+ 1076 0171 85010000 		.4byte	0x185
+ 1077 0175 0B       		.uleb128 0xb
+ 1078 0176 64010000 		.4byte	.LASF24
+ 1079 017a 01       		.byte	0x1
+ 1080 017b 9E       		.byte	0x9e
+ 1081 017c 85010000 		.4byte	0x185
+ 1082 0180 03       		.uleb128 0x3
+ 1083 0181 91       		.byte	0x91
+ 1084 0182 847C     		.sleb128 -508
+ 1085 0184 00       		.byte	0
+ 1086 0185 0E       		.uleb128 0xe
+ 1087 0186 81000000 		.4byte	0x81
+ 1088 018a 96010000 		.4byte	0x196
+ 1089 018e 0F       		.uleb128 0xf
+ 1090 018f BA000000 		.4byte	0xba
+ 1091 0193 F301     		.2byte	0x1f3
+ 1092 0195 00       		.byte	0
+ 1093 0196 10       		.uleb128 0x10
+ 1094 0197 A0010000 		.4byte	.LASF25
+ 1095 019b 01       		.byte	0x1
+ 1096 019c A9       		.byte	0xa9
+ 1097 019d 68000000 		.4byte	0x68
+ 1098 01a1 00000000 		.4byte	.LFB68
+ 1099 01a5 50000000 		.4byte	.LFE68-.LFB68
+ 1100 01a9 01       		.uleb128 0x1
+ 1101 01aa 9C       		.byte	0x9c
+ 1102 01ab 11       		.uleb128 0x11
+ 1103 01ac 74010000 		.4byte	.LASF26
+ 1104 01b0 05       		.byte	0x5
+ 1105 01b1 9606     		.2byte	0x696
+ 1106 01b3 B7010000 		.4byte	0x1b7
+ 1107 01b7 12       		.uleb128 0x12
+ 1108 01b8 76000000 		.4byte	0x76
+ 1109 01bc 0E       		.uleb128 0xe
+ 1110 01bd 81000000 		.4byte	0x81
+ 1111 01c1 C7010000 		.4byte	0x1c7
+ 1112 01c5 13       		.uleb128 0x13
+ 1113 01c6 00       		.byte	0
+ 1114 01c7 14       		.uleb128 0x14
+ 1115 01c8 E5010000 		.4byte	.LASF27
+ 1116 01cc 06       		.byte	0x6
+ 1117 01cd 0F       		.byte	0xf
+ 1118 01ce BC010000 		.4byte	0x1bc
+ 1119 01d2 14       		.uleb128 0x14
+ 1120 01d3 00000000 		.4byte	.LASF28
+ 1121 01d7 06       		.byte	0x6
+ 1122 01d8 10       		.byte	0x10
+ 1123 01d9 8D000000 		.4byte	0x8d
+ 1124 01dd 14       		.uleb128 0x14
+ 1125 01de 6D020000 		.4byte	.LASF29
+ 1126 01e2 06       		.byte	0x6
+ 1127 01e3 12       		.byte	0x12
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 26
+
+
+ 1128 01e4 99000000 		.4byte	0x99
+ 1129 01e8 14       		.uleb128 0x14
+ 1130 01e9 D7010000 		.4byte	.LASF30
+ 1131 01ed 06       		.byte	0x6
+ 1132 01ee 12       		.byte	0x12
+ 1133 01ef 99000000 		.4byte	0x99
+ 1134 01f3 14       		.uleb128 0x14
+ 1135 01f4 93020000 		.4byte	.LASF31
+ 1136 01f8 06       		.byte	0x6
+ 1137 01f9 13       		.byte	0x13
+ 1138 01fa 99000000 		.4byte	0x99
+ 1139 01fe 14       		.uleb128 0x14
+ 1140 01ff F5010000 		.4byte	.LASF32
+ 1141 0203 06       		.byte	0x6
+ 1142 0204 13       		.byte	0x13
+ 1143 0205 99000000 		.4byte	0x99
+ 1144 0209 14       		.uleb128 0x14
+ 1145 020a A0020000 		.4byte	.LASF33
+ 1146 020e 06       		.byte	0x6
+ 1147 020f 15       		.byte	0x15
+ 1148 0210 8D000000 		.4byte	0x8d
+ 1149 0214 0E       		.uleb128 0xe
+ 1150 0215 B3000000 		.4byte	0xb3
+ 1151 0219 25020000 		.4byte	0x225
+ 1152 021d 0F       		.uleb128 0xf
+ 1153 021e BA000000 		.4byte	0xba
+ 1154 0222 F301     		.2byte	0x1f3
+ 1155 0224 00       		.byte	0
+ 1156 0225 15       		.uleb128 0x15
+ 1157 0226 74787400 		.ascii	"txt\000"
+ 1158 022a 01       		.byte	0x1
+ 1159 022b 10       		.byte	0x10
+ 1160 022c 14020000 		.4byte	0x214
+ 1161 0230 05       		.uleb128 0x5
+ 1162 0231 03       		.byte	0x3
+ 1163 0232 00000000 		.4byte	txt
+ 1164 0236 16       		.uleb128 0x16
+ 1165 0237 4B020000 		.4byte	.LASF34
+ 1166 023b 01       		.byte	0x1
+ 1167 023c 80       		.byte	0x80
+ 1168 023d 99000000 		.4byte	0x99
+ 1169 0241 05       		.uleb128 0x5
+ 1170 0242 03       		.byte	0x3
+ 1171 0243 00000000 		.4byte	PacketTimerStart
+ 1172 0247 16       		.uleb128 0x16
+ 1173 0248 81010000 		.4byte	.LASF35
+ 1174 024c 01       		.byte	0x1
+ 1175 024d 81       		.byte	0x81
+ 1176 024e 99000000 		.4byte	0x99
+ 1177 0252 05       		.uleb128 0x5
+ 1178 0253 03       		.byte	0x3
+ 1179 0254 00000000 		.4byte	PacketTimerStop
+ 1180 0258 16       		.uleb128 0x16
+ 1181 0259 17010000 		.4byte	.LASF36
+ 1182 025d 01       		.byte	0x1
+ 1183 025e 82       		.byte	0x82
+ 1184 025f 99000000 		.4byte	0x99
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 27
+
+
+ 1185 0263 05       		.uleb128 0x5
+ 1186 0264 03       		.byte	0x3
+ 1187 0265 00000000 		.4byte	PulseCounterTotTime
+ 1188 0269 00       		.byte	0
+ 1189              		.section	.debug_abbrev,"",%progbits
+ 1190              	.Ldebug_abbrev0:
+ 1191 0000 01       		.uleb128 0x1
+ 1192 0001 11       		.uleb128 0x11
+ 1193 0002 01       		.byte	0x1
+ 1194 0003 25       		.uleb128 0x25
+ 1195 0004 0E       		.uleb128 0xe
+ 1196 0005 13       		.uleb128 0x13
+ 1197 0006 0B       		.uleb128 0xb
+ 1198 0007 03       		.uleb128 0x3
+ 1199 0008 0E       		.uleb128 0xe
+ 1200 0009 1B       		.uleb128 0x1b
+ 1201 000a 0E       		.uleb128 0xe
+ 1202 000b 55       		.uleb128 0x55
+ 1203 000c 17       		.uleb128 0x17
+ 1204 000d 11       		.uleb128 0x11
+ 1205 000e 01       		.uleb128 0x1
+ 1206 000f 10       		.uleb128 0x10
+ 1207 0010 17       		.uleb128 0x17
+ 1208 0011 00       		.byte	0
+ 1209 0012 00       		.byte	0
+ 1210 0013 02       		.uleb128 0x2
+ 1211 0014 24       		.uleb128 0x24
+ 1212 0015 00       		.byte	0
+ 1213 0016 0B       		.uleb128 0xb
+ 1214 0017 0B       		.uleb128 0xb
+ 1215 0018 3E       		.uleb128 0x3e
+ 1216 0019 0B       		.uleb128 0xb
+ 1217 001a 03       		.uleb128 0x3
+ 1218 001b 0E       		.uleb128 0xe
+ 1219 001c 00       		.byte	0
+ 1220 001d 00       		.byte	0
+ 1221 001e 03       		.uleb128 0x3
+ 1222 001f 16       		.uleb128 0x16
+ 1223 0020 00       		.byte	0
+ 1224 0021 03       		.uleb128 0x3
+ 1225 0022 0E       		.uleb128 0xe
+ 1226 0023 3A       		.uleb128 0x3a
+ 1227 0024 0B       		.uleb128 0xb
+ 1228 0025 3B       		.uleb128 0x3b
+ 1229 0026 0B       		.uleb128 0xb
+ 1230 0027 49       		.uleb128 0x49
+ 1231 0028 13       		.uleb128 0x13
+ 1232 0029 00       		.byte	0
+ 1233 002a 00       		.byte	0
+ 1234 002b 04       		.uleb128 0x4
+ 1235 002c 24       		.uleb128 0x24
+ 1236 002d 00       		.byte	0
+ 1237 002e 0B       		.uleb128 0xb
+ 1238 002f 0B       		.uleb128 0xb
+ 1239 0030 3E       		.uleb128 0x3e
+ 1240 0031 0B       		.uleb128 0xb
+ 1241 0032 03       		.uleb128 0x3
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 28
+
+
+ 1242 0033 08       		.uleb128 0x8
+ 1243 0034 00       		.byte	0
+ 1244 0035 00       		.byte	0
+ 1245 0036 05       		.uleb128 0x5
+ 1246 0037 16       		.uleb128 0x16
+ 1247 0038 00       		.byte	0
+ 1248 0039 03       		.uleb128 0x3
+ 1249 003a 0E       		.uleb128 0xe
+ 1250 003b 3A       		.uleb128 0x3a
+ 1251 003c 0B       		.uleb128 0xb
+ 1252 003d 3B       		.uleb128 0x3b
+ 1253 003e 05       		.uleb128 0x5
+ 1254 003f 49       		.uleb128 0x49
+ 1255 0040 13       		.uleb128 0x13
+ 1256 0041 00       		.byte	0
+ 1257 0042 00       		.byte	0
+ 1258 0043 06       		.uleb128 0x6
+ 1259 0044 2E       		.uleb128 0x2e
+ 1260 0045 01       		.byte	0x1
+ 1261 0046 3F       		.uleb128 0x3f
+ 1262 0047 19       		.uleb128 0x19
+ 1263 0048 03       		.uleb128 0x3
+ 1264 0049 0E       		.uleb128 0xe
+ 1265 004a 3A       		.uleb128 0x3a
+ 1266 004b 0B       		.uleb128 0xb
+ 1267 004c 3B       		.uleb128 0x3b
+ 1268 004d 0B       		.uleb128 0xb
+ 1269 004e 27       		.uleb128 0x27
+ 1270 004f 19       		.uleb128 0x19
+ 1271 0050 11       		.uleb128 0x11
+ 1272 0051 01       		.uleb128 0x1
+ 1273 0052 12       		.uleb128 0x12
+ 1274 0053 06       		.uleb128 0x6
+ 1275 0054 40       		.uleb128 0x40
+ 1276 0055 18       		.uleb128 0x18
+ 1277 0056 9642     		.uleb128 0x2116
+ 1278 0058 19       		.uleb128 0x19
+ 1279 0059 01       		.uleb128 0x1
+ 1280 005a 13       		.uleb128 0x13
+ 1281 005b 00       		.byte	0
+ 1282 005c 00       		.byte	0
+ 1283 005d 07       		.uleb128 0x7
+ 1284 005e 0B       		.uleb128 0xb
+ 1285 005f 01       		.byte	0x1
+ 1286 0060 11       		.uleb128 0x11
+ 1287 0061 01       		.uleb128 0x1
+ 1288 0062 12       		.uleb128 0x12
+ 1289 0063 06       		.uleb128 0x6
+ 1290 0064 00       		.byte	0
+ 1291 0065 00       		.byte	0
+ 1292 0066 08       		.uleb128 0x8
+ 1293 0067 34       		.uleb128 0x34
+ 1294 0068 00       		.byte	0
+ 1295 0069 03       		.uleb128 0x3
+ 1296 006a 08       		.uleb128 0x8
+ 1297 006b 3A       		.uleb128 0x3a
+ 1298 006c 0B       		.uleb128 0xb
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 29
+
+
+ 1299 006d 3B       		.uleb128 0x3b
+ 1300 006e 0B       		.uleb128 0xb
+ 1301 006f 49       		.uleb128 0x49
+ 1302 0070 13       		.uleb128 0x13
+ 1303 0071 02       		.uleb128 0x2
+ 1304 0072 18       		.uleb128 0x18
+ 1305 0073 00       		.byte	0
+ 1306 0074 00       		.byte	0
+ 1307 0075 09       		.uleb128 0x9
+ 1308 0076 2E       		.uleb128 0x2e
+ 1309 0077 01       		.byte	0x1
+ 1310 0078 3F       		.uleb128 0x3f
+ 1311 0079 19       		.uleb128 0x19
+ 1312 007a 03       		.uleb128 0x3
+ 1313 007b 0E       		.uleb128 0xe
+ 1314 007c 3A       		.uleb128 0x3a
+ 1315 007d 0B       		.uleb128 0xb
+ 1316 007e 3B       		.uleb128 0x3b
+ 1317 007f 0B       		.uleb128 0xb
+ 1318 0080 49       		.uleb128 0x49
+ 1319 0081 13       		.uleb128 0x13
+ 1320 0082 3C       		.uleb128 0x3c
+ 1321 0083 19       		.uleb128 0x19
+ 1322 0084 01       		.uleb128 0x1
+ 1323 0085 13       		.uleb128 0x13
+ 1324 0086 00       		.byte	0
+ 1325 0087 00       		.byte	0
+ 1326 0088 0A       		.uleb128 0xa
+ 1327 0089 18       		.uleb128 0x18
+ 1328 008a 00       		.byte	0
+ 1329 008b 00       		.byte	0
+ 1330 008c 00       		.byte	0
+ 1331 008d 0B       		.uleb128 0xb
+ 1332 008e 34       		.uleb128 0x34
+ 1333 008f 00       		.byte	0
+ 1334 0090 03       		.uleb128 0x3
+ 1335 0091 0E       		.uleb128 0xe
+ 1336 0092 3A       		.uleb128 0x3a
+ 1337 0093 0B       		.uleb128 0xb
+ 1338 0094 3B       		.uleb128 0x3b
+ 1339 0095 0B       		.uleb128 0xb
+ 1340 0096 49       		.uleb128 0x49
+ 1341 0097 13       		.uleb128 0x13
+ 1342 0098 02       		.uleb128 0x2
+ 1343 0099 18       		.uleb128 0x18
+ 1344 009a 00       		.byte	0
+ 1345 009b 00       		.byte	0
+ 1346 009c 0C       		.uleb128 0xc
+ 1347 009d 2E       		.uleb128 0x2e
+ 1348 009e 00       		.byte	0
+ 1349 009f 3F       		.uleb128 0x3f
+ 1350 00a0 19       		.uleb128 0x19
+ 1351 00a1 03       		.uleb128 0x3
+ 1352 00a2 0E       		.uleb128 0xe
+ 1353 00a3 3A       		.uleb128 0x3a
+ 1354 00a4 0B       		.uleb128 0xb
+ 1355 00a5 3B       		.uleb128 0x3b
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 30
+
+
+ 1356 00a6 0B       		.uleb128 0xb
+ 1357 00a7 27       		.uleb128 0x27
+ 1358 00a8 19       		.uleb128 0x19
+ 1359 00a9 11       		.uleb128 0x11
+ 1360 00aa 01       		.uleb128 0x1
+ 1361 00ab 12       		.uleb128 0x12
+ 1362 00ac 06       		.uleb128 0x6
+ 1363 00ad 40       		.uleb128 0x40
+ 1364 00ae 18       		.uleb128 0x18
+ 1365 00af 9642     		.uleb128 0x2116
+ 1366 00b1 19       		.uleb128 0x19
+ 1367 00b2 00       		.byte	0
+ 1368 00b3 00       		.byte	0
+ 1369 00b4 0D       		.uleb128 0xd
+ 1370 00b5 05       		.uleb128 0x5
+ 1371 00b6 00       		.byte	0
+ 1372 00b7 03       		.uleb128 0x3
+ 1373 00b8 0E       		.uleb128 0xe
+ 1374 00b9 3A       		.uleb128 0x3a
+ 1375 00ba 0B       		.uleb128 0xb
+ 1376 00bb 3B       		.uleb128 0x3b
+ 1377 00bc 0B       		.uleb128 0xb
+ 1378 00bd 49       		.uleb128 0x49
+ 1379 00be 13       		.uleb128 0x13
+ 1380 00bf 02       		.uleb128 0x2
+ 1381 00c0 18       		.uleb128 0x18
+ 1382 00c1 00       		.byte	0
+ 1383 00c2 00       		.byte	0
+ 1384 00c3 0E       		.uleb128 0xe
+ 1385 00c4 01       		.uleb128 0x1
+ 1386 00c5 01       		.byte	0x1
+ 1387 00c6 49       		.uleb128 0x49
+ 1388 00c7 13       		.uleb128 0x13
+ 1389 00c8 01       		.uleb128 0x1
+ 1390 00c9 13       		.uleb128 0x13
+ 1391 00ca 00       		.byte	0
+ 1392 00cb 00       		.byte	0
+ 1393 00cc 0F       		.uleb128 0xf
+ 1394 00cd 21       		.uleb128 0x21
+ 1395 00ce 00       		.byte	0
+ 1396 00cf 49       		.uleb128 0x49
+ 1397 00d0 13       		.uleb128 0x13
+ 1398 00d1 2F       		.uleb128 0x2f
+ 1399 00d2 05       		.uleb128 0x5
+ 1400 00d3 00       		.byte	0
+ 1401 00d4 00       		.byte	0
+ 1402 00d5 10       		.uleb128 0x10
+ 1403 00d6 2E       		.uleb128 0x2e
+ 1404 00d7 00       		.byte	0
+ 1405 00d8 3F       		.uleb128 0x3f
+ 1406 00d9 19       		.uleb128 0x19
+ 1407 00da 03       		.uleb128 0x3
+ 1408 00db 0E       		.uleb128 0xe
+ 1409 00dc 3A       		.uleb128 0x3a
+ 1410 00dd 0B       		.uleb128 0xb
+ 1411 00de 3B       		.uleb128 0x3b
+ 1412 00df 0B       		.uleb128 0xb
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 31
+
+
+ 1413 00e0 49       		.uleb128 0x49
+ 1414 00e1 13       		.uleb128 0x13
+ 1415 00e2 11       		.uleb128 0x11
+ 1416 00e3 01       		.uleb128 0x1
+ 1417 00e4 12       		.uleb128 0x12
+ 1418 00e5 06       		.uleb128 0x6
+ 1419 00e6 40       		.uleb128 0x40
+ 1420 00e7 18       		.uleb128 0x18
+ 1421 00e8 9642     		.uleb128 0x2116
+ 1422 00ea 19       		.uleb128 0x19
+ 1423 00eb 00       		.byte	0
+ 1424 00ec 00       		.byte	0
+ 1425 00ed 11       		.uleb128 0x11
+ 1426 00ee 34       		.uleb128 0x34
+ 1427 00ef 00       		.byte	0
+ 1428 00f0 03       		.uleb128 0x3
+ 1429 00f1 0E       		.uleb128 0xe
+ 1430 00f2 3A       		.uleb128 0x3a
+ 1431 00f3 0B       		.uleb128 0xb
+ 1432 00f4 3B       		.uleb128 0x3b
+ 1433 00f5 05       		.uleb128 0x5
+ 1434 00f6 49       		.uleb128 0x49
+ 1435 00f7 13       		.uleb128 0x13
+ 1436 00f8 3F       		.uleb128 0x3f
+ 1437 00f9 19       		.uleb128 0x19
+ 1438 00fa 3C       		.uleb128 0x3c
+ 1439 00fb 19       		.uleb128 0x19
+ 1440 00fc 00       		.byte	0
+ 1441 00fd 00       		.byte	0
+ 1442 00fe 12       		.uleb128 0x12
+ 1443 00ff 35       		.uleb128 0x35
+ 1444 0100 00       		.byte	0
+ 1445 0101 49       		.uleb128 0x49
+ 1446 0102 13       		.uleb128 0x13
+ 1447 0103 00       		.byte	0
+ 1448 0104 00       		.byte	0
+ 1449 0105 13       		.uleb128 0x13
+ 1450 0106 21       		.uleb128 0x21
+ 1451 0107 00       		.byte	0
+ 1452 0108 00       		.byte	0
+ 1453 0109 00       		.byte	0
+ 1454 010a 14       		.uleb128 0x14
+ 1455 010b 34       		.uleb128 0x34
+ 1456 010c 00       		.byte	0
+ 1457 010d 03       		.uleb128 0x3
+ 1458 010e 0E       		.uleb128 0xe
+ 1459 010f 3A       		.uleb128 0x3a
+ 1460 0110 0B       		.uleb128 0xb
+ 1461 0111 3B       		.uleb128 0x3b
+ 1462 0112 0B       		.uleb128 0xb
+ 1463 0113 49       		.uleb128 0x49
+ 1464 0114 13       		.uleb128 0x13
+ 1465 0115 3F       		.uleb128 0x3f
+ 1466 0116 19       		.uleb128 0x19
+ 1467 0117 3C       		.uleb128 0x3c
+ 1468 0118 19       		.uleb128 0x19
+ 1469 0119 00       		.byte	0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 32
+
+
+ 1470 011a 00       		.byte	0
+ 1471 011b 15       		.uleb128 0x15
+ 1472 011c 34       		.uleb128 0x34
+ 1473 011d 00       		.byte	0
+ 1474 011e 03       		.uleb128 0x3
+ 1475 011f 08       		.uleb128 0x8
+ 1476 0120 3A       		.uleb128 0x3a
+ 1477 0121 0B       		.uleb128 0xb
+ 1478 0122 3B       		.uleb128 0x3b
+ 1479 0123 0B       		.uleb128 0xb
+ 1480 0124 49       		.uleb128 0x49
+ 1481 0125 13       		.uleb128 0x13
+ 1482 0126 3F       		.uleb128 0x3f
+ 1483 0127 19       		.uleb128 0x19
+ 1484 0128 02       		.uleb128 0x2
+ 1485 0129 18       		.uleb128 0x18
+ 1486 012a 00       		.byte	0
+ 1487 012b 00       		.byte	0
+ 1488 012c 16       		.uleb128 0x16
+ 1489 012d 34       		.uleb128 0x34
+ 1490 012e 00       		.byte	0
+ 1491 012f 03       		.uleb128 0x3
+ 1492 0130 0E       		.uleb128 0xe
+ 1493 0131 3A       		.uleb128 0x3a
+ 1494 0132 0B       		.uleb128 0xb
+ 1495 0133 3B       		.uleb128 0x3b
+ 1496 0134 0B       		.uleb128 0xb
+ 1497 0135 49       		.uleb128 0x49
+ 1498 0136 13       		.uleb128 0x13
+ 1499 0137 3F       		.uleb128 0x3f
+ 1500 0138 19       		.uleb128 0x19
+ 1501 0139 02       		.uleb128 0x2
+ 1502 013a 18       		.uleb128 0x18
+ 1503 013b 00       		.byte	0
+ 1504 013c 00       		.byte	0
+ 1505 013d 00       		.byte	0
+ 1506              		.section	.debug_aranges,"",%progbits
+ 1507 0000 44000000 		.4byte	0x44
+ 1508 0004 0200     		.2byte	0x2
+ 1509 0006 00000000 		.4byte	.Ldebug_info0
+ 1510 000a 04       		.byte	0x4
+ 1511 000b 00       		.byte	0
+ 1512 000c 0000     		.2byte	0
+ 1513 000e 0000     		.2byte	0
+ 1514 0010 00000000 		.4byte	.LFB63
+ 1515 0014 F4030000 		.4byte	.LFE63-.LFB63
+ 1516 0018 00000000 		.4byte	.LFB64
+ 1517 001c 22000000 		.4byte	.LFE64-.LFB64
+ 1518 0020 00000000 		.4byte	.LFB65
+ 1519 0024 24000000 		.4byte	.LFE65-.LFB65
+ 1520 0028 00000000 		.4byte	.LFB66
+ 1521 002c 64000000 		.4byte	.LFE66-.LFB66
+ 1522 0030 00000000 		.4byte	.LFB67
+ 1523 0034 68000000 		.4byte	.LFE67-.LFB67
+ 1524 0038 00000000 		.4byte	.LFB68
+ 1525 003c 50000000 		.4byte	.LFE68-.LFB68
+ 1526 0040 00000000 		.4byte	0
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 33
+
+
+ 1527 0044 00000000 		.4byte	0
+ 1528              		.section	.debug_ranges,"",%progbits
+ 1529              	.Ldebug_ranges0:
+ 1530 0000 00000000 		.4byte	.LFB63
+ 1531 0004 F4030000 		.4byte	.LFE63
+ 1532 0008 00000000 		.4byte	.LFB64
+ 1533 000c 22000000 		.4byte	.LFE64
+ 1534 0010 00000000 		.4byte	.LFB65
+ 1535 0014 24000000 		.4byte	.LFE65
+ 1536 0018 00000000 		.4byte	.LFB66
+ 1537 001c 64000000 		.4byte	.LFE66
+ 1538 0020 00000000 		.4byte	.LFB67
+ 1539 0024 68000000 		.4byte	.LFE67
+ 1540 0028 00000000 		.4byte	.LFB68
+ 1541 002c 50000000 		.4byte	.LFE68
+ 1542 0030 00000000 		.4byte	0
+ 1543 0034 00000000 		.4byte	0
+ 1544              		.section	.debug_line,"",%progbits
+ 1545              	.Ldebug_line0:
+ 1546 0000 3A020000 		.section	.debug_str,"MS",%progbits,1
+ 1546      02004501 
+ 1546      00000201 
+ 1546      FB0E0D00 
+ 1546      01010101 
+ 1547              	.LASF28:
+ 1548 0000 6D627573 		.ascii	"mbus_rx_count\000"
+ 1548      5F72785F 
+ 1548      636F756E 
+ 1548      7400
+ 1549              	.LASF21:
+ 1550 000e 74657374 		.ascii	"test_X10\000"
+ 1550      5F583130 
+ 1550      00
+ 1551              	.LASF39:
+ 1552 0017 433A5C44 		.ascii	"C:\\Documents and Settings\\name\\Desktop\\minunit\\"
+ 1552      6F63756D 
+ 1552      656E7473 
+ 1552      20616E64 
+ 1552      20536574 
+ 1553 0046 6D696E75 		.ascii	"minunit_arch\\minunit.cydsn\000"
+ 1553      6E69745F 
+ 1553      61726368 
+ 1553      5C6D696E 
+ 1553      756E6974 
+ 1554              	.LASF9:
+ 1555 0061 5F5F696E 		.ascii	"__int32_t\000"
+ 1555      7433325F 
+ 1555      7400
+ 1556              	.LASF4:
+ 1557 006b 6C6F6E67 		.ascii	"long int\000"
+ 1557      20696E74 
+ 1557      00
+ 1558              	.LASF37:
+ 1559 0074 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1559      4320342E 
+ 1559      392E3320 
+ 1559      32303135 
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 34
+
+
+ 1559      30333033 
+ 1560 00a7 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1560      20726576 
+ 1560      6973696F 
+ 1560      6E203232 
+ 1560      31323230 
+ 1561 00da 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1561      66756E63 
+ 1561      74696F6E 
+ 1561      2D736563 
+ 1561      74696F6E 
+ 1562              	.LASF40:
+ 1563 0102 6D627573 		.ascii	"mbus_request_respond\000"
+ 1563      5F726571 
+ 1563      75657374 
+ 1563      5F726573 
+ 1563      706F6E64 
+ 1564              	.LASF36:
+ 1565 0117 50756C73 		.ascii	"PulseCounterTotTime\000"
+ 1565      65436F75 
+ 1565      6E746572 
+ 1565      546F7454 
+ 1565      696D6500 
+ 1566              	.LASF14:
+ 1567 012b 666C6F61 		.ascii	"float\000"
+ 1567      7400
+ 1568              	.LASF1:
+ 1569 0131 756E7369 		.ascii	"unsigned char\000"
+ 1569      676E6564 
+ 1569      20636861 
+ 1569      7200
+ 1570              	.LASF5:
+ 1571 013f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1571      20756E73 
+ 1571      69676E65 
+ 1571      6420696E 
+ 1571      7400
+ 1572              	.LASF3:
+ 1573 0151 73686F72 		.ascii	"short unsigned int\000"
+ 1573      7420756E 
+ 1573      7369676E 
+ 1573      65642069 
+ 1573      6E7400
+ 1574              	.LASF24:
+ 1575 0164 75617274 		.ascii	"uart2_tx_buffer\000"
+ 1575      325F7478 
+ 1575      5F627566 
+ 1575      66657200 
+ 1576              	.LASF26:
+ 1577 0174 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1577      52784275 
+ 1577      66666572 
+ 1577      00
+ 1578              	.LASF35:
+ 1579 0181 5061636B 		.ascii	"PacketTimerStop\000"
+ 1579      65745469 
+ 1579      6D657253 
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 35
+
+
+ 1579      746F7000 
+ 1580              	.LASF41:
+ 1581 0191 74696D65 		.ascii	"time_ms\000"
+ 1581      5F6D7300 
+ 1582              	.LASF15:
+ 1583 0199 646F7562 		.ascii	"double\000"
+ 1583      6C6500
+ 1584              	.LASF25:
+ 1585 01a0 6D61696E 		.ascii	"main\000"
+ 1585      00
+ 1586              	.LASF12:
+ 1587 01a5 75696E74 		.ascii	"uint16\000"
+ 1587      313600
+ 1588              	.LASF13:
+ 1589 01ac 75696E74 		.ascii	"uint32\000"
+ 1589      333200
+ 1590              	.LASF8:
+ 1591 01b3 756E7369 		.ascii	"unsigned int\000"
+ 1591      676E6564 
+ 1591      20696E74 
+ 1591      00
+ 1592              	.LASF7:
+ 1593 01c0 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1593      206C6F6E 
+ 1593      6720756E 
+ 1593      7369676E 
+ 1593      65642069 
+ 1594              	.LASF30:
+ 1595 01d7 6D627573 		.ascii	"mbus_tmr_stop\000"
+ 1595      5F746D72 
+ 1595      5F73746F 
+ 1595      7000
+ 1596              	.LASF27:
+ 1597 01e5 75617274 		.ascii	"uart2_rx_buffer\000"
+ 1597      325F7278 
+ 1597      5F627566 
+ 1597      66657200 
+ 1598              	.LASF32:
+ 1599 01f5 6D627573 		.ascii	"mbus_bit_max\000"
+ 1599      5F626974 
+ 1599      5F6D6178 
+ 1599      00
+ 1600              	.LASF10:
+ 1601 0202 696E7433 		.ascii	"int32_t\000"
+ 1601      325F7400 
+ 1602              	.LASF17:
+ 1603 020a 73697A65 		.ascii	"sizetype\000"
+ 1603      74797065 
+ 1603      00
+ 1604              	.LASF6:
+ 1605 0213 6C6F6E67 		.ascii	"long long int\000"
+ 1605      206C6F6E 
+ 1605      6720696E 
+ 1605      7400
+ 1606              	.LASF38:
+ 1607 0221 6D61696E 		.ascii	"main.c\000"
+ 1607      2E6300
+ARM GAS  C:\DOCUME~1\name\LOCALS~1\Temp\cch8onPO.s 			page 36
+
+
+ 1608              	.LASF16:
+ 1609 0228 63686172 		.ascii	"char\000"
+ 1609      00
+ 1610              	.LASF22:
+ 1611 022d 6D69735F 		.ascii	"mis_measure\000"
+ 1611      6D656173 
+ 1611      75726500 
+ 1612              	.LASF23:
+ 1613 0239 74657374 		.ascii	"test_X4\000"
+ 1613      5F583400 
+ 1614              	.LASF2:
+ 1615 0241 73686F72 		.ascii	"short int\000"
+ 1615      7420696E 
+ 1615      7400
+ 1616              	.LASF34:
+ 1617 024b 5061636B 		.ascii	"PacketTimerStart\000"
+ 1617      65745469 
+ 1617      6D657253 
+ 1617      74617274 
+ 1617      00
+ 1618              	.LASF11:
+ 1619 025c 75696E74 		.ascii	"uint8\000"
+ 1619      3800
+ 1620              	.LASF19:
+ 1621 0262 6D697374 		.ascii	"mist_start\000"
+ 1621      5F737461 
+ 1621      727400
+ 1622              	.LASF29:
+ 1623 026d 6D627573 		.ascii	"mbus_tmr_start\000"
+ 1623      5F746D72 
+ 1623      5F737461 
+ 1623      727400
+ 1624              	.LASF18:
+ 1625 027c 7478745F 		.ascii	"txt_lenght\000"
+ 1625      6C656E67 
+ 1625      687400
+ 1626              	.LASF0:
+ 1627 0287 7369676E 		.ascii	"signed char\000"
+ 1627      65642063 
+ 1627      68617200 
+ 1628              	.LASF31:
+ 1629 0293 6D627573 		.ascii	"mbus_bit_min\000"
+ 1629      5F626974 
+ 1629      5F6D696E 
+ 1629      00
+ 1630              	.LASF33:
+ 1631 02a0 6D627573 		.ascii	"mbus_repeat_count\000"
+ 1631      5F726570 
+ 1631      6561745F 
+ 1631      636F756E 
+ 1631      7400
+ 1632              	.LASF20:
+ 1633 02b2 6D69735F 		.ascii	"mis_stop\000"
+ 1633      73746F70 
+ 1633      00
+ 1634              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

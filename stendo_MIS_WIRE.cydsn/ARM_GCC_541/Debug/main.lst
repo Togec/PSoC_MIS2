@@ -1,0 +1,2351 @@
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	txt,500,4
+  20              		.comm	buffer,4,4
+  21              		.comm	checksum,1,1
+  22              		.section	.rodata
+  23              		.align	2
+  24              	.LC0:
+  25 0000 53472053 		.ascii	"SG START \015\012\015\012\000"
+  25      54415254 
+  25      200D0A0D 
+  25      0A00
+  26              		.section	.text.isr_START_handler,"ax",%progbits
+  27              		.align	2
+  28              		.global	isr_START_handler
+  29              		.thumb
+  30              		.thumb_func
+  31              		.type	isr_START_handler, %function
+  32              	isr_START_handler:
+  33              	.LFB64:
+  34              		.file 1 "main.c"
+   1:main.c        **** /******************************************************************************
+   2:main.c        **** * Project Name		: MinUnit -- a minimal unit testing framework for C
+   3:main.c        **** * File Name			: main.c
+   4:main.c        **** * Version 			: **
+   5:main.c        **** * Device Used		: CY8C5888LTI-LP097
+   6:main.c        **** * Software Used		: PSoC Creator 3.1 SP2
+   7:main.c        **** * Compiler    		: ARM GCC 4.8.4, ARM RVDS Generic, ARM MDK Generic
+   8:main.c        **** * Related Hardware	: CY8CKIT059 PSoC 5 LP Prototyping Kit 
+   9:main.c        **** *******************************************************************************/
+  10:main.c        **** 
+  11:main.c        **** #include <device.h>
+  12:main.c        **** #include <stdio.h>
+  13:main.c        **** #include <string.h>
+  14:main.c        **** #include "assert.h"
+  15:main.c        **** #include "mis.h"
+  16:main.c        **** #include "SPI.h"
+  17:main.c        **** 
+  18:main.c        **** char txt[500];
+  19:main.c        **** uint32 buffer;
+  20:main.c        **** uint8 checksum;
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 2
+
+
+  21:main.c        **** 
+  22:main.c        **** CY_ISR(isr_START_handler)
+  23:main.c        **** {
+  35              		.loc 1 23 0
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 1, uses_anonymous_args = 0
+  39 0000 80B5     		push	{r7, lr}
+  40              		.cfi_def_cfa_offset 8
+  41              		.cfi_offset 7, -8
+  42              		.cfi_offset 14, -4
+  43 0002 00AF     		add	r7, sp, #0
+  44              		.cfi_def_cfa_register 7
+  24:main.c        ****    UART_1_PutString("SG START \r\n\r\n");
+  45              		.loc 1 24 0
+  46 0004 0348     		ldr	r0, .L2
+  47 0006 FFF7FEFF 		bl	UART_1_PutString
+  25:main.c        ****    MIS_Start();
+  48              		.loc 1 25 0
+  49 000a FFF7FEFF 		bl	MIS_Start
+  26:main.c        **** }
+  50              		.loc 1 26 0
+  51 000e 00BF     		nop
+  52 0010 80BD     		pop	{r7, pc}
+  53              	.L3:
+  54 0012 00BF     		.align	2
+  55              	.L2:
+  56 0014 00000000 		.word	.LC0
+  57              		.cfi_endproc
+  58              	.LFE64:
+  59              		.size	isr_START_handler, .-isr_START_handler
+  60              		.section	.rodata
+  61 000e 0000     		.align	2
+  62              	.LC1:
+  63 0010 53472053 		.ascii	"SG STOP \015\012\015\012\000"
+  63      544F5020 
+  63      0D0A0D0A 
+  63      00
+  64              		.section	.text.isr_STOP_handler,"ax",%progbits
+  65              		.align	2
+  66              		.global	isr_STOP_handler
+  67              		.thumb
+  68              		.thumb_func
+  69              		.type	isr_STOP_handler, %function
+  70              	isr_STOP_handler:
+  71              	.LFB65:
+  27:main.c        **** 
+  28:main.c        **** CY_ISR(isr_STOP_handler)
+  29:main.c        **** {
+  72              		.loc 1 29 0
+  73              		.cfi_startproc
+  74              		@ args = 0, pretend = 0, frame = 0
+  75              		@ frame_needed = 1, uses_anonymous_args = 0
+  76 0000 80B5     		push	{r7, lr}
+  77              		.cfi_def_cfa_offset 8
+  78              		.cfi_offset 7, -8
+  79              		.cfi_offset 14, -4
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 3
+
+
+  80 0002 00AF     		add	r7, sp, #0
+  81              		.cfi_def_cfa_register 7
+  30:main.c        ****    UART_1_PutString("SG STOP \r\n\r\n"); 
+  82              		.loc 1 30 0
+  83 0004 0348     		ldr	r0, .L5
+  84 0006 FFF7FEFF 		bl	UART_1_PutString
+  31:main.c        ****    MIS_Stop();
+  85              		.loc 1 31 0
+  86 000a FFF7FEFF 		bl	MIS_Stop
+  32:main.c        ****   
+  33:main.c        **** }
+  87              		.loc 1 33 0
+  88 000e 00BF     		nop
+  89 0010 80BD     		pop	{r7, pc}
+  90              	.L6:
+  91 0012 00BF     		.align	2
+  92              	.L5:
+  93 0014 10000000 		.word	.LC1
+  94              		.cfi_endproc
+  95              	.LFE65:
+  96              		.size	isr_STOP_handler, .-isr_STOP_handler
+  97              		.section	.rodata
+  98 001d 000000   		.align	2
+  99              	.LC2:
+ 100 0020 52582025 		.ascii	"RX %d \012\000"
+ 100      64200A00 
+ 101              		.align	2
+ 102              	.LC3:
+ 103 0028 6D61696E 		.ascii	"main.c\000"
+ 103      2E6300
+ 104 002f 00       		.align	2
+ 105              	.LC4:
+ 106 0030 54582025 		.ascii	"TX %x %x %x %x \012\000"
+ 106      78202578 
+ 106      20257820 
+ 106      2578200A 
+ 106      00
+ 107              		.section	.text.isr_CS_Rise_handler,"ax",%progbits
+ 108              		.align	2
+ 109              		.global	isr_CS_Rise_handler
+ 110              		.thumb
+ 111              		.thumb_func
+ 112              		.type	isr_CS_Rise_handler, %function
+ 113              	isr_CS_Rise_handler:
+ 114              	.LFB66:
+  34:main.c        **** 
+  35:main.c        **** CY_ISR(isr_CS_Rise_handler)
+  36:main.c        **** {
+ 115              		.loc 1 36 0
+ 116              		.cfi_startproc
+ 117              		@ args = 0, pretend = 0, frame = 8
+ 118              		@ frame_needed = 1, uses_anonymous_args = 0
+ 119 0000 80B5     		push	{r7, lr}
+ 120              		.cfi_def_cfa_offset 8
+ 121              		.cfi_offset 7, -8
+ 122              		.cfi_offset 14, -4
+ 123 0002 84B0     		sub	sp, sp, #16
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 4
+
+
+ 124              		.cfi_def_cfa_offset 24
+ 125 0004 02AF     		add	r7, sp, #8
+ 126              		.cfi_def_cfa 7, 16
+  37:main.c        ****     uint8 b = SPIS_ReadRxData();
+ 127              		.loc 1 37 0
+ 128 0006 FFF7FEFF 		bl	SPIS_ReadRxData
+ 129 000a 0346     		mov	r3, r0
+ 130 000c FB71     		strb	r3, [r7, #7]
+  38:main.c        ****     LED1_Write(1);
+ 131              		.loc 1 38 0
+ 132 000e 0120     		movs	r0, #1
+ 133 0010 FFF7FEFF 		bl	LED1_Write
+  39:main.c        ****     sprintf(txt,"RX %d \n",b); 
+ 134              		.loc 1 39 0
+ 135 0014 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 136 0016 1A46     		mov	r2, r3
+ 137 0018 5B49     		ldr	r1, .L21
+ 138 001a 5C48     		ldr	r0, .L21+4
+ 139 001c FFF7FEFF 		bl	sprintf
+  40:main.c        ****     assert(0 == 0, txt);
+ 140              		.loc 1 40 0
+ 141 0020 2823     		movs	r3, #40
+ 142 0022 5B4A     		ldr	r2, .L21+8
+ 143 0024 5949     		ldr	r1, .L21+4
+ 144 0026 0120     		movs	r0, #1
+ 145 0028 FFF7FEFF 		bl	__assert__
+  41:main.c        ****     switch(b)
+ 146              		.loc 1 41 0
+ 147 002c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 148 002e 013B     		subs	r3, r3, #1
+ 149 0030 0E2B     		cmp	r3, #14
+ 150 0032 66D8     		bhi	.L8
+ 151 0034 01A2     		adr	r2, .L10
+ 152 0036 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 153 003a 00BF     		.p2align 2
+ 154              	.L10:
+ 155 003c 79000000 		.word	.L9+1
+ 156 0040 85000000 		.word	.L11+1
+ 157 0044 91000000 		.word	.L12+1
+ 158 0048 9D000000 		.word	.L13+1
+ 159 004c 03010000 		.word	.L8+1
+ 160 0050 03010000 		.word	.L8+1
+ 161 0054 03010000 		.word	.L8+1
+ 162 0058 03010000 		.word	.L8+1
+ 163 005c A9000000 		.word	.L14+1
+ 164 0060 B5000000 		.word	.L15+1
+ 165 0064 C1000000 		.word	.L16+1
+ 166 0068 CD000000 		.word	.L17+1
+ 167 006c D9000000 		.word	.L18+1
+ 168 0070 E7000000 		.word	.L19+1
+ 169 0074 F5000000 		.word	.L20+1
+ 170              		.p2align 1
+ 171              	.L9:
+  42:main.c        ****         {
+  43:main.c        ****             case 0x01:
+  44:main.c        ****                buffer = MIS1_ReadCount();
+ 172              		.loc 1 44 0
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 5
+
+
+ 173 0078 FFF7FEFF 		bl	MIS1_ReadCount
+ 174 007c 0246     		mov	r2, r0
+ 175 007e 454B     		ldr	r3, .L21+12
+ 176 0080 1A60     		str	r2, [r3]
+  45:main.c        ****              //buffer = 286331153;
+  46:main.c        ****             break;
+ 177              		.loc 1 46 0
+ 178 0082 3EE0     		b	.L8
+ 179              	.L11:
+  47:main.c        ****              case 0x02:
+  48:main.c        ****                buffer = MIS1_ReadCurTime();
+ 180              		.loc 1 48 0
+ 181 0084 FFF7FEFF 		bl	MIS1_ReadCurTime
+ 182 0088 0246     		mov	r2, r0
+ 183 008a 424B     		ldr	r3, .L21+12
+ 184 008c 1A60     		str	r2, [r3]
+  49:main.c        ****           //  buffer = 572662306;
+  50:main.c        ****             break;
+ 185              		.loc 1 50 0
+ 186 008e 38E0     		b	.L8
+ 187              	.L12:
+  51:main.c        ****             case 0x03:
+  52:main.c        ****                buffer = MIS2_ReadCount();
+ 188              		.loc 1 52 0
+ 189 0090 FFF7FEFF 		bl	MIS2_ReadCount
+ 190 0094 0246     		mov	r2, r0
+ 191 0096 3F4B     		ldr	r3, .L21+12
+ 192 0098 1A60     		str	r2, [r3]
+  53:main.c        ****             break;
+ 193              		.loc 1 53 0
+ 194 009a 32E0     		b	.L8
+ 195              	.L13:
+  54:main.c        ****              case 0x04:
+  55:main.c        ****                buffer = MIS2_ReadCurTime();
+ 196              		.loc 1 55 0
+ 197 009c FFF7FEFF 		bl	MIS2_ReadCurTime
+ 198 00a0 0246     		mov	r2, r0
+ 199 00a2 3C4B     		ldr	r3, .L21+12
+ 200 00a4 1A60     		str	r2, [r3]
+  56:main.c        ****                break;         
+ 201              		.loc 1 56 0
+ 202 00a6 2CE0     		b	.L8
+ 203              	.L14:
+  57:main.c        ****             case 0x09:
+  58:main.c        ****                buffer = MIS3_ReadCount();
+ 204              		.loc 1 58 0
+ 205 00a8 FFF7FEFF 		bl	MIS3_ReadCount
+ 206 00ac 0246     		mov	r2, r0
+ 207 00ae 394B     		ldr	r3, .L21+12
+ 208 00b0 1A60     		str	r2, [r3]
+  59:main.c        ****                break;
+ 209              		.loc 1 59 0
+ 210 00b2 26E0     		b	.L8
+ 211              	.L15:
+  60:main.c        ****             case 0x0A:
+  61:main.c        ****                buffer = MIS3_ReadCurTime();
+ 212              		.loc 1 61 0
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 6
+
+
+ 213 00b4 FFF7FEFF 		bl	MIS3_ReadCurTime
+ 214 00b8 0246     		mov	r2, r0
+ 215 00ba 364B     		ldr	r3, .L21+12
+ 216 00bc 1A60     		str	r2, [r3]
+  62:main.c        ****                break;
+ 217              		.loc 1 62 0
+ 218 00be 20E0     		b	.L8
+ 219              	.L16:
+  63:main.c        ****             case 0x0B:
+  64:main.c        ****                buffer = MIS4_ReadCount();
+ 220              		.loc 1 64 0
+ 221 00c0 FFF7FEFF 		bl	MIS4_ReadCount
+ 222 00c4 0246     		mov	r2, r0
+ 223 00c6 334B     		ldr	r3, .L21+12
+ 224 00c8 1A60     		str	r2, [r3]
+  65:main.c        ****                break;
+ 225              		.loc 1 65 0
+ 226 00ca 1AE0     		b	.L8
+ 227              	.L17:
+  66:main.c        ****             case 0x0C:
+  67:main.c        ****                buffer = MIS4_ReadCurTime();
+ 228              		.loc 1 67 0
+ 229 00cc FFF7FEFF 		bl	MIS4_ReadCurTime
+ 230 00d0 0246     		mov	r2, r0
+ 231 00d2 304B     		ldr	r3, .L21+12
+ 232 00d4 1A60     		str	r2, [r3]
+  68:main.c        ****                break;
+ 233              		.loc 1 68 0
+ 234 00d6 14E0     		b	.L8
+ 235              	.L18:
+  69:main.c        ****             
+  70:main.c        ****             case 0x0D:   //  1 - 2 QuadDecoder
+  71:main.c        ****                buffer = QuadDec_1_GetCounter();
+ 236              		.loc 1 71 0
+ 237 00d8 FFF7FEFF 		bl	QuadDec_1_GetCounter
+ 238 00dc 0346     		mov	r3, r0
+ 239 00de 1A46     		mov	r2, r3
+ 240 00e0 2C4B     		ldr	r3, .L21+12
+ 241 00e2 1A60     		str	r2, [r3]
+  72:main.c        ****                break;
+ 242              		.loc 1 72 0
+ 243 00e4 0DE0     		b	.L8
+ 244              	.L19:
+  73:main.c        ****             
+  74:main.c        ****             case 0x0E:   //  3 - 4 QuadDecoder
+  75:main.c        ****                buffer = QuadDec_2_GetCounter();
+ 245              		.loc 1 75 0
+ 246 00e6 FFF7FEFF 		bl	QuadDec_2_GetCounter
+ 247 00ea 0346     		mov	r3, r0
+ 248 00ec 1A46     		mov	r2, r3
+ 249 00ee 294B     		ldr	r3, .L21+12
+ 250 00f0 1A60     		str	r2, [r3]
+  76:main.c        ****                break;
+ 251              		.loc 1 76 0
+ 252 00f2 06E0     		b	.L8
+ 253              	.L20:
+  77:main.c        ****             
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 7
+
+
+  78:main.c        ****             case 0x0F:   //  Read MIS 1-4 Pulse Counter Enable status
+  79:main.c        ****                buffer = MIS_PulseCounterStatus();
+ 254              		.loc 1 79 0
+ 255 00f4 FFF7FEFF 		bl	MIS_PulseCounterStatus
+ 256 00f8 0346     		mov	r3, r0
+ 257 00fa 1A46     		mov	r2, r3
+ 258 00fc 254B     		ldr	r3, .L21+12
+ 259 00fe 1A60     		str	r2, [r3]
+  80:main.c        ****                break;
+ 260              		.loc 1 80 0
+ 261 0100 00BF     		nop
+ 262              	.L8:
+  81:main.c        ****         }
+  82:main.c        ****         
+  83:main.c        ****     SPIS_ClearRxBuffer();
+ 263              		.loc 1 83 0
+ 264 0102 FFF7FEFF 		bl	SPIS_ClearRxBuffer
+  84:main.c        ****     SPIS_ClearTxBuffer();
+ 265              		.loc 1 84 0
+ 266 0106 FFF7FEFF 		bl	SPIS_ClearTxBuffer
+  85:main.c        ****     
+  86:main.c        ****     uint8 * p = (uint8 *)&buffer;
+ 267              		.loc 1 86 0
+ 268 010a 224B     		ldr	r3, .L21+12
+ 269 010c 3B60     		str	r3, [r7]
+  87:main.c        ****     SPIS_WriteTxDataZero(0x5Au);
+ 270              		.loc 1 87 0
+ 271 010e 5A20     		movs	r0, #90
+ 272 0110 FFF7FEFF 		bl	SPIS_WriteTxDataZero
+  88:main.c        ****     /* Other 7 bytes are written to the SPIS Tx software buffer */
+  89:main.c        ****     SPIS_WriteTxData(p[0]);
+ 273              		.loc 1 89 0
+ 274 0114 3B68     		ldr	r3, [r7]
+ 275 0116 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 276 0118 1846     		mov	r0, r3
+ 277 011a FFF7FEFF 		bl	SPIS_WriteTxData
+  90:main.c        ****     SPIS_WriteTxData(p[1]);
+ 278              		.loc 1 90 0
+ 279 011e 3B68     		ldr	r3, [r7]
+ 280 0120 0133     		adds	r3, r3, #1
+ 281 0122 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 282 0124 1846     		mov	r0, r3
+ 283 0126 FFF7FEFF 		bl	SPIS_WriteTxData
+  91:main.c        ****     SPIS_WriteTxData(p[2]);
+ 284              		.loc 1 91 0
+ 285 012a 3B68     		ldr	r3, [r7]
+ 286 012c 0233     		adds	r3, r3, #2
+ 287 012e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 288 0130 1846     		mov	r0, r3
+ 289 0132 FFF7FEFF 		bl	SPIS_WriteTxData
+  92:main.c        ****     SPIS_WriteTxData(p[3]);
+ 290              		.loc 1 92 0
+ 291 0136 3B68     		ldr	r3, [r7]
+ 292 0138 0333     		adds	r3, r3, #3
+ 293 013a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 294 013c 1846     		mov	r0, r3
+ 295 013e FFF7FEFF 		bl	SPIS_WriteTxData
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 8
+
+
+  93:main.c        ****     LED1_Write(0);
+ 296              		.loc 1 93 0
+ 297 0142 0020     		movs	r0, #0
+ 298 0144 FFF7FEFF 		bl	LED1_Write
+  94:main.c        ****     sprintf(txt,"TX %x %x %x %x \n",p[0],p[1],p[2],p[3]); 
+ 299              		.loc 1 94 0
+ 300 0148 3B68     		ldr	r3, [r7]
+ 301 014a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 302 014c 1946     		mov	r1, r3
+ 303 014e 3B68     		ldr	r3, [r7]
+ 304 0150 0133     		adds	r3, r3, #1
+ 305 0152 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 306 0154 1846     		mov	r0, r3
+ 307 0156 3B68     		ldr	r3, [r7]
+ 308 0158 0233     		adds	r3, r3, #2
+ 309 015a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 310 015c 1A46     		mov	r2, r3
+ 311 015e 3B68     		ldr	r3, [r7]
+ 312 0160 0333     		adds	r3, r3, #3
+ 313 0162 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 314 0164 0193     		str	r3, [sp, #4]
+ 315 0166 0092     		str	r2, [sp]
+ 316 0168 0346     		mov	r3, r0
+ 317 016a 0A46     		mov	r2, r1
+ 318 016c 0A49     		ldr	r1, .L21+16
+ 319 016e 0748     		ldr	r0, .L21+4
+ 320 0170 FFF7FEFF 		bl	sprintf
+  95:main.c        ****     assert(0 == 0, txt);
+ 321              		.loc 1 95 0
+ 322 0174 5F23     		movs	r3, #95
+ 323 0176 064A     		ldr	r2, .L21+8
+ 324 0178 0449     		ldr	r1, .L21+4
+ 325 017a 0120     		movs	r0, #1
+ 326 017c FFF7FEFF 		bl	__assert__
+  96:main.c        ****     
+  97:main.c        **** }
+ 327              		.loc 1 97 0
+ 328 0180 00BF     		nop
+ 329 0182 0837     		adds	r7, r7, #8
+ 330              		.cfi_def_cfa_offset 8
+ 331 0184 BD46     		mov	sp, r7
+ 332              		.cfi_def_cfa_register 13
+ 333              		@ sp needed
+ 334 0186 80BD     		pop	{r7, pc}
+ 335              	.L22:
+ 336              		.align	2
+ 337              	.L21:
+ 338 0188 20000000 		.word	.LC2
+ 339 018c 00000000 		.word	txt
+ 340 0190 28000000 		.word	.LC3
+ 341 0194 00000000 		.word	buffer
+ 342 0198 30000000 		.word	.LC4
+ 343              		.cfi_endproc
+ 344              	.LFE66:
+ 345              		.size	isr_CS_Rise_handler, .-isr_CS_Rise_handler
+ 346              		.section	.text.isr_QuadDec_1_handler,"ax",%progbits
+ 347              		.align	2
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 9
+
+
+ 348              		.global	isr_QuadDec_1_handler
+ 349              		.thumb
+ 350              		.thumb_func
+ 351              		.type	isr_QuadDec_1_handler, %function
+ 352              	isr_QuadDec_1_handler:
+ 353              	.LFB67:
+  98:main.c        **** 
+  99:main.c        **** CY_ISR(isr_QuadDec_1_handler)
+ 100:main.c        **** {
+ 354              		.loc 1 100 0
+ 355              		.cfi_startproc
+ 356              		@ args = 0, pretend = 0, frame = 0
+ 357              		@ frame_needed = 1, uses_anonymous_args = 0
+ 358 0000 80B5     		push	{r7, lr}
+ 359              		.cfi_def_cfa_offset 8
+ 360              		.cfi_offset 7, -8
+ 361              		.cfi_offset 14, -4
+ 362 0002 00AF     		add	r7, sp, #0
+ 363              		.cfi_def_cfa_register 7
+ 101:main.c        ****     /* Clear Inerrupt */
+ 102:main.c        ****    	QuadDec_1_Init(); //Initializes or restores default configuration provided with the customizer
+ 364              		.loc 1 102 0
+ 365 0004 FFF7FEFF 		bl	QuadDec_1_Init
+ 103:main.c        **** }    
+ 366              		.loc 1 103 0
+ 367 0008 00BF     		nop
+ 368 000a 80BD     		pop	{r7, pc}
+ 369              		.cfi_endproc
+ 370              	.LFE67:
+ 371              		.size	isr_QuadDec_1_handler, .-isr_QuadDec_1_handler
+ 372              		.section	.text.isr_QuadDec_2_handler,"ax",%progbits
+ 373              		.align	2
+ 374              		.global	isr_QuadDec_2_handler
+ 375              		.thumb
+ 376              		.thumb_func
+ 377              		.type	isr_QuadDec_2_handler, %function
+ 378              	isr_QuadDec_2_handler:
+ 379              	.LFB68:
+ 104:main.c        **** 
+ 105:main.c        **** CY_ISR(isr_QuadDec_2_handler)
+ 106:main.c        **** {
+ 380              		.loc 1 106 0
+ 381              		.cfi_startproc
+ 382              		@ args = 0, pretend = 0, frame = 0
+ 383              		@ frame_needed = 1, uses_anonymous_args = 0
+ 384 0000 80B5     		push	{r7, lr}
+ 385              		.cfi_def_cfa_offset 8
+ 386              		.cfi_offset 7, -8
+ 387              		.cfi_offset 14, -4
+ 388 0002 00AF     		add	r7, sp, #0
+ 389              		.cfi_def_cfa_register 7
+ 107:main.c        ****     QuadDec_2_Init();
+ 390              		.loc 1 107 0
+ 391 0004 FFF7FEFF 		bl	QuadDec_2_Init
+ 108:main.c        **** }  
+ 392              		.loc 1 108 0
+ 393 0008 00BF     		nop
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 10
+
+
+ 394 000a 80BD     		pop	{r7, pc}
+ 395              		.cfi_endproc
+ 396              	.LFE68:
+ 397              		.size	isr_QuadDec_2_handler, .-isr_QuadDec_2_handler
+ 398              		.section	.text.debug_master_cmd,"ax",%progbits
+ 399              		.align	2
+ 400              		.global	debug_master_cmd
+ 401              		.thumb
+ 402              		.thumb_func
+ 403              		.type	debug_master_cmd, %function
+ 404              	debug_master_cmd:
+ 405              	.LFB69:
+ 109:main.c        **** 
+ 110:main.c        **** 
+ 111:main.c        **** void debug_master_cmd(uint8 cmd)
+ 112:main.c        **** {
+ 406              		.loc 1 112 0
+ 407              		.cfi_startproc
+ 408              		@ args = 0, pretend = 0, frame = 24
+ 409              		@ frame_needed = 1, uses_anonymous_args = 0
+ 410 0000 90B5     		push	{r4, r7, lr}
+ 411              		.cfi_def_cfa_offset 12
+ 412              		.cfi_offset 4, -12
+ 413              		.cfi_offset 7, -8
+ 414              		.cfi_offset 14, -4
+ 415 0002 87B0     		sub	sp, sp, #28
+ 416              		.cfi_def_cfa_offset 40
+ 417 0004 00AF     		add	r7, sp, #0
+ 418              		.cfi_def_cfa_register 7
+ 419 0006 0346     		mov	r3, r0
+ 420 0008 FB71     		strb	r3, [r7, #7]
+ 113:main.c        ****     uint8 spi_data[16];
+ 114:main.c        ****     SPIM_ClearRxBuffer();
+ 421              		.loc 1 114 0
+ 422 000a FFF7FEFF 		bl	SPIM_ClearRxBuffer
+ 115:main.c        ****     SPIM_ClearTxBuffer();
+ 423              		.loc 1 115 0
+ 424 000e FFF7FEFF 		bl	SPIM_ClearTxBuffer
+ 116:main.c        ****     memcpy(spi_data,0,sizeof(spi_data));
+ 425              		.loc 1 116 0
+ 426 0012 0023     		movs	r3, #0
+ 427 0014 07F10804 		add	r4, r7, #8
+ 428 0018 0FCB     		ldmia	r3, {r0, r1, r2, r3}
+ 429 001a 84E80F00 		stmia	r4, {r0, r1, r2, r3}
+ 117:main.c        ****     spi_data[0] = cmd;
+ 430              		.loc 1 117 0
+ 431 001e FB79     		ldrb	r3, [r7, #7]
+ 432 0020 3B72     		strb	r3, [r7, #8]
+ 118:main.c        ****    // SPIM_CS_Write(0);
+ 119:main.c        ****     SPIM_PutArray(spi_data, 5);
+ 433              		.loc 1 119 0
+ 434 0022 07F10803 		add	r3, r7, #8
+ 435 0026 0521     		movs	r1, #5
+ 436 0028 1846     		mov	r0, r3
+ 437 002a FFF7FEFF 		bl	SPIM_PutArray
+ 120:main.c        ****     CyDelay(1);
+ 438              		.loc 1 120 0
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 11
+
+
+ 439 002e 0120     		movs	r0, #1
+ 440 0030 FFF7FEFF 		bl	CyDelay
+ 121:main.c        ****     //SPIM_CS_Write(1);
+ 122:main.c        **** }
+ 441              		.loc 1 122 0
+ 442 0034 00BF     		nop
+ 443 0036 1C37     		adds	r7, r7, #28
+ 444              		.cfi_def_cfa_offset 12
+ 445 0038 BD46     		mov	sp, r7
+ 446              		.cfi_def_cfa_register 13
+ 447              		@ sp needed
+ 448 003a 90BD     		pop	{r4, r7, pc}
+ 449              		.cfi_endproc
+ 450              	.LFE69:
+ 451              		.size	debug_master_cmd, .-debug_master_cmd
+ 452              		.section	.text.debug_master_read,"ax",%progbits
+ 453              		.align	2
+ 454              		.global	debug_master_read
+ 455              		.thumb
+ 456              		.thumb_func
+ 457              		.type	debug_master_read, %function
+ 458              	debug_master_read:
+ 459              	.LFB70:
+ 123:main.c        **** 
+ 124:main.c        **** uint32 debug_master_read(uint8 cmd)
+ 125:main.c        **** {
+ 460              		.loc 1 125 0
+ 461              		.cfi_startproc
+ 462              		@ args = 0, pretend = 0, frame = 48
+ 463              		@ frame_needed = 1, uses_anonymous_args = 0
+ 464 0000 90B5     		push	{r4, r7, lr}
+ 465              		.cfi_def_cfa_offset 12
+ 466              		.cfi_offset 4, -12
+ 467              		.cfi_offset 7, -8
+ 468              		.cfi_offset 14, -4
+ 469 0002 8DB0     		sub	sp, sp, #52
+ 470              		.cfi_def_cfa_offset 64
+ 471 0004 00AF     		add	r7, sp, #0
+ 472              		.cfi_def_cfa_register 7
+ 473 0006 0346     		mov	r3, r0
+ 474 0008 FB71     		strb	r3, [r7, #7]
+ 126:main.c        ****     uint8 spi_data[16];
+ 127:main.c        ****     uint32 result = 0xFFFFFFFF;
+ 475              		.loc 1 127 0
+ 476 000a 4FF0FF33 		mov	r3, #-1
+ 477 000e FB60     		str	r3, [r7, #12]
+ 128:main.c        ****     uint8 *p = (uint8 *)&result;
+ 478              		.loc 1 128 0
+ 479 0010 07F10C03 		add	r3, r7, #12
+ 480 0014 BB62     		str	r3, [r7, #40]
+ 129:main.c        ****     
+ 130:main.c        ****     SPIM_ClearRxBuffer();
+ 481              		.loc 1 130 0
+ 482 0016 FFF7FEFF 		bl	SPIM_ClearRxBuffer
+ 131:main.c        ****     SPIM_ClearTxBuffer();
+ 483              		.loc 1 131 0
+ 484 001a FFF7FEFF 		bl	SPIM_ClearTxBuffer
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 12
+
+
+ 132:main.c        ****     memcpy(spi_data,0,sizeof(spi_data));
+ 485              		.loc 1 132 0
+ 486 001e 0023     		movs	r3, #0
+ 487 0020 07F11004 		add	r4, r7, #16
+ 488 0024 0FCB     		ldmia	r3, {r0, r1, r2, r3}
+ 489 0026 84E80F00 		stmia	r4, {r0, r1, r2, r3}
+ 133:main.c        ****     spi_data[0] = cmd;
+ 490              		.loc 1 133 0
+ 491 002a FB79     		ldrb	r3, [r7, #7]
+ 492 002c 3B74     		strb	r3, [r7, #16]
+ 134:main.c        ****   //  SPIM_CS_Write(0);
+ 135:main.c        ****     SPIM_PutArray(spi_data, 5);
+ 493              		.loc 1 135 0
+ 494 002e 07F11003 		add	r3, r7, #16
+ 495 0032 0521     		movs	r1, #5
+ 496 0034 1846     		mov	r0, r3
+ 497 0036 FFF7FEFF 		bl	SPIM_PutArray
+ 136:main.c        ****     CyDelay(1);
+ 498              		.loc 1 136 0
+ 499 003a 0120     		movs	r0, #1
+ 500 003c FFF7FEFF 		bl	CyDelay
+ 137:main.c        ****    // SPIM_CS_Write(1);
+ 138:main.c        ****     int b_cnt = SPIM_GetRxBufferSize();
+ 501              		.loc 1 138 0
+ 502 0040 FFF7FEFF 		bl	SPIM_GetRxBufferSize
+ 503 0044 0346     		mov	r3, r0
+ 504 0046 7B62     		str	r3, [r7, #36]
+ 139:main.c        ****     if (b_cnt == 5)
+ 505              		.loc 1 139 0
+ 506 0048 7B6A     		ldr	r3, [r7, #36]
+ 507 004a 052B     		cmp	r3, #5
+ 508 004c 18D1     		bne	.L27
+ 509              	.LBB2:
+ 140:main.c        ****     {
+ 141:main.c        ****         int i;
+ 142:main.c        ****         uint8 signature = SPIM_ReadByte();
+ 510              		.loc 1 142 0
+ 511 004e FFF7FEFF 		bl	SPIM_ReadRxData
+ 512 0052 0346     		mov	r3, r0
+ 513 0054 87F82330 		strb	r3, [r7, #35]
+ 143:main.c        ****         if (signature == 0x5A)
+ 514              		.loc 1 143 0
+ 515 0058 97F82330 		ldrb	r3, [r7, #35]	@ zero_extendqisi2
+ 516 005c 5A2B     		cmp	r3, #90
+ 517 005e 0FD1     		bne	.L27
+ 144:main.c        ****         {
+ 145:main.c        ****             for (i=0; i < 4; i++)
+ 518              		.loc 1 145 0
+ 519 0060 0023     		movs	r3, #0
+ 520 0062 FB62     		str	r3, [r7, #44]
+ 521 0064 09E0     		b	.L28
+ 522              	.L29:
+ 146:main.c        ****             {
+ 147:main.c        ****                 p[i] = SPIM_ReadByte();
+ 523              		.loc 1 147 0 discriminator 3
+ 524 0066 FB6A     		ldr	r3, [r7, #44]
+ 525 0068 BA6A     		ldr	r2, [r7, #40]
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 13
+
+
+ 526 006a D418     		adds	r4, r2, r3
+ 527 006c FFF7FEFF 		bl	SPIM_ReadRxData
+ 528 0070 0346     		mov	r3, r0
+ 529 0072 2370     		strb	r3, [r4]
+ 145:main.c        ****             {
+ 530              		.loc 1 145 0 discriminator 3
+ 531 0074 FB6A     		ldr	r3, [r7, #44]
+ 532 0076 0133     		adds	r3, r3, #1
+ 533 0078 FB62     		str	r3, [r7, #44]
+ 534              	.L28:
+ 145:main.c        ****             {
+ 535              		.loc 1 145 0 is_stmt 0 discriminator 1
+ 536 007a FB6A     		ldr	r3, [r7, #44]
+ 537 007c 032B     		cmp	r3, #3
+ 538 007e F2DD     		ble	.L29
+ 539              	.L27:
+ 540              	.LBE2:
+ 148:main.c        ****             }
+ 149:main.c        ****         }
+ 150:main.c        ****     }
+ 151:main.c        ****     return  result;
+ 541              		.loc 1 151 0 is_stmt 1
+ 542 0080 FB68     		ldr	r3, [r7, #12]
+ 152:main.c        **** }
+ 543              		.loc 1 152 0
+ 544 0082 1846     		mov	r0, r3
+ 545 0084 3437     		adds	r7, r7, #52
+ 546              		.cfi_def_cfa_offset 12
+ 547 0086 BD46     		mov	sp, r7
+ 548              		.cfi_def_cfa_register 13
+ 549              		@ sp needed
+ 550 0088 90BD     		pop	{r4, r7, pc}
+ 551              		.cfi_endproc
+ 552              	.LFE70:
+ 553              		.size	debug_master_read, .-debug_master_read
+ 554 008a 00BF     		.section	.rodata
+ 555 0041 000000   		.align	2
+ 556              	.LC5:
+ 557 0044 1B5B324A 		.ascii	"\033[2J\033[H\000"
+ 557      1B5B4800 
+ 558              		.align	2
+ 559              	.LC6:
+ 560 004c 41206D69 		.ascii	"A minimal unit testing framework for C\015\012\015\012"
+ 560      6E696D61 
+ 560      6C20756E 
+ 560      69742074 
+ 560      65737469 
+ 561 0076 00       		.ascii	"\000"
+ 562              		.section	.text.main,"ax",%progbits
+ 563              		.align	2
+ 564              		.global	main
+ 565              		.thumb
+ 566              		.thumb_func
+ 567              		.type	main, %function
+ 568              	main:
+ 569              	.LFB71:
+ 153:main.c        ****     
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 14
+
+
+ 154:main.c        **** int main()
+ 155:main.c        **** {    
+ 570              		.loc 1 155 0
+ 571              		.cfi_startproc
+ 572              		@ args = 0, pretend = 0, frame = 48
+ 573              		@ frame_needed = 1, uses_anonymous_args = 0
+ 574 0000 80B5     		push	{r7, lr}
+ 575              		.cfi_def_cfa_offset 8
+ 576              		.cfi_offset 7, -8
+ 577              		.cfi_offset 14, -4
+ 578 0002 8CB0     		sub	sp, sp, #48
+ 579              		.cfi_def_cfa_offset 56
+ 580 0004 00AF     		add	r7, sp, #0
+ 581              		.cfi_def_cfa_register 7
+ 156:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 582              		.loc 1 156 0
+ 583              		.syntax unified
+ 584              	@ 156 "main.c" 1
+ 585 0006 62B6     		CPSIE   i
+ 586              	@ 0 "" 2
+ 157:main.c        ****     /* Start the components */
+ 158:main.c        ****     
+ 159:main.c        ****     SPIM_Start();
+ 587              		.loc 1 159 0
+ 588              		.thumb
+ 589              		.syntax unified
+ 590 0008 FFF7FEFF 		bl	SPIM_Start
+ 160:main.c        ****     SPIS_Start();
+ 591              		.loc 1 160 0
+ 592 000c FFF7FEFF 		bl	SPIS_Start
+ 161:main.c        ****     UART_1_Start();
+ 593              		.loc 1 161 0
+ 594 0010 FFF7FEFF 		bl	UART_1_Start
+ 162:main.c        ****     QuadDec_1_Start();
+ 595              		.loc 1 162 0
+ 596 0014 FFF7FEFF 		bl	QuadDec_1_Start
+ 163:main.c        ****     QuadDec_2_Start();
+ 597              		.loc 1 163 0
+ 598 0018 FFF7FEFF 		bl	QuadDec_2_Start
+ 164:main.c        **** 
+ 165:main.c        ****   //  isr_SPI_StartEx(isr_SPI_handler);
+ 166:main.c        ****     isr_CS_Rise_StartEx(isr_CS_Rise_handler);
+ 599              		.loc 1 166 0
+ 600 001c 6048     		ldr	r0, .L38
+ 601 001e FFF7FEFF 		bl	isr_CS_Rise_StartEx
+ 167:main.c        ****         
+ 168:main.c        ****     isr_START_StartEx(isr_START_handler);
+ 602              		.loc 1 168 0
+ 603 0022 6048     		ldr	r0, .L38+4
+ 604 0024 FFF7FEFF 		bl	isr_START_StartEx
+ 169:main.c        ****     isr_STOP_StartEx(isr_STOP_handler);
+ 605              		.loc 1 169 0
+ 606 0028 5F48     		ldr	r0, .L38+8
+ 607 002a FFF7FEFF 		bl	isr_STOP_StartEx
+ 170:main.c        ****     
+ 171:main.c        ****     
+ 172:main.c        ****     
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 15
+
+
+ 173:main.c        **** 
+ 174:main.c        ****     /* Quadrature Decoder isr */
+ 175:main.c        ****     isr_QuadDec_1_StartEx(isr_QuadDec_1_handler);
+ 608              		.loc 1 175 0
+ 609 002e 5F48     		ldr	r0, .L38+12
+ 610 0030 FFF7FEFF 		bl	isr_QuadDec_1_StartEx
+ 176:main.c        ****     isr_QuadDec_2_StartEx(isr_QuadDec_2_handler);
+ 611              		.loc 1 176 0
+ 612 0034 5E48     		ldr	r0, .L38+16
+ 613 0036 FFF7FEFF 		bl	isr_QuadDec_2_StartEx
+ 177:main.c        ****    
+ 178:main.c        ****     
+ 179:main.c        ****     
+ 180:main.c        ****     /* MIS 1------------------------------------------ */
+ 181:main.c        ****     isr_PulseCounter_1_StartEx(isr_PulseCounter_1_handler);
+ 614              		.loc 1 181 0
+ 615 003a 5E48     		ldr	r0, .L38+20
+ 616 003c FFF7FEFF 		bl	isr_PulseCounter_1_StartEx
+ 182:main.c        ****     isr_Capture_1_StartEx(isr_Capture_1);
+ 617              		.loc 1 182 0
+ 618 0040 5D48     		ldr	r0, .L38+24
+ 619 0042 FFF7FEFF 		bl	isr_Capture_1_StartEx
+ 183:main.c        ****      BurstTimeout_1_Start();
+ 620              		.loc 1 183 0
+ 621 0046 FFF7FEFF 		bl	BurstTimeout_1_Start
+ 184:main.c        ****     PulseCounter_1_Start();
+ 622              		.loc 1 184 0
+ 623 004a FFF7FEFF 		bl	PulseCounter_1_Start
+ 185:main.c        ****    
+ 186:main.c        ****     /* MIS 2------------------------------------------ */
+ 187:main.c        ****     isr_PulseCounter_2_StartEx(isr_PulseCounter_2_handler);
+ 624              		.loc 1 187 0
+ 625 004e 5B48     		ldr	r0, .L38+28
+ 626 0050 FFF7FEFF 		bl	isr_PulseCounter_2_StartEx
+ 188:main.c        ****     isr_Capture_2_StartEx(isr_Capture_2);
+ 627              		.loc 1 188 0
+ 628 0054 5A48     		ldr	r0, .L38+32
+ 629 0056 FFF7FEFF 		bl	isr_Capture_2_StartEx
+ 189:main.c        ****     PulseCounter_2_Start();
+ 630              		.loc 1 189 0
+ 631 005a FFF7FEFF 		bl	PulseCounter_2_Start
+ 190:main.c        ****     BurstTimeout_2_Start();
+ 632              		.loc 1 190 0
+ 633 005e FFF7FEFF 		bl	BurstTimeout_2_Start
+ 191:main.c        ****     
+ 192:main.c        ****     /* MIS 3------------------------------------------ */
+ 193:main.c        ****     isr_PulseCounter_3_StartEx(isr_PulseCounter_3_handler);
+ 634              		.loc 1 193 0
+ 635 0062 5848     		ldr	r0, .L38+36
+ 636 0064 FFF7FEFF 		bl	isr_PulseCounter_3_StartEx
+ 194:main.c        ****     isr_Capture_3_StartEx(isr_Capture_3);
+ 637              		.loc 1 194 0
+ 638 0068 5748     		ldr	r0, .L38+40
+ 639 006a FFF7FEFF 		bl	isr_Capture_3_StartEx
+ 195:main.c        ****     PulseCounter_3_Start();
+ 640              		.loc 1 195 0
+ 641 006e FFF7FEFF 		bl	PulseCounter_3_Start
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 16
+
+
+ 196:main.c        ****     BurstTimeout_3_Start();
+ 642              		.loc 1 196 0
+ 643 0072 FFF7FEFF 		bl	BurstTimeout_3_Start
+ 197:main.c        ****     
+ 198:main.c        ****     /* MIS 4------------------------------------------ */
+ 199:main.c        ****     isr_PulseCounter_4_StartEx(isr_PulseCounter_4_handler);
+ 644              		.loc 1 199 0
+ 645 0076 5548     		ldr	r0, .L38+44
+ 646 0078 FFF7FEFF 		bl	isr_PulseCounter_4_StartEx
+ 200:main.c        ****     isr_Capture_4_StartEx(isr_Capture_4);
+ 647              		.loc 1 200 0
+ 648 007c 5448     		ldr	r0, .L38+48
+ 649 007e FFF7FEFF 		bl	isr_Capture_4_StartEx
+ 201:main.c        ****     PulseCounter_4_Start();
+ 650              		.loc 1 201 0
+ 651 0082 FFF7FEFF 		bl	PulseCounter_4_Start
+ 202:main.c        ****     BurstTimeout_4_Start();
+ 652              		.loc 1 202 0
+ 653 0086 FFF7FEFF 		bl	BurstTimeout_4_Start
+ 203:main.c        ****     
+ 204:main.c        ****     
+ 205:main.c        ****     isr_Timestamp_StartEx(isr_Timestamp_handler);
+ 654              		.loc 1 205 0
+ 655 008a 5248     		ldr	r0, .L38+52
+ 656 008c FFF7FEFF 		bl	isr_Timestamp_StartEx
+ 206:main.c        ****     Timestamp_Start();
+ 657              		.loc 1 206 0
+ 658 0090 FFF7FEFF 		bl	Timestamp_Start
+ 207:main.c        ****   //  EdgeDetect_1_Start();
+ 208:main.c        **** 
+ 209:main.c        ****     
+ 210:main.c        ****     UART_1_PutString("\x1b[2J\x1b[H"); //erase screen and go home
+ 659              		.loc 1 210 0
+ 660 0094 5048     		ldr	r0, .L38+56
+ 661 0096 FFF7FEFF 		bl	UART_1_PutString
+ 211:main.c        ****     UART_1_PutString("A minimal unit testing framework for C\r\n\r\n");
+ 662              		.loc 1 211 0
+ 663 009a 5048     		ldr	r0, .L38+60
+ 664 009c FFF7FEFF 		bl	UART_1_PutString
+ 212:main.c        **** 
+ 213:main.c        ****     //test_X10();
+ 214:main.c        ****     MIS1_SetBurstTimeout(5000);
+ 665              		.loc 1 214 0
+ 666 00a0 41F28830 		movw	r0, #5000
+ 667 00a4 FFF7FEFF 		bl	MIS1_SetBurstTimeout
+ 215:main.c        ****     MIS2_SetBurstTimeout(5000); /* 5ms pulse timeout in packet */
+ 668              		.loc 1 215 0
+ 669 00a8 41F28830 		movw	r0, #5000
+ 670 00ac FFF7FEFF 		bl	MIS2_SetBurstTimeout
+ 216:main.c        ****     MIS3_SetBurstTimeout(5000);
+ 671              		.loc 1 216 0
+ 672 00b0 41F28830 		movw	r0, #5000
+ 673 00b4 FFF7FEFF 		bl	MIS3_SetBurstTimeout
+ 217:main.c        ****     MIS4_SetBurstTimeout(5000);
+ 674              		.loc 1 217 0
+ 675 00b8 41F28830 		movw	r0, #5000
+ 676 00bc FFF7FEFF 		bl	MIS4_SetBurstTimeout
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 17
+
+
+ 677              	.L32:
+ 678              	.LBB3:
+ 218:main.c        ****     do
+ 219:main.c        ****     {
+ 220:main.c        ****    //     MIS_Debug_Write(1);
+ 221:main.c        ****      //   UART_1_PutString("DEBUG 1 \r\n\r\n");
+ 222:main.c        ****     //    CyDelay(60000);
+ 223:main.c        ****         
+ 224:main.c        ****     //    MIS_Debug_Write(0);
+ 225:main.c        ****     //    UART_1_PutString("DEBUG 0 \r\n\r\n");
+ 226:main.c        **** 
+ 227:main.c        ****         
+ 228:main.c        ****         /* --- MIS 1 --- */
+ 229:main.c        ****         uint32 MIS1_pulse_count;
+ 230:main.c        ****         uint32 MIS1_pulse_time;
+ 231:main.c        ****         do
+ 232:main.c        ****         {
+ 233:main.c        ****             debug_master_cmd(1);
+ 679              		.loc 1 233 0 discriminator 1
+ 680 00c0 0120     		movs	r0, #1
+ 681 00c2 FFF7FEFF 		bl	debug_master_cmd
+ 234:main.c        ****             MIS1_pulse_count = debug_master_read(1);
+ 682              		.loc 1 234 0 discriminator 1
+ 683 00c6 0120     		movs	r0, #1
+ 684 00c8 FFF7FEFF 		bl	debug_master_read
+ 685 00cc F862     		str	r0, [r7, #44]
+ 235:main.c        ****             
+ 236:main.c        ****             debug_master_cmd(2);
+ 686              		.loc 1 236 0 discriminator 1
+ 687 00ce 0220     		movs	r0, #2
+ 688 00d0 FFF7FEFF 		bl	debug_master_cmd
+ 237:main.c        ****             MIS1_pulse_time = debug_master_read(2);            
+ 689              		.loc 1 237 0 discriminator 1
+ 690 00d4 0220     		movs	r0, #2
+ 691 00d6 FFF7FEFF 		bl	debug_master_read
+ 692 00da B862     		str	r0, [r7, #40]
+ 238:main.c        ****         } while (MIS1_pulse_time == 0);
+ 693              		.loc 1 238 0 discriminator 1
+ 694 00dc BB6A     		ldr	r3, [r7, #40]
+ 695 00de 002B     		cmp	r3, #0
+ 696 00e0 EED0     		beq	.L32
+ 697              	.L33:
+ 239:main.c        ****         //////////////////////////////////////////
+ 240:main.c        ****         
+ 241:main.c        ****         /* --- MIS 2 --- */
+ 242:main.c        ****         uint32 MIS2_pulse_count;
+ 243:main.c        ****         uint32 MIS2_pulse_time;
+ 244:main.c        ****         do
+ 245:main.c        ****         {
+ 246:main.c        ****             debug_master_cmd(3);
+ 698              		.loc 1 246 0 discriminator 1
+ 699 00e2 0320     		movs	r0, #3
+ 700 00e4 FFF7FEFF 		bl	debug_master_cmd
+ 247:main.c        ****             MIS2_pulse_count = debug_master_read(3);
+ 701              		.loc 1 247 0 discriminator 1
+ 702 00e8 0320     		movs	r0, #3
+ 703 00ea FFF7FEFF 		bl	debug_master_read
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 18
+
+
+ 704 00ee 7862     		str	r0, [r7, #36]
+ 248:main.c        **** 
+ 249:main.c        ****             debug_master_cmd(4);
+ 705              		.loc 1 249 0 discriminator 1
+ 706 00f0 0420     		movs	r0, #4
+ 707 00f2 FFF7FEFF 		bl	debug_master_cmd
+ 250:main.c        ****             MIS2_pulse_time = debug_master_read(4);
+ 708              		.loc 1 250 0 discriminator 1
+ 709 00f6 0420     		movs	r0, #4
+ 710 00f8 FFF7FEFF 		bl	debug_master_read
+ 711 00fc 3862     		str	r0, [r7, #32]
+ 251:main.c        ****         } while (MIS2_pulse_time == 0);
+ 712              		.loc 1 251 0 discriminator 1
+ 713 00fe 3B6A     		ldr	r3, [r7, #32]
+ 714 0100 002B     		cmp	r3, #0
+ 715 0102 EED0     		beq	.L33
+ 716              	.L34:
+ 252:main.c        ****          //////////////////////////////////////////
+ 253:main.c        ****         
+ 254:main.c        ****         /* --- MIS 3 --- */
+ 255:main.c        ****         uint32 MIS3_pulse_count;
+ 256:main.c        ****         uint32 MIS3_pulse_time;
+ 257:main.c        ****         do
+ 258:main.c        ****         {
+ 259:main.c        ****             debug_master_cmd(9);
+ 717              		.loc 1 259 0 discriminator 1
+ 718 0104 0920     		movs	r0, #9
+ 719 0106 FFF7FEFF 		bl	debug_master_cmd
+ 260:main.c        ****             MIS3_pulse_count = debug_master_read(9);
+ 720              		.loc 1 260 0 discriminator 1
+ 721 010a 0920     		movs	r0, #9
+ 722 010c FFF7FEFF 		bl	debug_master_read
+ 723 0110 F861     		str	r0, [r7, #28]
+ 261:main.c        ****             
+ 262:main.c        ****             debug_master_cmd(0x0A);
+ 724              		.loc 1 262 0 discriminator 1
+ 725 0112 0A20     		movs	r0, #10
+ 726 0114 FFF7FEFF 		bl	debug_master_cmd
+ 263:main.c        ****             MIS3_pulse_time = debug_master_read(0x0A);            
+ 727              		.loc 1 263 0 discriminator 1
+ 728 0118 0A20     		movs	r0, #10
+ 729 011a FFF7FEFF 		bl	debug_master_read
+ 730 011e B861     		str	r0, [r7, #24]
+ 264:main.c        ****         } while (MIS3_pulse_time == 0);
+ 731              		.loc 1 264 0 discriminator 1
+ 732 0120 BB69     		ldr	r3, [r7, #24]
+ 733 0122 002B     		cmp	r3, #0
+ 734 0124 EED0     		beq	.L34
+ 735              	.L35:
+ 265:main.c        ****          //////////////////////////////////////////
+ 266:main.c        ****         
+ 267:main.c        ****         /* --- MIS 4 --- */
+ 268:main.c        ****         uint32 MIS4_pulse_count;
+ 269:main.c        ****         uint32 MIS4_pulse_time;
+ 270:main.c        ****         do
+ 271:main.c        ****         {
+ 272:main.c        ****             debug_master_cmd(0x0B);
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 19
+
+
+ 736              		.loc 1 272 0 discriminator 1
+ 737 0126 0B20     		movs	r0, #11
+ 738 0128 FFF7FEFF 		bl	debug_master_cmd
+ 273:main.c        ****             MIS4_pulse_count = debug_master_read(0x0B);
+ 739              		.loc 1 273 0 discriminator 1
+ 740 012c 0B20     		movs	r0, #11
+ 741 012e FFF7FEFF 		bl	debug_master_read
+ 742 0132 7861     		str	r0, [r7, #20]
+ 274:main.c        ****             
+ 275:main.c        ****             debug_master_cmd(0x0C);
+ 743              		.loc 1 275 0 discriminator 1
+ 744 0134 0C20     		movs	r0, #12
+ 745 0136 FFF7FEFF 		bl	debug_master_cmd
+ 276:main.c        ****             MIS4_pulse_time = debug_master_read(0x0C);            
+ 746              		.loc 1 276 0 discriminator 1
+ 747 013a 0C20     		movs	r0, #12
+ 748 013c FFF7FEFF 		bl	debug_master_read
+ 749 0140 3861     		str	r0, [r7, #16]
+ 277:main.c        ****         } while (MIS4_pulse_time == 0);
+ 750              		.loc 1 277 0 discriminator 1
+ 751 0142 3B69     		ldr	r3, [r7, #16]
+ 752 0144 002B     		cmp	r3, #0
+ 753 0146 EED0     		beq	.L35
+ 754              	.L36:
+ 278:main.c        ****          //////////////////////////////////////////
+ 279:main.c        ****         
+ 280:main.c        ****         /* --- MIS Quad 1-2 --- */
+ 281:main.c        ****         uint32 Quad_dec_1_count;
+ 282:main.c        ****         uint8 Quad_Dec_1_Event;
+ 283:main.c        ****         
+ 284:main.c        ****         do
+ 285:main.c        ****         {
+ 286:main.c        ****             debug_master_cmd(0x0D);
+ 755              		.loc 1 286 0 discriminator 1
+ 756 0148 0D20     		movs	r0, #13
+ 757 014a FFF7FEFF 		bl	debug_master_cmd
+ 287:main.c        ****             Quad_dec_1_count = debug_master_read(0x0D);
+ 758              		.loc 1 287 0 discriminator 1
+ 759 014e 0D20     		movs	r0, #13
+ 760 0150 FFF7FEFF 		bl	debug_master_read
+ 761 0154 F860     		str	r0, [r7, #12]
+ 288:main.c        ****             Quad_Dec_1_Event = QuadDec_1_GetEvents();
+ 762              		.loc 1 288 0 discriminator 1
+ 763 0156 FFF7FEFF 		bl	QuadDec_1_GetEvents
+ 764 015a 0346     		mov	r3, r0
+ 765 015c FB72     		strb	r3, [r7, #11]
+ 289:main.c        ****             
+ 290:main.c        ****             debug_master_cmd(2);
+ 766              		.loc 1 290 0 discriminator 1
+ 767 015e 0220     		movs	r0, #2
+ 768 0160 FFF7FEFF 		bl	debug_master_cmd
+ 291:main.c        ****             MIS1_pulse_time = debug_master_read(2);  
+ 769              		.loc 1 291 0 discriminator 1
+ 770 0164 0220     		movs	r0, #2
+ 771 0166 FFF7FEFF 		bl	debug_master_read
+ 772 016a B862     		str	r0, [r7, #40]
+ 292:main.c        ****             
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 20
+
+
+ 293:main.c        ****         } while (MIS1_pulse_time == 0);
+ 773              		.loc 1 293 0 discriminator 1
+ 774 016c BB6A     		ldr	r3, [r7, #40]
+ 775 016e 002B     		cmp	r3, #0
+ 776 0170 EAD0     		beq	.L36
+ 777              	.L37:
+ 294:main.c        ****         //////////////////////////////////////////
+ 295:main.c        ****         
+ 296:main.c        ****         /* --- MIS Quad 3-4 --- */
+ 297:main.c        ****         uint32 Quad_dec_2_count;
+ 298:main.c        ****         uint8 Quad_Dec_2_Event;
+ 299:main.c        ****         
+ 300:main.c        ****         do
+ 301:main.c        ****         {
+ 302:main.c        ****             debug_master_cmd(0x0E);
+ 778              		.loc 1 302 0 discriminator 1
+ 779 0172 0E20     		movs	r0, #14
+ 780 0174 FFF7FEFF 		bl	debug_master_cmd
+ 303:main.c        ****             Quad_dec_2_count = debug_master_read(0x0E);
+ 781              		.loc 1 303 0 discriminator 1
+ 782 0178 0E20     		movs	r0, #14
+ 783 017a FFF7FEFF 		bl	debug_master_read
+ 784 017e 7860     		str	r0, [r7, #4]
+ 304:main.c        ****             Quad_Dec_2_Event = QuadDec_2_GetEvents();
+ 785              		.loc 1 304 0 discriminator 1
+ 786 0180 FFF7FEFF 		bl	QuadDec_2_GetEvents
+ 787 0184 0346     		mov	r3, r0
+ 788 0186 FB70     		strb	r3, [r7, #3]
+ 305:main.c        ****             
+ 306:main.c        ****             debug_master_cmd(0x0A);
+ 789              		.loc 1 306 0 discriminator 1
+ 790 0188 0A20     		movs	r0, #10
+ 791 018a FFF7FEFF 		bl	debug_master_cmd
+ 307:main.c        ****             MIS3_pulse_time = debug_master_read(0x0A);            
+ 792              		.loc 1 307 0 discriminator 1
+ 793 018e 0A20     		movs	r0, #10
+ 794 0190 FFF7FEFF 		bl	debug_master_read
+ 795 0194 B861     		str	r0, [r7, #24]
+ 308:main.c        ****         } while (MIS3_pulse_time == 0);
+ 796              		.loc 1 308 0 discriminator 1
+ 797 0196 BB69     		ldr	r3, [r7, #24]
+ 798 0198 002B     		cmp	r3, #0
+ 799 019a EAD0     		beq	.L37
+ 800              	.LBE3:
+ 309:main.c        ****         //////////////////////////////////////////
+ 310:main.c        ****         
+ 311:main.c        ****          /*
+ 312:main.c        ****         sprintf(txt, "MIS1 PulseCounter = %ld TotTime = %ld", MIS1_pulse_count, MIS1_pulse_time);
+ 313:main.c        ****         assert(0 == 0, txt);
+ 314:main.c        ****         CyDelay(1000);
+ 315:main.c        ****             
+ 316:main.c        ****         sprintf(txt, "MIS2 PulseCounter = %ld TotTime = %ld", MIS2_pulse_count, MIS2_pulse_time);
+ 317:main.c        ****         assert(0 == 0, txt);
+ 318:main.c        ****         
+ 319:main.c        ****         sprintf(txt, "MIS3 PulseCounter = %ld TotTime = %ld", MIS3_pulse_count, MIS3_pulse_time);
+ 320:main.c        ****         assert(0 == 0, txt);
+ 321:main.c        ****              
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 21
+
+
+ 322:main.c        ****         sprintf(txt, "MIS4 PulseCounter = %ld TotTime = %ld", MIS4_pulse_count, MIS4_pulse_time);
+ 323:main.c        ****         assert(0 == 0, txt);
+ 324:main.c        ****         
+ 325:main.c        ****         sprintf(txt, "MIS 1-2 QuadCounter = %ld TotTime = %ld Event = %d", Quad_dec_1_count, MIS1_p
+ 326:main.c        ****         assert(0 == 0, txt);
+ 327:main.c        ****         
+ 328:main.c        ****         sprintf(txt, "MIS 3-4 QuadCounter = %ld TotTime = %ld Event = %d", Quad_dec_2_count, MIS3_p
+ 329:main.c        ****         assert(0 == 0, txt);
+ 330:main.c        ****        */
+ 331:main.c        ****         
+ 332:main.c        ****     } while (1);
+ 801              		.loc 1 332 0
+ 802 019c 90E7     		b	.L32
+ 803              	.L39:
+ 804 019e 00BF     		.align	2
+ 805              	.L38:
+ 806 01a0 00000000 		.word	isr_CS_Rise_handler
+ 807 01a4 00000000 		.word	isr_START_handler
+ 808 01a8 00000000 		.word	isr_STOP_handler
+ 809 01ac 00000000 		.word	isr_QuadDec_1_handler
+ 810 01b0 00000000 		.word	isr_QuadDec_2_handler
+ 811 01b4 00000000 		.word	isr_PulseCounter_1_handler
+ 812 01b8 00000000 		.word	isr_Capture_1
+ 813 01bc 00000000 		.word	isr_PulseCounter_2_handler
+ 814 01c0 00000000 		.word	isr_Capture_2
+ 815 01c4 00000000 		.word	isr_PulseCounter_3_handler
+ 816 01c8 00000000 		.word	isr_Capture_3
+ 817 01cc 00000000 		.word	isr_PulseCounter_4_handler
+ 818 01d0 00000000 		.word	isr_Capture_4
+ 819 01d4 00000000 		.word	isr_Timestamp_handler
+ 820 01d8 44000000 		.word	.LC5
+ 821 01dc 4C000000 		.word	.LC6
+ 822              		.cfi_endproc
+ 823              	.LFE71:
+ 824              		.size	main, .-main
+ 825              		.text
+ 826              	.Letext0:
+ 827              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 828              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 829              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 830              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 831              		.section	.debug_info,"",%progbits
+ 832              	.Ldebug_info0:
+ 833 0000 1D030000 		.4byte	0x31d
+ 834 0004 0400     		.2byte	0x4
+ 835 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 836 000a 04       		.byte	0x4
+ 837 000b 01       		.uleb128 0x1
+ 838 000c 00000000 		.4byte	.LASF44
+ 839 0010 0C       		.byte	0xc
+ 840 0011 56020000 		.4byte	.LASF45
+ 841 0015 8C020000 		.4byte	.LASF46
+ 842 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 843 001d 00000000 		.4byte	0
+ 844 0021 00000000 		.4byte	.Ldebug_line0
+ 845 0025 02       		.uleb128 0x2
+ 846 0026 01       		.byte	0x1
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 22
+
+
+ 847 0027 06       		.byte	0x6
+ 848 0028 6B030000 		.4byte	.LASF0
+ 849 002c 02       		.uleb128 0x2
+ 850 002d 01       		.byte	0x1
+ 851 002e 08       		.byte	0x8
+ 852 002f 23010000 		.4byte	.LASF1
+ 853 0033 02       		.uleb128 0x2
+ 854 0034 02       		.byte	0x2
+ 855 0035 05       		.byte	0x5
+ 856 0036 62020000 		.4byte	.LASF2
+ 857 003a 02       		.uleb128 0x2
+ 858 003b 02       		.byte	0x2
+ 859 003c 07       		.byte	0x7
+ 860 003d 58010000 		.4byte	.LASF3
+ 861 0041 03       		.uleb128 0x3
+ 862 0042 A9000000 		.4byte	.LASF9
+ 863 0046 02       		.byte	0x2
+ 864 0047 3F       		.byte	0x3f
+ 865 0048 4C000000 		.4byte	0x4c
+ 866 004c 02       		.uleb128 0x2
+ 867 004d 04       		.byte	0x4
+ 868 004e 05       		.byte	0x5
+ 869 004f B3000000 		.4byte	.LASF4
+ 870 0053 02       		.uleb128 0x2
+ 871 0054 04       		.byte	0x4
+ 872 0055 07       		.byte	0x7
+ 873 0056 78010000 		.4byte	.LASF5
+ 874 005a 02       		.uleb128 0x2
+ 875 005b 08       		.byte	0x8
+ 876 005c 05       		.byte	0x5
+ 877 005d 48020000 		.4byte	.LASF6
+ 878 0061 02       		.uleb128 0x2
+ 879 0062 08       		.byte	0x8
+ 880 0063 07       		.byte	0x7
+ 881 0064 CB010000 		.4byte	.LASF7
+ 882 0068 04       		.uleb128 0x4
+ 883 0069 04       		.byte	0x4
+ 884 006a 05       		.byte	0x5
+ 885 006b 696E7400 		.ascii	"int\000"
+ 886 006f 02       		.uleb128 0x2
+ 887 0070 04       		.byte	0x4
+ 888 0071 07       		.byte	0x7
+ 889 0072 AE010000 		.4byte	.LASF8
+ 890 0076 03       		.uleb128 0x3
+ 891 0077 26020000 		.4byte	.LASF10
+ 892 007b 03       		.byte	0x3
+ 893 007c 2C       		.byte	0x2c
+ 894 007d 41000000 		.4byte	0x41
+ 895 0081 05       		.uleb128 0x5
+ 896 0082 F6000000 		.4byte	.LASF11
+ 897 0086 04       		.byte	0x4
+ 898 0087 9201     		.2byte	0x192
+ 899 0089 2C000000 		.4byte	0x2c
+ 900 008d 05       		.uleb128 0x5
+ 901 008e A7010000 		.4byte	.LASF12
+ 902 0092 04       		.byte	0x4
+ 903 0093 9401     		.2byte	0x194
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 23
+
+
+ 904 0095 53000000 		.4byte	0x53
+ 905 0099 02       		.uleb128 0x2
+ 906 009a 04       		.byte	0x4
+ 907 009b 04       		.byte	0x4
+ 908 009c 14010000 		.4byte	.LASF13
+ 909 00a0 02       		.uleb128 0x2
+ 910 00a1 08       		.byte	0x8
+ 911 00a2 04       		.byte	0x4
+ 912 00a3 EF000000 		.4byte	.LASF14
+ 913 00a7 02       		.uleb128 0x2
+ 914 00a8 01       		.byte	0x1
+ 915 00a9 08       		.byte	0x8
+ 916 00aa 5D020000 		.4byte	.LASF15
+ 917 00ae 02       		.uleb128 0x2
+ 918 00af 08       		.byte	0x8
+ 919 00b0 04       		.byte	0x4
+ 920 00b1 5F030000 		.4byte	.LASF16
+ 921 00b5 02       		.uleb128 0x2
+ 922 00b6 04       		.byte	0x4
+ 923 00b7 07       		.byte	0x7
+ 924 00b8 2E020000 		.4byte	.LASF17
+ 925 00bc 06       		.uleb128 0x6
+ 926 00bd CD000000 		.4byte	.LASF18
+ 927 00c1 01       		.byte	0x1
+ 928 00c2 16       		.byte	0x16
+ 929 00c3 00000000 		.4byte	.LFB64
+ 930 00c7 18000000 		.4byte	.LFE64-.LFB64
+ 931 00cb 01       		.uleb128 0x1
+ 932 00cc 9C       		.byte	0x9c
+ 933 00cd 06       		.uleb128 0x6
+ 934 00ce F3010000 		.4byte	.LASF19
+ 935 00d2 01       		.byte	0x1
+ 936 00d3 1C       		.byte	0x1c
+ 937 00d4 00000000 		.4byte	.LFB65
+ 938 00d8 18000000 		.4byte	.LFE65-.LFB65
+ 939 00dc 01       		.uleb128 0x1
+ 940 00dd 9C       		.byte	0x9c
+ 941 00de 07       		.uleb128 0x7
+ 942 00df 4B030000 		.4byte	.LASF22
+ 943 00e3 01       		.byte	0x1
+ 944 00e4 23       		.byte	0x23
+ 945 00e5 00000000 		.4byte	.LFB66
+ 946 00e9 9C010000 		.4byte	.LFE66-.LFB66
+ 947 00ed 01       		.uleb128 0x1
+ 948 00ee 9C       		.byte	0x9c
+ 949 00ef 0C010000 		.4byte	0x10c
+ 950 00f3 08       		.uleb128 0x8
+ 951 00f4 6200     		.ascii	"b\000"
+ 952 00f6 01       		.byte	0x1
+ 953 00f7 25       		.byte	0x25
+ 954 00f8 81000000 		.4byte	0x81
+ 955 00fc 02       		.uleb128 0x2
+ 956 00fd 91       		.byte	0x91
+ 957 00fe 77       		.sleb128 -9
+ 958 00ff 08       		.uleb128 0x8
+ 959 0100 7000     		.ascii	"p\000"
+ 960 0102 01       		.byte	0x1
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 24
+
+
+ 961 0103 56       		.byte	0x56
+ 962 0104 0C010000 		.4byte	0x10c
+ 963 0108 02       		.uleb128 0x2
+ 964 0109 91       		.byte	0x91
+ 965 010a 70       		.sleb128 -16
+ 966 010b 00       		.byte	0
+ 967 010c 09       		.uleb128 0x9
+ 968 010d 04       		.byte	0x4
+ 969 010e 81000000 		.4byte	0x81
+ 970 0112 06       		.uleb128 0x6
+ 971 0113 88030000 		.4byte	.LASF20
+ 972 0117 01       		.byte	0x1
+ 973 0118 63       		.byte	0x63
+ 974 0119 00000000 		.4byte	.LFB67
+ 975 011d 0C000000 		.4byte	.LFE67-.LFB67
+ 976 0121 01       		.uleb128 0x1
+ 977 0122 9C       		.byte	0x9c
+ 978 0123 06       		.uleb128 0x6
+ 979 0124 42010000 		.4byte	.LASF21
+ 980 0128 01       		.byte	0x1
+ 981 0129 69       		.byte	0x69
+ 982 012a 00000000 		.4byte	.LFB68
+ 983 012e 0C000000 		.4byte	.LFE68-.LFB68
+ 984 0132 01       		.uleb128 0x1
+ 985 0133 9C       		.byte	0x9c
+ 986 0134 07       		.uleb128 0x7
+ 987 0135 96010000 		.4byte	.LASF23
+ 988 0139 01       		.byte	0x1
+ 989 013a 6F       		.byte	0x6f
+ 990 013b 00000000 		.4byte	.LFB69
+ 991 013f 3C000000 		.4byte	.LFE69-.LFB69
+ 992 0143 01       		.uleb128 0x1
+ 993 0144 9C       		.byte	0x9c
+ 994 0145 66010000 		.4byte	0x166
+ 995 0149 0A       		.uleb128 0xa
+ 996 014a 636D6400 		.ascii	"cmd\000"
+ 997 014e 01       		.byte	0x1
+ 998 014f 6F       		.byte	0x6f
+ 999 0150 81000000 		.4byte	0x81
+ 1000 0154 02       		.uleb128 0x2
+ 1001 0155 91       		.byte	0x91
+ 1002 0156 5F       		.sleb128 -33
+ 1003 0157 0B       		.uleb128 0xb
+ 1004 0158 83020000 		.4byte	.LASF24
+ 1005 015c 01       		.byte	0x1
+ 1006 015d 71       		.byte	0x71
+ 1007 015e 66010000 		.4byte	0x166
+ 1008 0162 02       		.uleb128 0x2
+ 1009 0163 91       		.byte	0x91
+ 1010 0164 60       		.sleb128 -32
+ 1011 0165 00       		.byte	0
+ 1012 0166 0C       		.uleb128 0xc
+ 1013 0167 81000000 		.4byte	0x81
+ 1014 016b 76010000 		.4byte	0x176
+ 1015 016f 0D       		.uleb128 0xd
+ 1016 0170 B5000000 		.4byte	0xb5
+ 1017 0174 0F       		.byte	0xf
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 25
+
+
+ 1018 0175 00       		.byte	0
+ 1019 0176 0E       		.uleb128 0xe
+ 1020 0177 FC000000 		.4byte	.LASF47
+ 1021 017b 01       		.byte	0x1
+ 1022 017c 7C       		.byte	0x7c
+ 1023 017d 8D000000 		.4byte	0x8d
+ 1024 0181 00000000 		.4byte	.LFB70
+ 1025 0185 8A000000 		.4byte	.LFE70-.LFB70
+ 1026 0189 01       		.uleb128 0x1
+ 1027 018a 9C       		.byte	0x9c
+ 1028 018b F8010000 		.4byte	0x1f8
+ 1029 018f 0A       		.uleb128 0xa
+ 1030 0190 636D6400 		.ascii	"cmd\000"
+ 1031 0194 01       		.byte	0x1
+ 1032 0195 7C       		.byte	0x7c
+ 1033 0196 81000000 		.4byte	0x81
+ 1034 019a 02       		.uleb128 0x2
+ 1035 019b 91       		.byte	0x91
+ 1036 019c 47       		.sleb128 -57
+ 1037 019d 0B       		.uleb128 0xb
+ 1038 019e 83020000 		.4byte	.LASF24
+ 1039 01a2 01       		.byte	0x1
+ 1040 01a3 7E       		.byte	0x7e
+ 1041 01a4 66010000 		.4byte	0x166
+ 1042 01a8 02       		.uleb128 0x2
+ 1043 01a9 91       		.byte	0x91
+ 1044 01aa 50       		.sleb128 -48
+ 1045 01ab 0B       		.uleb128 0xb
+ 1046 01ac 8F010000 		.4byte	.LASF25
+ 1047 01b0 01       		.byte	0x1
+ 1048 01b1 7F       		.byte	0x7f
+ 1049 01b2 8D000000 		.4byte	0x8d
+ 1050 01b6 02       		.uleb128 0x2
+ 1051 01b7 91       		.byte	0x91
+ 1052 01b8 4C       		.sleb128 -52
+ 1053 01b9 08       		.uleb128 0x8
+ 1054 01ba 7000     		.ascii	"p\000"
+ 1055 01bc 01       		.byte	0x1
+ 1056 01bd 80       		.byte	0x80
+ 1057 01be 0C010000 		.4byte	0x10c
+ 1058 01c2 02       		.uleb128 0x2
+ 1059 01c3 91       		.byte	0x91
+ 1060 01c4 68       		.sleb128 -24
+ 1061 01c5 0B       		.uleb128 0xb
+ 1062 01c6 0E010000 		.4byte	.LASF26
+ 1063 01ca 01       		.byte	0x1
+ 1064 01cb 8A       		.byte	0x8a
+ 1065 01cc 68000000 		.4byte	0x68
+ 1066 01d0 02       		.uleb128 0x2
+ 1067 01d1 91       		.byte	0x91
+ 1068 01d2 64       		.sleb128 -28
+ 1069 01d3 0F       		.uleb128 0xf
+ 1070 01d4 4E000000 		.4byte	.LBB2
+ 1071 01d8 32000000 		.4byte	.LBE2-.LBB2
+ 1072 01dc 08       		.uleb128 0x8
+ 1073 01dd 6900     		.ascii	"i\000"
+ 1074 01df 01       		.byte	0x1
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 26
+
+
+ 1075 01e0 8D       		.byte	0x8d
+ 1076 01e1 68000000 		.4byte	0x68
+ 1077 01e5 02       		.uleb128 0x2
+ 1078 01e6 91       		.byte	0x91
+ 1079 01e7 6C       		.sleb128 -20
+ 1080 01e8 0B       		.uleb128 0xb
+ 1081 01e9 9F000000 		.4byte	.LASF27
+ 1082 01ed 01       		.byte	0x1
+ 1083 01ee 8E       		.byte	0x8e
+ 1084 01ef 81000000 		.4byte	0x81
+ 1085 01f3 02       		.uleb128 0x2
+ 1086 01f4 91       		.byte	0x91
+ 1087 01f5 63       		.sleb128 -29
+ 1088 01f6 00       		.byte	0
+ 1089 01f7 00       		.byte	0
+ 1090 01f8 10       		.uleb128 0x10
+ 1091 01f9 8A010000 		.4byte	.LASF28
+ 1092 01fd 01       		.byte	0x1
+ 1093 01fe 9A       		.byte	0x9a
+ 1094 01ff 68000000 		.4byte	0x68
+ 1095 0203 00000000 		.4byte	.LFB71
+ 1096 0207 E0010000 		.4byte	.LFE71-.LFB71
+ 1097 020b 01       		.uleb128 0x1
+ 1098 020c 9C       		.byte	0x9c
+ 1099 020d CB020000 		.4byte	0x2cb
+ 1100 0211 0F       		.uleb128 0xf
+ 1101 0212 C0000000 		.4byte	.LBB3
+ 1102 0216 DC000000 		.4byte	.LBE3-.LBB3
+ 1103 021a 0B       		.uleb128 0xb
+ 1104 021b 04020000 		.4byte	.LASF29
+ 1105 021f 01       		.byte	0x1
+ 1106 0220 E5       		.byte	0xe5
+ 1107 0221 8D000000 		.4byte	0x8d
+ 1108 0225 02       		.uleb128 0x2
+ 1109 0226 91       		.byte	0x91
+ 1110 0227 74       		.sleb128 -12
+ 1111 0228 0B       		.uleb128 0xb
+ 1112 0229 BB010000 		.4byte	.LASF30
+ 1113 022d 01       		.byte	0x1
+ 1114 022e E6       		.byte	0xe6
+ 1115 022f 8D000000 		.4byte	0x8d
+ 1116 0233 02       		.uleb128 0x2
+ 1117 0234 91       		.byte	0x91
+ 1118 0235 70       		.sleb128 -16
+ 1119 0236 0B       		.uleb128 0xb
+ 1120 0237 31010000 		.4byte	.LASF31
+ 1121 023b 01       		.byte	0x1
+ 1122 023c F2       		.byte	0xf2
+ 1123 023d 8D000000 		.4byte	0x8d
+ 1124 0241 02       		.uleb128 0x2
+ 1125 0242 91       		.byte	0x91
+ 1126 0243 6C       		.sleb128 -20
+ 1127 0244 0B       		.uleb128 0xb
+ 1128 0245 9E030000 		.4byte	.LASF32
+ 1129 0249 01       		.byte	0x1
+ 1130 024a F3       		.byte	0xf3
+ 1131 024b 8D000000 		.4byte	0x8d
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 27
+
+
+ 1132 024f 02       		.uleb128 0x2
+ 1133 0250 91       		.byte	0x91
+ 1134 0251 68       		.sleb128 -24
+ 1135 0252 0B       		.uleb128 0xb
+ 1136 0253 77030000 		.4byte	.LASF33
+ 1137 0257 01       		.byte	0x1
+ 1138 0258 FF       		.byte	0xff
+ 1139 0259 8D000000 		.4byte	0x8d
+ 1140 025d 02       		.uleb128 0x2
+ 1141 025e 91       		.byte	0x91
+ 1142 025f 64       		.sleb128 -28
+ 1143 0260 11       		.uleb128 0x11
+ 1144 0261 DF000000 		.4byte	.LASF34
+ 1145 0265 01       		.byte	0x1
+ 1146 0266 0001     		.2byte	0x100
+ 1147 0268 8D000000 		.4byte	0x8d
+ 1148 026c 02       		.uleb128 0x2
+ 1149 026d 91       		.byte	0x91
+ 1150 026e 60       		.sleb128 -32
+ 1151 026f 11       		.uleb128 0x11
+ 1152 0270 15020000 		.4byte	.LASF35
+ 1153 0274 01       		.byte	0x1
+ 1154 0275 0C01     		.2byte	0x10c
+ 1155 0277 8D000000 		.4byte	0x8d
+ 1156 027b 02       		.uleb128 0x2
+ 1157 027c 91       		.byte	0x91
+ 1158 027d 5C       		.sleb128 -36
+ 1159 027e 11       		.uleb128 0x11
+ 1160 027f 73020000 		.4byte	.LASF36
+ 1161 0283 01       		.byte	0x1
+ 1162 0284 0D01     		.2byte	0x10d
+ 1163 0286 8D000000 		.4byte	0x8d
+ 1164 028a 02       		.uleb128 0x2
+ 1165 028b 91       		.byte	0x91
+ 1166 028c 58       		.sleb128 -40
+ 1167 028d 11       		.uleb128 0x11
+ 1168 028e E2010000 		.4byte	.LASF37
+ 1169 0292 01       		.byte	0x1
+ 1170 0293 1901     		.2byte	0x119
+ 1171 0295 8D000000 		.4byte	0x8d
+ 1172 0299 02       		.uleb128 0x2
+ 1173 029a 91       		.byte	0x91
+ 1174 029b 54       		.sleb128 -44
+ 1175 029c 11       		.uleb128 0x11
+ 1176 029d 8E000000 		.4byte	.LASF38
+ 1177 02a1 01       		.byte	0x1
+ 1178 02a2 1A01     		.2byte	0x11a
+ 1179 02a4 81000000 		.4byte	0x81
+ 1180 02a8 02       		.uleb128 0x2
+ 1181 02a9 91       		.byte	0x91
+ 1182 02aa 53       		.sleb128 -45
+ 1183 02ab 11       		.uleb128 0x11
+ 1184 02ac 37020000 		.4byte	.LASF39
+ 1185 02b0 01       		.byte	0x1
+ 1186 02b1 2901     		.2byte	0x129
+ 1187 02b3 8D000000 		.4byte	0x8d
+ 1188 02b7 02       		.uleb128 0x2
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 28
+
+
+ 1189 02b8 91       		.byte	0x91
+ 1190 02b9 4C       		.sleb128 -52
+ 1191 02ba 11       		.uleb128 0x11
+ 1192 02bb BC000000 		.4byte	.LASF40
+ 1193 02bf 01       		.byte	0x1
+ 1194 02c0 2A01     		.2byte	0x12a
+ 1195 02c2 81000000 		.4byte	0x81
+ 1196 02c6 02       		.uleb128 0x2
+ 1197 02c7 91       		.byte	0x91
+ 1198 02c8 4B       		.sleb128 -53
+ 1199 02c9 00       		.byte	0
+ 1200 02ca 00       		.byte	0
+ 1201 02cb 12       		.uleb128 0x12
+ 1202 02cc 6B010000 		.4byte	.LASF41
+ 1203 02d0 05       		.byte	0x5
+ 1204 02d1 9606     		.2byte	0x696
+ 1205 02d3 D7020000 		.4byte	0x2d7
+ 1206 02d7 13       		.uleb128 0x13
+ 1207 02d8 76000000 		.4byte	0x76
+ 1208 02dc 0C       		.uleb128 0xc
+ 1209 02dd A7000000 		.4byte	0xa7
+ 1210 02e1 ED020000 		.4byte	0x2ed
+ 1211 02e5 14       		.uleb128 0x14
+ 1212 02e6 B5000000 		.4byte	0xb5
+ 1213 02ea F301     		.2byte	0x1f3
+ 1214 02ec 00       		.byte	0
+ 1215 02ed 15       		.uleb128 0x15
+ 1216 02ee 74787400 		.ascii	"txt\000"
+ 1217 02f2 01       		.byte	0x1
+ 1218 02f3 12       		.byte	0x12
+ 1219 02f4 DC020000 		.4byte	0x2dc
+ 1220 02f8 05       		.uleb128 0x5
+ 1221 02f9 03       		.byte	0x3
+ 1222 02fa 00000000 		.4byte	txt
+ 1223 02fe 16       		.uleb128 0x16
+ 1224 02ff 6C020000 		.4byte	.LASF42
+ 1225 0303 01       		.byte	0x1
+ 1226 0304 13       		.byte	0x13
+ 1227 0305 8D000000 		.4byte	0x8d
+ 1228 0309 05       		.uleb128 0x5
+ 1229 030a 03       		.byte	0x3
+ 1230 030b 00000000 		.4byte	buffer
+ 1231 030f 16       		.uleb128 0x16
+ 1232 0310 1A010000 		.4byte	.LASF43
+ 1233 0314 01       		.byte	0x1
+ 1234 0315 14       		.byte	0x14
+ 1235 0316 81000000 		.4byte	0x81
+ 1236 031a 05       		.uleb128 0x5
+ 1237 031b 03       		.byte	0x3
+ 1238 031c 00000000 		.4byte	checksum
+ 1239 0320 00       		.byte	0
+ 1240              		.section	.debug_abbrev,"",%progbits
+ 1241              	.Ldebug_abbrev0:
+ 1242 0000 01       		.uleb128 0x1
+ 1243 0001 11       		.uleb128 0x11
+ 1244 0002 01       		.byte	0x1
+ 1245 0003 25       		.uleb128 0x25
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 29
+
+
+ 1246 0004 0E       		.uleb128 0xe
+ 1247 0005 13       		.uleb128 0x13
+ 1248 0006 0B       		.uleb128 0xb
+ 1249 0007 03       		.uleb128 0x3
+ 1250 0008 0E       		.uleb128 0xe
+ 1251 0009 1B       		.uleb128 0x1b
+ 1252 000a 0E       		.uleb128 0xe
+ 1253 000b 55       		.uleb128 0x55
+ 1254 000c 17       		.uleb128 0x17
+ 1255 000d 11       		.uleb128 0x11
+ 1256 000e 01       		.uleb128 0x1
+ 1257 000f 10       		.uleb128 0x10
+ 1258 0010 17       		.uleb128 0x17
+ 1259 0011 00       		.byte	0
+ 1260 0012 00       		.byte	0
+ 1261 0013 02       		.uleb128 0x2
+ 1262 0014 24       		.uleb128 0x24
+ 1263 0015 00       		.byte	0
+ 1264 0016 0B       		.uleb128 0xb
+ 1265 0017 0B       		.uleb128 0xb
+ 1266 0018 3E       		.uleb128 0x3e
+ 1267 0019 0B       		.uleb128 0xb
+ 1268 001a 03       		.uleb128 0x3
+ 1269 001b 0E       		.uleb128 0xe
+ 1270 001c 00       		.byte	0
+ 1271 001d 00       		.byte	0
+ 1272 001e 03       		.uleb128 0x3
+ 1273 001f 16       		.uleb128 0x16
+ 1274 0020 00       		.byte	0
+ 1275 0021 03       		.uleb128 0x3
+ 1276 0022 0E       		.uleb128 0xe
+ 1277 0023 3A       		.uleb128 0x3a
+ 1278 0024 0B       		.uleb128 0xb
+ 1279 0025 3B       		.uleb128 0x3b
+ 1280 0026 0B       		.uleb128 0xb
+ 1281 0027 49       		.uleb128 0x49
+ 1282 0028 13       		.uleb128 0x13
+ 1283 0029 00       		.byte	0
+ 1284 002a 00       		.byte	0
+ 1285 002b 04       		.uleb128 0x4
+ 1286 002c 24       		.uleb128 0x24
+ 1287 002d 00       		.byte	0
+ 1288 002e 0B       		.uleb128 0xb
+ 1289 002f 0B       		.uleb128 0xb
+ 1290 0030 3E       		.uleb128 0x3e
+ 1291 0031 0B       		.uleb128 0xb
+ 1292 0032 03       		.uleb128 0x3
+ 1293 0033 08       		.uleb128 0x8
+ 1294 0034 00       		.byte	0
+ 1295 0035 00       		.byte	0
+ 1296 0036 05       		.uleb128 0x5
+ 1297 0037 16       		.uleb128 0x16
+ 1298 0038 00       		.byte	0
+ 1299 0039 03       		.uleb128 0x3
+ 1300 003a 0E       		.uleb128 0xe
+ 1301 003b 3A       		.uleb128 0x3a
+ 1302 003c 0B       		.uleb128 0xb
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 30
+
+
+ 1303 003d 3B       		.uleb128 0x3b
+ 1304 003e 05       		.uleb128 0x5
+ 1305 003f 49       		.uleb128 0x49
+ 1306 0040 13       		.uleb128 0x13
+ 1307 0041 00       		.byte	0
+ 1308 0042 00       		.byte	0
+ 1309 0043 06       		.uleb128 0x6
+ 1310 0044 2E       		.uleb128 0x2e
+ 1311 0045 00       		.byte	0
+ 1312 0046 3F       		.uleb128 0x3f
+ 1313 0047 19       		.uleb128 0x19
+ 1314 0048 03       		.uleb128 0x3
+ 1315 0049 0E       		.uleb128 0xe
+ 1316 004a 3A       		.uleb128 0x3a
+ 1317 004b 0B       		.uleb128 0xb
+ 1318 004c 3B       		.uleb128 0x3b
+ 1319 004d 0B       		.uleb128 0xb
+ 1320 004e 27       		.uleb128 0x27
+ 1321 004f 19       		.uleb128 0x19
+ 1322 0050 11       		.uleb128 0x11
+ 1323 0051 01       		.uleb128 0x1
+ 1324 0052 12       		.uleb128 0x12
+ 1325 0053 06       		.uleb128 0x6
+ 1326 0054 40       		.uleb128 0x40
+ 1327 0055 18       		.uleb128 0x18
+ 1328 0056 9642     		.uleb128 0x2116
+ 1329 0058 19       		.uleb128 0x19
+ 1330 0059 00       		.byte	0
+ 1331 005a 00       		.byte	0
+ 1332 005b 07       		.uleb128 0x7
+ 1333 005c 2E       		.uleb128 0x2e
+ 1334 005d 01       		.byte	0x1
+ 1335 005e 3F       		.uleb128 0x3f
+ 1336 005f 19       		.uleb128 0x19
+ 1337 0060 03       		.uleb128 0x3
+ 1338 0061 0E       		.uleb128 0xe
+ 1339 0062 3A       		.uleb128 0x3a
+ 1340 0063 0B       		.uleb128 0xb
+ 1341 0064 3B       		.uleb128 0x3b
+ 1342 0065 0B       		.uleb128 0xb
+ 1343 0066 27       		.uleb128 0x27
+ 1344 0067 19       		.uleb128 0x19
+ 1345 0068 11       		.uleb128 0x11
+ 1346 0069 01       		.uleb128 0x1
+ 1347 006a 12       		.uleb128 0x12
+ 1348 006b 06       		.uleb128 0x6
+ 1349 006c 40       		.uleb128 0x40
+ 1350 006d 18       		.uleb128 0x18
+ 1351 006e 9642     		.uleb128 0x2116
+ 1352 0070 19       		.uleb128 0x19
+ 1353 0071 01       		.uleb128 0x1
+ 1354 0072 13       		.uleb128 0x13
+ 1355 0073 00       		.byte	0
+ 1356 0074 00       		.byte	0
+ 1357 0075 08       		.uleb128 0x8
+ 1358 0076 34       		.uleb128 0x34
+ 1359 0077 00       		.byte	0
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 31
+
+
+ 1360 0078 03       		.uleb128 0x3
+ 1361 0079 08       		.uleb128 0x8
+ 1362 007a 3A       		.uleb128 0x3a
+ 1363 007b 0B       		.uleb128 0xb
+ 1364 007c 3B       		.uleb128 0x3b
+ 1365 007d 0B       		.uleb128 0xb
+ 1366 007e 49       		.uleb128 0x49
+ 1367 007f 13       		.uleb128 0x13
+ 1368 0080 02       		.uleb128 0x2
+ 1369 0081 18       		.uleb128 0x18
+ 1370 0082 00       		.byte	0
+ 1371 0083 00       		.byte	0
+ 1372 0084 09       		.uleb128 0x9
+ 1373 0085 0F       		.uleb128 0xf
+ 1374 0086 00       		.byte	0
+ 1375 0087 0B       		.uleb128 0xb
+ 1376 0088 0B       		.uleb128 0xb
+ 1377 0089 49       		.uleb128 0x49
+ 1378 008a 13       		.uleb128 0x13
+ 1379 008b 00       		.byte	0
+ 1380 008c 00       		.byte	0
+ 1381 008d 0A       		.uleb128 0xa
+ 1382 008e 05       		.uleb128 0x5
+ 1383 008f 00       		.byte	0
+ 1384 0090 03       		.uleb128 0x3
+ 1385 0091 08       		.uleb128 0x8
+ 1386 0092 3A       		.uleb128 0x3a
+ 1387 0093 0B       		.uleb128 0xb
+ 1388 0094 3B       		.uleb128 0x3b
+ 1389 0095 0B       		.uleb128 0xb
+ 1390 0096 49       		.uleb128 0x49
+ 1391 0097 13       		.uleb128 0x13
+ 1392 0098 02       		.uleb128 0x2
+ 1393 0099 18       		.uleb128 0x18
+ 1394 009a 00       		.byte	0
+ 1395 009b 00       		.byte	0
+ 1396 009c 0B       		.uleb128 0xb
+ 1397 009d 34       		.uleb128 0x34
+ 1398 009e 00       		.byte	0
+ 1399 009f 03       		.uleb128 0x3
+ 1400 00a0 0E       		.uleb128 0xe
+ 1401 00a1 3A       		.uleb128 0x3a
+ 1402 00a2 0B       		.uleb128 0xb
+ 1403 00a3 3B       		.uleb128 0x3b
+ 1404 00a4 0B       		.uleb128 0xb
+ 1405 00a5 49       		.uleb128 0x49
+ 1406 00a6 13       		.uleb128 0x13
+ 1407 00a7 02       		.uleb128 0x2
+ 1408 00a8 18       		.uleb128 0x18
+ 1409 00a9 00       		.byte	0
+ 1410 00aa 00       		.byte	0
+ 1411 00ab 0C       		.uleb128 0xc
+ 1412 00ac 01       		.uleb128 0x1
+ 1413 00ad 01       		.byte	0x1
+ 1414 00ae 49       		.uleb128 0x49
+ 1415 00af 13       		.uleb128 0x13
+ 1416 00b0 01       		.uleb128 0x1
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 32
+
+
+ 1417 00b1 13       		.uleb128 0x13
+ 1418 00b2 00       		.byte	0
+ 1419 00b3 00       		.byte	0
+ 1420 00b4 0D       		.uleb128 0xd
+ 1421 00b5 21       		.uleb128 0x21
+ 1422 00b6 00       		.byte	0
+ 1423 00b7 49       		.uleb128 0x49
+ 1424 00b8 13       		.uleb128 0x13
+ 1425 00b9 2F       		.uleb128 0x2f
+ 1426 00ba 0B       		.uleb128 0xb
+ 1427 00bb 00       		.byte	0
+ 1428 00bc 00       		.byte	0
+ 1429 00bd 0E       		.uleb128 0xe
+ 1430 00be 2E       		.uleb128 0x2e
+ 1431 00bf 01       		.byte	0x1
+ 1432 00c0 3F       		.uleb128 0x3f
+ 1433 00c1 19       		.uleb128 0x19
+ 1434 00c2 03       		.uleb128 0x3
+ 1435 00c3 0E       		.uleb128 0xe
+ 1436 00c4 3A       		.uleb128 0x3a
+ 1437 00c5 0B       		.uleb128 0xb
+ 1438 00c6 3B       		.uleb128 0x3b
+ 1439 00c7 0B       		.uleb128 0xb
+ 1440 00c8 27       		.uleb128 0x27
+ 1441 00c9 19       		.uleb128 0x19
+ 1442 00ca 49       		.uleb128 0x49
+ 1443 00cb 13       		.uleb128 0x13
+ 1444 00cc 11       		.uleb128 0x11
+ 1445 00cd 01       		.uleb128 0x1
+ 1446 00ce 12       		.uleb128 0x12
+ 1447 00cf 06       		.uleb128 0x6
+ 1448 00d0 40       		.uleb128 0x40
+ 1449 00d1 18       		.uleb128 0x18
+ 1450 00d2 9642     		.uleb128 0x2116
+ 1451 00d4 19       		.uleb128 0x19
+ 1452 00d5 01       		.uleb128 0x1
+ 1453 00d6 13       		.uleb128 0x13
+ 1454 00d7 00       		.byte	0
+ 1455 00d8 00       		.byte	0
+ 1456 00d9 0F       		.uleb128 0xf
+ 1457 00da 0B       		.uleb128 0xb
+ 1458 00db 01       		.byte	0x1
+ 1459 00dc 11       		.uleb128 0x11
+ 1460 00dd 01       		.uleb128 0x1
+ 1461 00de 12       		.uleb128 0x12
+ 1462 00df 06       		.uleb128 0x6
+ 1463 00e0 00       		.byte	0
+ 1464 00e1 00       		.byte	0
+ 1465 00e2 10       		.uleb128 0x10
+ 1466 00e3 2E       		.uleb128 0x2e
+ 1467 00e4 01       		.byte	0x1
+ 1468 00e5 3F       		.uleb128 0x3f
+ 1469 00e6 19       		.uleb128 0x19
+ 1470 00e7 03       		.uleb128 0x3
+ 1471 00e8 0E       		.uleb128 0xe
+ 1472 00e9 3A       		.uleb128 0x3a
+ 1473 00ea 0B       		.uleb128 0xb
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 33
+
+
+ 1474 00eb 3B       		.uleb128 0x3b
+ 1475 00ec 0B       		.uleb128 0xb
+ 1476 00ed 49       		.uleb128 0x49
+ 1477 00ee 13       		.uleb128 0x13
+ 1478 00ef 11       		.uleb128 0x11
+ 1479 00f0 01       		.uleb128 0x1
+ 1480 00f1 12       		.uleb128 0x12
+ 1481 00f2 06       		.uleb128 0x6
+ 1482 00f3 40       		.uleb128 0x40
+ 1483 00f4 18       		.uleb128 0x18
+ 1484 00f5 9642     		.uleb128 0x2116
+ 1485 00f7 19       		.uleb128 0x19
+ 1486 00f8 01       		.uleb128 0x1
+ 1487 00f9 13       		.uleb128 0x13
+ 1488 00fa 00       		.byte	0
+ 1489 00fb 00       		.byte	0
+ 1490 00fc 11       		.uleb128 0x11
+ 1491 00fd 34       		.uleb128 0x34
+ 1492 00fe 00       		.byte	0
+ 1493 00ff 03       		.uleb128 0x3
+ 1494 0100 0E       		.uleb128 0xe
+ 1495 0101 3A       		.uleb128 0x3a
+ 1496 0102 0B       		.uleb128 0xb
+ 1497 0103 3B       		.uleb128 0x3b
+ 1498 0104 05       		.uleb128 0x5
+ 1499 0105 49       		.uleb128 0x49
+ 1500 0106 13       		.uleb128 0x13
+ 1501 0107 02       		.uleb128 0x2
+ 1502 0108 18       		.uleb128 0x18
+ 1503 0109 00       		.byte	0
+ 1504 010a 00       		.byte	0
+ 1505 010b 12       		.uleb128 0x12
+ 1506 010c 34       		.uleb128 0x34
+ 1507 010d 00       		.byte	0
+ 1508 010e 03       		.uleb128 0x3
+ 1509 010f 0E       		.uleb128 0xe
+ 1510 0110 3A       		.uleb128 0x3a
+ 1511 0111 0B       		.uleb128 0xb
+ 1512 0112 3B       		.uleb128 0x3b
+ 1513 0113 05       		.uleb128 0x5
+ 1514 0114 49       		.uleb128 0x49
+ 1515 0115 13       		.uleb128 0x13
+ 1516 0116 3F       		.uleb128 0x3f
+ 1517 0117 19       		.uleb128 0x19
+ 1518 0118 3C       		.uleb128 0x3c
+ 1519 0119 19       		.uleb128 0x19
+ 1520 011a 00       		.byte	0
+ 1521 011b 00       		.byte	0
+ 1522 011c 13       		.uleb128 0x13
+ 1523 011d 35       		.uleb128 0x35
+ 1524 011e 00       		.byte	0
+ 1525 011f 49       		.uleb128 0x49
+ 1526 0120 13       		.uleb128 0x13
+ 1527 0121 00       		.byte	0
+ 1528 0122 00       		.byte	0
+ 1529 0123 14       		.uleb128 0x14
+ 1530 0124 21       		.uleb128 0x21
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 34
+
+
+ 1531 0125 00       		.byte	0
+ 1532 0126 49       		.uleb128 0x49
+ 1533 0127 13       		.uleb128 0x13
+ 1534 0128 2F       		.uleb128 0x2f
+ 1535 0129 05       		.uleb128 0x5
+ 1536 012a 00       		.byte	0
+ 1537 012b 00       		.byte	0
+ 1538 012c 15       		.uleb128 0x15
+ 1539 012d 34       		.uleb128 0x34
+ 1540 012e 00       		.byte	0
+ 1541 012f 03       		.uleb128 0x3
+ 1542 0130 08       		.uleb128 0x8
+ 1543 0131 3A       		.uleb128 0x3a
+ 1544 0132 0B       		.uleb128 0xb
+ 1545 0133 3B       		.uleb128 0x3b
+ 1546 0134 0B       		.uleb128 0xb
+ 1547 0135 49       		.uleb128 0x49
+ 1548 0136 13       		.uleb128 0x13
+ 1549 0137 3F       		.uleb128 0x3f
+ 1550 0138 19       		.uleb128 0x19
+ 1551 0139 02       		.uleb128 0x2
+ 1552 013a 18       		.uleb128 0x18
+ 1553 013b 00       		.byte	0
+ 1554 013c 00       		.byte	0
+ 1555 013d 16       		.uleb128 0x16
+ 1556 013e 34       		.uleb128 0x34
+ 1557 013f 00       		.byte	0
+ 1558 0140 03       		.uleb128 0x3
+ 1559 0141 0E       		.uleb128 0xe
+ 1560 0142 3A       		.uleb128 0x3a
+ 1561 0143 0B       		.uleb128 0xb
+ 1562 0144 3B       		.uleb128 0x3b
+ 1563 0145 0B       		.uleb128 0xb
+ 1564 0146 49       		.uleb128 0x49
+ 1565 0147 13       		.uleb128 0x13
+ 1566 0148 3F       		.uleb128 0x3f
+ 1567 0149 19       		.uleb128 0x19
+ 1568 014a 02       		.uleb128 0x2
+ 1569 014b 18       		.uleb128 0x18
+ 1570 014c 00       		.byte	0
+ 1571 014d 00       		.byte	0
+ 1572 014e 00       		.byte	0
+ 1573              		.section	.debug_aranges,"",%progbits
+ 1574 0000 54000000 		.4byte	0x54
+ 1575 0004 0200     		.2byte	0x2
+ 1576 0006 00000000 		.4byte	.Ldebug_info0
+ 1577 000a 04       		.byte	0x4
+ 1578 000b 00       		.byte	0
+ 1579 000c 0000     		.2byte	0
+ 1580 000e 0000     		.2byte	0
+ 1581 0010 00000000 		.4byte	.LFB64
+ 1582 0014 18000000 		.4byte	.LFE64-.LFB64
+ 1583 0018 00000000 		.4byte	.LFB65
+ 1584 001c 18000000 		.4byte	.LFE65-.LFB65
+ 1585 0020 00000000 		.4byte	.LFB66
+ 1586 0024 9C010000 		.4byte	.LFE66-.LFB66
+ 1587 0028 00000000 		.4byte	.LFB67
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 35
+
+
+ 1588 002c 0C000000 		.4byte	.LFE67-.LFB67
+ 1589 0030 00000000 		.4byte	.LFB68
+ 1590 0034 0C000000 		.4byte	.LFE68-.LFB68
+ 1591 0038 00000000 		.4byte	.LFB69
+ 1592 003c 3C000000 		.4byte	.LFE69-.LFB69
+ 1593 0040 00000000 		.4byte	.LFB70
+ 1594 0044 8A000000 		.4byte	.LFE70-.LFB70
+ 1595 0048 00000000 		.4byte	.LFB71
+ 1596 004c E0010000 		.4byte	.LFE71-.LFB71
+ 1597 0050 00000000 		.4byte	0
+ 1598 0054 00000000 		.4byte	0
+ 1599              		.section	.debug_ranges,"",%progbits
+ 1600              	.Ldebug_ranges0:
+ 1601 0000 00000000 		.4byte	.LFB64
+ 1602 0004 18000000 		.4byte	.LFE64
+ 1603 0008 00000000 		.4byte	.LFB65
+ 1604 000c 18000000 		.4byte	.LFE65
+ 1605 0010 00000000 		.4byte	.LFB66
+ 1606 0014 9C010000 		.4byte	.LFE66
+ 1607 0018 00000000 		.4byte	.LFB67
+ 1608 001c 0C000000 		.4byte	.LFE67
+ 1609 0020 00000000 		.4byte	.LFB68
+ 1610 0024 0C000000 		.4byte	.LFE68
+ 1611 0028 00000000 		.4byte	.LFB69
+ 1612 002c 3C000000 		.4byte	.LFE69
+ 1613 0030 00000000 		.4byte	.LFB70
+ 1614 0034 8A000000 		.4byte	.LFE70
+ 1615 0038 00000000 		.4byte	.LFB71
+ 1616 003c E0010000 		.4byte	.LFE71
+ 1617 0040 00000000 		.4byte	0
+ 1618 0044 00000000 		.4byte	0
+ 1619              		.section	.debug_line,"",%progbits
+ 1620              	.Ldebug_line0:
+ 1621 0000 F6020000 		.section	.debug_str,"MS",%progbits,1
+ 1621      02004C01 
+ 1621      00000201 
+ 1621      FB0E0D00 
+ 1621      01010101 
+ 1622              	.LASF44:
+ 1623 0000 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1623      43313120 
+ 1623      352E342E 
+ 1623      31203230 
+ 1623      31363036 
+ 1624 0033 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1624      20726576 
+ 1624      6973696F 
+ 1624      6E203233 
+ 1624      37373135 
+ 1625 0066 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1625      66756E63 
+ 1625      74696F6E 
+ 1625      2D736563 
+ 1625      74696F6E 
+ 1626              	.LASF38:
+ 1627 008e 51756164 		.ascii	"Quad_Dec_1_Event\000"
+ 1627      5F446563 
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 36
+
+
+ 1627      5F315F45 
+ 1627      76656E74 
+ 1627      00
+ 1628              	.LASF27:
+ 1629 009f 7369676E 		.ascii	"signature\000"
+ 1629      61747572 
+ 1629      6500
+ 1630              	.LASF9:
+ 1631 00a9 5F5F696E 		.ascii	"__int32_t\000"
+ 1631      7433325F 
+ 1631      7400
+ 1632              	.LASF4:
+ 1633 00b3 6C6F6E67 		.ascii	"long int\000"
+ 1633      20696E74 
+ 1633      00
+ 1634              	.LASF40:
+ 1635 00bc 51756164 		.ascii	"Quad_Dec_2_Event\000"
+ 1635      5F446563 
+ 1635      5F325F45 
+ 1635      76656E74 
+ 1635      00
+ 1636              	.LASF18:
+ 1637 00cd 6973725F 		.ascii	"isr_START_handler\000"
+ 1637      53544152 
+ 1637      545F6861 
+ 1637      6E646C65 
+ 1637      7200
+ 1638              	.LASF34:
+ 1639 00df 4D495333 		.ascii	"MIS3_pulse_time\000"
+ 1639      5F70756C 
+ 1639      73655F74 
+ 1639      696D6500 
+ 1640              	.LASF14:
+ 1641 00ef 646F7562 		.ascii	"double\000"
+ 1641      6C6500
+ 1642              	.LASF11:
+ 1643 00f6 75696E74 		.ascii	"uint8\000"
+ 1643      3800
+ 1644              	.LASF47:
+ 1645 00fc 64656275 		.ascii	"debug_master_read\000"
+ 1645      675F6D61 
+ 1645      73746572 
+ 1645      5F726561 
+ 1645      6400
+ 1646              	.LASF26:
+ 1647 010e 625F636E 		.ascii	"b_cnt\000"
+ 1647      7400
+ 1648              	.LASF13:
+ 1649 0114 666C6F61 		.ascii	"float\000"
+ 1649      7400
+ 1650              	.LASF43:
+ 1651 011a 63686563 		.ascii	"checksum\000"
+ 1651      6B73756D 
+ 1651      00
+ 1652              	.LASF1:
+ 1653 0123 756E7369 		.ascii	"unsigned char\000"
+ 1653      676E6564 
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 37
+
+
+ 1653      20636861 
+ 1653      7200
+ 1654              	.LASF31:
+ 1655 0131 4D495332 		.ascii	"MIS2_pulse_count\000"
+ 1655      5F70756C 
+ 1655      73655F63 
+ 1655      6F756E74 
+ 1655      00
+ 1656              	.LASF21:
+ 1657 0142 6973725F 		.ascii	"isr_QuadDec_2_handler\000"
+ 1657      51756164 
+ 1657      4465635F 
+ 1657      325F6861 
+ 1657      6E646C65 
+ 1658              	.LASF3:
+ 1659 0158 73686F72 		.ascii	"short unsigned int\000"
+ 1659      7420756E 
+ 1659      7369676E 
+ 1659      65642069 
+ 1659      6E7400
+ 1660              	.LASF41:
+ 1661 016b 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1661      52784275 
+ 1661      66666572 
+ 1661      00
+ 1662              	.LASF5:
+ 1663 0178 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1663      20756E73 
+ 1663      69676E65 
+ 1663      6420696E 
+ 1663      7400
+ 1664              	.LASF28:
+ 1665 018a 6D61696E 		.ascii	"main\000"
+ 1665      00
+ 1666              	.LASF25:
+ 1667 018f 72657375 		.ascii	"result\000"
+ 1667      6C7400
+ 1668              	.LASF23:
+ 1669 0196 64656275 		.ascii	"debug_master_cmd\000"
+ 1669      675F6D61 
+ 1669      73746572 
+ 1669      5F636D64 
+ 1669      00
+ 1670              	.LASF12:
+ 1671 01a7 75696E74 		.ascii	"uint32\000"
+ 1671      333200
+ 1672              	.LASF8:
+ 1673 01ae 756E7369 		.ascii	"unsigned int\000"
+ 1673      676E6564 
+ 1673      20696E74 
+ 1673      00
+ 1674              	.LASF30:
+ 1675 01bb 4D495331 		.ascii	"MIS1_pulse_time\000"
+ 1675      5F70756C 
+ 1675      73655F74 
+ 1675      696D6500 
+ 1676              	.LASF7:
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 38
+
+
+ 1677 01cb 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1677      206C6F6E 
+ 1677      6720756E 
+ 1677      7369676E 
+ 1677      65642069 
+ 1678              	.LASF37:
+ 1679 01e2 51756164 		.ascii	"Quad_dec_1_count\000"
+ 1679      5F646563 
+ 1679      5F315F63 
+ 1679      6F756E74 
+ 1679      00
+ 1680              	.LASF19:
+ 1681 01f3 6973725F 		.ascii	"isr_STOP_handler\000"
+ 1681      53544F50 
+ 1681      5F68616E 
+ 1681      646C6572 
+ 1681      00
+ 1682              	.LASF29:
+ 1683 0204 4D495331 		.ascii	"MIS1_pulse_count\000"
+ 1683      5F70756C 
+ 1683      73655F63 
+ 1683      6F756E74 
+ 1683      00
+ 1684              	.LASF35:
+ 1685 0215 4D495334 		.ascii	"MIS4_pulse_count\000"
+ 1685      5F70756C 
+ 1685      73655F63 
+ 1685      6F756E74 
+ 1685      00
+ 1686              	.LASF10:
+ 1687 0226 696E7433 		.ascii	"int32_t\000"
+ 1687      325F7400 
+ 1688              	.LASF17:
+ 1689 022e 73697A65 		.ascii	"sizetype\000"
+ 1689      74797065 
+ 1689      00
+ 1690              	.LASF39:
+ 1691 0237 51756164 		.ascii	"Quad_dec_2_count\000"
+ 1691      5F646563 
+ 1691      5F325F63 
+ 1691      6F756E74 
+ 1691      00
+ 1692              	.LASF6:
+ 1693 0248 6C6F6E67 		.ascii	"long long int\000"
+ 1693      206C6F6E 
+ 1693      6720696E 
+ 1693      7400
+ 1694              	.LASF45:
+ 1695 0256 6D61696E 		.ascii	"main.c\000"
+ 1695      2E6300
+ 1696              	.LASF15:
+ 1697 025d 63686172 		.ascii	"char\000"
+ 1697      00
+ 1698              	.LASF2:
+ 1699 0262 73686F72 		.ascii	"short int\000"
+ 1699      7420696E 
+ 1699      7400
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 39
+
+
+ 1700              	.LASF42:
+ 1701 026c 62756666 		.ascii	"buffer\000"
+ 1701      657200
+ 1702              	.LASF36:
+ 1703 0273 4D495334 		.ascii	"MIS4_pulse_time\000"
+ 1703      5F70756C 
+ 1703      73655F74 
+ 1703      696D6500 
+ 1704              	.LASF24:
+ 1705 0283 7370695F 		.ascii	"spi_data\000"
+ 1705      64617461 
+ 1705      00
+ 1706              	.LASF46:
+ 1707 028c 433A5C55 		.ascii	"C:\\Users\\tomas.gecas\\Documents\\Dropbox\\Shared\\"
+ 1707      73657273 
+ 1707      5C746F6D 
+ 1707      61732E67 
+ 1707      65636173 
+ 1708 02ba 50534F43 		.ascii	"PSOC\\workspace 20171130\\workspace 20171113\\works"
+ 1708      5C776F72 
+ 1708      6B737061 
+ 1708      63652032 
+ 1708      30313731 
+ 1709 02ea 70616365 		.ascii	"pace 20171004\\workspace\\minunit_arch stendo 0927\\"
+ 1709      20323031 
+ 1709      37313030 
+ 1709      345C776F 
+ 1709      726B7370 
+ 1710 031b 6D696E75 		.ascii	"minunit_arch\\minunit_arch\\stendo_MIS_WIRE.cydsn\000"
+ 1710      6E69745F 
+ 1710      61726368 
+ 1710      5C6D696E 
+ 1710      756E6974 
+ 1711              	.LASF22:
+ 1712 034b 6973725F 		.ascii	"isr_CS_Rise_handler\000"
+ 1712      43535F52 
+ 1712      6973655F 
+ 1712      68616E64 
+ 1712      6C657200 
+ 1713              	.LASF16:
+ 1714 035f 6C6F6E67 		.ascii	"long double\000"
+ 1714      20646F75 
+ 1714      626C6500 
+ 1715              	.LASF0:
+ 1716 036b 7369676E 		.ascii	"signed char\000"
+ 1716      65642063 
+ 1716      68617200 
+ 1717              	.LASF33:
+ 1718 0377 4D495333 		.ascii	"MIS3_pulse_count\000"
+ 1718      5F70756C 
+ 1718      73655F63 
+ 1718      6F756E74 
+ 1718      00
+ 1719              	.LASF20:
+ 1720 0388 6973725F 		.ascii	"isr_QuadDec_1_handler\000"
+ 1720      51756164 
+ 1720      4465635F 
+ARM GAS  C:\Users\TOMAS~1.GEC\AppData\Local\Temp\ccOfFsJz.s 			page 40
+
+
+ 1720      315F6861 
+ 1720      6E646C65 
+ 1721              	.LASF32:
+ 1722 039e 4D495332 		.ascii	"MIS2_pulse_time\000"
+ 1722      5F70756C 
+ 1722      73655F74 
+ 1722      696D6500 
+ 1723              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
